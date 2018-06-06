@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#" >
+    <head>
+        <title>My profile - Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        @@include('gtmhead.html')
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description">
+        <meta content="Sports Extra Mile" property="og:site_name">
+        <meta content="website" property="og:type">
+        <meta content="https://www.sportsextramile.com/" property="og:url">
+        <meta content="https://www.sportsextramile.com/img/og.png" property="og:image">
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" />
+        @@include('footerscripts.html')
+
+        @@if (doConcat === 1) {
+        @@loop('css.html', [ 
+        { "file": "common.css"}, 
+        { "file": "sxm-common.css"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('css.html', [ 
+        { "file": "bootstrap.min.css"}, 
+        { "file": "xeditable.min.css"},
+        { "file": "textAngular.css"},
+        { "file": "ngdialog.css"}, 
+        { "file": "ngDialog-theme-default.css"}, 
+        { "file": "login.css"}, 
+        { "file": "facilities.css"}, 
+        { "file": "profile.css"},
+        { "file": "detail.css"},
+        { "file": "style.css"}, 
+        { "file": "static.css"},
+        { "file": "select.css"},
+        { "file": "lightgallery.css"},
+        { "file": "events-cricket-admin1.css"}
+        ])
+        }
+
+        @@if (doConcat === 1) {
+        @@loop('scripts.html', [ 
+        { "file": "angular.js"}, 
+        { "file": "sxm-common.js"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('scripts.html', [
+        { "file": "lib/angular1.4.5.min.js"},
+        { "file": "lib/moment.js"},
+        { "file": "lib/xeditable.min-0.5.0.js"},
+        { "file": "lib/angular-datepicker.js"},
+		{ "file": "lib/angular-youtube-embed.min.js"},
+        { "file": "lib/textAngular-rangy.min.js"},
+        { "file": "lib/textAngular-sanitize.min.js"},
+        { "file": "lib/textAngular.min.js"},
+        { "file": "lib/select.min.js"},
+        { "file": "lib/ngdialog.js"},
+        { "file": "shared.js"},
+        { "file": "anghome.js"},
+        { "file": "user.js"},
+        { "file": "header.js"},
+        { "file": "editProfile.js"},
+        { "file": "organizer.js"}
+        ])
+        }
+    </head>
+    <body ng-app="sem" ng-controller="profileEdit as profile">
+        @@include('gtmbody.html')
+        @@include('header.html')
+		<custom-dialog dialog-msg="{{profile.confirm.dialogMsg}}" dialog-show="profile.confirm.dialogShow" handler="profile.dialogHandler()"></custom-dialog>
+        <div class="container" ng-cloak>
+            <!-- Profile Page -->
+            <div class="row content profile-page">
+                <!-- Left Panel -->
+                <div class="col-md-8 pdetail">
+					<div class="profileSection">
+						<div class="card">
+							<div class="col-md-12 profileBio">
+								<img class="img-responsive usrImage" data-ng-src="@@host/uploads/{{profile.userprofile._id| imgsize:108}}" alt="" width="108" height="108" />
+								<a class="bioChangeBtn hideInMobile" href="#ChangePicture" role="button" data-toggle="modal" ng-click="profile.imageDiag()">Change</a>
+								<a class="bioChangeBtn showInMobile" href="#ChangePicture" role="button" data-toggle="modal" ng-click="profile.imageDiag()">Change</a>
+                                                                <!--button class="bioChangeBtn showInMobile" onclick="profile.imageDiag()">Change</button-->
+								<div class="col-md-12 bioRow" style="margin-top:10px;">
+									<p class="usrName" ng-bind="(profile.userprofile.fName + ' ' + profile.userprofile.lName)"></p>
+								</div>
+								<div class="col-md-12 bioRow bioAbout">
+									<div class="bioCont">
+										<span class="bioLabel">About Me:</span>
+										<span><a href="#" editable-textarea="profile.userprofile.about" e-rows="5" e-cols="70" onaftersave="profile.setProfile('about')" ng-bind="profile.userprofile.about || 'empty'"></a></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 bioRow">
+								<div class="col-md-6 bioCol">
+									<div class="bioCont">
+										<span class="bioLabel">First Name:</span> 
+										<span><a href="#" editable-text="profile.userprofile.fName" onaftersave="profile.setProfile('fName')" ng-bind="profile.userprofile.fName || 'empty'"></a></span>
+									</div>
+								</div>
+								<div class="col-md-6 bioCol">
+									<div class="bioCont">
+										<span class="bioLabel">Last Name:</span>
+										<span><a href="#" editable-text="profile.userprofile.lName" onaftersave="profile.setProfile('lName')" ng-bind="profile.userprofile.lName || 'empty'"></a></span>
+									</div>	
+								</div>
+							</div>
+							<div class="col-md-12 bioRow">
+								<div class="col-md-6 bioCol">
+									<div class="bioCont">
+										<span class="bioLabel">Email:</span> 
+										<span ng-bind="profile.userprofile.email"></span>
+									</div>
+								</div>
+								<div class="col-md-6 bioCol">
+									<div class="bioCont">
+										<span class="bioLabel">Date of Birth</span> 
+										<datepicker class="col-sm-8 dtpicker" datepicker-mobile="true" date-format="dd MMM y" date-set="{{profile.userprofile.dob.toString()}}">
+											<input class="col-sm-12 datetime" type="text" name="event_date" placeholder="dd MMM yyyy" ng-change="profile.setProfile('dob')" data-ng-model="profile.userprofile.dob" />
+										</datepicker>
+									</div>	
+								</div>
+							</div>
+							<div class="col-md-12 bioRow">
+								<div class="col-md-6 bioCol">
+									<div class="bioCont">
+										<span class="bioLabel">I am a</span>
+										<select name="ddlStates" data-ng-model="profile.userprofile.work" data-ng-change="profile.setCoachProfile()">
+											<option ng-repeat="prof in profile.professions" value="{{::prof.value}}" ng-selected="{{prof.value == profile.userprofile.work}}">{{::prof.text}}</option>
+										</select>
+									</div>	
+								</div>
+								<div class="col-md-6 bioCol">
+									<div class="bioCont">
+										<span class="bioLabel">Mobile:</span>
+										<span><a href="#" editable-text="profile.userprofile.mobile" onaftersave="profile.setProfile('mobile')" ng-bind="profile.userprofile.mobile || 'empty'"></a></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 bioRow">
+								<div class="col-md-12 bioCol">
+									<div class="bioCont">
+										<span class="bioLabel" style="padding:0 0 5px 0;">Location:</span>
+										<ui-select multiple ng-model="profile.userprofile.location" on-select="profile.setLocation()" on-remove="profile.setLocation()">
+											<ui-select-match placeholder="Select locations">{{$item}}</ui-select-match>
+											<ui-select-choices repeat="city in profile.filterObjArray(profile.allcities, 'City') | filter: $select.search track by $index">
+												{{city}}
+											</ui-select-choices>
+										</ui-select>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+					<div class="coachSection" ng-show="profile.userprofile.isCoach">
+						<div class="card">
+							<h4>Coach Profile</h4>
+							<div class="col-md-12 coachRow">
+								<span class="coachLabel">Sports I Coach</span>
+								<ui-select multiple ng-model="profile.userprofile.cSports" on-select="profile.setCoachSport()" on-remove="profile.setCoachSport()">
+									<ui-select-match placeholder="Select sports">{{ $item}}</ui-select-match>
+									<ui-select-choices repeat="sport in profile.availablesports | filter: $select.search">
+										{{sport}}
+									</ui-select-choices>
+								</ui-select>
+							</div>
+							<div class="col-md-12 coachRow">
+								<span class="coachLabel">Facilities where I Coach</span>
+								<ui-select multiple ng-model="profile.userprofile.cFacilities" on-select="profile.setProfile('cFacilities')" on-remove="profile.setProfile('cFacilities')">
+									<ui-select-match placeholder="Select facilities">{{$item.facName}}</ui-select-match>
+									<ui-select-choices repeat="facility in profile.coachFacilities | filter: $select.search">
+										{{facility.facName}}
+									</ui-select-choices>
+								</ui-select>
+							</div>
+						</div>
+					</div>	
+					<div class="tabsWrapper">
+						<div class="tabsContainer">
+							<ul>
+								<li class="tabStyle" data-tab="Tab_Sports">
+									<span class="tab_ico"></span>
+									<span class="tab_lbl">Sports</span>
+								</li>
+								<li class="tabStyle" data-tab="Tab_Activities">
+									<span class="tab_ico"></span>
+									<span class="tab_lbl">Activities</span>
+								</li>
+								<li class="tabStyle" data-tab="Tab_Friends">
+									<span class="tab_ico"></span>
+									<span class="tab_lbl">Friends</span>
+								</li>
+								<li class="tabStyle" data-tab="Tab_Pics">
+									<span class="tab_ico"></span>
+									<span class="tab_lbl">Pics</span>
+								</li>
+							</ul>
+						</div>
+						<div class="faketabsContainer"></div>
+					</div>
+					<div class="tabsDataContainer">	
+						<div id="Tab_Sports" class="tabItem tabContent">
+							<div class="card section" tab-scroller="">
+								<div class="subtabWrapper">
+									<div class="subtabContainer">
+										<ul class="scrolltabContainer">
+											<li class="subtabStyle scrolltab">Stats</li>
+											<li class="subtabStyle scrolltab">Sports</li>											
+											<li class="subtabStyle scrolltab">Facilities</li>
+											<li class="subtabStyle scrolltab">Proud Moments</li>
+										</ul>
+									</div>
+									<div class="fakesubtabContainer"></div>
+								</div>
+								<div class="subtabDataContainer">
+									<div class="scrolltabDataContainer">
+										<div class="scrolltabData" id="accordion">
+											<div class="cb-col cb-col-100 panel accWrapper" ng-repeat="user in profile.userTournaments | orderBy:'tournament.startdate':-true">
+												<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" data-parent="#accordion" data-toggle="collapse" data-target="#tournament1_{{$index}}, #tournament2_{{$index}}" ng-click="profile.loadTournamentMatches(user.tournament.id, user.team, $index)" style="font-size:16px;cursor:pointer;"><i class="indicator fa fa-plus" aria-hidden="true"></i> {{user.tournament.title}} <span style="font-size:12px;"> - {{user.tournament.startdate | date:'MMM yyyy'}}</span></div>
+												<div class="cb-col cb-col-50 cb-sm-100 cb-scrd-sub-hdr">
+													<div class="cb-col cb-col-100 cb-scrd-itms">
+														<div class="cb-col cb-col-50 text-right">I</div>
+														<div class="cb-col cb-col-10 text-right text-bold">R</div>
+														<div class="cb-col cb-col-10 text-right">4</div>
+														<div class="cb-col cb-col-10 text-right">6</div>
+														<div class="cb-col cb-col-10 text-right">50</div>
+														<div class="cb-col cb-col-10 text-right">100</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms">
+														<div class="cb-col cb-col-50">
+															<div class="cb-col cb-col-80">Batting</div>
+															<div class="cb-col cb-col-20 text-right">{{user.stats.totalInnings}}</div>
+														</div>
+														<div class="cb-col cb-col-10 text-right text-bold">{{user.stats.batting.totalRun}}</div>
+														<div class="cb-col cb-col-10 text-right">{{user.stats.batting.totalFours}}</div>
+														<div class="cb-col cb-col-10 text-right">{{user.stats.batting.totalSixes}}</div>
+														<div class="cb-col cb-col-10 text-right">{{user.stats.batting.totalFifties}}</div>
+														<div class="cb-col cb-col-10 text-right">{{user.stats.batting.totalCenturies}}</div>
+													</div>
+													<div id="tournament1_{{$index}}" class="collapse" style="float:left;width:100%;">
+														<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="match in profile.userTournamentStats[$index].matches" ng-if="match.stats.batting">
+															<div class="cb-col cb-col-50 text-left">{{match.event.title}}</div>
+															<div class="cb-col cb-col-10 text-right text-bold">{{match.stats.batting.total}}</div>
+															<div class="cb-col cb-col-10 text-right">{{match.stats.batting.four}}</div>
+															<div class="cb-col cb-col-10 text-right">{{match.stats.batting.sixes}}</div>
+															<div class="cb-col cb-col-10 text-right">0</div>
+															<div class="cb-col cb-col-10 text-right">0</div>
+														</div>													
+													</div>
+												</div>												
+												<div class="cb-col cb-col-50 cb-sm-100 cb-scrd-sub-hdr">
+													<div class="cb-col cb-col-100 cb-scrd-itms">
+														<div class="cb-col cb-col-52 text-right">I</div>
+														<div class="cb-col cb-col-12 text-right">O</div>
+														<div class="cb-col cb-col-12 text-right text-bold">W</div>
+														<div class="cb-col cb-col-12 text-right">R</div>
+														<div class="cb-col cb-col-12 text-right">E</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms">
+														<div class="cb-col cb-col-52">
+															<div class="cb-col cb-col-80">Bowling</div>
+															<div class="cb-col cb-col-20 text-right">{{user.stats.totalInnings}}</div>
+														</div>
+														<div class="cb-col cb-col-12 text-right">{{user.stats.bowling.totalOvers}}</div>
+														<div class="cb-col cb-col-12 text-right text-bold">{{user.stats.bowling.totalWickets}}</div>
+														<div class="cb-col cb-col-12 text-right">{{user.stats.bowling.totalRun}}</div>														
+														<div class="cb-col cb-col-12 text-right">0.00</div>
+													</div>
+													<div id="tournament2_{{$index}}" class="collapse" style="float:left;width:100%;">
+														<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="match in profile.userTournamentStats[$index].matches" ng-if="match.stats.bowling">
+															<div class="cb-col cb-col-52 text-left">{{match.event.title}}</div>
+															<div class="cb-col cb-col-12 text-right">{{match.stats.bowling.over_count}}.{{match.stats.bowling.balls}}</div>
+															<div class="cb-col cb-col-12 text-right text-bold">{{match.stats.bowling.wicket}}</div>
+															<div class="cb-col cb-col-12 text-right">{{match.stats.bowling.runs}}</div>															
+															<div class="cb-col cb-col-12 text-right">{{match.stats.bowling.Eco}}</div>
+														</div>
+													</div>
+												</div>	
+											</div>
+										</div>
+										<div class="scrolltabData">
+											<div class="col-md-12" style="padding-top:10px;">
+												<ui-select multiple ng-model="profile.userprofile.sports" on-select="profile.setSport($item, 'add')" on-remove="profile.setSport($item, 'remove')">
+													<ui-select-match placeholder="Select sports">{{$item}}</ui-select-match>
+													<ui-select-choices repeat="sport in profile.availablesports | filter: $select.search">
+														{{sport}}
+													</ui-select-choices>
+												</ui-select>	
+												<div style="clear:both;padding-top:6px;"></div>
+											</div>
+											<div class="col-md-12" ng-if="profile.userprofile.sports.length > 0" style="margin:10px 0;float:left;">
+												<div class="thRow">
+													<div class="thCol firstCol">Sports</div>
+													<div class="thCol">Your expertise</div>
+													<div class="thCol">How frequently</div>
+												</div>
+												<div class="tdRow" ng-repeat="sport in profile.userprofile.sports">
+													<div class="tdCol firstCol">
+														<img class="tdImg" data-ng-src="img/{{::sport}}.png" alt="" title="{{::sport}}" />
+														<span class="tdLabel" data-ng-bind="sport"></span>
+													</div>
+													<div class="tdCol">
+														<select data-ng-model="profile.userprofile.expertise[$index]" ng-change="profile.setProfile('sportLevel')">
+															<option ng-repeat="ex in profile.expertiseList" value="{{::ex.value}}" data-ng-selected="{{ex.value == profile.userprofile.expertise[$parent.$index]}}">{{::ex.text}}</option>
+														</select>
+													</div>
+													<div class="tdCol">
+														<select data-ng-model="profile.userprofile.frequency[$index]" ng-change="profile.setProfile('sportLevel')">
+															<option ng-repeat="fr in profile.frequencyList" value="{{::fr.value}}" data-ng-selected="{{fr.value == profile.userprofile.frequency[$parent.$index]}}">{{::fr.text}}</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>										
+										<div class="scrolltabData">
+											<div class="col-md-12" style="padding-top:10px;">			
+                                                <ui-select multiple ng-model="profile.userprofile.facility" on-select="profile.setFacility($item, 'subscribe')" on-remove="profile.setFacility($item, 'unsubscribe')">
+                                                    <ui-select-match placeholder="Select facilities">{{$item.facName}}</ui-select-match>
+                                                    <ui-select-choices repeat="facility in profile.facilities | filter: $select.search track by $index">
+                                                        {{facility.facName}}
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+										</div>
+										<div class="scrolltabData proudMoments">
+											<h4>&nbsp;</h4>
+											<div id="addPM" class="addItemBtn right10" data-toggle="collapse" data-target="#awardFormContainer">
+                                                <i class="fa fa-plus" aria-hidden="true"></i> Add Moment
+                                            </div>									                                                
+                                            <div id="awardFormContainer" class="collapse">
+                                                <form name="awardForm" role="form" novalidate ng-submit="awardForm.$valid && profile.addMoment()" accept-charset="UTF-8">
+                                                    <div class="awardFormCol">
+                                                        <div class="awardFormItem formAwardTitle">
+                                                            <label class="awardFormLbl">Proud Moment</label>
+                                                            <input class="col-md-12" ng-class="{submitted:profile.isFocus.submitted}" type="text" name="awardTitle" ng-model="profile.userprofile.cTitle" placeholder="Proud Moment" required />
+                                                        </div>
+                                                        <div class="awardFormItem formAwardYear">
+                                                            <label class="awardFormLbl">Year</label>
+                                                            <select id="awardYear" class="col-sm-12" name="awardYear" data-ng-model="profile.userprofile.cYear">
+                                                                <option data-ng-repeat="year in profile.awardYears" value="{{year}}" ng-selected="{{year == profile.userprofile.cYear}}">{{year}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="awardFormItem formAwardMonth">
+                                                            <label class="awardFormLbl">Month</label>
+                                                            <select id="awardMonth" class="col-sm-12" name="awardMonth" data-ng-model="profile.userprofile.cMonth">
+                                                                <option data-ng-repeat="month in profile.awardMonths" value="{{month}}" ng-selected="{{month == profile.userprofile.cMonth}}">{{month}}</option>
+                                                            </select>														
+                                                        </div>
+                                                    </div>
+                                                    <div class="awardFormCol">
+                                                        <div class="awardFormItem formAwardDetail">
+                                                            <label class="awardFormLbl">Details</label>
+                                                            <textarea class="col-md-12" type="text" name="awardDetail" ng-model="profile.userprofile.cText" placeholder="Details" ></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="awardFormItem formAwardBtn">
+                                                        <button class="formBtn" type="submit" name="awardSubmit" ng-click="profile.isFocus.submitted = true">Add Moment</button>
+                                                        <button class="formBtn btnCancel" type="button" name="awardCancel" ng-click="profile.cancelMoment()" style="margin-right:10px">Cancel</button>
+                                                    </div>
+                                                </form>												
+                                            </div>
+                                            <div id="awardDataContainer">                                                    
+                                                <div class="awardContainer col-md-12" ng-if="profile.userprofile.cawards.length == 0">Share your Proud Moments in Sports & Fitness</div>
+                                                <div class="awardContainer col-md-12" ng-if="profile.userprofile.cawards">
+                                                    <div class="awardItem" data-ng-repeat="award in profile.userprofile.cawards| orderBy:['-cYear', 'cMonth']">
+                                                        <div class="awardTitle" data-ng-bind="award.cTitle"></div>
+                                                        <div class="awardDate">{{award.cMonth}} - {{award.cYear}}</div>
+                                                        <div class="awardDetail" data-ng-bind="award.cText"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+										</div>
+									</div>
+								</div>
+							</div>										
+						</div>
+						<div id="Tab_Activities" class="tabItem tabContent">
+							<div class="card section" tab-scroller="">
+								<div class="subtabWrapper">
+									<div class="subtabContainer">
+										<ul class="scrolltabContainer">
+											<li class="subtabStyle scrolltab">My Pages</li>
+											<li class="subtabStyle scrolltab">Articles</li>
+											<li class="subtabStyle scrolltab">Events</li>
+											<li class="subtabStyle scrolltab">Discussions</li>
+										</ul>
+									</div>
+									<div class="fakesubtabContainer"></div>
+								</div>
+								<div class="subtabDataContainer">
+									<div class="scrolltabDataContainer">
+										<div class="scrolltabData event-listing orgPages">
+											<h4>
+												<span>My Pages</span> 
+												<div class="infoSection">
+													<span customtip class="infoIcon1" title="Create your organization page and add more details to it. You can manage all Sports activities of your organization from this page. Page is accessible without registration, so you can share link of your organization page to your friends or on other social networks and promote it."></span>
+													<!-- <span class="infoContent">Create your organization page and add more details to it. You can manage all Sports activities of your organization from this page. Page is accessible without registration, so you can share link of your organization page to your friends or on other social networks and promote it.</span> -->
+												</div>
+											</h4>
+											<div id="addOrg" class="addItemBtn right10" data-toggle="collapse" data-target="#createOrganizer">
+												<i class="fa fa-plus" aria-hidden="true"></i> Create Page
+											</div>
+											<form id="createOrganizer" class="pageForm collapse" name="createOrganizerForm" role="form" novalidate ng-submit="createOrganizerForm.$valid && profile.createOrganizer()">
+												<div class="cb-col cb-col-50 cb-sm-100">
+													<div class="cb-col cb-col-100 profListing">
+														<label class="pageFormLbl hideInMobile">Type</label>
+														<select class="cb-col cb-col-100" name="pagetype" ng-model="profile.pageType" ng-init="profile.pageType='organizer'">
+															<option value="organizer">Organizer</option>
+															<option value="academy">Academy</option>
+														</select>
+													</div>
+												</div>
+												<div class="cb-col cb-col-50 cb-sm-100">
+													<div class="cb-col cb-col-100 profListing">
+														<label class="pageFormLbl hideInMobile">Title</label>
+														<input class="cb-col cb-col-100" ng-class="{submitted:profile.isFocus.submitted}" name="orgTitle" data-ng-model="profile.organizer.title" placeholder="{{profile.pageType == 'organizer'?'Organizer':'Academy' }} name" required />
+													</div>
+												</div>
+												<div class="cb-col cb-col-50 cb-sm-100">
+													<div class="cb-col cb-col-100 profListing">
+														<label class="pageFormLbl hideInMobile">Details</label>
+														<textarea class="cb-col cb-col-100" name="orgAbout" rows="2" data-ng-model="profile.organizer.about" placeholder="{{profile.pageType == 'organizer' ? 'Organizer' : 'Academy'}} details"></textarea>
+													</div>
+												</div>
+												<div class="cb-col cb-col-50 cb-sm-100" ng-if="profile.pageType == 'academy'">
+													<div class="cb-col cb-col-100 profListing">
+														<label class="pageFormLbl hideInMobile">Sports</label>
+														<ui-select multiple ng-class="{submitted:profile.isFocus.submitted}" ng-model="profile.organizer.sports" ng-required="true">
+															<ui-select-match placeholder="Select sports">{{$item}}</ui-select-match>
+															<ui-select-choices repeat="sport in profile.availablesports | filter: $select.search">
+																{{sport}}
+															</ui-select-choices>
+														</ui-select>
+													</div>
+												</div>
+												<div class="cb-col cb-col-50 cb-sm-100">	
+													<div class="cb-col cb-col-100 profListing">
+														<button class="pageFormBtn" type="submit" name="orgSubmit" ng-click="profile.isFocus.submitted = true;">Create</button>
+														<button class="pageFormBtn btnCancel" type="button" name="orgCancel" ng-click="profile.cancelOrganizer()" style="margin-right:10px">Cancel</button>
+													</div>	
+												</div>											
+											</form>
+											<div class="tournamentListCont">	
+												<div class="tItem" ng-if="profile.userprofile.pages.length == 0">
+													No Pages available here.
+												</div>
+												<div class="tItem" data-ng-repeat="opage in profile.userprofile.pages">
+													<p><a data-ng-href="/organization.html?orgId={{opage.id}}"><strong>{{opage.title}}</strong></a></p>
+												</div>
+                                                                                            <div class="tItem" data-ng-repeat="tpage in profile.userprofile.tournaments">
+													<p><a data-ng-href="/tournament?tid={{tpage.id}}"><strong>{{tpage.title}}</strong></a></p>
+												</div>
+											</div>
+											<div class="tournamentListCont">	
+												<div class="tItem" ng-if="profile.userprofile.academies.length == 0">
+													No academy pages available here.
+												</div>
+												<div class="tItem" data-ng-repeat="academy in profile.userprofile.academies">
+													<p>
+														<a data-ng-href="/academy.html?aid={{academy.id}}"><strong>{{academy.name}}</strong></a>
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="scrolltabData event-listing orgPages">	
+											<h4>Published Articles</h4>
+											<div class="addItemBtn right10" ng-click="profile.openArticlePopup()">
+												<i class="fa fa-plus" aria-hidden="true"></i> Write an Article
+											</div>
+											<div class="pro-tabinner">
+												<div class="col-md-12" style="padding-bottom:10px;" ng-if="profile.userprofile.articles.length == 0">
+													No published articles available here.
+												</div>
+												<ul class="col-md-12 no" ng-if="profile.userprofile.articles.length > 0">
+													<li ng-repeat="art in profile.userprofile.articles">
+														<span class="thumb"><span ng-bind="art.date | date : 'd' : '+0530'"></span>
+															<span>
+																<b ng-bind="art.date | date : 'MMM' : '+0530'"></b>
+															</span>
+														</span>
+														<span class="title">
+															<a class="sub-ttl" style="cursor: pointer" data-ng-bind="art.title" data-ng-click="profile.showDetailArticle(art._id, 'A', 'A')"></a>
+														</span>
+													</li>
+												</ul>
+											</div>
+											<div class="pro-tabinner" ng-show="profile.userprofile.articlesP.length > 0">
+												<h4>Pending for Approval</h4>
+												<ul class="col-md-12 no">
+													<li ng-repeat="art in profile.userprofile.articlesP">
+														<span class="thumb"><span ng-bind="art.date | date : 'd' : '+0530'"></span>
+															<span>
+																<b ng-bind="art.date | date : 'MMM' : '+0530'"></b>
+															</span>
+														</span>
+														<span class="title">
+															<a class="sub-ttl" style="cursor: pointer" data-ng-bind="art.title" data-ng-click="profile.showDetailArticle(art._id, 'A', 'P')"></a>
+														</span>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="scrolltabData event-listing">
+											<h4>&nbsp;</h4>
+                                            <div class="addItemBtn right10" ng-click="profile.createEvent()">
+                                                <i class="fa fa-plus" aria-hidden="true"></i> Create Event
+                                            </div>
+                                            <div class="col-md-12" style="padding:10px;" ng-if="profile.userprofile.events.length == 0">
+                                                No events available here.
+                                            </div>
+                                            <ul class="col-md-12 no" ng-if="profile.userprofile.events.length > 0">
+                                                <li ng-repeat="evt in profile.userprofile.events | orderBy : '-evtDate'">
+                                                    <span class="thumb"><span ng-bind="evt.evtDate | date : 'd' : '+0530'"></span>
+                                                        <span>
+                                                            <b ng-bind="evt.evtDate | date : 'MMM' : '+0530'"></b>
+                                                        </span>
+                                                    </span>
+                                                    <span class="title">
+                                                        <a class="sub-ttl" data-ng-href="/event/{{::evt.evtName| makeHyphen}}-{{::evt.evtID}}?type=E" data-ng-bind="evt.evtName"></a>   
+                                                    </span>
+                                                </li>
+                                            </ul>
+										</div>
+										<div class="scrolltabData event-listing">
+											<div class="col-md-12" style="padding:10px;" ng-if="profile.userprofile.disc.length == 0">
+                                                No discussions available here.
+                                            </div>
+                                            <ul class="col-md-12 no" ng-if="profile.userprofile.disc.length">
+                                                <li ng-repeat="desc in profile.userprofile.disc| orderBy : '-date'">
+                                                    <span class="thumb"><span ng-bind="desc.date | date : 'd' : '+0530'"></span>
+                                                        <span>
+                                                            <b ng-bind="desc.date | date : 'MMM' : '+0530'"></b>
+                                                        </span>
+                                                    </span>
+                                                    <span class="title" >
+                                                        <a class="sub-ttl" style="cursor: pointer" data-ng-bind="desc.body | limitTo:20" data-ng-click="profile.showDetailDiscussion(desc._id, 'D')"></a>
+                                                    </span>
+                                                </li>
+                                            </ul>
+										</div>
+									</div>
+								</div>
+							</div>									
+						</div>
+						<div id="Tab_Friends" class="tabItem tabContent">
+							<div class="card section" tab-scroller="">
+								<div class="subtabWrapper">
+									<div class="subtabContainer">
+										<ul class="scrolltabContainer">
+											<li class="subtabStyle scrolltab">Friends</li>
+											<li class="subtabStyle scrolltab">Teams</li>
+										</ul>
+									</div>
+									<div class="fakesubtabContainer"></div>
+								</div>
+								<div class="subtabDataContainer">
+									<div class="scrolltabDataContainer">
+										<div class="scrolltabData event-listing frdSection">
+											<div class="col-md-12">
+                                                <ul class="col-md-12 no clearfix Friends-Groups-tabs">
+													<li ng-if="profile.userprofile.friends.friends.length == 0">No friends available here</li>
+                                                    <li ng-repeat='frds in profile.userprofile.friends.friends | filter:{name :search.name}:startsWith'>
+                                                        <a data-ng-href="/profile/{{::frds.name | makeHyphen}}-{{::frds.uid}}">
+                                                            <span class="thumb">
+                                                                <img data-ng-src="@@host/uploads/{{frds.uid | imgsize:108}}" err-src="/img/user.jpg" width="40" height="40" style="border-radius:50%" />
+                                                            </span>
+                                                            <span class="title" data-ng-bind="frds.name"></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>      
+                                            </div>
+										</div>
+										<div class="scrolltabData event-listing frdSection">
+											<div class="col-md-12">
+                                                <ul class="col-md-12 no clearfix Friends-Groups-tabs">
+													<li ng-if="profile.userprofile.groups.length == 0">No groups available here</li>
+                                                    <li ng-repeat='group in profile.userprofile.groups | filter:{grpName :search.name}:startsWith'>
+                                                        <span class="thumb">
+                                                            <img data-ng-src="@@host/logo/{{group.gid | logofilter}}" err-src="/img/users-group-icon.png" width="40" height="40" style="border-radius:50%" />
+                                                        </span>
+                                                        <a href="#" onclick="return false" data-ng-click="profile.groupDetails(group.gid)">
+                                                            <span class="title" data-ng-bind="group.grpName"></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>    
+                                            </div>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+						<div id="Tab_Pics" class="tabItem tabContent">
+							<div class="card section gallerySection">
+								<h4 style="background:#113145;">&nbsp;</h4>
+								<div class="addItemBtn right10" data-toggle="collapse" data-target="#uploadImages">
+									<i class="fa fa-plus" aria-hidden="true"></i> Upload Images
+									<input class="uploadImgBtn" type="file" multiple onchange="angular.element(this).scope().profile.uploadImages(this.files)" />
+								</div>
+								<div class="gallery">			
+									<div class="col-md-12" ng-if="profile.userprofile.gallery.length == 0">
+										No images available here.
+									</div>
+									<div id="lightgallery" class="lightgallery">
+										<a class="galleryItem" lightgallery ng-repeat="gal in profile.userprofile.gallery | orderBy:reverse:true" ng-href="@@host/posts/{{gal.id | imgsize}}">
+											<i class="fa fa-times-circle closeBtn" ng-hide="profile.confirm.removeImg[$index]" ng-click="$event.stopPropagation();$event.preventDefault();profile.confirm.removeImg = null;profile.confirm.removeImg[$index] = true;"></i>
+											<div class="cb-col cb-col-65 profListing closeBtnOptions" ng-show="profile.confirm.removeImg[$index]">
+												<button class="stdBtn scoreBtn cb-col-100 confirmBtn" type="submit" ng-click="profile.removeImage($event, gal.id);">Confirm</button>
+												<button class="stdBtn scoreBtn cb-col-100" type="button" ng-click="$event.stopPropagation();$event.preventDefault();profile.confirm.removeImg = false;">Cancel</button>
+											</div>
+											<img class="img-responsive" ng-src="@@host/posts/{{gal.id | imgsize:206 }}" ng-class="{'removeImg':profile.confirm.removeImg[$index]}" />
+										</a>				
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+                </div>
+                <!-- Right Panel -->
+                <div class="col-md-4">
+                    @@include('rightpanel.html')
+                </div>
+            </div>
+        </div>	
+        <!-- Footer -->
+		<style type="text/css">
+			@media(max-width:767px) {
+				.profile-page{margin-left:-20px;margin-right:-20px;}
+				.profile-page .card{box-shadow:1px 1px 1px 0 #617d8c;margin-bottom:10px;}
+			}
+		</style>
+        @@include('footer.html')
+        <script type="text/javascript" src="/js/lib/lightgallery.min.js"></script>
+        <script type="text/javascript" src="/js/lib/lg-thumbnail.min.js"></script>
+        <script type="text/javascript" src="/js/lib/lg-fullscreen.min.js"></script>
+        <script type="text/javascript" src="/script/main.js"></script>
+        <script>
+			$(document).ready(function () {
+				console.log('ready document');
+				$('.discussion-list').slimScroll({
+					position: 'right',
+					height: '180px',
+					railVisible: true,
+					alwaysVisible: true
+				});
+				$('.fri-container ul').slimScroll({
+					position: 'right',
+					height: '270px',
+					railVisible: true,
+					alwaysVisible: true
+				});
+				$('body').scrollspy({
+					target: '.profile-page',
+					offset: 165
+				});
+				$('a.page-scroll').bind('click', function (event) {
+					console.log("scroll called");
+					var $ele = $(this);
+					$('html, body').stop().animate({
+						scrollTop: ($($ele.attr('href')).offset().top - 115)
+					}, 1450, 'easeInOutExpo');
+					event.preventDefault();
+				});
+				$('#accordion').on('hidden.bs.collapse', function(e){
+					 $(e.target).find("i.indicator").toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+				});
+				$('#accordion').on('shown.bs.collapse', function(e){
+					$(e.target).find("i.indicator").toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+				});
+			});
+        </script>            
+    </body>
+</html>

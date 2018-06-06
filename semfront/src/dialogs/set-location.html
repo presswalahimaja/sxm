@@ -1,0 +1,25 @@
+<h3 style="border-bottom:none;">Select your location</h3>
+<div id="Event" class="modal-body clearfix formContainer" ng-controller="SetLocation as setLocation">
+    <div class="col-sm-12 formValidations locationList">
+		<div class="form-group">
+			<div class="btn-group col-sm-6" data-ng-class="{open: setLocation.open}" ng-init="setLocation.open = false">
+				<input type="text" class="col-sm-12" placeholder="Search" ng-model="setLocation.query" ng-keyup="setLocation.openDropdown(setLocation.query)" />
+				<ul class="dropdown-menu col-sm-12" aria-labelledby="dropdownMenu" style="width:100%;height:100px;overflow-x:hidden;">
+					<li style="cursor:pointer;" data-ng-repeat="option in setLocation.allcities| filter:setLocation.query">
+						<a ng-click="setLocation.toggleSelectItem(option, true)" >
+							<span data-ng-class="setLocation.getClassName(option)" aria-hidden="true"></span> {{option.City}}
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-sm-6">	
+				<div class="locItems" ng-repeat="option in setLocation.selCities" ng-show="setLocation.selCities">
+					{{option}} <span ng-click="setLocation.toggleSelectItem(option, false)" ng-show="setLocation.selCities" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button id="btnCloseEvent" class="btn btnSubmit" ng-click="setLocation.cancel()">Close</button>
+		</div>	
+	</div>
+</div>

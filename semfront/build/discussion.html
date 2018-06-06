@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Discussion details - Sports Extra Mile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+	<meta name="keywords" content="sports, social network, facility, event, discussion" />
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />    
+    <link rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="script/jquery.slimscroll.min.js"></script>
+</head>
+
+<body> 
+    <header>
+        <div class="container">
+            <!-- Header -->
+            <div class="row header">
+                <div class="logo col-md-6 col-sm-6 col-xs-3">
+                    <a href="/"><img src="img/logo.png" alt="" /></a>
+                </div>
+                <div class="col-md-6 quick-links text-right col-sm-6 col-xs-9">
+                    <!--<p><a href="">Learn what SEM can do for you</a> <a href="" class="take-tour">Take a Tour</a></p>-->
+                    <ul class="nav navbar-nav pull-right event-pop" id="event-block">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#Event" role="button" data-toggle="modal"><span class="glyphicon glyphicon-user pull-right"></span>Create Event</a></li>
+                                <li><a href="#EventDiscussion" role="button" data-toggle="modal"><span class="glyphicon glyphicon-cog pull-right"></span>Create Discussion</a></li>
+                                <li><a href="#Event2" role="button" data-toggle="modal"><span class="glyphicon glyphicon-log-out pull-right"></span>Create Groups</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-log-out pull-right"></span>Add Friends</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-log-out pull-right"></span>Add Facilities</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav pull-right" id="user-block">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="https://s-media-cache-ak0.pinimg.com/736x/9b/a6/dd/9ba6dd29a8598d7406248e00015e71d6.jpg" class="left-round-img img-responsive" alt="" />
+                                <span class="user-profile-block" style=""><strong>M. S. Dhoni</strong><br/><span class="user-state">Uttar Pradesh, India</span></span>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/view.html"><span class="glyphicon glyphicon-user pull-right"></span>My Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-cog pull-right"></span>Manage Account</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-log-out pull-right"></span>Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <!-- Login Area -->
+        <div class="row content">
+            <div class="col-md-2 left">
+                <ul class="left-navigation">
+                    <li class="dropdown profile">
+                        <img src="https://s-media-cache-ak0.pinimg.com/736x/9b/a6/dd/9ba6dd29a8598d7406248e00015e71d6.jpg" class="left-round-img img-responsive img-circle" alt="">
+                        <span class="user-profile-block" style=""><strong>M. S. Dhoni</strong><br><span class="user-state">Uttar Pradesh, India</span></span>
+                    </li>
+                    <li class="">
+                        <a href="/facilities.html" class="active"><img src="img/fa.png" class="" alt="" /> Facilities & Events</a>
+                    </li>
+                    <li class="">
+                        <a href="/discussion.html"><img src="img/dis.png" class="" alt="" /> Discussions</a>
+                    </li>
+                    <li class="">
+                        <a href="#"><img src="img/fri.png" class="" alt="" /> Friends & Groups</a>
+                    </li>
+                    <li class="">
+                        <a href="#"><img src="img/set.png" class="" alt="" /> Settings</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-7 center">
+                <div class="dis-box">
+                    <p class="title">Today</p>
+                    <div class="dis-inner">
+                        <div class="dis-head clearfix">
+                            <img src="https://s-media-cache-ak0.pinimg.com/736x/9b/a6/dd/9ba6dd29a8598d7406248e00015e71d6.jpg" class="left-round-img img-responsive img-circle" alt=""> Tom Richard<span>Customer Support Manager at Gene By Gene</span>
+                        </div>
+                        <div class="dis-body clearfix">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat ut orci id laoreet. In vestibulum erat elit, in cursus lectus imperdiet in. Etiam lacinia diam vel mauris imperdiet, porttitor convallis tellus varius.
+                                Nulla placerat ullamcorper faucibus. </p>
+                        </div>
+                        <div class="post-comment clearfix">
+                            <span><a href="#"><img src="img/post-comment.png" /></a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dis-box">
+                    <p class="title">yesterday</p>
+                    <div class="dis-inner">
+                        <div class="dis-head clearfix">
+                            <img src="https://s-media-cache-ak0.pinimg.com/736x/9b/a6/dd/9ba6dd29a8598d7406248e00015e71d6.jpg" class="left-round-img img-responsive img-circle" alt=""> Tom Richard<span>Customer Support Manager at Gene By Gene</span>
+                        </div>
+                        <div class="dis-body clearfix">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat ut orci id laoreet. In vestibulum erat elit, in cursus lectus imperdiet in. Etiam lacinia diam vel mauris imperdiet, porttitor convallis tellus varius.
+                                Nulla placerat ullamcorper faucibus. </p>
+                        </div>
+                        <div class="post-comment clearfix">
+                            <span><a href="#"><img src="img/post-comment.png" /></a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dis-box">
+                    <p class="title">yesterday</p>
+                    <div class="dis-inner">
+                        <div class="dis-head clearfix">
+                            <img src="https://s-media-cache-ak0.pinimg.com/736x/9b/a6/dd/9ba6dd29a8598d7406248e00015e71d6.jpg" class="left-round-img img-responsive img-circle" alt=""> Tom Richard<span>Customer Support Manager at Gene By Gene</span>
+                        </div>
+                        <div class="dis-body clearfix">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat ut orci id laoreet. In vestibulum erat elit, in cursus lectus imperdiet in. Etiam lacinia diam vel mauris imperdiet, porttitor convallis tellus varius.
+                                Nulla placerat ullamcorper faucibus. </p>
+                        </div>
+                        <div class="post-comment clearfix">
+                            <span><a href="#"><img src="img/post-comment.png" /></a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dis-box">
+                    <p class="title">yesterday</p>
+                    <div class="dis-inner">
+                        <div class="dis-head clearfix">
+                            <img src="https://s-media-cache-ak0.pinimg.com/736x/9b/a6/dd/9ba6dd29a8598d7406248e00015e71d6.jpg" class="left-round-img img-responsive img-circle" alt=""> Tom Richard<span>Customer Support Manager at Gene By Gene</span>
+                        </div>
+                        <div class="dis-body clearfix">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat ut orci id laoreet. In vestibulum erat elit, in cursus lectus imperdiet in. Etiam lacinia diam vel mauris imperdiet, porttitor convallis tellus varius.
+                                Nulla placerat ullamcorper faucibus. </p>
+                        </div>
+                        <div class="post-comment clearfix">
+                            <span><a href="#"><img src="img/post-comment.png" /></a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dis-box">
+                    <p class="title">yesterday</p>
+                    <div class="dis-inner">
+                        <div class="dis-head clearfix">
+                            <img src="https://s-media-cache-ak0.pinimg.com/736x/9b/a6/dd/9ba6dd29a8598d7406248e00015e71d6.jpg" class="left-round-img img-responsive img-circle" alt=""> Tom Richard<span>Customer Support Manager at Gene By Gene</span>
+                        </div>
+                        <div class="dis-body clearfix">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat ut orci id laoreet. In vestibulum erat elit, in cursus lectus imperdiet in. Etiam lacinia diam vel mauris imperdiet, porttitor convallis tellus varius.
+                                Nulla placerat ullamcorper faucibus. </p>
+                        </div>
+                        <div class="post-comment clearfix">
+                            <span><a href="#"><img src="img/post-comment.png" /></a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dis-box">
+                    <p class="title">yesterday</p>
+                    <div class="dis-inner">
+                        <div class="dis-head clearfix">
+                            <img src="https://s-media-cache-ak0.pinimg.com/736x/9b/a6/dd/9ba6dd29a8598d7406248e00015e71d6.jpg" class="left-round-img img-responsive img-circle" alt=""> Tom Richard<span>Customer Support Manager at Gene By Gene</span>
+                        </div>
+                        <div class="dis-body clearfix">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat ut orci id laoreet. In vestibulum erat elit, in cursus lectus imperdiet in. Etiam lacinia diam vel mauris imperdiet, porttitor convallis tellus varius.
+                                Nulla placerat ullamcorper faucibus. </p>
+                        </div>
+                        <div class="post-comment clearfix">
+                            <span><a href="#"><img src="img/post-comment.png" /></a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="frd-groups">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#Friends">Friends</a></li>
+                        <li><a data-toggle="tab" href="#Groups">Groups</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="Friends" class="tab-pane fade in active">
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" class="  search-query form-control" placeholder="Search" />
+                                    <span class="input-group-btn">
+                                    <button class="btn" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="fri-container">
+                                <ul>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="Groups" class="tab-pane fade">
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" class="  search-query form-control" placeholder="Search" />
+                                    <span class="input-group-btn">
+                                    <button class="btn" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="fri-container">
+                                <ul>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                    <li class="fri-list">
+                                        <img src="http://placehold.it/35x35/" class="left-round-img img-responsive img-circle" alt="" />
+                                        <span class="f-name">Manish Pandey</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ad-block clearfix">
+                    <img src="http://placehold.it/350x150/3897f1/fff?text=ADVERTISEMENT" class="img-responsive" alt="" />
+                </div>
+            </div>
+        </div>
+	</div>	
+	<!-- Footer -->
+	<!-- <div class="row footer">
+		<div class="col-md-8 col-xs-12">
+			<ul class="footer-links">
+				<li><a href="#">About us</a></li>
+				<li><a href="#">support</a></li>
+				<li><a href="#">blog</a></li>
+				<li><a href="#">press</a></li>
+				<li><a href="#">api</a></li>
+				<li><a href="#">jobs</a></li>
+				<li><a href="#">privacy</a></li>
+				<li><a href="#">terms</a></li>
+				<li><a href="#">language</a></li>
+			</ul>
+		</div>
+		<div class="col-md-4 col-xs-12 text-right foot-note">
+			© 2016 SPORTS EXTRA MILE
+		</div>
+	</div> -->
+	<script>
+		$(document).ready(function() {
+
+			$('.event-box-parent').slimScroll({
+				position: 'right',
+				height: '260px',
+				railVisible: true,
+				alwaysVisible: true
+			});
+			$('.discussion-list').slimScroll({
+				position: 'right',
+				height: '180px',
+				railVisible: true,
+				alwaysVisible: true
+			});
+			$('.fri-container ul').slimScroll({
+				position: 'right',
+				height: '270px',
+				railVisible: true,
+				alwaysVisible: true
+			});
+
+		});
+	</script>
+	<script type="text/javascript" src="script/main.js"></script>
+</body>
+
+</html>

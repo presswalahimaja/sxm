@@ -1,0 +1,42 @@
+<div class="modal-body clearfix formContainer" ng-controller="createArticle as article">
+    <h3>Write an Article for <span data-ng-repeat="location in article.locations">{{::location}}{{$last ? '' : ', '}}</span></h3>
+    <form class="form-horizontal col-md-12 formValidations" ng-init="main.showMsg = false;article.submitted = false;" ng-hide="article.showMsg"  name="createArticleForm" role="form" novalidate ng-submit="createArticleForm.$valid && article.createArticle()">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="title" class="col-sm-12 control-label">Title</label>
+                <input class="col-sm-12" ng-class="{submitted:article.isFocus.submitted}" auto-focus type="text" name="title" placeholder="Article Title" data-ng-model="article.title" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 mobiledd" data-ng-if="article.sports">
+                <label for="ddlSports" class="col-sm-12 control-label">Sports</label>
+				<ui-select multiple ng-model="article.selSports">
+					<ui-select-match placeholder="Select Sports">{{ $item }}</ui-select-match>
+					<ui-select-choices repeat="sport in article.sports | filter: $select.search">
+						{{ sport }}
+					</ui-select-choices>
+				</ui-select>
+            </div> 
+        </div>	
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="ta-toolbar btn-toolbar" style="margin:5px 0 0 0;">
+                    <div text-angular="text-angular" placeholder="Article content" name="htmlcontent" ng-model="article.htmlcontent" ta-disabled="disabled"></div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="form-group">
+                <div class="col-sm-12">
+                        <label for="ddlTags" class="col-sm-12 control-label">Tags</label>
+                        <input id="ddlTags"  class="col-sm-12" type="text" name="tags" placeholder="Enter comma separated tags" data-ng-model="article.tags" />
+				</div>
+			</div> -->
+        <div class="modal-footer">
+            <input  id="btnCreateEvent" class="btn btnSubmit" type="submit" value="Create" name="btnCreateEvent" ng-click="article.isFocus.submitted = true" />
+            <button id="btnCancelEvent" class="btn btnCancel" ng-click="article.cancel()">Cancel</button>
+        </div>	
+    </form>
+    <div class="col-md-12 control-label" ng-show="article.showMsg">
+        <div class="col-md-12" style="padding:0 10px 10px;">Thank you. Your article will be reviewed and published shortly. <br><br>Please share your suggestions (<a href="mailto:feedback@sportsextramile.com" target="_top">feedback@sportsextramile.com</a>) to improve SportsExtraMile.</div>
+    </div>
+</div> 

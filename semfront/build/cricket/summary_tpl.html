@@ -1,0 +1,76 @@
+<div class="cb-col cb-col-100">
+	<!-- Team score -->
+	<div class="col-md-3">
+		<div class="cb-col cb-col-100 summeryBox">
+			<div class="cb-col cb-col-100 text-center">
+				<span ng-if="crick.scorecard.innings[0] != undefined && crick.scorecard.innings[0].batting.length > 0 && (crick.scorecard.innings[1] == undefined || crick.scorecard.innings[1].batting.length == 0)">{{::crick.scorecard.innings[0].name}}</span>
+				<span ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">{{::crick.scorecard.innings[1].name}}</span>
+			</div>
+			<div class="cb-col cb-col-100 text-center">
+				<span ng-if="crick.scorecard.innings[0] != undefined && crick.scorecard.innings[0].batting.length > 0 && (crick.scorecard.innings[1] == undefined || crick.scorecard.innings[1].batting.length == 0)">{{crick.scorecard.innings[0].score}}-{{crick.scorecard.innings[0].W}} ({{crick.scorecard.innings[0].overs}}.{{crick.scorecard.innings[0].balls}})</span>
+				<span ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">{{crick.scorecard.innings[1].score}}-{{crick.scorecard.innings[1].W}} ({{crick.scorecard.innings[1].overs}}.{{crick.scorecard.innings[1].balls}})</span>
+			</div>	
+		</div>	
+	</div>
+	<!-- Batsmen -->
+	<div class="col-md-6">
+		<div class="cb-col cb-col-50 summeryBox" ng-class="{onstrike: crick.currInning != '' && crick.scorecard.SI == $index}" ng-repeat="batsman in crick.currInningBatting" ng-if="batsman.batting" style="background:#3897f0;">
+			<div class="cb-col cb-col-100 text-center"><span ng-bind="batsman.name"></span><span ng-if="crick.currInning != '' && crick.scorecard.SI == $index">*</span></div>
+			<div class="cb-col cb-col-100 text-center">{{batsman.total}} ({{batsman.balls}})</div>
+		</div>
+	</div>
+	<!-- Bowler -->
+	<div class="col-md-3">
+		<div class="cb-col cb-col-100 summeryBox" ng-if="crick.scorecard.BSI != null">
+			<div class="cb-col cb-col-100 text-center"><span ng-bind="crick.currInningBowling[crick.scorecard.BSI].name"></span></div>	
+			<div class="cb-col cb-col-100 text-center">{{crick.currInningBowling[crick.scorecard.BSI].runs}}-{{crick.currInningBowling[crick.scorecard.BSI].wicket}} ({{crick.currInningBowling[crick.scorecard.BSI].over_count}}.{{crick.currInningBowling[crick.scorecard.BSI].balls}})</div>
+		</div>
+		<div class="cb-col cb-col-100 summeryBox" ng-if="crick.scorecard.BSI == null && crick.scorecard.LBSI != null">
+			<div class="cb-col cb-col-100 text-center"><span ng-bind="crick.currInningBowling[crick.scorecard.LBSI].name"></span></div>
+			<div class="cb-col cb-col-100 text-center">{{crick.currInningBowling[crick.scorecard.LBSI].runs}}-{{crick.currInningBowling[crick.scorecard.LBSI].wicket}} ({{crick.currInningBowling[crick.scorecard.LBSI].over_count}}.{{crick.currInningBowling[crick.scorecard.LBSI].balls}})</div>		
+		</div>
+	</div>
+</div>
+<div class="cb-col cb-col-100" style="margin-top:5px;">
+	<!-- Target -->
+	<div class="col-md-3">
+		<div class="cb-col cb-col-100 summeryBox text-center">
+			<span ng-if="crick.scorecard.innings[0] != undefined && crick.scorecard.innings[0].batting.length > 0 && (crick.scorecard.innings[1] == undefined || crick.scorecard.innings[1].batting.length == 0)">
+				First Inning
+			</span>
+			<span ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">
+				Target - {{crick.scorecard.innings[0].score + 1}} 
+			</span>							
+		</div>
+	</div>
+	<!-- Partnership -->
+	<div class="col-md-6">
+		<div class="cb-col cb-col-100 summeryBox text-center">
+			<span>Partnership - </span>
+			<span>{{crick.currInningFOW.length == 0 ? crick.currInningScore : (crick.currInningScore - crick.currInningFOW[crick.currInningFOW.length - 1].at)}}</span>
+		</div>
+	</div>
+	<!-- Current Over -->
+	<div class="col-md-3">
+		<div class="cb-col cb-col-100 summeryBox text-center">
+			<span>This over - </span>
+			<span>
+				<span ng-repeat="rn in crick.currInningCurrOver | filter: {a: '!true'} track by $index">
+					<span>{{rn.a | zerofilter | lowercase}}{{$last ? "" : ","}}</span>
+				</span>
+			</span>												
+		</div>
+	</div>
+</div>
+<div class="cb-col cb-col-100" style="margin-top:5px;" ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">
+	<div class="col-md-12">
+		<!-- Required Run Rate -->
+		<div class="cb-col cb-col-100 summeryBox text-center" ng-if="crick.event.result == undefined">
+			{{::crick.scorecard.innings[1].name}} needs {{crick.rruns}} runs in {{crick.pballs}} balls to win ({{crick.RRR}})
+		</div>		
+		<!-- Result -->
+		<div class="cb-col cb-col-100 summeryBox text-center" ng-if="crick.event.result != undefined">
+			{{crick.event.result.winner.name}} won by {{crick.event.result.by}}
+		</div>
+	</div>	
+</div>

@@ -1,0 +1,106 @@
+<div ng-controller="teamMembers as memberDetails">
+    <div class="modal-body clearfix popupListContainer">
+        <div class="headerContainer">
+            <div class="logoimg">
+                <img data-ng-src="@@host/glogo/{{memberDetails.group._id| imagefilter:108}}?{{memberDetails.confirm.imgRefreshTime}}" err-src="/img/users-group-icon.png" />
+                <div class="uploadPicCont" ng-if="memberDetails.isAdmin || memberDetails.canEdit">
+                    <input class="uploadFile" type="file" onchange="angular.element(this).scope().memberDetails.uploadGroupLogo(this.files)" />
+                    <div class="uploadPic">
+                        <div class="uploadIcon"></div>
+                        <div class="uploadText">Change</div>
+                    </div>
+                </div>
+            </div>
+            <h3>
+				<div class="cb-col cb-col-100">
+					<div ng-if="!memberDetails.confirm.isEditable">
+						<span ng-bind="memberDetails.group.grpName"></span>
+						<i class="fa fa-pencil" aria-hidden="true" ng-if="memberDetails.isAdmin || memberDetails.canEdit" ng-click="memberDetails.confirm.isEditable = true;" style="cursor:pointer;"></i>
+					</div>
+					<div ng-if="memberDetails.confirm.isEditable">
+						<input class="addOrgInput" type="text" ng-model="memberDetails.group.grpName" placeholder="Group name" />
+						<div class="cb-col cb-col-100" style="margin-top:5px;">
+							<button class="stdBtn" type="button" ng-click="memberDetails.updateGroup()" style="float:right;">Save</button>
+							<button class="stdBtn" type="button" ng-click="memberDetails.confirm.isEditable = false;" style="float:right;margin-right:5px;">Cancel</button>
+						</div>
+					</div>
+				</div>
+                <p class="popupLocation"><i class="fa fa-map-marker" aria-hidden="true"></i><span>{{::memberDetails.group.city}}</span></p>
+            </h3>
+        </div>
+        <div class="cb-col cb-col-100 popupLabelCont">
+            <span class="popupLabel">Sports associated:</span> <span>{{::memberDetails.group.sports}}</span>
+        </div>
+        <div class="cb-col cb-col-100 popupLabelCont">
+            <span class="popupLabel">Members</span>
+        </div>
+        <div class="cb-col cb-col-100 scrollContainer" style="height:250px;">
+			<div class="cb-col cb-col-100 profListing" ng-if="!memberDetails.group.users">
+                No members in the team.
+            </div>
+			<div class="cb-col cb-col-100 profListing" ng-class="{duplicate:$index == memberDetails.newMember.ind}" ng-repeat="user in memberDetails.group.users | orderBy:'userName' track by user.uid">
+				<div class="profPic">
+					<img class="profPicImg" profile-err-src data-ng-src="@@host/uploads/{{::user.uid | imgsize:40}}?{{memberDetails.confirm.imgRefreshTime}}" title="{{::user.userName}}" alt="{{::user.userName}}" />
+					<span class="profPicInitials">{{::user.userName | initials | uppercase}}</span>
+					<div class="profPicUpload" ng-if="memberDetails.isAdmin || memberDetails.canEdit">
+						<i class="fa fa-camera profPicCam" aria-hidden="true"></i>
+						<input class="uploadProfile" size="20" type="file" onchange="angular.element(this).scope().memberDetails.updateProfPic(this.files, angular.element(this).scope().user.uid)" />
+					</div>
+				</div>
+				<div class="profDetails">
+					<a class="profName" data-ng-href="/profile/{{::user.userName | makeHyphen}}-{{::user.uid}}">
+						{{::user.userName}}
+					</a>
+				</div>
+				<div class="profRemove" ng-if="memberDetails.isAdmin || memberDetails.canEdit">
+					<button class="stdBtn" type="button" ng-hide="memberDetails.confirm.removePlayer[$index]" ng-click="memberDetails.confirm.removePlayer[$index] = true"><i class="fa fa-times" aria-hidden="true"></i></button>
+					<button class="stdBtn" type="button" ng-show="memberDetails.confirm.removePlayer[$index]" ng-click="memberDetails.confirm.removePlayer[$index] = false">No</button>
+					<button class="stdBtn" type="button" ng-show="memberDetails.confirm.removePlayer[$index]" ng-click="memberDetails.confirm.removePlayer[$index] = false;memberDetails.removeTeamMember(user.uid)" style="margin:0 5px;">Yes</button>
+				</div>				
+			</div>
+		</div>		
+		<div class="cb-col cb-col-100 profListing" ng-if="memberDetails.confirm.uploadStatus">
+			<div class="alert alert-success" ng-if="memberDetails.confirm.uploadStatus === 1">
+				User profile pic updated.
+			</div>
+			<div class="alert alert-danger" ng-if="memberDetails.confirm.uploadStatus === 2">
+				User has already updated his/her profile pic.
+			</div>
+			<div class="alert alert-danger" ng-if="memberDetails.confirm.uploadStatus === 3">
+				Something went wrong!
+			</div>
+		</div>		
+        <div class="cb-col cb-col-100 addNewPlayerForm" data-ng-if="memberDetails.id == memberDetails.group.uid || memberDetails.canEdit">
+            <label data-toggle="collapse" data-target="#addNewPlayer"><i class="fa fa-plus" aria-hidden="true"></i> Add New Player</label>
+			<form id="addNewPlayer" class="collapse" name="newMemberForm" role="form" novalidate ng-submit="newMemberForm.$valid && memberDetails.addNewMember(newMemberForm)">
+				<div class="row">
+					<div class="form-group col-md-4" ng-class="{'has-error':(newMemberForm.fName.$touched || newMemberForm.$submitted) && newMemberForm.fName.$invalid }">
+						<input class="form-control" type="text" name="fName" ng-model="memberDetails.newMember.fName" placeholder="First Name" required />
+						<p ng-show="(newMemberForm.fName.$touched || newMemberForm.$submitted) && newMemberForm.fName.$error.required" class="help-block">required</p>
+					</div>
+					<div class="form-group col-md-4">
+						<input class="form-control" type="text" name="lName" ng-model="memberDetails.newMember.lName" placeholder="Last Name" />
+					</div>
+					<div class="form-group col-md-4" ng-class="{'has-error':(newMemberForm.contact.$touched || newMemberForm.$submitted) && newMemberForm.contact.$invalid || (!memberDetails.newMember.email && !memberDetails.newMember.mobile) }">
+						<input class="form-control" type="text" name="contact" ng-model="memberDetails.newMember.contact" ng-change="memberDetails.validateMemberContact()" placeholder="Email/Mobile" />
+						<p ng-show="(newMemberForm.contact.$touched || newMemberForm.$submitted) && newMemberForm.contact.$error.required" class="help-block">required</p>
+						<p ng-show="newMemberForm.$dirty && !memberDetails.newMember.email && !memberDetails.newMember.mobile && memberDetails.newMember.contact" class="help-block">Invalid</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-xs-12" ng-if="memberDetails.newMember.success || memberDetails.newMember.failed">
+						<div class="alert" ng-class="{'alert-success':memberDetails.newMember.success, 'alert-danger':memberDetails.newMember.failed}" style="margin:0;">
+							{{memberDetails.newMember.msg}}
+						</div>
+					</div>
+				</div>
+				<div class="row" style="margin-top:5px;">
+					<div class="col-md-12 text-right">
+						<button class="btn btnCancel" type="button" ng-click="memberDetails.resetNewMemberForm(newMemberForm)">Reset</button>
+						<button class="btn btnSubmit" type="submit" ng-disabled="memberDetails.confirm.btnDisable">Add</button>
+					</div>
+				</div>
+			</form>
+        </div>
+    </div>
+</div>

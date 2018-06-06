@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+<head>
+    <title>Update Score Card - Sports Extra Mile</title>
+    <meta charset="utf-8" /> @@include('gtmhead.html')
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+    <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+    <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description">
+    <meta content="Sports Extra Mile" property="og:site_name">
+    <meta content="website" property="og:type">
+    <meta content="https://www.sportsextramile.com/" property="og:url">
+    <meta content="https://www.sportsextramile.com/img/og.png" property="og:image">
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" /> 
+    @@if (doConcat === 1) { 
+        @@loop('css.html', [
+            { "file": "common.css"}, 
+            { "file": "sxm-common.css"} 
+        ]) 
+    }
+    
+    @@if (doConcat !== 1) { 
+        @@loop('css.html', [ 
+            { "file": "bootstrap.min.css"}, 
+            { "file": "login.css"}, 
+            { "file": "facilities.css"}, 
+            { "file": "profile.css"}, 
+            { "file": "detail.css"}, 
+            { "file": "style.css"}, 
+            { "file": "static.css"}, 
+            { "file": "select.css"},
+            { "file": "events-cricket-admin1.css"}
+        ]) 
+    }
+    
+    @@if (doConcat === 1) { 
+        @@loop('scripts.html', [ 
+            { "file": "angular.js"},
+            { "file": "sxm-common.js"} 
+        ])
+    }
+    
+    @@if (doConcat !== 1) { 
+        @@loop('scripts.html', [ 
+            { "file": "lib/angular1.4.5.min.js"}, 
+            { "file": "lib/xeditable-0.2.0.js"}, 
+            { "file": "lib/angular-datepicker.js"}, 
+			{ "file": "lib/angular-youtube-embed.min.js"},
+            { "file": "lib/textAngular-rangy.min.js"}, 
+            { "file": "lib/textAngular-sanitize.min.js"},
+            { "file": "lib/textAngular.min.js"}, 
+            { "file": "lib/select.min.js"}, 
+            { "file": "lib/ngdialog.js"}, 
+            { "file": "shared.js"}, 
+            { "file": "anghome.js"}, 
+            { "file": "user.js"}, 
+            { "file": "header.js"}
+        ]) 
+    }
+	<script src="/js/updateScoreBoard.ctrl1.js"></script>
+</head>
+<body ng-controller="ScoreBoardCtrl as sb">
+    @@include('gtmbody.html') 
+	@@include('header.html')
+	<custom-dialog-box eid="sb.qry" dialog-msg="{{sb.confirm.dialogMsg}}" dialog-show="sb.confirm.dialogShow"></custom-dialog-box>
+    <div class="container" ng-cloak ng-class="{mobisite: sb.isMobileDevice}">
+        <h2 class="MB20">
+            Update Scorecard
+        </h2>
+        <div class="row content updatescorepage">
+            <div class="col-md-12">
+                <div class="row">
+					<div class="card">
+						<div style="padding:10px;float:left;width:100%;">
+							<form name="form" ng-submit="sb.loadEventDetails()" novalidate>
+								<div class="form-group" ng-class="{'has-error':!form.query.$pristine && form.query.$invalid}">
+									<label class="cb-col-100" for="query">Event Id</label>
+									<input id="query" name="query" type="text" ng-model="sb.qry" class="cb-col-50 cb-sm-100" placeholder="5929d2750996d22c5c6cb5a2" required>
+								</div>
+								<button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Load Scorecard</button>
+								<button type="button" class="btn btn-default" ng-click="sb.resetQuery(form)">Reset</button>
+							</form>
+						</div>
+					</div>
+                </div>
+				<div class="row" ng-show="sb.eventData">
+					<div class="card">
+						<form name="sb.scoreBoardForm" ng-submit="sb.commit()" ng-keyup="sb.cancel($event)" ng-model-options="{updateOn: 'submit'}" novalidate>
+							<div id="AccInnings" class="panel-group">
+								<div class="panel">
+									<h4 ng-bind="sb.eventData.score.score.innings[0].name" data-toggle="collapse" data-parent="#AccInnings" href="#Inning1" style="margin:0 0 1px 0;"></h4>
+									<div id="Inning1" class="panel-collapse collapse in">
+										<div id="AccInning1Stat" class="panel-group">
+											<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+												<div class="cb-col cb-col-60 cb-md-hide">Stats</div>
+												<div class="cb-col cb-col-10 cb-sm-25 text-center">Run</div>
+												<div class="cb-col cb-col-10 cb-sm-25 text-center">Overs</div>
+												<div class="cb-col cb-col-10 cb-sm-25 text-center">Balls</div>
+												<div class="cb-col cb-col-10 cb-sm-25 text-center">Wickets</div>
+											</div>
+											<div class="cb-col cb-col-100 cb-scrd-itms">
+												<div class="cb-col cb-col-60 cb-md-hide"></div>
+												<div class="cb-col cb-col-10 cb-sm-25">
+													<input type="text" ng-model="sb.eventData.score.score.innings[0].score" class="text-right cb-col-90" integer>
+												</div>
+												<div class="cb-col cb-col-10 cb-sm-25">
+													<input type="text" ng-model="sb.eventData.score.score.innings[0].overs" class="text-right cb-col-90" integer>
+												</div>
+												<div class="cb-col cb-col-10 cb-sm-25">
+													<input type="text" ng-model="sb.eventData.score.score.innings[0].balls" class="text-right cb-col-90" integer>
+												</div>
+												<div class="cb-col cb-col-10 cb-sm-25">
+													<input type="text" ng-model="sb.eventData.score.score.innings[0].W" class="text-right cb-col-90" integer>
+												</div>
+											</div>									
+											<div class="panel">
+												<div class="subheading" data-toggle="collapse" data-parent="#AccInning1Stat" href="#Inning1Batsman">Batsmen</div>
+												<div id="Inning1Batsman" class="panel-collapse collapse">
+													<div ng-if="!sb.isMobileDevice">
+														<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" style="border-top:1px solid #fff;">
+															<div class="cb-col cb-col-18"></div>
+															<div class="cb-col cb-col-14 text-center">Status</div>
+															<div class="cb-col cb-col-14 text-center">Bowler</div>
+															<div class="cb-col cb-col-14 text-center">Fielder</div>
+															<div class="cb-col cb-col-10 text-center">Run</div>
+															<div class="cb-col cb-col-10 text-center">Balls</div>
+															<div class="cb-col cb-col-10 text-center">4s</div>
+															<div class="cb-col cb-col-10 text-center">6s</div>
+														</div>	
+														<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batsman in sb.eventData.score.score.innings[0].batting">
+															<div class="cb-col cb-col-18" ng-bind="batsman.name"></div>
+															<div class="cb-col cb-col-14 text-center">
+																<select ng-model="batsman.outObj.type" ng-change="sb.outTypeChanged(batsman)">
+																	<option value="">Not out</option>
+																	<option value="B">Bowled</option>
+																	<option value="LB">LBW</option>
+																	<option value="CB">Caught &amp; Bowled</option>
+																	<option value="CF">Caught by fielder</option>
+																	<option value="CW">Caught by WK</option>
+																	<option value="RO">Run out</option>
+																	<option value="ST">Stumped</option>
+																	<option value="HW">Hit wicket</option>
+																	<option value="RT">Retired hurt</option>
+																	<option value="HH">Hit twice</option>
+																	<option value="TO">Time out</option>
+																	<option value="OF">Obstruct field</option>
+																	<option value="HB">Handled the ball</option>
+																	<option value="AO">Action (run) out</option>
+																</select>
+															</div>
+															<div class="cb-col cb-col-14 text-center">
+																<select ng-options="bowler.name for bowler in sb.opponent1 track by bowler.id" ng-model="batsman.outObj.bowler">
+																	<option value="">-</option>
+																</select>
+															</div>
+															<div class="cb-col cb-col-14 text-center">
+																<select ng-options="fielder.name for fielder in sb.opponent1 track by fielder.id" ng-model="batsman.outObj.fielder">
+																	<option value="">-</option>
+																</select>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="batsman.total" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="batsman.balls" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="batsman.four" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="batsman.sixes" class="text-right cb-col-80" integer>
+															</div>
+														</div>
+													</div>
+													<div ng-if="sb.isMobileDevice">
+														<div id="AccInning1Batsmen" class="panel-group">
+															<div class="panel" ng-repeat="batsman in sb.eventData.score.score.innings[0].batting">
+																<div class="cb-col cb-col-100 cb-scrd-itms" data-toggle="collapse" data-parent="#AccInning1Batsmen" href="#Inning1Batsman_{{$index}}">
+																	<div class="cb-col cb-col-100" ng-bind="batsman.name"></div>
+																</div>	
+																<div id="Inning1Batsman_{{$index}}" class="panel-collapse collapse">
+																	<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+																		<div class="cb-col cb-col-33">Status</div>
+																		<div class="cb-col cb-col-33">Bowler</div>
+																		<div class="cb-col cb-col-33">Fielder</div>
+																	</div>
+																	<div class="cb-col cb-col-100 cb-scrd-itms">
+																		<div class="cb-col cb-col-33">
+																			<select class="cb-col-98" ng-model="batsman.outObj.type" ng-change="sb.outTypeChanged(batsman)">
+																				<option value="">Not out</option>
+																				<option value="B">Bowled</option>
+																				<option value="LB">LBW</option>
+																				<option value="CB">Caught &amp; Bowled</option>
+																				<option value="CF">Caught by fielder</option>
+																				<option value="CW">Caught by WK</option>
+																				<option value="RO">Run out</option>
+																				<option value="ST">Stumped</option>
+																				<option value="HW">Hit wicket</option>
+																				<option value="RT">Retired hurt</option>
+																				<option value="HH">Hit twice</option>
+																				<option value="TO">Time out</option>
+																				<option value="OF">Obstruct field</option>
+																				<option value="HB">Handled the ball</option>
+																				<option value="AO">Action (run) out</option>
+																			</select>
+																		</div>
+																		<div class="cb-col cb-col-33">
+																			<select class="cb-col-98" ng-options="bowler.name for bowler in sb.opponent1 track by bowler.id" ng-model="batsman.outObj.bowler">
+																				<option value="">-</option>
+																			</select>
+																		</div>
+																		<div class="cb-col cb-col-33">
+																			<select class="cb-col-98" ng-options="fielder.name for fielder in sb.opponent1 track by fielder.id" ng-model="batsman.outObj.fielder">
+																				<option value="">-</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+																		<div class="cb-col cb-col-25 text-center">Run</div>
+																		<div class="cb-col cb-col-25 text-center">Balls</div>
+																		<div class="cb-col cb-col-25 text-center">4s</div>
+																		<div class="cb-col cb-col-25 text-center">6s</div>
+																	</div>
+																	<div class="cb-col cb-col-100 cb-scrd-itms">
+																		<div class="cb-col cb-col-25">
+																			<input type="text" ng-model="batsman.total" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-25">
+																			<input type="text" ng-model="batsman.balls" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-25">
+																			<input type="text" ng-model="batsman.four" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-25">
+																			<input type="text" ng-model="batsman.sixes" class="text-right cb-col-90" integer>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>	
+											</div>
+											<div class="panel">
+												<div class="subheading" data-toggle="collapse" data-parent="#AccInning1Stat" href="#Inning1Bowler">Bowler</div>
+												<div id="Inning1Bowler" class="panel-collapse collapse">
+													<div ng-if="!sb.isMobileDevice">
+														<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+															<div class="cb-col cb-col-30"></div>
+															<div class="cb-col cb-col-10 text-center">Over</div>
+															<div class="cb-col cb-col-10 text-center">Balls</div>
+															<div class="cb-col cb-col-10 text-center">Runs</div>
+															<div class="cb-col cb-col-10 text-center">Maiden</div>
+															<div class="cb-col cb-col-10 text-center">Wicket</div>
+															<div class="cb-col cb-col-10 text-center">NB</div>
+															<div class="cb-col cb-col-10 text-center">WD</div>
+														</div>
+														<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="bowler in sb.eventData.score.score.innings[1].bowling">
+															<div class="cb-col cb-col-30" ng-bind="bowler.name"></div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.over_count" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.balls" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.runs" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.maiden" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.wicket" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.NB" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.WD" class="text-right cb-col-80" integer>
+															</div>
+														</div>												
+													</div>
+													<div ng-if="sb.isMobileDevice">
+														<div id="AccInning1Bowler" class="panel-group">
+															<div class="panel" ng-repeat="bowler in sb.eventData.score.score.innings[1].bowling">
+																<div class="cb-col cb-col-100 cb-scrd-itms" data-toggle="collapse" data-parent="#AccInning1Bowler" href="#Inning1Bowler_{{$index}}">
+																	<div class="cb-col cb-col-100" ng-bind="bowler.name"></div>
+																</div>
+																<div id="Inning1Bowler_{{$index}}" class="panel-collapse collapse">
+																	<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+																		<div class="cb-col cb-col-16 text-center">O</div>
+																		<div class="cb-col cb-col-14 text-center">B</div>
+																		<div class="cb-col cb-col-14 text-center">R</div>
+																		<div class="cb-col cb-col-14 text-center">M</div>
+																		<div class="cb-col cb-col-14 text-center">W</div>
+																		<div class="cb-col cb-col-14 text-center">NB</div>
+																		<div class="cb-col cb-col-14 text-center">WD</div>
+																	</div>
+																	<div class="cb-col cb-col-100 cb-scrd-itms">
+																		<div class="cb-col cb-col-16">
+																			<input type="text" ng-model="bowler.over_count" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.balls" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.runs" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.maiden" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.wicket" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.NB" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.WD" class="text-right cb-col-90" integer>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="panel">
+												<div class="subheading" data-toggle="collapse" data-parent="#AccInning1Stat" href="#Inning1FOW">FOW</div>
+												<div id="Inning1FOW" class="panel-collapse collapse">
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" style="border-top:1px solid #fff;">
+														<div class="cb-col cb-col-90 cb-sm-70">FOW</div>
+														<div class="cb-col cb-col-10 cb-sm-30 text-center">At</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="fw in sb.eventData.score.score.innings[0].FOW">
+														<div class="cb-col cb-col-90 cb-sm-70">
+															<select class="cb-col cb-col-40 cb-sm-90" ng-options="{'id': outBatsman.id, 'name': outBatsman.name } as outBatsman.name for outBatsman in sb.eventData.score.score.innings[0].batting track by outBatsman.id" ng-model="fw.batsman"></select>
+														</div>
+														<div class="cb-col cb-col-10 cb-sm-30">
+															<input type="text" ng-model="fw.at" class="text-right cb-col-90" integer>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="panel">
+												<div class="subheading" data-toggle="collapse" data-parent="#AccInning1Stat" href="#Inning1Extras">Extras</div>
+												<div id="Inning1Extras" class="panel-collapse collapse">
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+														<div class="cb-col cb-col-20 text-center">Total</div>
+														<div class="cb-col cb-col-16 text-center">B</div>
+														<div class="cb-col cb-col-16 text-center">Lb</div>
+														<div class="cb-col cb-col-16 text-center">W</div>
+														<div class="cb-col cb-col-16 text-center">Nb</div>
+														<div class="cb-col cb-col-16 text-center">P</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms">
+														<div class="cb-col cb-col-20">
+															<input type="text" ng-model="sb.eventData.score.score.innings[0].extras.runs" class="text-right cb-col-90" integer>
+														</div>
+														<div class="cb-col cb-col-16">
+															<input type="text" ng-model="sb.eventData.score.score.innings[0].extras.b" class="text-right cb-col-90" integer>
+														</div>
+														<div class="cb-col cb-col-16">
+															<input type="text" ng-model="sb.eventData.score.score.innings[0].extras.lb" class="text-right cb-col-90" integer>
+														</div>
+														<div class="cb-col cb-col-16">
+															<input type="text" ng-model="sb.eventData.score.score.innings[0].extras.wd" class="text-right cb-col-90" integer>
+														</div>
+														<div class="cb-col cb-col-16">
+															<input type="text" ng-model="sb.eventData.score.score.innings[0].extras.nb" class="text-right cb-col-90" integer>
+														</div>
+														<div class="cb-col cb-col-16">
+															<input type="text" ng-model="sb.eventData.score.score.innings[0].extras.p" class="text-right cb-col-90" integer>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel">
+									<h4 ng-bind="sb.eventData.score.score.innings[1].name" data-toggle="collapse" data-parent="#AccInnings" href="#Inning2" style="margin:0 0 1px 0;"></h4>
+									<div id="Inning2" class="panel-collapse collapse">
+										<div id="AccInning2Stat" class="panel-group">
+											<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+												<div class="cb-col cb-col-60 cb-md-hide">Stats</div>
+												<div class="cb-col cb-col-10 cb-sm-25 text-center">Run</div>
+												<div class="cb-col cb-col-10 cb-sm-25 text-center">Overs</div>
+												<div class="cb-col cb-col-10 cb-sm-25 text-center">Balls</div>
+												<div class="cb-col cb-col-10 cb-sm-25 text-center">Wickets</div>
+											</div>
+											<div class="cb-col cb-col-100 cb-scrd-itms">
+												<div class="cb-col cb-col-60 cb-md-hide"></div>
+												<div class="cb-col cb-col-10 cb-sm-25">
+													<input type="text" ng-model="sb.eventData.score.score.innings[1].score" class="text-right cb-col-90" integer>
+												</div>
+												<div class="cb-col cb-col-10 cb-sm-25">
+													<input type="text" ng-model="sb.eventData.score.score.innings[1].overs" class="text-right cb-col-90" integer>
+												</div>
+												<div class="cb-col cb-col-10 cb-sm-25">
+													<input type="text" ng-model="sb.eventData.score.score.innings[1].balls" class="text-right cb-col-90" integer>
+												</div>
+												<div class="cb-col cb-col-10 cb-sm-25">
+													<input type="text" ng-model="sb.eventData.score.score.innings[1].W" class="text-right cb-col-90" integer>
+												</div>
+											</div>
+											<div class="panel">
+												<div class="subheading" data-toggle="collapse" data-parent="#AccInning2Stat" href="#Inning2Batsman">Batsmen</div>
+												<div id="Inning2Batsman" class="panel-collapse collapse">
+													<div ng-if="!sb.isMobileDevice">
+														<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" style="border-top:1px solid #fff;">
+															<div class="cb-col cb-col-18"></div>
+															<div class="cb-col cb-col-14 text-center">Status</div>
+															<div class="cb-col cb-col-14 text-center">Bowler</div>
+															<div class="cb-col cb-col-14 text-center">Fielder</div>
+															<div class="cb-col cb-col-10 text-center">Run</div>
+															<div class="cb-col cb-col-10 text-center">Balls</div>
+															<div class="cb-col cb-col-10 text-center">4s</div>
+															<div class="cb-col cb-col-10 text-center">6s</div>
+														</div>	
+														<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batsman in sb.eventData.score.score.innings[1].batting">
+															<div class="cb-col cb-col-18" ng-bind="batsman.name"></div>
+															<div class="cb-col cb-col-14 text-center">
+																<select ng-model="batsman.outObj.type" ng-change="sb.outTypeChanged(batsman)">
+																	<option value="">Not out</option>
+																	<option value="B">Bowled</option>
+																	<option value="LB">LBW</option>
+																	<option value="CB">Caught &amp; Bowled</option>
+																	<option value="CF">Caught by fielder</option>
+																	<option value="CW">Caught by WK</option>
+																	<option value="RO">Run out</option>
+																	<option value="ST">Stumped</option>
+																	<option value="HW">Hit wicket</option>
+																	<option value="RT">Retired hurt</option>
+																	<option value="HH">Hit twice</option>
+																	<option value="TO">Time out</option>
+																	<option value="OF">Obstruct field</option>
+																	<option value="HB">Handled the ball</option>
+																	<option value="AO">Action (run) out</option>
+																</select>
+															</div>
+															<div class="cb-col cb-col-14 text-center">
+																<select ng-options="bowler.name for bowler in sb.opponent2 track by bowler.id" ng-model="batsman.outObj.bowler">
+																	<option value="">-</option>
+																</select>
+															</div>
+															<div class="cb-col cb-col-14 text-center">
+																<select ng-options="fielder.name for fielder in sb.opponent2 track by fielder.id" ng-model="batsman.outObj.fielder">
+																	<option value="">-</option>
+																</select>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="batsman.total" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="batsman.balls" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="batsman.four" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="batsman.sixes" class="text-right cb-col-80" integer>
+															</div>
+														</div>
+													</div>
+													<div ng-if="sb.isMobileDevice">
+														<div id="AccInning2Batsmen" class="panel-group">
+															<div class="panel" ng-repeat="batsman in sb.eventData.score.score.innings[1].batting">
+																<div class="cb-col cb-col-100 cb-scrd-itms" data-toggle="collapse" data-parent="#AccInning2Batsmen" href="#Inning2Batsman_{{$index}}">
+																	<div class="cb-col cb-col-100" ng-bind="batsman.name"></div>
+																</div>	
+																<div id="Inning2Batsman_{{$index}}" class="panel-collapse collapse">
+																	<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+																		<div class="cb-col cb-col-33">Status</div>
+																		<div class="cb-col cb-col-33">Bowler</div>
+																		<div class="cb-col cb-col-33">Fielder</div>
+																	</div>
+																	<div class="cb-col cb-col-100 cb-scrd-itms">
+																		<div class="cb-col cb-col-33">
+																			<select class="cb-col-98" ng-model="batsman.outObj.type" ng-change="sb.outTypeChanged(batsman)">
+																				<option value="">Not out</option>
+																				<option value="B">Bowled</option>
+																				<option value="LB">LBW</option>
+																				<option value="CB">Caught &amp; Bowled</option>
+																				<option value="CF">Caught by fielder</option>
+																				<option value="CW">Caught by WK</option>
+																				<option value="RO">Run out</option>
+																				<option value="ST">Stumped</option>
+																				<option value="HW">Hit wicket</option>
+																				<option value="RT">Retired hurt</option>
+																				<option value="HH">Hit twice</option>
+																				<option value="TO">Time out</option>
+																				<option value="OF">Obstruct field</option>
+																				<option value="HB">Handled the ball</option>
+																				<option value="AO">Action (run) out</option>
+																			</select>
+																		</div>
+																		<div class="cb-col cb-col-33">
+																			<select class="cb-col-98" ng-options="bowler.name for bowler in sb.opponent2 track by bowler.id" ng-model="batsman.outObj.bowler">
+																				<option value="">-</option>
+																			</select>
+																		</div>
+																		<div class="cb-col cb-col-33">
+																			<select class="cb-col-98" ng-options="fielder.name for fielder in sb.opponent2 track by fielder.id" ng-model="batsman.outObj.fielder">
+																				<option value="">-</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+																		<div class="cb-col cb-col-25 text-center">Run</div>
+																		<div class="cb-col cb-col-25 text-center">Balls</div>
+																		<div class="cb-col cb-col-25 text-center">4s</div>
+																		<div class="cb-col cb-col-25 text-center">6s</div>
+																	</div>
+																	<div class="cb-col cb-col-100 cb-scrd-itms">
+																		<div class="cb-col cb-col-25">
+																			<input type="text" ng-model="batsman.total" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-25">
+																			<input type="text" ng-model="batsman.balls" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-25">
+																			<input type="text" ng-model="batsman.four" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-25">
+																			<input type="text" ng-model="batsman.sixes" class="text-right cb-col-90" integer>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>	
+											</div>
+											<div class="panel">
+												<div class="subheading" data-toggle="collapse" data-parent="#AccInning2Stat" href="#Inning2Bowler">Bowler</div>
+												<div id="Inning2Bowler" class="panel-collapse collapse">
+													<div ng-if="!sb.isMobileDevice">
+														<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+															<div class="cb-col cb-col-30"></div>
+															<div class="cb-col cb-col-10 text-center">Over</div>
+															<div class="cb-col cb-col-10 text-center">Balls</div>
+															<div class="cb-col cb-col-10 text-center">Runs</div>
+															<div class="cb-col cb-col-10 text-center">Maiden</div>
+															<div class="cb-col cb-col-10 text-center">Wicket</div>
+															<div class="cb-col cb-col-10 text-center">NB</div>
+															<div class="cb-col cb-col-10 text-center">WD</div>
+														</div>
+														<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="bowler in sb.eventData.score.score.innings[0].bowling">
+															<div class="cb-col cb-col-30" ng-bind="bowler.name"></div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.over_count" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.balls" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.runs" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.maiden" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.wicket" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.NB" class="text-right cb-col-80" integer>
+															</div>
+															<div class="cb-col cb-col-10">
+																<input type="text" ng-model="bowler.WD" class="text-right cb-col-80" integer>
+															</div>
+														</div>												
+													</div>
+													<div ng-if="sb.isMobileDevice">
+														<div id="AccInning2Bowler" class="panel-group">
+															<div class="panel" ng-repeat="bowler in sb.eventData.score.score.innings[0].bowling">
+																<div class="cb-col cb-col-100 cb-scrd-itms" data-toggle="collapse" data-parent="#AccInning2Bowler" href="#Inning2Bowler_{{$index}}">
+																	<div class="cb-col cb-col-100" ng-bind="bowler.name"></div>
+																</div>
+																<div id="Inning2Bowler_{{$index}}" class="panel-collapse collapse">
+																	<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+																		<div class="cb-col cb-col-16 text-center">O</div>
+																		<div class="cb-col cb-col-14 text-center">B</div>
+																		<div class="cb-col cb-col-14 text-center">R</div>
+																		<div class="cb-col cb-col-14 text-center">M</div>
+																		<div class="cb-col cb-col-14 text-center">W</div>
+																		<div class="cb-col cb-col-14 text-center">NB</div>
+																		<div class="cb-col cb-col-14 text-center">WD</div>
+																	</div>
+																	<div class="cb-col cb-col-100 cb-scrd-itms">
+																		<div class="cb-col cb-col-16">
+																			<input type="text" ng-model="bowler.over_count" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.balls" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.runs" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.maiden" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.wicket" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.NB" class="text-right cb-col-90" integer>
+																		</div>
+																		<div class="cb-col cb-col-14">
+																			<input type="text" ng-model="bowler.WD" class="text-right cb-col-90" integer>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="panel">
+												<div class="subheading" data-toggle="collapse" data-parent="#AccInning2Stat" href="#Inning2FOW">FOW</div>
+												<div id="Inning2FOW" class="panel-collapse collapse">
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" style="border-top:1px solid #fff;">
+														<div class="cb-col cb-col-90 cb-sm-70">FOW</div>
+														<div class="cb-col cb-col-10 cb-sm-30 text-center">At</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="fw in sb.eventData.score.score.innings[1].FOW">
+														<div class="cb-col cb-col-90 cb-sm-70">
+															<select class="cb-col cb-col-40 cb-sm-90" ng-options="{'id': outBatsman.id, 'name': outBatsman.name } as outBatsman.name for outBatsman in sb.eventData.score.score.innings[1].batting track by outBatsman.id" ng-model="fw.batsman"></select>
+														</div>
+														<div class="cb-col cb-col-10 cb-sm-30">
+															<input type="text" ng-model="fw.at" class="text-right cb-col-90" integer>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="panel">
+												<div class="subheading" data-toggle="collapse" data-parent="#AccInning2Stat" href="#Inning2Extras">Extras</div>
+												<div id="Inning2Extras" class="panel-collapse collapse">
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+														<div class="cb-col cb-col-20 text-center">Total</div>
+														<div class="cb-col cb-col-16 text-center">B</div>
+														<div class="cb-col cb-col-16 text-center">Lb</div>
+														<div class="cb-col cb-col-16 text-center">W</div>
+														<div class="cb-col cb-col-16 text-center">Nb</div>
+														<div class="cb-col cb-col-16 text-center">P</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms">
+														<div class="cb-col cb-col-20">
+															<input type="text" ng-model="sb.eventData.score.score.innings[1].extras.runs" class="text-right cb-col-90" integer>
+														</div>
+														<div class="cb-col cb-col-16">
+															<input type="text" ng-model="sb.eventData.score.score.innings[1].extras.b" class="text-right cb-col-90" integer>
+														</div>
+														<div class="cb-col cb-col-16">
+															<input type="text" ng-model="sb.eventData.score.score.innings[1].extras.lb" class="text-right cb-col-90" integer>
+														</div>
+														<div class="cb-col cb-col-16">
+															<input type="text" ng-model="sb.eventData.score.score.innings[1].extras.wd" class="text-right cb-col-90" integer>
+														</div>
+														<div class="cb-col cb-col-16">
+															<input type="text" ng-model="sb.eventData.score.score.innings[1].extras.nb" class="text-right cb-col-90" integer>
+														</div>
+														<div class="cb-col cb-col-16">
+															<input type="text" ng-model="sb.eventData.score.score.innings[1].extras.p" class="text-right cb-col-90" integer>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 text-right" style="padding:10px;float:left;width:100%;">
+								<button type="submit" class="btn stdBtn" ng-disabled="sb.isUpdating" style="float:right;">{{sb.isUpdating ? 'Committing' : 'Commit'}}</button>
+								<button type="button" class="btn stdBtn btnCancel" ng-click="sb.rollbackChanges()" style="float:right;">Reset</button>
+							</div>
+						</form>  	
+					</div>					
+				</div>                
+            </div>
+        </div>
+    </div>
+	<style type="text/css">
+		.subheading{float:left;width:100%;padding:4px 10px;font-size:14px;color:#333333;font-weight:600;cursor:pointer;}
+		.panel-group{float:left;width:100%;margin:0;}
+		.panel{float:left;width:100%;margin:0;background:none;border:none;border-radius:0;}
+		.panel-collapse{float:left;width:100%;}
+		.panel-group .panel+.panel{margin:0;}
+		.updatescorepage input[type='text']{height:24px;border-radius:0;font-size:12px;background:none;color:#666666;border:1px solid #7cafde;padding:2px 5px;}
+		.updatescorepage select{border:1px solid #7cafde;font-size:12px;height:24px;padding:2px 5px;}
+		.stdBtn:hover{color:#ffffff;}
+		.stdBtn.btnCancel:hover{color:#666666;}
+	</style>
+    <!-- Footer -->
+	@@include('footerscripts.html')
+</body>
+</html>

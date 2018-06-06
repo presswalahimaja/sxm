@@ -1,0 +1,67 @@
+<div class="modal-body clearfix discussionPopup" ng-controller="detailDiscussion as detailDiscussion">
+    <div class="col-sm-12">	
+        <div class="dheader detailHeader col-sm-12 cmnt_header">
+            <p class="thmb"><img data-ng-src="http://stage.sportsextramile.com/uploads/{{detailDiscussion.data.uid| imgsize:40}}" title="{{::detailDiscussion.data.userName}}" alt="" /></p>
+            <span data-ng-if="detailDiscussion.uid != detailDiscussion.data.uid">
+                <a class="cmnt_hname" data-ng-href="/profile/{{::detailDiscussion.data.userName | makeHyphen}}-{{::detailDiscussion.data.uid}}" data-ng-bind="::detailDiscussion.data.userName"></a>
+            </span>
+            <span data-ng-if="detailDiscussion.uid == detailDiscussion.data.uid">
+                <a class="cmnt_hname" data-ng-href="/profile.html" data-ng-bind="::detailDiscussion.data.userName"></a>
+            </span>
+            <div class="disc_detail">{{detailDiscussion.data.date| date:"dd-MMM 'at' h:mma"}}</div>
+            <p></p>
+            <span class="d-box-loc" data-ng-if="detailDiscussion.data.event.evtName">Tagged event : {{::detailDiscussion.data.event.evtName}}</span>
+            <span class="d-box-loc" data-ng-if="detailDiscussion.data.facility.name">Tagged facility : {{::detailDiscussion.data.facility.name}}</span>
+        </div>
+        <p></p>
+        <div class="disc_body" data-ng-bind="::detailDiscussion.data.body"></div>			
+        <!-- <div class="disc_detail" data-ng-if="detailDiscussion.data.event.sports">
+                <strong>Sports tagged : </strong>
+                <span data-ng-repeat="sport in detailDiscussion.data.event.sports">#{{::sport}}</span>
+        </div>
+        <div class="disc_detail" data-ng-if="detailDiscussion.data.event">
+                <strong>Event : </strong> {{detailDiscussion.data.event.evtName}}
+        </div> -->
+    </div>	
+    <div class="col-sm-12" data-ng-if="detailDiscussion.comments">
+        <div class="cmnt_header">
+            <a href="#" onclick="return false">
+                <span data-ng-click="detailDiscussion.likeThisItem(detailDiscussion.data._id, 'discussion')"><i class="fa fa-heart ic" aria-hidden="true"></i></span>
+                <span data-ng-click="detailDiscussion.likeThisItem(detailDiscussion.data._id, 'discussion')" data-ng-bind="detailDiscussion.data.likeCount || '0'"></span>
+            </a>
+            <span class="cmnt_total">Comments {{detailDiscussion.comments.length|| '0'}}</span>
+        </div>	
+        <div class="commentContainer scrollContainer">
+            <div class="noData" ng-if="detailDiscussion.comments.length == 0">
+                <span>No comments available.</span>
+            </div>
+            <div class="dheader commentItem" data-ng-repeat="comment in detailDiscussion.comments">
+                <p class="thmb"><img data-ng-src="http://stage.sportsextramile.com/uploads/{{comment.uid| imgsize:40}}" title="{{::comment.name}}" alt="" /></p>			
+                <div data-ng-if="comment.uid == detailDiscussion.uid">
+                    <a class="cmnt_name" data-ng-href="/profile.html?uid={{::comment.uid}}" data-ng-bind="::comment.name"></a>:
+                    <span class="cmnt_date">{{comment.date| date:"dd-MMM 'at' h:mma"}}</span>
+                </div>
+                <div data-ng-if="comment.uid != detailDiscussion.uid">
+                    <a class="cmnt_name" data-ng-href="/profile/{{::comment.name | makeHyphen}}-{{::comment.uid}}" data-ng-bind="::comment.name"></a>:
+                    <span class="cmnt_date">{{comment.date| date:"dd-MMM 'at' h:mma"}}</span>
+                </div>
+                <div class="cmnt_body" data-ng-bind-html="::comment.cmnt"></div>
+            </div>
+        </div>		
+    </div>
+    <div class="formContainer">
+        <form id="createComment_form" class="form-horizontal col-sm-12 formValidations" name="createCommentForm" role="form" novalidate ng-submit="createCommentForm.$valid && detailDiscussion.createComment($index)">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="comment" class="col-sm-12 control-label">Comment</label>
+                    <textarea class="col-sm-12" ng-class="{submitted:detailDiscussion.isFocus.submitted}" auto-focus rows="2" type="text" name="comment" placeholder="Your comments here..." data-ng-model="detailDiscussion.comment[$index]" required ></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input  id="btnCreateEvent" class="btn btnSubmit" type="submit" value="Comment" name="btnCreateEvent" ng-click="detailDiscussion.isFocus.submitted = true" />
+                </div> 
+            </div>
+        </form>
+    </div>
+</div> 

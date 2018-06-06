@@ -1,0 +1,34 @@
+<div class="modal-body clearfix formContainer" ng-controller="createDiscussion as createDisc">
+    <form class="form-horizontal cr-validation col-md-12 formValidations" name="createDiscForm" role="form" novalidate ng-submit="createDiscForm.$valid && createDisc.createDiscussion()">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="body" class="col-sm-12 control-label">Message</label>
+                <textarea id="body" class="col-sm-12" ng-class="{submitted:createDisc.isFocus.submitted}" auto-focus name="body" rows="5" data-ng-model="createDisc.body" required></textarea>
+            </div>
+        </div>
+        <div class="form-group Tag">
+            <div class="col-sm-6 Tag mobiledd" data-ng-if="createDisc.myGroups">
+                <label for="ddlGroups" class="col-sm-12 control-label">Tag groups</label>
+                <ui-select multiple ng-model="createDisc.addedGrps">
+                    <ui-select-match>{{ $item.grpName}}</ui-select-match>
+                    <ui-select-choices repeat="myGrp in createDisc.myGroups | filter: $select.search">
+                        {{myGrp.grpName}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-sm-6 mobiledd" data-ng-if="createDisc.myFriends.length > 0">
+                <label for="ddlfrds" class="col-sm-12 control-label">Tag friends</label>
+                <ui-select multiple ng-model="createDisc.addedFrnds">
+                    <ui-select-match>{{ $item.name}}</ui-select-match>
+                    <ui-select-choices repeat="myFrnd in createDisc.myFriends | filter: $select.search">
+                        {{myFrnd.name}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>            
+        </div>
+        <div class="modal-footer">
+            <input  id="btnCreateEvent" class="btn btnSubmit" type="submit" value="Create" name="btnCreateEvent" ng-click="createDisc.isFocus.submitted = true" />
+            <button id="btnCancelEvent" class="btn btnCancel" type="button" ng-click="createDisc.cancel()">Cancel</button>
+        </div>
+    </form>
+</div>

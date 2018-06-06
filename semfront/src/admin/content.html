@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  ng-app="semadmin"> 
+    <head>
+        <title>Admin - Content</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="./js/angular1.4.5.min.js"></script>
+        <script type="text/javascript" src="./js/angadmin.js"></script>
+        <link rel="stylesheet" href="../css/common.css" /><link rel="stylesheet" href="../css/sxm-common.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
+        <style type="text/css">
+            table {background-color: white;}
+            div.content {background-color: white; padding:5px;}
+        </style>
+    </head>
+    <body data-ng-controller="Content as content">
+        <div class="page-wrapper">
+            <div class="container">
+                <table class="table table-bordered"><tr>
+                        <td>
+                            <button ng-click="content.approve(1)">Approve</button>
+                        </td>
+                        <td>
+                            <button ng-click="content.approve(0)">Reject</button>
+                        </td>
+                    </tr>
+                </table>
+                <div class="content"><h2>{{content.items.title}}</h2> <span class="d-box-loc">{{content.items.date| date:"dd-MMM 'at' h:mma"}}</span>
+                    <img data-ng-src="@@host/uploads/{{::content.items.uid| imgsize:108}}" title="{{::content.items.userName}}" class="left-round-img img-responsive img-circle " alt="" />
+                    <span >
+                        <a data-ng-href="viewprofile.html?uid={{::content.items.uid}}" data-ng-bind="::content.items.userName"></a>
+                    </span>
+                </div>
+                <br/>
+                <div>Excerpt</div>
+                <textarea rows="4" cols="50" name="excerpt" data-ng-model="content.excerpt" ></textarea>
+                <button ng-click="content.save()">Save</button>
+
+                <br><br>
+                <div ng-bind-html="content.items.body" class="content"></div>
+            </div>
+        </div>
+    </body>
+</html>

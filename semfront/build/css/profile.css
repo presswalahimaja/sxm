@@ -1,0 +1,514 @@
+.profile-page{
+
+}
+.phead{
+    background-color:#fff;
+    margin-top: 10px;
+}
+.phead ul{
+    float:left;
+    width:100%;
+    position: relative;
+    margin: 10px 0;
+}
+.phead ul li{
+    float: left;
+}
+.thumb{
+    position: absolute;
+    left:0px;
+    top:-10px;
+}
+.viewprofileContent{
+
+}
+.viewprofileContent .phead{
+    position: relative;	
+    min-height: 108px;
+    padding: 0 0 0 120px;
+}
+.viewprofileContent .thumb{
+    top: 0;	
+    margin: 0;
+}
+.viewprofileContent .usrName{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 0 0 0;
+    margin: 0;
+}
+.viewprofileContent .sports{
+    margin: 0;
+    font-size: 12px;
+    line-height: 14px;	
+    color: #808080;
+}
+.viewprofileContent .work{
+    margin: 10px 0 0 0;
+}
+.name{
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 120px;
+}
+.name span{
+    font-size: 12px;
+    display: block;
+}
+.edit-pro{
+    float: right;
+}
+.edit-pro a.bttn{
+    background-color: #3897f1;
+    border-radius: 4px;
+    color:#fff;
+    display: inline-block;
+    padding: 8px 35px;
+    text-decoration: none;
+}
+.bttn.trans{
+    background: #fff !important;
+    color: #3897f1 !important;
+    border: 1px solid #3897f1 !important;
+    padding: 7px 35px !important;
+}
+.bttn:hover{
+    text-decoration: none;
+}
+.no{
+    margin:0;
+    padding: 0;
+    list-style: none;
+}
+.pro-intro{
+    border-bottom:1px solid #e6e6e6;
+    padding: 10px 10px 10px 120px;
+    /*margin-bottom: 0;*/
+}
+.pdetail{
+    float: left;
+    width: 100%;
+}
+.or-box p { margin:10px 0; position: relative}
+/*.or-box p:after { position: absolute; content:""; height: 2px; background:#FFF; width :100%; left:0; right: 0; top:11px; }*/
+.or-box p { margin:10px 0; position: relative;z-index:5;}
+.or-box p:after { position: absolute; content:""; height: 2px; background:#FFF; width :100%; left:0; right: 0; top: 11px; z-index:2 }
+.or-box p:before { position:absolute; content:"OR"; left: calc(100% - 50% - 12px); width:25px;height:25px; background:#FFF;
+                   border-radius:50%; text-align:center;font-weight: 600; color:#3999f0; z-index:3; line-height:17px; padding: 3px; font-size: 11px; }
+.mobo-cls{ display: none;}
+@media(max-width:1024px){
+    /*.headerLinks ul li .mobo-search { display: block !important;}*/
+    .cr-validation div > label,
+    #createHomeEvent_form div > label,
+    #createEvent_form div > label { display: block; width: 100%;}
+
+    .cr-validation div > select,
+    .cr-validation div > input[type="text"],
+    #createEvent_form div > select,
+    #createHomeEvent_form div > select,
+    #createHomeEvent_form div > input[type="text"],
+    #createEvent_form div > input[type="text"] { display: inline-block; max-width: 100%; min-width: 100%; }
+
+    #createHomeEvent_form div > select#date_hour,
+    #createEvent_form div > select#date_hour,
+    #createEvent_form div > select#date_min,
+    #createHomeEvent_form div > select#date_min,
+    #createHomeEvent_form div > select#date_mer,
+    #createEvent_form div > select#date_mer             { width: 30% !important; min-width: 30% !important;  }
+    .form-horizontal div > textarea#body               { width: 100% !important; min-width: 100% !important;  }
+    .form-horizontal .Tag                               { display: none !important; }
+    #createEvent_form div > datepicker { display: inline-block; float: none !important; width: auto; } 
+    .cr-validation {  }
+
+    #searchText { width: 42%;}
+    .sp-list { float:left; width: calc(100% - 20px) !important; margin: 0 10px !important; padding: 0 !important; }
+    .footer.fin { background: #fff !important;   }
+    .Xfooter-inner > div { padding-right: 5px !important; padding-left: 5px !important; }
+    .pdetail .fixed-tab{ display: none;}
+    .sticky .quick-links.open .headerSearch { min-height: 40px;}
+    .sticky .quick-links.open .headerSearch .input-group { margin-top: 8px;}
+    .sticky .quick-links.open .headerSearch .friends-search-results { top: 37px; }
+    .sticky .quick-links.open .mobo-cls { top: 5px;}
+    .quick-links.open .headerSearch { display: block !important; position: fixed; background: rgba(82, 82, 82, .77);left: 0;right: 0;z-index: 9;width: 100%;text-align: center;min-height: 60px;top: 0;}
+    .quick-links.open .mobo-cls     { position: absolute; top: 10px; right: 5px; color:#333; font-weight: bold;  width:23px; height: 23px; background:#eee; z-index: 999; display: block; text-align: center;  }
+    .mobo-search:hover ,
+    .quick-links.open .mobo-cls:hover {    cursor: pointer;}
+    /*.quick-links.open .headerSearch::after { content:"x"; position: absolute; top: 5px; right: 5px; color:#fff; font-weight: bold; color:#eee; width:23px; height: 23px; background:#333; z-index: 999; }*/
+    .quick-links.open .headerSearch .input-group { margin: 15px auto 0 auto; width: 250px;}
+    .quick-links.open .headerSearch .friends-search-results { max-width: 250px; left: calc(100%/2 - 125px); border-radius: 0 !important; top: 44px; }
+
+
+    /* .headerSearch { display: none;} */
+	.headerSearch.open { display: block;position:absolute;top:17px;}
+	.headerSearch.open .friends-search-results{width:290px;}
+    .profile-page .profile-left { width:100% !important; }
+    .profile-page .event-listing ul li { width: 100% !important;}
+    .frdSection .tab-item a { font-size: 12px !important; }
+    .bioLocation { margin: 5px !important;  }
+    .thRow .thCol { font-size: 9px; }
+    .tdCol .tdImg { width:20px; height: 20px; top: 14px; left: 6px; }
+    .tdCol.firstCol { padding: 10px 10px 10px 30px !important;}
+    .tdCol.firstCol { min-height: 47px !important;}
+    .bioCont .dtpicker { float:left; width: 50%; }
+    .tdCol, .tdCol select{ font-size: 12px !important;}
+}
+
+.pdetail{
+    float: left;
+    width: 100%;
+	min-height: 600px;
+}
+.pdetail > ul{
+    float:left;
+    width: 25%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.pdetail ul li a {
+    padding: 2px 0 2px 10px; 
+    color: #333;
+    font-weight: 600;
+}
+.pdetail h4{
+    background: #d9ecf9;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    float: left;
+    width: 100%;
+    color: #333333;
+}
+.pdetail h5{
+    font-size: 16px;
+    margin: 0;
+    padding: 10px 0;
+    font-weight: 600;
+}
+.pdetail .aboutText p{
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    padding-bottom: 10px;
+}
+.pdetail .aboutText{
+    color: #333333;
+}
+.pdetail ul li.active:focus a:focus,
+.pdetail ul li.active:focus a,
+.pdetail ul li.active a {
+    background-color: #f4f4f4 !important;
+    color: #3897f1 !important;
+    border-radius: 2px;
+}
+.coachRow .facItem{
+    font-weight: bold;
+}
+.submitBtn{
+    border: none;
+    border-radius: 0;
+    color: #ffffff !important;
+    background: #262626;
+    font-size: 15px;
+    height: 30px;
+    padding: 2px 10px !important;
+    margin: 0 0 0 10px;
+}
+.submitBtn:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* .pro-tabinner .field{
+    font-size: 15px;
+    font-weight: 600;
+    color: #333333;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 10px;
+}
+.pro-tabinner .field .btn-group input{
+    color: #555555;
+    font-size: 12px;
+    font-weight: 600;
+}
+.pro-tabinner .field span{
+    font-size: 12px;
+    color: #555555 !important;
+    font-weight: 600;
+    clear: both;
+}
+.pro-tabinner .field span a{
+    color: #555555 !important;
+} */
+.select-games {
+    display: block;
+    text-align: center;
+    padding-top: 10px;
+}
+.event-listing ul {
+    color: #333;
+
+}
+.event-listing ul li {
+    min-height: 55px;
+    /*clear: both;*/
+    float: left;
+    width: 50%;
+    padding-bottom: 20px;
+}
+.event-listing.no-thumb ul li span.thumb{
+    display: none;
+}
+.event-listing.no-thumb ul li span.title{
+    width: 100%;
+    padding-left: 0px;
+}
+.event-listing.location ul li span.thumb{
+    background:#fff;   
+}
+.event-listing.location ul li span.thumb i{
+    color: #8c8c8c;
+    font-size: 47px;
+    padding-top:7px;
+}
+.event-listing.Friends ul li span.title{
+    padding-top: 10px;
+}
+.event-listing ul li span.thumb {
+    float: left;
+    width: 28px;
+    /*height: 28px;*/
+    position: relative;
+    left: auto;
+    top: auto;
+    text-align: center;
+    font-size: 16px;
+    background-color: #7f7f7f;
+    line-height: 1;
+    border-radius: 4px;
+    color: #fff;
+    font-weight:500;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.event-listing ul li span.thumb b{
+    display: block;
+    font-size:9px;
+    font-weight:500;
+}
+.event-listing ul li span.title a{
+    float: left;
+}
+.event-listing ul li span.title {
+    float: left;
+    width : calc(100% - 48px);
+    padding-left: 0px;
+    font-size: 14px;
+    font-weight:600;
+    line-height: 1;
+
+}
+.event-listing ul li .title .normal {
+    font-size:12px;
+    font-weight: 500;
+    display: block;
+    margin: 2px 0 0 0;
+    line-height: 14px;
+}
+/* .tab-pane h4 i {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    top: -5px;
+} */
+.fixed-nav li {
+    display: inline-block;
+}
+.fixed-tab{
+    position: fixed;
+    width: 15% !important;
+    background: #edf7ff;
+    top: 50px;
+    padding: 5px 0px !important;
+    /*box-shadow: 1px 1px 2px #ccc;*/
+}
+.pdetail .fixed-tab li.active a:after {
+    position: absolute;
+    right:-2px;
+    content: "";
+    top: 0;
+    bottom: -0;
+    border-right: 2px solid #fff;
+
+}
+.pdetail .fixed-tab li.active a{
+    background: #fff !important;
+    border-radius: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    position: relative;
+    border: 0;
+}
+.fixed-tab li a {
+    border-bottom: 1px dotted #ccc;
+    font-size: 13px;
+    padding: 8px 0 8px 5px !important;
+}
+.fixed-tab li:last-child a {
+    border: 0;
+}
+.hgt{
+    min-height: 200px;
+}
+.profile-left{
+    width: 78% !important;
+}
+.nav-stacked>li+li {
+    margin-top: 0 ;
+    margin-left: 0;
+}
+.frdSection .tab-item {
+    display: inline-block;
+    vertical-align: top;
+    border: solid 1px #e6e6e6;
+    height: 25px;
+}
+.frdSection .tab-item a {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #337ab7;
+    text-decoration: none;
+    font-weight: 700;
+}
+.frdSection .tab-item.active {
+    background: #f4f4f4 !important;
+}
+.frdSection .tab-item.active a {
+    color: #333;
+}
+.frdSection .tab-content {
+    margin-left:0;
+    display: none;
+    opacity: 0;
+    border: solid 1px #e6e6e6;
+    padding: 10px;
+    width: 100%;
+}
+.frdSection .tab-content.active {
+    display: block;
+    opacity: 1;
+}
+.hgt{
+    min-height: 200px;
+}
+.Friends-Groups-tabs { padding-left:0 !important ; padding-right: 0 !important;}
+/*.Friends-Groups-tabs li  { min}*/
+.Friends-Groups-tabs li a { padding: 0 !important;}
+.Friends-Groups-tabs li .thumb { width: 45px !important;}
+.Friends-Groups-tabs li .title { width: calc(100% - 50px) !important; padding-left: 10px !important;}
+.mobilrm .pull-right { margin-top: 7px;}
+.mobilr input { display: inline-block !important; width:58% !important;}
+.location-inline { display: inline-block; background: #ccc; padding: 8px 15px 9px 15px; font-size: 13px; margin: 3px 3px 5px 3px; border-radius: 3px; color: #525252;}
+.proAboutText{position:relative;padding:10px 0 10px 85px;margin:0 0 10px 0;border-bottom:1px solid #e6e6e6;}
+.proAboutText .heading{position:absolute;left:0;top:10px;margin:0 !important;padding:0 !important;border:none !important;
+                       color:#333333;font-size:15px;font-weight:600;}
+
+.profileBio{padding:10px 10px 0 130px !important;min-height:160px !important;}
+.viewprofileBio{padding:20px 10px 0 130px !important;min-height:128px !important;}
+.bioRow{padding:0 !important;}
+.bioCont{border-bottom:1px solid #e6e6e6;padding:7px 0;float:left;width:100%;}
+.bioCont select, .bioCont .dtpicker input{float:left;margin:-4px 0 0 0;}
+.usrImage{position:absolute;top:10px;left:10px;}
+.usrName{font-size:16px;font-weight:600;padding:0;margin:0;color:#333333;}
+.bioLabel{color:#333333 !important;float:left;font-size:15px;font-weight:600;line-height:18px;padding-right:3px;}
+.bioRow span{color:#555555;line-height:18px;}
+.bioRow span a{font-size:13px;color:#555555 !important;}
+.bioRow.bioAbout .bioCont{position:relative;border-bottom:none;padding:0 0 0 80px;}
+.bioRow.bioAbout .bioCont .bioLabel{position:absolute;left:0;top:0;}
+.bioRow.bioAbout .bioCont textarea{width:72%;}
+.bioRow .btn-group{margin-top:-3px;width:200px;}
+.bioSearch{border-radius:0;box-shadow:none;height:28px;margin:0;padding:3px 10px;border:1px solid #ccc;font-size:14px;line-height:28px;}
+.bioLocation{display:inline-block;background:#ccc;padding:8px 15px 9px 15px;font-size:13px;border-radius:3px;color:#525252;margin:-3px 2px 0;padding:4px 10px;}
+.bioChangeBtn{background:#262626;top:-4px;color:#ffffff;right:0;padding:3px 15px;position:absolute;text-decoration:none;text-align:center;}
+.bioChangeBtn:hover{text-decoration:none;color:#ffffff;}
+.profileBio .bioChangeBtn{top:124px;left:10px;width:108px;}
+.prflBtn{background:#262626;border:none;border-radius:0;color:#ffffff;padding:3px 10px;text-decoration:none;}
+.prflBtn:hover{text-decoration:none;color:#ffffff;}
+.usrSports{margin:0;}
+.viewprofileSection .bioRow{margin:0;}
+.viewprofileSection .bioCont{border-bottom:none;}
+.viewprofileBio .addBtn{position:absolute;right:0;top:2px;width:110px;margin:0;}
+.viewprofileBio .resendBtn{position:absolute;right:0;top:0;width:150px;margin:0;}
+.viewprofileBio .resendBtn span{background:gray;color:#ffffff;float:right;padding:3px 15px;}
+.sportItem{margin:0 0 10px !important;min-height:60px !important;padding:0 10px 0 80px !important;}
+.sportItem .sportImg{left:10px;margin:0;position:absolute;top:0;}
+.sportItem .sportLbl{margin:5px 0 0;}
+.sportItem .sportFreq{margin:0;}
+.coachRow{margin:0 0 10px;float:left;width:100%;}
+.coachLabel{font-size:14px;padding:0 0 5px;color:#333333;float:left;}
+
+.thRow, .tdRow{border-right:1px solid #e6e6e6;float:left;width:100%;}
+.thCol{border-bottom:1px solid #e6e6e6;border-left:1px solid #e6e6e6;border-top:1px solid #e6e6e6;color:#333333;float:left;
+       font-size:15px;font-weight:600;padding:10px;text-align:center;width:30%;}
+.tdCol{border-bottom:1px solid #e6e6e6;border-left:1px solid #e6e6e6;float:left;padding:10px;width:30%;}
+.thCol.firstCol{width:40%}
+.tdCol.firstCol{min-height:48px;padding:10px 10px 10px 60px;position:relative;width:40%}
+.tdImg{border-radius:50%;height:40px;left:10px;position:absolute;top:4px;width:40px;}
+.tdLabel{color:#555555;float:left;line-height:16px;padding-top:5px;width:100%;}
+.tdCol select{border:1px solid #7cafde;color:#666666;font-size:13px;padding:2px 5px 3px;width:100%;}
+
+#awardFormContainer{float:left;width:100%;}
+#awardDataContainer{float:left;width:100%;position:relative;}
+.proudMoments, .orgPages, .articleSection, .tGroupSection, .pSection, .scheduleSection, .gallerySection, .statSection, .eventSection, .officialSection, .matchStateSection, .bannerSection, .logoSection{position:relative;float:left;width:100%;}
+.proudMoments form{float:left;width:100%;}
+.proudMoments input, .proudMoments textarea{border:1px solid #7cafde;border-radius:0;color:#666666;font-size:12px;height:26px;padding:3px 10px;}
+.proudMoments textarea{height:83px;}
+.proudMoments select{border:1px solid #7cafde;color:#666666;font-size:12px;padding:3px 10px;}
+.proudMoments button{background:#262626;border:1px solid #262626;color:#ffffff;float:right;font-size:14px;padding:3px 15px;}
+.proudMoments button.btnCancel{background:#fafafa;border:1px solid #7cafde;color:#666666;}
+.proudMoments .submitted.ng-invalid{border:1px solid red;}
+.awardFormCol{float:left;width:50%;}
+.awardFormLbl{color:#333333;float:left;font-size:14px;font-weight:normal;line-height:20px;margin:0;width:100%;}
+.awardFormItem{float:left;width:100%;padding:5px 10px;}
+.awardFormItem.formAwardYear, .awardFormItem.formAwardMonth{width:50%;}
+.addAwardBtn{position:absolute;right:10px;top:0;color:#3897f1;cursor:pointer;z-index:1;}
+.awardItem{padding:0 0 15px 0;}
+.awardTitle{color:#333333;font-weight:bold;line-height:16px;float:left;padding:0 4px 0 0;}
+.awardDate{line-height:18px;float:none;font-size:11px;color:#a2a2a2;}
+.awardDetail{color:#333333;line-height:16px;}
+
+.sponserItem{width:100%;float:left;margin-bottom:20px;}
+.sponserTitle{font-size:14px;font-weight:600;width:100%;padding-bottom:10px;float:left;}
+.sponserImg{width:70%;float:left;}
+.sponserImg img{width:100%;float:left;}
+.schContainer{display:table;width:100%;box-shadow:1px 1px 1px 1px #d1d1d1;margin:0px;width:100%;position:relative;background:#f4f4f4}
+.schItemTop{width:100%;padding:10px 10px 8px 90px;position:relative;float:left;min-height:95px;}
+.schItem{padding:10px 10px 8px 80px;position:relative;min-height:114px;width:100%;background:#f4f4f4;}
+.mobisite .schItem{min-height:1px;}
+.schItemBottom{width:100%;padding:5px 10px;float:left;border-top:1px solid gray;}
+.schDate1{position:absolute;left:10px;top:10px;width:70px;}
+.schGroup{width:100%;padding:0 0 0 80px;font-size:11px;line-height:15px;margin:4px 0 -3px;}
+.schDate2{width:70px;background:gray;color:#fff;border-radius:4px;font-size:13px;line-height:17px;float:left;}
+.schDate{position:absolute;left:10px;top:10px;width:60px;background:gray;color:#fff;border-radius:4px;font-size:13px;line-height:17px;}
+.schDateDay, .schDateDate, .schDateMonth, .schDateTime{width:100%;text-align:center;float:left;padding:2px 0;}
+.schDateDate{font-size:27px;line-height:21px;padding: 6px 0 0 0;}
+.schDateTime{border-top:1px solid #ffffff;}
+.schTeams{float:left;width:100%;border-bottom:1px solid gray;padding-bottom:10px;margin-bottom:3px;}
+.schTeam{font-size:16px;line-height:20px;float:left;width:100%;}
+.schTeamvs{font-size:13px;float:left;width:100%;}
+.schRes{float:left;width:100%;font-weight:600;}
+.schScore{font-size:14px;}
+.black{color:#000000;}
+.schRes.spaceRight{padding:0 110px 0 0;position:relative;min-height:32px;}
+.schRemove{position:absolute;right:10px;top:10px;max-width:92px;z-index:1;}
+.schRemove .stdBtn{padding:2px 10px;float:right;}
+.officialRemove{position:absolute;right:0px;top:-1px;max-width:93px;}
+.officialRemove .stdBtn{padding:1px 10px;float:right;}
+.accWrapper.panel{box-shadow:none;margin:0;border-radius:0;}
+
+@media(max-width:767px){
+	.sponserItem{width:50%;margin-bottom:10px;}
+	.sponserImg{width:45%;}
+}

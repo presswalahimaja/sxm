@@ -1,0 +1,19 @@
+<div class="modal-body clearfix formContainer" ng-controller="Login as main">	
+	<form class="cb-col cb-col-100 form-horizontal formValidations" name="loginForm" role="form" novalidate ng-submit="loginForm.$valid && main.login()" style="padding-top:15px;">
+		<div class="cb-col cb-col-100 profListing">
+			<input class="col-md-12 col-xs-12" ng-class="{submitted:main.isFocus.login_submitted}" type="text" name="Username" ng-model="main.username" placeholder="Email or Mobile" ng-focus="main.isFocus.emailErr = false" required />
+			<span class="alertMsg" ng-show="main.isFocus.emailErr">{{main.isFocus.loginMsg}}</span>
+		</div>
+		<div class="cb-col cb-col-100 profListing">
+			<input class="col-md-12 col-xs-12" ng-class="{submitted:main.isFocus.login_submitted}" type="password" name="password" ng-model="main.password" placeholder="Password" ng-focus="main.isFocus.passErr = false" required />
+			<span class="alertMsg" ng-show="main.isFocus.passErr">{{main.isFocus.loginMsg}}</span>
+			<div class="formLink">
+				<a href="#" class="forgotLink" data-ng-click="main.forgotPassword()" style="font-size:12px;float:right;">Forgot password?</a>
+			</div>
+		</div>							
+		<div class="modal-footer">
+            <input id="btnCreateEvent" class="btn btnSubmit" type="submit" value="LOGIN"  name="btnSubmit" ng-click="main.isFocus.login_submitted = true;" />
+            <input id="btnCancelEvent" class="btn btnCancel" type="button" value="Cancel" name="btnCancel" ng-click="main.cancel();" />
+        </div>
+	</form>
+</div>

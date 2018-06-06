@@ -1,0 +1,240 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+
+body {
+    margin:0;
+    padding: 0;
+	font-family:arial;
+}
+
+.container_sports{
+    width:950px;
+	margin:0 auto;
+	padding:0;
+    color: #000;	
+}
+header {
+    width:950px;
+	float:left;
+	background:#e9f469;
+	box-sizing: border-box;
+	height:42px;
+	color:#000;
+	
+}
+
+header h1{ float:left; font-size:14px; padding:10px 0 0 10px;}
+header em{float:right; font-size:14px; padding:10px 10px 0 0px; font-style:normal;}
+section#teamVs {
+	width:950px;
+	float:left;
+	box-sizing: border-box;
+	color:#000;
+	padding-top:10px;
+}
+section#teamVs h2 {width:100%; display:block;text-align:center;}
+section#teamVs h2 img {position: relative;
+    top: 5px;}
+section#teamVs .colsTop {width:100%; display:block;padding-top:10px;float:left;}
+section#teamVs .colsTop .oneBlock {width:20%;float:left;text-align: center;}
+section#teamVs .colsTop .twoBlock  {width:20%; float:left;text-align: center; padding-top:22px;}
+section#teamVs .colsTop .twoBlock em {width:100%; float:left;text-align: center;}
+section#teamVs .colsTop .twoBlock i  {width:100%; float:left;text-align: center;}
+section#teamVs .colsTop .threeBlock  {width:20%;float:left;text-align: center;padding-top:22px;}
+section#teamVs .colsTop .fourBlock {width:20%;float:left;text-align: center;padding-top:22px;}
+section#teamVs .colsTop .fourBlock em {width:100%; float:left;text-align: center;}
+section#teamVs .colsTop .fourBlock i  {width:100%; float:left;text-align: center;}
+section#teamVs .colsTop .fiveBlock {width:20%;float:left;text-align: center;}
+section#teamVs .colsBtm {width:100%; display:block;}
+section#teamVs .colsBtm .Block1 {width:20%;float:left;text-align: center;}
+section#teamVs .colsBtm .Block2  {width:60%; float:left;text-align: center;}
+section#teamVs .colsBtm .Block3  {width:20%; float:left;text-align: center;}
+
+section#teamVs h3 {width:100%; display:block;text-align:center; float:left; font-size:16px;padding-top:20px;}
+section#scoreboard {
+	width:950px;
+	float:left;
+	padding-top: 14px;
+	
+}
+section#scoreboard header {
+	background:#6bccf7;
+	box-sizing: border-box;
+	min-height:10px;
+	
+}
+section#scoreboard header .menu_sports{
+    font-size: 11px;
+	width:935px;
+	padding-bottom:20px;
+	padding-top: 15px;
+}
+section#scoreboard header .menu_sports ul {
+   margin:0px auto;
+   text-transform: uppercase;
+   display: table;
+   text-align: center;
+}
+section#scoreboard header .menu_sports ul li {
+   float:left;
+   list-style:none;
+   display: table-cell;
+   color:#5e5e5e;
+   padding:0 15px;
+   font-size:10px;
+}
+section#scoreboard header .menu_sports ul li a{color:#fff; text-decoration:none;}
+section#scoreboard header .menu_sports ul li a.active{color:#fff;border-bottom:2px solid #fff;    padding: 12px 20px 12px;}
+section#scorecard {
+	width:950px;
+	float:left;
+	padding-top: 14px;
+	
+}
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  font-size:13px;
+}
+/* Zebra striping */
+
+th { 
+   
+  color: #000; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border-bottom: 1px solid #ccc; 
+  text-align: left;
+  width:auto;  
+  display:table-cell;
+}
+td.none {border-bottom:none;}
+.unorder {width:950px;
+	float:left;
+	margin: 10px 0 0 0;
+	}
+section#scorecard .unorder ul {
+   margin:0px auto;
+   text-transform: uppercase;
+   display: tab  le;
+   text-align: center;
+}
+section#scorecard .unorder ul li {
+   float:left;
+   list-style:none;
+   display: table-cell;
+   color:#5e5e5e;
+   padding:0 20px 0 0;
+   font-size:13px;
+}
+
+section#livecomment {
+	width:950px;
+	float:left;
+	padding-top: 14px;
+	
+}
+.viewComents{
+	overflow: auto;
+    height: 140px;
+    float: left;
+	width: 100%;
+}
+.searchBar {
+	float: left;
+    margin-bottom: 25px;
+    width:100%;
+	background:#475bb2;
+	padding:15px 0;
+	
+}
+.searchBar input{background: rgb(93, 157, 255) none repeat scroll 0% 0%;
+border: medium none;
+color:#fff!important;
+border-radius: 13px;
+height: 28px;
+font-size:8px;
+padding: 5px;
+box-sizing: border-box;
+margin-top: 13px;
+width:98%;
+outline:none;
+}
+.searchBar ul {
+   margin:0px auto;
+   
+   display: table;
+   text-align: center;
+       margin: 0px auto;
+}
+.searchBar ul li {
+   float:left;
+   list-style:none;
+   display: table-cell;
+   color:#fff;
+   padding:0 12px 0 0;
+   font-size:10px;
+}
+.searchBar ul li i{width:100%;float:left;}
+.searchBar ul li em{width:100%; float:left;padding-top: 12px;text-transform: uppercase;}
+.services_style {
+float: left;
+margin-bottom: 25px;
+width:100%;
+}
+.services_style .iconcol {
+    float: left;
+    width: 70px;
+}
+.services_style .contentcol {
+ float: left;
+    margin: 0;
+    width:90%;
+	background:#c4d8fd;
+	border-radius:10px;
+	padding:10px;
+}
+
+.services_style .contentcol p{
+display:block;
+color:#666666;
+font-size:14px;
+}
+.services_style .contentcol h3 {
+    display: block;
+    color: #000;
+    font-size: 15px;
+}
+
+/*media query*/
+
+@media (max-width:667px){
+
+.container_sports { width:98%;padding:0 1%;}
+header{width:100%; padding:0 2%; background:#e9f469;box-sizing:border-box;}
+header h1{ float:left;width:32%; font-size:14px; padding:10px 0 0 0px;}
+header em{float:right;width:60%; font-size:14px; padding:12px 10px 0 0px; font-style:normal;    text-align: right;}
+section#teamVs {
+	width:100%; padding:0 2%;box-sizing:border-box;
+}
+section#scoreboard { width:100%}
+section#scoreboard header .menu_sports{ width:100%}
+section#scorecard {width:100%;}
+	.unorder {width:100%;}
+	section#livecomment {width:100%;}
+	.services_style .contentcol{width:94%;}
+.services_style .contentcol p{
+   text-align:center;
+}
+ .services_style .iconcol {
+      width:100%;
+	  display:block;
+	  text-align:center;
+}
+.services_style .contentcol h3 {
+    text-align: center;
+}	
+}

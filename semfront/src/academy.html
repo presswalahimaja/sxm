@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+    <head>
+        <title>Academy - Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        @@include('gtmhead.html')
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description" />
+        <meta content="Sports Extra Mile" property="og:site_name" />
+        <meta content="website" property="og:type" />
+        <meta content="https://www.sportsextramile.com/" property="og:url" />
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+        <script src="https://maps.googleapis.com/maps/api/js?key=@@gkey"></script>
+		<style type="text/css">
+			.bannerSection{
+				overflow: hidden;
+				height: 270px;
+			}
+			@media(max-width:767px) {
+				.academypage.row{margin-left:-20px !important;margin-right:-20px !important;}
+				.academypage .card{box-shadow:1px 1px 1px 0 #617d8c;margin-bottom:10px;}
+				.bannerSection{overflow:hidden;height:112px;}
+			}	
+		</style>		
+		@@include('footerscripts.html')
+		
+        @@if (doConcat === 1) {
+        @@loop('css.html', [ 
+        { "file": "common.css"}, 
+        { "file": "sxm-common.css"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('css.html', [ 
+        { "file": "bootstrap.min.css"}, 
+        { "file": "xeditable.min.css"},
+        { "file": "ngdialog.css"}, 
+        { "file": "ngDialog-theme-default.css"}, 
+        { "file": "login.css"}, 
+        { "file": "facilities.css"}, 
+        { "file": "profile.css"},
+        { "file": "detail.css"},
+        { "file": "style.css"}, 
+        { "file": "static.css"},
+        { "file": "select.css"},
+        { "file": "lightgallery.css"},
+        { "file": "events-cricket-admin1.css"}	
+        ])
+        }
+
+        @@if (doConcat === 1) {
+        @@loop('scripts.html', [ 
+        { "file": "angular.js"}, 
+        { "file": "sxm-common.js"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('scripts.html', [
+        { "file": "lib/angular1.4.5.min.js"},
+        { "file": "lib/xeditable-0.2.0.js"},
+        { "file": "lib/angular-datepicker.js"},
+		{ "file": "lib/angular-youtube-embed.min.js"},
+        { "file": "lib/textAngular-rangy.min.js"},
+        { "file": "lib/textAngular-sanitize.min.js"},
+        { "file": "lib/textAngular.min.js"},
+        { "file": "lib/select.min.js"},        
+        { "file": "lib/ngdialog.js"},
+        { "file": "shared.js"},
+        { "file": "anghome.js"},
+        { "file": "login.js"},
+        { "file": "user.js"},
+        { "file": "header.js"},
+        { "file": "newAcademy.js"}
+        ])
+        }        
+    </head>
+    <body id="body" ng-controller="editAcademy as ctrl">
+        @@include('gtmbody.html')
+        @@include('header.html')
+		<custom-dialog dialog-msg="{{ctrl.confirm.dialogMsg}}" dialog-show="ctrl.confirm.dialogShow" handler="ctrl.dialogHandler()"></custom-dialog>
+        <div class="container" ng-cloak ng-class="{mobisite: ctrl.isMobileDevice}">
+            <div class="row content academypage clearfix evePage adPage">
+                <!-- Left Panel -->
+                <div class="col-md-8 myPageContent">
+                    <div class="bannerSection card">
+						<div class="bannerSlider">
+							<div ng-repeat="banner in ctrl.academy.banners | orderBy:reverse:true">
+								<img data-ng-src="@@host/images/acd/{{banner.id | imagefilter:850}}?{{ctrl.confirm.imgRefreshTime}}" class="img-responsive" />
+							</div>					
+                        </div>
+						<div class="uploadPicCont" ng-if="ctrl.academy.isAdmin">
+							<input class="uploadFile" type="file" multiple onchange="angular.element(this).scope().ctrl.uploadBanners(this.files)" />
+							<!-- <input class="uploadFile showInMobile" onclick="window.JSInterface.uploadTBanner(angular.element(this).scope().tournament.tournament._id, 'TB')"/> -->
+							<div class="uploadPic">	
+								<div class="uploadIcon"></div>
+								<div class="uploadText">Change</div>
+							</div>
+						</div>
+						<div class="bannerTitle">
+							<div class="bannerTitleHeading">{{ctrl.academy.name}}</div>
+							<div class="bannerTitleDate" ng-if="ctrl.academy.location">{{ctrl.academy.location.join(', ')}}</div>
+						</div>
+                    </div>
+					<div class="tabsWrapper">
+						<div class="tabsContainer">
+							<ul>
+                                <li class="tabStyle {{tab.id}}" 
+                                    ng-class="{'current': tab.id == ctrl.currentTab.id }" 
+                                    ng-click="ctrl.setCurrentTab(tab)"
+                                    ng-repeat="tab in ctrl.tabs track by tab.id">
+									<span class="tab_ico"></span>
+									<span class="tab_lbl">{{tab.title}}</span>
+								</li>
+							</ul>
+						</div>
+						<div class="faketabsContainer"></div>
+                    </div>
+					<div class="tabsDataContainer">	
+						<div class="tabItem tabContent current">
+                            <div class="card section">
+                                <div class="subtabWrapper">
+                                    <div class="subtabContainer">
+                                        <tab-scroller api="ctrl.tabScroller.api" prevent-tab-change="true">
+                                            <ul class="scrolltabContainer">
+                                                <li class="subtabStyle scrolltab"
+                                                    ng-click="ctrl.currentTab.activeSection = tabSection"
+                                                    ng-class="{'active': tabSection.id == ctrl.currentTab.activeSection.id}"
+                                                    ng-repeat="tabSection in ctrl.currentTab.tabSections">
+                                                    {{tabSection.title}}
+                                                </li>
+                                            </ul>
+                                        </tab-scroller>
+                                    </div>
+                                </div>
+                                <div class="subtabDataContainer" ng-include="'./academy_' + ctrl.currentTab.id + '_' + ctrl.currentTab.activeSection.id + '.tpl.html'">
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+                <!-- Right Panel -->
+                <div class="col-md-4">
+                    @@include('rightpanel.html')
+                </div>
+            </div>
+        </div>
+		<script type="text/javascript" src="js/lib/lightgallery.min.js"></script>
+        <script type="text/javascript" src="js/lib/lg-thumbnail.min.js"></script>
+        <script type="text/javascript" src="js/lib/lg-fullscreen.min.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.bxslider.min.js"></script>
+        <script type="text/javascript" src="script/main.js"></script>
+		<script type="text/javascript">
+			$(window).bind("load", function(){
+				$('.bannerSlider').bxSlider({
+					controls: true,
+					dots: false,
+					touchEnabled: false,
+					auto: true,		
+					mode: 'fade',	
+					pause: 3000
+				});
+			});
+        </script>
+    </body>
+</html>

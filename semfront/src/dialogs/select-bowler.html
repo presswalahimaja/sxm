@@ -1,0 +1,61 @@
+<div ng-controller="selectBowler as player">
+    <div class="modal-body clearfix popupListContainer">
+        <h3>
+			Select new bowler
+			<div style="float:right;">{{player.currBatting.score}}-{{player.currBatting.W}} ({{player.currBatting.overs}}.{{player.currBatting.balls}}) ({{player.teamCRR}})</div>
+		</h3>
+        <div class="cb-col cb-col-100 popupList scrollContainer playerPopups" style="height:250px;">
+            <ul style="padding-top:7px;">
+                <div ng-if="player.players == undefined || player.players.length == 0">
+                    No players in the team.
+                </div>
+                <li class="popupListItem" style="padding:8px 0 7px 30px;min-height:1px;" ng-class="{duplicate:$index == player.newMember.ind}" ng-repeat="pl in player.players | orderBy:'userName' track by pl.uid">
+                    <input type="radio" ng-model="player.selected" ng-value="pl" style="position:absolute;left:0px;width:16px;height:16px;top:4px;" />
+                    <span class="inf-intro" style="color:#333333;" ng-bind="pl.userName"></span>
+                    <div class="listRemoveTeam" style="top:6px;">
+                        <button class="stdBtn" type="button" ng-hide="player.confirm.removePlayer[$index]" ng-click="player.confirm.removePlayer[$index] = true"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button class="stdBtn" type="button" ng-show="player.confirm.removePlayer[$index]" ng-click="player.confirm.removePlayer[$index] = false">No</button>
+                        <button class="stdBtn" type="button" ng-show="player.confirm.removePlayer[$index]" ng-click="player.confirm.removePlayer[$index] = false;player.removeTeamMember(pl.uid)" style="margin:0 5px;">Yes</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div ng-if="player.selected" style="padding:10px 10px 0 0;float:left;width:100%;">
+            <span style="float:left;margin-top:4px;color:red;" class="col-md-4 col-xs-12">{{player.selected.userName}} is selected</span>
+            <button class="btn btnCancel" ng-click="player.selected = null;" style="float:right;margin-left:4px;">Cancel</button>
+            <button class="btn btnSubmit" ng-disabled="player.confirm.btnDisable" ng-click="player.setBowlerInMatch()" style="float:right;margin-left:0;">Confirm</button>
+        </div>
+        <div class="col-sm-12 addNewPlayerForm">
+            <label data-toggle="collapse" data-target="#addNewPlayer"><i class="fa fa-plus" aria-hidden="true"></i> Add New Bowler</label>
+            <form id="addNewPlayer" class="collapse" name="newMemberForm" role="form" novalidate ng-submit="newMemberForm.$valid && player.addNewMember(newMemberForm)">
+                <div class="row">
+                    <div class="form-group col-md-4 col-xs-12" ng-class="{'has-error':(newMemberForm.fName.$touched || newMemberForm.$submitted) && newMemberForm.fName.$invalid }">
+                        <input class="form-control" type="text" name="fName" ng-model="player.newMember.fName" placeholder="First Name" required />
+                        <p ng-show="(newMemberForm.fName.$touched || newMemberForm.$submitted) && newMemberForm.fName.$error.required" class="help-block">required</p>
+                    </div>
+                    <div class="form-group col-md-4 col-xs-12">
+                        <input class="form-control" type="text" name="lName" ng-model="player.newMember.lName" placeholder="Last Name"/>
+                    </div>
+                    <div class="form-group col-md-4 col-xs-12" ng-class="{'has-error':(newMemberForm.contact.$touched || newMemberForm.$submitted) && newMemberForm.contact.$invalid || (!player.newMember.email && !player.newMember.mobile) }">
+                        <input class="form-control" type="text" name="contact" ng-model="player.newMember.contact" ng-change="player.validateMemberContact()" placeholder="Email/Mobile" />
+                        <p ng-show="(newMemberForm.contact.$touched || newMemberForm.$submitted) && newMemberForm.contact.$error.required" class="help-block">required</p>
+                        <p ng-show="newMemberForm.$dirty && !player.newMember.email && !player.newMember.mobile && player.newMember.contact" class="help-block">Invalid</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12" ng-if="player.newMember.success || player.newMember.failed">
+						<div class="alert" ng-class="{'alert-success':player.newMember.success, 'alert-danger':player.newMember.failed}" style="margin:0;">
+							{{player.newMember.msg}}
+						</div>
+					</div>
+                </div>
+                <div class="row" style="margin-top:5px;">
+                    <div class="col-md-12 col-xs-12 text-right">
+                        <button class="btn btnCancel" type="button" ng-click="player.resetNewMemberForm(newMemberForm)">Reset</button>
+                        <button class="btn btnSubmit" type="submit" ng-disabled="player.confirm.btnDisable">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>			
+    </div>
+</div>

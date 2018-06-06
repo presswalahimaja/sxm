@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  ng-app="semadmin"> 
+    <head>
+        <title>Admin - Facility</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="./js/angular1.4.5.min.js"></script>
+        <script type="text/javascript" src="./js/angadmin.js"></script>
+        <link rel="stylesheet" href="../css/common.css" /><link rel="stylesheet" href="../css/sxm-common.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
+        <style type="text/css">
+            table {background-color: white;}
+            div.content {background-color: white; padding:5px;}
+        </style>
+    </head>
+    <body data-ng-controller="facilityCtrl as facility">
+        <div class="page-wrapper">
+            <div class="container">
+                <table class="table table-bordered"><tr>
+                        <td>
+                            Add facility: 
+                            Name:  <input type="text" name="name" data-ng-model="facility.name"><br/>
+                            Address:  <input type="text" name="address" data-ng-model="facility.address"><br/>
+                            Phone:  <input type="text" name="address" data-ng-model="facility.address"><br/>
+                            Website:  <input type="text" name="address" data-ng-model="facility.address"><br/>
+                            Sports:  <input type="text" name="address" data-ng-model="facility.address"><br/>
+                            City:  <input type="text" name="address" data-ng-model="facility.address"><br/>
+                            State:  <input type="text" name="address" data-ng-model="facility.address"><br/>
+                            Country:  <input type="text" name="address" data-ng-model="facility.address"><br/>
+                            Lat:  <input type="text" name="address" data-ng-model="facility.address"><br/>
+                            Long:  <input type="text" name="address" data-ng-model="facility.address"><br/>
+                            <span ng-hide="fixes.type !== 'TE'"> EID: <input type="text" name="eid" data-ng-model="fixes.eid"></span><br/>
+                            <button ng-click="fixes.getData()">Get</button></td>
+                       
+                    </tr>
+                    
+                </table>
+               
+            </div>
+        </div>
+    </body>
+</html>

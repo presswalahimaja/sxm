@@ -1,0 +1,60 @@
+<div class="modal-body clearfix formContainer" ng-controller="createHomeEvent as createHomeEvt">
+    <h3>You're creating an event at <span data-ng-bind="createHomeEvt.facilityName"></span>, <span data-ng-bind="createHomeEvt.city"></span></h3>
+    <form id="createHomeEvent_form" class="form-horizontal col-sm-12 formValidations" name="createHomeEventForm" role="form" novalidate ng-submit="createHomeEventForm.$valid && createHomeEvt.createHomeEventSubmit()">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="Title" class="col-sm-12 control-label" >Event Title</label>
+                <input class="col-sm-12" ng-class="{submitted:createHomeEvt.isFocus.submitted}" auto-focus type="text" name="event_name" placeholder="Event Title" data-ng-model="createHomeEvt.eventName" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="Sports" class="col-sm-12 control-label">Select Sports</label>
+                <select id="ddlSports" class="col-sm-12" ng-class="{submitted:createHomeEvt.isFocus.submitted}" name="ddlSports" data-ng-model="createHomeEvt.selSport" data-ng-options="o as o for o in createHomeEvt.sports" required ></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="date" class="col-sm-12 control-label">Date</label>
+                <datepicker date-format="dd MMM y" date-min-limit="{{createHomeEvt.datetime.yesterday.toString()}}" datepicker-mobile="true" date-set="{{createHomeEvt.datetime.date}}">
+                    <input class="col-sm-12 datetime" type="text" name="event_date" placeholder="dd MMM, yyyy" data-ng-model="createHomeEvt.datetime.date" data-ng-readonly="true" required />
+                </datepicker>
+            </div>
+            <div class="col-sm-6">
+                <label for="Time" class="col-sm-12 control-label">Time</label>
+                <select id="date_hour" class="col-sm-4 datetime" name="hour" ng-class="{invdate:createHomeEvt.datetime.invalidDate}" data-ng-model="createHomeEvt.datetime.selHour" required>
+                    <option data-ng-repeat="hour in createHomeEvt.datetime.hours" ng-selected="{{hour.value == createHomeEvt.datetime.selHour}}" value="{{hour.value}}">{{hour.text}}</option>
+                </select>
+                <select id="date_min"  class="col-sm-4 datetime" name="minute" ng-class="{invdate:createHomeEvt.datetime.invalidDate}" data-ng-model="createHomeEvt.datetime.selMinute" data-ng-options="min for min in createHomeEvt.datetime.minutes" required></select>
+                <select id="date_mer"  class="col-sm-4 datetime" name="meridian" ng-class="{invdate:createHomeEvt.datetime.invalidDate}" data-ng-model="createHomeEvt.datetime.selMer" required>
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 mobiledd" data-ng-if="createHomeEvt.myFriends">
+                <label for="Friends" class="col-sm-12 control-label">Invite Friends</label>
+				<ui-select multiple ng-model="createHomeEvt.selectedFrds">
+                    <ui-select-match>{{ $item.name}}</ui-select-match>
+                    <ui-select-choices repeat="myFrnd in createHomeEvt.myFriends | filter: $select.search">
+                        {{myFrnd.name}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-sm-6 mobiledd" data-ng-if="createHomeEvt.myGroups">
+                <label for="Groups" class="col-sm-12 control-label">Invite Groups</label>
+				<ui-select multiple ng-model="createHomeEvt.selGroup">
+                    <ui-select-match>{{ $item.grpName}}</ui-select-match>
+                    <ui-select-choices repeat="myGrp in createHomeEvt.myGroups | filter: $select.search">
+                        {{myGrp.grpName}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <input  id="btnCreateEvent" class="btn btnSubmit" type="submit" value="Create Event" name="btnCreateEvent" ng-click="createHomeEvt.isFocus.submitted = true" />
+            <button id="btnCancelEvent" class="btn btnCancel" ng-click="createHomeEvt.cancel();createHomeEventForm.$valid = false;">Cancel</button>
+        </div>
+    </form>
+</div>

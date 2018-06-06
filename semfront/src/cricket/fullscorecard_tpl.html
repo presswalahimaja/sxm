@@ -1,0 +1,180 @@
+<div class="card">
+	<!-- Inning 1 -->    
+	<div class="inningcard" style="margin:0;">
+		<h4>{{::crick.scorecard.innings[0].name}} Inning <div style="float:right;">{{crick.scorecard.innings[0].score}}-{{crick.scorecard.innings[0].W}} ({{crick.scorecard.innings[0].overs}}.{{crick.scorecard.innings[0].balls}})</div></h4>
+		<div class="tab-section">
+			<!-- Batting -->
+			<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+				<div class="cb-col cb-col-58 cb-sm-43">
+					<div class="cb-col cb-col-100 cb-sm-80">Batsmen</div>
+				</div>
+				<div class="cb-col cb-col-8  cb-sm-11 text-right">R</div>
+				<div class="cb-col cb-col-8  cb-sm-11 text-right">B</div>
+				<div class="cb-col cb-col-8  cb-sm-11 text-right">4s</div>
+				<div class="cb-col cb-col-8  cb-sm-11 text-right">6s</div>
+				<div class="cb-col cb-col-10 cb-sm-13 text-right">SR</div>
+			</div>
+			<div class="cb-col cb-col-100 cb-scrd-itms" ng-class="{onstrike: crick.currInning == 'Inning1' && crick.scorecard.SI == $index, selected:batsman.batting}" ng-repeat="batsman in crick.scorecard.innings[0].batting">
+				<div class="cb-col cb-col-58 cb-sm-43">
+					<div class="cb-col cb-col-50 cb-sm-80">
+						<span ng-bind="batsman.name"></span><span ng-if="crick.currInning == 'Inning1' && crick.scorecard.SI == $index">*</span>
+					</div>	
+					<div class="cb-col cb-col-50 cb-sm-80">
+						<span class="text-gray" ng-if="batsman.batting">{{(crick.matchStarted && crick.currInning == 'Inning1') ? 'Batting' : 'Not out'}}</span>
+						<span class="text-gray" ng-if="batsman.outObj">
+							<span ng-if="batsman.outObj.type == 'B'">b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'RT'">Retired Hurt </span>
+							<span ng-if="batsman.outObj.type == 'RR'">Retired </span>
+							<span ng-if="batsman.outObj.type == 'HW'">Hit Wicket B {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'CB'">c&b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'CF' || batsman.outObj.type == 'CW'">c {{batsman.outObj.fielder.name}} b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'ST'">st {{batsman.outObj.fielder.name}} b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'RO'">run out {{batsman.outObj.fielder.name}}</span>
+							<span ng-if="batsman.outObj.type == 'LB'">lbw {{batsman.outObj.bowler.name}}</span>
+						</span>
+					</div>
+				</div>													
+				<div class="cb-col cb-col-8  cb-sm-11 text-right text-gray">{{batsman.total}}</div> <!-- Runs -->
+				<div class="cb-col cb-col-8  cb-sm-11 text-right text-gray">{{batsman.balls}}</div> <!-- Ball -->
+				<div class="cb-col cb-col-8  cb-sm-11 text-right text-gray">{{batsman.four}}</div> <!-- Four -->
+				<div class="cb-col cb-col-8  cb-sm-11 text-right text-gray">{{batsman.sixes}}</div> <!-- Six -->
+				<div class="cb-col cb-col-10 cb-sm-13 text-right text-gray">{{crick.isMobile ? (batsman.SR | number:0) : batsman.SR}}</div> <!-- Strike rate -->
+			</div>
+			<!-- Extra Runs -->
+			<div class="cb-col cb-col-100 cb-scrd-itms">	
+				<div class="cb-col cb-col-58 cb-sm-48 cb-xs-20 text-gray">Extras</div>
+				<div class="cb-col cb-col-8 cb-sm-13 cb-xs-15 text-right text-bold">{{crick.scorecard.innings[0].extras.runs}}</div>
+				<div class="cb-col cb-col-34 cb-sm-39 cb-xs-65 text-gray">&nbsp;(b {{crick.scorecard.innings[0].extras.b}}, lb {{crick.scorecard.innings[0].extras.lb}}, w {{crick.scorecard.innings[0].extras.wd}}, nb {{crick.scorecard.innings[0].extras.nb}}, p {{crick.scorecard.innings[0].extras.p}})</div>
+			</div>
+			<!-- Total Runs -->
+			<div class="cb-col cb-col-100 cb-scrd-itms">
+				<div class="cb-col cb-col-58 cb-sm-48 cb-xs-20 text-gray">Total</div>
+				<div class="cb-col cb-col-8 cb-sm-13 cb-xs-15 text-right text-bold">{{crick.scorecard.innings[0].score}}</div>
+				<div class="cb-col cb-col-34 cb-sm-39 cb-xs-65 text-gray">&nbsp;({{crick.scorecard.innings[0].W}} wkts, {{crick.scorecard.innings[0].overs}}.{{crick.scorecard.innings[0].balls}} Overs)</div>
+			</div>													
+			<!-- Fall of Wickets -->
+			<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" ng-if="crick.scorecard.innings[0].FOW.length">
+				<div class="cb-col cb-col-100">Fall of Wickets</div> 
+			</div>
+			<div class="cb-col cb-col-100 cb-scrd-itms" ng-if="crick.scorecard.innings[0].FOW.length">
+				<div style="float:left;padding-right:7px;white-space:nowrap;" ng-repeat="fow in crick.scorecard.innings[0].FOW">
+					<span>{{fow.at}}-{{$index + 1}}</span> <span>({{fow.batsman.name}}){{$last ? '' : ', '}}</span>
+				</div>
+			</div>
+			<!-- Bowlers -->
+			<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+				<div class="cb-col cb-col-43 text-left">Bowlers</div>
+				<div class="cb-col cb-col-8 text-right">O</div>
+				<div class="cb-col cb-col-8 text-right">M</div>
+				<div class="cb-col cb-col-8 text-right">R</div>													
+				<div class="cb-col cb-col-8 text-right">{{crick.isMobile ? "W" : "Wkt"}}</div>
+				<div class="cb-col cb-col-8 text-right">wd</div>
+				<div class="cb-col cb-col-8 text-right">nb</div>													
+				<div class="cb-col cb-col-9 text-right">{{crick.isMobile ? "E" : "Eco"}}</div>
+			</div>
+			<div ng-repeat="bowlers in crick.scorecard.innings[1].bowling">
+				<div class="cb-col cb-col-100 cb-scrd-itms" ng-class="{selected:crick.scorecard.BSI == $index}">
+					<div class="cb-col cb-col-43">
+						<span ng-bind="bowlers.name"></span>
+					</div>	
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.over_count}}.{{bowlers.balls}}</div> <!-- Overs -->
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.maiden}}</div> <!-- Maiden -->
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.runs}}</div> <!-- Runs -->														
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.wicket}}</div> <!-- Wicket -->
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.WD}}</div> <!-- WD -->
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.NB}}</div> <!-- NB -->														
+					<div class="cb-col cb-col-9 text-right text-gray">{{bowlers.Eco}}</div> <!-- Strike rate -->
+				</div>
+			</div>
+		</div>
+	</div> 
+	<!-- Inning 2 -->
+	<div class="inningcard" ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">
+		<h4>{{::crick.scorecard.innings[1].name}} Inning <div style="float:right;">{{crick.scorecard.innings[1].score}}-{{crick.scorecard.innings[1].W}} ({{crick.scorecard.innings[1].overs}}.{{crick.scorecard.innings[1].balls}})</div></h4>
+		<div class="tab-section">
+			<!-- Batting -->
+			<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+				<div class="cb-col cb-col-58 cb-sm-43">
+					<div class="cb-col cb-col-100  cb-sm-80">Batsmen</div>
+				</div>
+				<div class="cb-col cb-col-8  cb-sm-11 text-right">R</div>
+				<div class="cb-col cb-col-8  cb-sm-11 text-right">B</div>
+				<div class="cb-col cb-col-8  cb-sm-11 text-right">4s</div>
+				<div class="cb-col cb-col-8  cb-sm-11 text-right">6s</div>
+				<div class="cb-col cb-col-10 cb-sm-13 text-right">SR</div>													
+			</div>
+			<div class="cb-col cb-col-100 cb-scrd-itms" ng-class="{onstrike: crick.currInning == 'Inning2' && crick.scorecard.SI == $index, selected:batsman.batting}" ng-repeat="batsman in crick.scorecard.innings[1].batting">
+				<div class="cb-col cb-col-58 cb-sm-43">
+					<div class="cb-col cb-col-50 cb-sm-80">
+						<span ng-bind="batsman.name"></span><span ng-if="crick.currInning == 'Inning2' && crick.scorecard.SI == $index">*</span>
+					</div>														
+					<div class="cb-col cb-col-50 cb-sm-80">
+						<span class="text-gray" ng-if="batsman.batting">{{crick.matchStarted ? 'Batting' : 'Not out'}}</span>
+						<span class="text-gray" ng-if="batsman.outObj">
+							<span ng-if="batsman.outObj.type == 'B'">b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'RT'">Retired Hurt </span>
+							<span ng-if="batsman.outObj.type == 'RR'">Retired </span>
+							<span ng-if="batsman.outObj.type == 'HW'">Hit Wicket B {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'CB'">c&b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'CF' || batsman.outObj.type == 'CW'">c {{batsman.outObj.fielder.name}} b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'ST'">st {{batsman.outObj.fielder.name}} b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'RO'">run out {{batsman.outObj.fielder.name}}</span>
+							<span ng-if="batsman.outObj.type == 'LB'">lbw {{batsman.outObj.bowler.name}}</span>
+						</span>
+					</div>
+				</div>													
+				<div class="cb-col cb-col-8  cb-sm-11 text-right text-gray">{{batsman.total}}</div> <!-- Runs -->
+				<div class="cb-col cb-col-8  cb-sm-11 text-right text-gray">{{batsman.balls}}</div> <!-- Ball -->
+				<div class="cb-col cb-col-8  cb-sm-11 text-right text-gray">{{batsman.four}}</div> <!-- Four -->
+				<div class="cb-col cb-col-8  cb-sm-11 text-right text-gray">{{batsman.sixes}}</div> <!-- Six -->
+				<div class="cb-col cb-col-10 cb-sm-13 text-right text-gray">{{crick.isMobile ? (batsman.SR | number:0) : batsman.SR}}</div> <!-- Strike rate -->
+			</div>
+			<!-- Extra Runs -->
+			<div class="cb-col cb-col-100 cb-scrd-itms">	
+				<div class="cb-col cb-col-58 cb-sm-48 cb-xs-20 text-gray">Extras</div>
+				<div class="cb-col cb-col-8 cb-sm-13 cb-xs-15 text-right text-bold">{{crick.scorecard.innings[1].extras.runs}}</div>
+				<div class="cb-col cb-col-34 cb-sm-39 cb-xs-65 text-gray">&nbsp;(b {{crick.scorecard.innings[1].extras.b}}, lb {{crick.scorecard.innings[1].extras.lb}}, w {{crick.scorecard.innings[1].extras.wd}}, nb {{crick.scorecard.innings[1].extras.nb}}, p {{crick.scorecard.innings[1].extras.p}})</div>
+			</div>
+			<!-- Total Runs -->
+			<div class="cb-col cb-col-100 cb-scrd-itms">
+				<div class="cb-col cb-col-58 cb-sm-48 cb-xs-20 text-gray">Total</div>
+				<div class="cb-col cb-col-8 cb-sm-13 cb-xs-15 text-right text-bold">{{crick.scorecard.innings[1].score}}</div>
+				<div class="cb-col cb-col-34 cb-sm-39 cb-xs-65 text-gray">&nbsp;({{crick.scorecard.innings[1].W}} wkts, {{crick.scorecard.innings[1].overs}}.{{crick.scorecard.innings[1].balls}} Overs)</div>
+			</div>													
+			<!-- Fall of Wickets -->
+			<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" ng-if="crick.scorecard.innings[1].FOW.length">
+				<div class="cb-col cb-col-100">Fall of Wickets</div> 
+			</div>
+			<div class="cb-col cb-col-100 cb-scrd-itms" ng-if="crick.scorecard.innings[1].FOW.length">
+				<div style="float:left;padding-right:7px;white-space:nowrap;" ng-repeat="fow in crick.scorecard.innings[1].FOW">
+					<span>{{fow.at}}-{{$index + 1}}</span> <span>({{fow.batsman.name}}){{$last ? '' : ', '}}</span>
+				</div>
+			</div>
+			<!-- Bowlers -->
+			<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+				<div class="cb-col cb-col-43 text-left">Bowlers</div>
+				<div class="cb-col cb-col-8 text-right">O</div>
+				<div class="cb-col cb-col-8 text-right">M</div>
+				<div class="cb-col cb-col-8 text-right">R</div>													
+				<div class="cb-col cb-col-8 text-right">{{crick.isMobile ? "W" : "Wkt"}}</div>
+				<div class="cb-col cb-col-8 text-right">wd</div>
+				<div class="cb-col cb-col-8 text-right">nb</div>													
+				<div class="cb-col cb-col-9 text-right">{{crick.isMobile ? "E" : "Eco"}}</div>
+			</div>
+			<div ng-repeat="bowlers in crick.scorecard.innings[0].bowling">
+				<div class="cb-col cb-col-100 cb-scrd-itms" ng-class="{selected:crick.scorecard.BSI == $index}">
+					<div class="cb-col cb-col-43">
+						<span ng-bind="bowlers.name"></span>
+					</div>	
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.over_count}}.{{bowlers.balls}}</div> <!-- Overs -->
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.maiden}}</div> <!-- Maiden -->
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.runs}}</div> <!-- Runs -->														
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.wicket}}</div> <!-- Wicket -->
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.WD}}</div> <!-- WD -->
+					<div class="cb-col cb-col-8 text-right text-gray">{{bowlers.NB}}</div> <!-- NB -->														
+					<div class="cb-col cb-col-9 text-right text-gray">{{bowlers.Eco}}</div> <!-- Strike rate -->
+				</div>
+			</div>
+		</div>
+	</div>	     
+</div>

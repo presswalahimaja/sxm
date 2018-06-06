@@ -1,0 +1,163 @@
+<div class="card" style="margin-top:80px;">
+	<div class="inningcard" style="margin:0;">
+		<!-- Team names -->
+		<div class="cb-col cb-col-100 team">
+			<div class="teamname">Match Summary</div>
+		</div>
+		<div class="cb-col cb-col-100 cb-inning">
+			<!-- Summary -->
+			<div class="cb-col cb-col-100">
+				<!-- Inning 1 -->    
+				<div class="inningcard" style="margin-bottom:15px;">
+					<div class="cb-col cb-col-100 team">
+						<div class="teamname">{{::crick.scorecard.innings[0].name}}</div> 
+						<div class="cb-col cb-col-14 teamscore">
+							<span class="teamscorebg"></span>
+							{{crick.scorecard.innings[0].score}}-{{crick.scorecard.innings[0].W}} ({{crick.scorecard.innings[0].overs}}.{{crick.scorecard.innings[0].balls}})
+						</div>
+					</div>
+					<div class="cb-col cb-col-100">
+						<!-- Batting -->
+						<div class="cb-col cb-col-48">
+							<div class="cb-col cb-col-100 teamplayer" ng-repeat="batsman in crick.scorecard.innings[0].batting | orderBy:['-total','balls'] | limitTo:3">
+								<div class="cb-col cb-col-80 teamplayername">{{batsman.name  | playerFirstName}}</div>													
+								<div class="cb-col cb-col-20 text-right teamplayerscore">
+									<span class="teamplayerscorebg"></span>
+									{{batsman.total}} ({{batsman.balls}})
+								</div>
+							</div>
+						</div>
+						<div class="cb-col cb-col-4"></div>
+						<!-- Bowlers -->
+						<div class="cb-col cb-col-48">
+							<div class="cb-col cb-col-100 teamplayer" ng-repeat="bowlers in crick.scorecard.innings[1].bowling | orderBy:['-wicket','runs'] | limitTo:3">
+								<div class="cb-col cb-col-80 teamplayername">{{bowlers.name  | playerFirstName}}</div>	
+								<div class="cb-col cb-col-20 text-right teamplayerscore">
+									<span class="teamplayerscorebg"></span>
+									{{bowlers.wicket}}-{{bowlers.runs}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> 
+				<!-- Inning 2 -->
+				<div class="inningcard" style="margin-bottom:15px;" ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">
+					<div class="cb-col cb-col-100 team">
+						<div class="teamname">{{::crick.scorecard.innings[1].name}}</div>
+						<div class="cb-col cb-col-14 teamscore">
+							<span class="teamscorebg"></span>	
+							{{crick.scorecard.innings[1].score}}-{{crick.scorecard.innings[1].W}} ({{crick.scorecard.innings[1].overs}}.{{crick.scorecard.innings[1].balls}})
+						</div>
+					</div>
+					<div class="cb-col cb-col-100">
+						<!-- Batting -->
+						<div class="cb-col cb-col-48">
+							<div class="cb-col cb-col-100 teamplayer" ng-repeat="batsman in crick.scorecard.innings[1].batting | orderBy:['-total','balls'] | limitTo:3">
+								<div class="cb-col cb-col-80 teamplayername">{{batsman.name}}</div>													
+								<div class="cb-col cb-col-20 text-right teamplayerscore">
+									<span class="teamplayerscorebg"></span>
+									{{batsman.total}} ({{batsman.balls}})
+								</div>
+							</div>
+						</div>
+						<div class="cb-col cb-col-4"></div>
+						<!-- Bowlers -->
+						<div class="cb-col cb-col-48">
+							<div class="cb-col cb-col-100 teamplayer" ng-repeat="bowlers in crick.scorecard.innings[0].bowling | orderBy:['-wicket','runs'] | limitTo:3">
+								<div class="cb-col cb-col-80 teamplayername">{{bowlers.name}}</div>	
+								<div class="cb-col cb-col-20 text-right teamplayerscore">
+									<span class="teamplayerscorebg"></span>
+									{{bowlers.wicket}}-{{bowlers.runs}}
+								</div>
+							</div>
+						</div>
+					</div>		
+				</div>   
+			</div>
+			<!-- Require Runs -->
+			<div class="cb-col cb-col-100 team text-center finalscore" ng-if="crick.event.result == undefined && crick.currInning == 'Inning2'">
+				{{crick.scorecard.innings[1].name}} needs {{crick.rruns}} runs in {{crick.pballs}} balls to win ({{crick.RRR}})
+			</div>
+			<!-- Result -->
+			<div class="cb-col cb-col-100 team text-center finalscore" ng-if="crick.event.result != undefined">
+				{{crick.event.result.winner.name}} won by {{crick.event.result.by}}
+			</div>
+		</div>
+		<div class="inningcardbg"></div>
+	</div>
+</div>
+<style type="text/css">
+	.match_summary_2 .cb-inning{
+		min-height: 700px;
+		position: relative;
+		z-index: 1;
+	}
+	.match_summary_2 .team{
+		background: rgb(44,52,135); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(44,52,135,1) 1%, rgba(76,98,181,1) 50%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(44,52,135,1) 1%,rgba(76,98,181,1) 50%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(44,52,135,1) 1%,rgba(76,98,181,1) 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c3487', endColorstr='#4c62b5',GradientType=0 ); /* IE6-9 */
+		height: 60px;
+		line-height: 60px;
+		font-size: 32px;
+		font-weight: 600;
+		text-transform: uppercase;
+		color: #ffffff;
+		margin-bottom: 15px;
+		z-index: 1;
+	}
+	.match_summary_2 .teamname{
+		float: left;
+		padding: 0 10px;		
+	}
+	.match_summary_2 .teamscore{
+		background: rgb(150,0,0); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(150,0,0,1) 18%, rgba(198,73,73,1) 85%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(150,0,0,1) 18%,rgba(198,73,73,1) 85%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(150,0,0,1) 18%,rgba(198,73,73,1) 85%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#960000', endColorstr='#c64949',GradientType=0 ); /* IE6-9 */
+		float: right;
+		padding: 0 25px 0 0;  
+		text-align: right;	
+	}
+	.match_summary_2 .teamplayer{
+		background: rgb(30,87,153); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(221,221,221,1) 0%, rgba(157,157,157,1) 0%, rgba(238,238,238,1) 81%, rgba(238,238,238,1) 100%, rgba(125,185,232,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(221,221,221,1) 0%,rgba(157,157,157,1) 0%,rgba(238,238,238,1) 81%,rgba(238,238,238,1) 100%,rgba(125,185,232,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		backgroud: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(221,221,221,1) 0%,rgba(157,157,157,1) 0%,rgba(238,238,238,1) 81%,rgba(238,238,238,1) 100%,rgba(125,185,232,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+		height: 50px;
+		line-height: 50px;
+		font-size: 30px;
+		font-weight: 600;	
+		margin: 0 0 5px 0;
+		min-height: 50px;	
+	}	
+	.match_summary_2 .teamplayername{
+		float: left;
+		padding: 0 10px;
+	}
+	.match_summary_2 .teamplayerscore{
+		background: none;	
+		padding: 0 25px 0 0;
+		margin: 0 0 5px 0;	
+	}
+	.match_summary_2 .finalscore{
+		position: absolute;
+		left:0;
+		bottom:0;
+	}
+	.inningcard{
+		position: relative;
+	}
+	.inningcardbg{
+		position: absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		background: #ffffff;
+		opacity: 0.3;
+	}
+</style>

@@ -1,0 +1,13 @@
+<div class="modal-body clearfix popupListContainer" ng-controller="DiscussionPopupController as discCtrl">
+    <h3 class="popupHeading">Discussions around you<br>
+        <span class="popupMsg">Please Login or Register and explore the world of Sports around you.</span></h3>
+    <div class="col-sm-12 popupList discPopup scrollContainer">	
+        <ul>
+            <li class="popupListItem" ng-repeat="disc in discCtrl.discussions">
+                <p class="popupPic"><img data-ng-src="@@host/uploads/{{::disc.uid| imgsize:40}}" title="{{::disc.userName}}" alt="" /></p>
+                <p class="popupName">{{disc.userName}}: <span class="popupDate">{{disc.date| date:"dd-MMM 'at' h:mma"}}</span></p>	
+                <p class="popupDisc">{{disc.body}}</p>
+            </li>
+        </ul>
+    </div>	
+</div> 

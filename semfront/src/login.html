@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+    <head>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-7999525691080451",
+                enable_page_level_ads: true
+            });
+        </script>
+        <title>Login - Sports Extra Mile</title>
+        <meta name="propeller" content="9f9c02d02b050ba2b0d47d7b9b702d20" />
+        <meta charset="utf-8" />
+        @@include('gtmhead.html')
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />	
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description">
+        <meta content="Sports Extra Mile" property="og:site_name">
+        <meta content="website" property="og:type">
+        <meta content="https://www.sportsextramile.com/" property="og:url">
+        <meta content="https://www.sportsextramile.com/img/og.png" property="og:image">        
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        @@if (doConcat === 1) {
+        @@loop('css.html', [ 
+        { "file": "common.css"}, 
+        { "file": "sxm-common.css"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('css.html', [ 
+        { "file": "bootstrap.min.css"}, 
+        { "file": "ngdialog.css"}, 
+        { "file": "ngDialog-theme-default.css"}, 
+        { "file": "login.css"}, 
+        { "file": "facilities.css"}, 
+        { "file": "profile.css"},
+        { "file": "detail.css"},
+        { "file": "style.css"}, 
+        { "file": "static.css"},
+        { "file": "select.css"},
+		{ "file": "events-cricket-admin1.css"}		
+        ])
+        }
+
+        @@if (doConcat === 1) {
+        @@loop('scripts.html', [ 
+        { "file": "angular.js"}, 
+        { "file": "sxm-common.js"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('scripts.html', [ 
+        { "file": "lib/angular1.4.5.min.js"}, 
+        { "file": "lib/xeditable-0.2.0.js"}, 
+        { "file": "lib/angular-datepicker.js"}, 
+		{ "file": "lib/angular-youtube-embed.min.js"},
+        { "file": "lib/textAngular-rangy.min.js"},
+        { "file": "lib/textAngular-sanitize.min.js"},
+        { "file": "lib/textAngular.min.js"},
+        { "file": "lib/select.min.js"},
+        { "file": "lib/ngdialog.js"}, 
+        { "file": "shared.js"}, 
+        { "file": "anghome.js"}, 
+        { "file": "user.js"}, 
+        { "file": "login.js"} 
+        ])
+        }
+    </head>
+    <body class="loginpagebody"> 
+        <!--script src="//go.mobtrks.com/notice.php?p=1381733&interstitial=1"></script-->
+        @@include('gtmbody.html')
+        <div class="loginPage" ng-controller="Login as main">
+            <div class="loginBg"></div>
+            <!-- Header -->
+            <header>                
+                <div class="container">
+                    <div class="row header">
+                        <div class="logo col-md-6">
+                            <a class="logoLink" href="/"><img class="logo-header" src="/img/sxm.png" alt="" /></a>
+                            <span class="login-logo-mobi">SportsExtraMile</span>
+                        </div>
+                        <ul class="nav navbar-nav pull-right" id="user-block" style="position:absolute;top:13px;right:27px;" ng-if="main.isMobileDevice">
+                            <li class="menuMobi">
+                                <div class="menuBtnMobi glyphicon glyphicon-menu-hamburger"></div>
+                                <ul class="dropdown-menu">
+                                    <li ng-click="main.loginForm()"><a href=""><span class="glyphicon glyphicon-user pull-right"></span>Login</a></li>
+                                    <li class="divider"></li>
+                                    <li ng-click="main.registerForm()"><a href=""><span class="glyphicon glyphicon-user pull-right"></span>Register</a></li>
+                                    <li class="divider"></li>
+                                    <li ng-click="main.contactus()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Contact us</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/about-sportsextramile.html" target="_blank">About SportsExtraMile</a></li>
+									<li class="divider"></li>
+                                    <li><a href="/privacy.html" target="_blank">Privacy Policy</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="loginFormHeader hideInMobile" ng-cloak>
+                            @@include('loginForm.html')
+                        </div>
+                    </div>	
+                </div>		
+            </header>
+			<custom-dialog dialog-msg="{{main.confirm.dialogMsg}}" dialog-show="main.confirm.dialogShow" handler="main.dialogHandler()"></custom-dialog>
+            <div class="fakeHeader"></div>
+            <div class="container" ng-cloak ng-class="{mobisite: main.isMobileDevice}">
+                <div class="row content" style="position:relative;overflow:hidden">
+                    <!-- Left Panel -->
+                    <div class="col-md-8">                        
+                        <!-- Login content area -->
+                        <div class="loginContent row">
+                            <div class="col-md-12 loginIcons iconsClickable">
+                                <div class="loginIconsWrapper">
+                                    <div class="loginIcon" ng-repeat="sport in main.allsports" ng-click="sport.isplayed && main.getAllTournaments(sport.name)" ng-class="{'selected':sport.name == main.tournaments.sport, 'hideIcon':!sport.isplayed}" ng-if="sport.name != 'Handball' && sport.name != 'Water Sports' && sport.name != 'Fencing' && sport.name != 'Hiking' && sport.name != 'Gymnastics'">
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" title="{{::sport.name}}" class="{{::sport.name}}New img{{::$index}}" alt="" />
+                                        <span class="loginIconLabel" ng-bind="sport.name"></span>
+                                    </div>
+                                </div>
+                            </div>	
+                            <div class="col-md-12 loginIntro hideInMobile">
+                                <h1>Your Sports. Your Location.</h1>
+                            </div>
+                            <div class="tabsWrapper">
+                                <div class="tabsContainer">
+                                    <ul class="loginTabsUL">
+                                        <li class="tabStyle" data-tab="Tab_Ongoing" ng-click="main.listRunningTournaments()">
+                                            <span class="tab_ico"></span>
+                                            <span class="tab_lbl">Ongoing</span>
+                                        </li>
+                                        <li class="tabStyle" data-tab="Tab_Past" ng-click="main.listPastTournaments()">
+                                            <span class="tab_ico"></span>
+                                            <span class="tab_lbl">Past</span>
+                                        </li>
+                                        <li class="tabStyle" data-tab="Tab_Upcoming" ng-click="main.listComingTournaments()">
+                                            <span class="tab_ico"></span>
+                                            <span class="tab_lbl">Upcoming</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="faketabsContainer"></div>
+                            </div>	
+                            <div class="tabsDataContainer" list-pagination>	
+                                <div id="Tab_Ongoing" class="tabItem tabContent">
+                                    <div class="col-md-12" ng-if="main.tournaments.running.data.length == 0">
+                                        No ongoing tournaments available in {{main.tournaments.sport}}.
+                                    </div>
+                                    <div ng-repeat="tournament in main.tournaments.running.data track by $index">
+                                        @@include('loginTournaments.html')
+                                    </div> 
+                                </div>
+                                <div id="Tab_Past" class="tabItem tabContent">
+                                    <div class="col-md-12" ng-if="main.tournaments.past.data.length == 0">
+                                        No past tournaments available in {{main.tournaments.sport}}.
+                                    </div>
+                                    <div ng-repeat="tournament in main.tournaments.past.data track by $index">
+                                        @@include('loginTournaments.html')
+                                    </div>
+                                </div>
+                                <div id="Tab_Upcoming" class="tabItem tabContent">
+                                    <div class="col-md-12" ng-if="main.tournaments.coming.data.length == 0">
+                                        No upcoming tournaments available in {{main.tournaments.sport}}.
+                                    </div>
+                                    <div ng-repeat="tournament in main.tournaments.coming.data track by $index">
+                                        @@include('loginTournaments.html') 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Panel -->
+                    <div class="col-md-4" ng-class="{showForms: main.isMobileDevice}">
+                        <div class="row">
+                            <div class="col-md-12 loginFormsContainer">	
+                                <div class="loginForms">	
+                                    <!-- Login Form -->
+                                    <div id="login_tab" class="formContainer loginForm showInMobile slideMenuContent">
+                                        @@include('loginForm.html')
+                                    </div>					
+                                    <!-- Register Form -->
+                                    <div id="register_tab" class="formContainer registerForm slideMenuContent">
+                                        <div class="formHeading hideInMobile">Create Free Account, <strong>Today !</strong></div>
+                                        @@include('registerForm.html')
+                                    </div>	
+                                </div>	
+                                <div class="aboutLink hideInMobile">
+                                    <a href="/about-sportsextramile.html" target="_blank">About SportsExtraMile</a>
+                                </div>
+								<div class="aboutLink hideInMobile" style="margin-top:5px;">
+                                    <a href="/privacy.html" target="_blank">Privacy Policy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>	
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="script/main.js"></script>
+    </body>
+</html>

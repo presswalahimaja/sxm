@@ -1,0 +1,26 @@
+<h4>Archive Coaches</h4>
+<div class="cb-col cb-col-100">
+	<div class="cb-col cb-col-100 profListing" ng-if="!ctrl.academy.coaches.length">
+		No Archive Coach details available for this academy.
+	</div>
+	<div class="cb-col cb-col-100 profListing" ng-repeat="coach in ctrl.academy.coaches track by coach.id" ng-if="coach.isArchived">
+		<div class="profPic">
+			<img class="profPicImg" profile-err-src data-ng-src="@@host/uploads/{{::coach.id | imgsize:40}}?{{ctrl.confirm.imgRefreshTime}}" title="{{::coach.name}}" alt="{{::coach.name}}" />
+			<span class="profPicInitials">{{::coach.name | initials | uppercase}}</span>
+			<div class="profPicUpload" ng-if="ctrl.academy.isAdmin">
+				<i class="fa fa-camera profPicCam" aria-hidden="true"></i>
+				<input class="uploadProfile" size="20" type="file" onchange="angular.element(this).scope().ctrl.updateProfPic(this.files, angular.element(this).scope().coach.id)" />
+			</div>
+		</div>
+		<div class="profDetails">
+			<a class="profName" data-ng-href="/profile/{{::coach.name | makeHyphen}}-{{::coach.id}}">
+				{{::coach.name}}
+			</a>
+		</div>
+		<div class="profRemove" ng-if="ctrl.academy.isAdmin">
+			<button class="stdBtn" type="button" ng-hide="ctrl.confirm.removeCoach[$index]" ng-click="ctrl.confirm.removeCoach = null;ctrl.confirm.removeCoach[$index] = true">Unarchive</button>
+			<button class="stdBtn" type="button" ng-show="ctrl.confirm.removeCoach[$index]" ng-click="ctrl.confirm.removeCoach[$index] = false">No</button>
+			<button class="stdBtn" type="button" ng-show="ctrl.confirm.removeCoach[$index]" ng-click="ctrl.confirm.removeCoach[$index] = false;ctrl.unarchiveAcademyCoach(coach.id)" style="margin:0 5px;">Yes</button>
+		</div>
+	</div>
+</div>

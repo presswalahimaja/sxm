@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="semadmin">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="./js/angular1.4.5.min.js"></script>
+        <script type="text/javascript" src="./js/angadmin.js"></script>
+        <link rel="stylesheet" href="../css/common.css" /><link rel="stylesheet" href="../css/sxm-common.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
+        <style type="text/css">
+            table {background-color: white;}
+            .global {background-color: red;}
+        </style>
+    </head>
+    <body data-ng-controller="Home as home">
+        <div class="page-wrapper">
+            <div class="container">
+                <table class="table table-bordered"><tr><th>Type</th><th>Count</th></tr>
+                    <tr >
+                        <td >User count</td> 
+                        <td >{{home.counts.userCount}}</td>
+                    </tr> 
+                    <tr >
+                        <td >Articles</td> 
+                        <td >{{home.counts.articleCount}}</td>
+                    </tr> 
+
+                </table>
+                <h2>Mark Global</h2>
+                <table class="table">
+                    <tr><th>Title</th><th>Select</th><th>Save</th></tr>
+                    <tr ng-repeat="art in home.counts.articles" >
+                        <td ng-class="(art.global==true) ? 'global' : ''">
+                            {{art.title}}
+                        </td>
+                        <td>
+                            <input type="radio" ng-model="home.checked" value="{{art._id}}">
+                        </td>
+                        <td>
+                            <button ng-click="home.save(art._id)" ng-disabled="art.global==true">Save</button>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <h2>Approve</h2>
+                <table class="table table-bordered">
+                    <tr><th>Edit</th><th>Date</th><th>Title</th></tr>
+                    <tr data-ng-repeat="item in home.items">
+                        <td><a href="/admin/content?cid={{item._id}}">Edit</a></td>
+                        <td>{{item.title}}</td> 
+                        <td>{{item.date}}</td>
+                    </tr> 
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

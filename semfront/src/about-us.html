@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+    <head>
+        <title>About us - Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        @@include('gtmhead.html')
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussion" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description">
+        <meta content="Sports Extra Mile" property="og:site_name">
+        <meta content="website" property="og:type">
+        <meta content="https://www.sportsextramile.com/" property="og:url">
+        <meta content="https://www.sportsextramile.com/img/og.png" property="og:image">
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+
+        @@if (doConcat === 1) {
+        @@loop('css.html', [ 
+        { "file": "common.css"}, 
+        { "file": "sxm-common.css"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('css.html', [ 
+        { "file": "bootstrap.min.css"}, 
+        { "file": "ngdialog.css"}, 
+        { "file": "ngDialog-theme-default.css"}, 
+        { "file": "login.css"}, 
+        { "file": "facilities.css"}, 
+        { "file": "profile.css"},
+        { "file": "detail.css"},
+        { "file": "style.css"}, 
+        { "file": "static.css"},
+        { "file": "select.css"}
+        ])
+        }
+
+        @@if (doConcat === 1) {
+        @@loop('scripts.html', [ 
+        { "file": "angular.js"}, 
+        { "file": "sxm-common.js"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('scripts.html', [
+        { "file": "lib/angular1.4.5.min.js"},
+        { "file": "lib/xeditable-0.2.0.js"},
+        { "file": "lib/angular-datepicker.js"},
+		{ "file": "lib/angular-youtube-embed.min.js"},
+        { "file": "lib/textAngular-rangy.min.js"},
+        { "file": "lib/textAngular-sanitize.min.js"},
+        { "file": "lib/textAngular.min.js"},
+        { "file": "lib/select.min.js"},
+        { "file": "lib/ngdialog.js"},
+        { "file": "shared.js"},
+        { "file": "anghome.js"}
+        ])
+        }
+    </head>
+
+    <body>
+        @@include('gtmbody.html')
+        <div class="container">
+            <!-- Header --> 
+            <div class="row header">
+                <div class="logo col-md-6 col-sm-6 col-xs-2">
+                    <span style="font-size: 36px;">SportsExtraMile</span>
+                </div>
+
+            </div>
+
+            <!-- Login Area -->
+            <div class="row content login-page">
+                <div class="login">
+                    <div class="col-md-8 col-sm-6 text-center hidden-xs">
+                        <div class="login-intro text-center clearfix">
+
+                            <p>What is SportsExtraMile?</p>
+                            <p>SportsExtraMile is a Sports social network with aim to bring everybody associated with Sports on one platform. 
+                                We are building SportsExtramMile to encourage you to be more active, healthier & connected by promoting activities, facilities & discussions.
+                                We truly believe, Sports is rejuvenating and fitness is necessary – everybody should be associated with at least one sport.</p>
+
+
+                            <p>What do I do with SportsExtraMile?</p>
+                            <p>You can discuss about any sports and create any sports related event. You can search for players and facilities around your location and grow your network. 
+                                As a sports enthusiast, you may want to build your profile around sports and let your friends know about it. 
+                                As a first timer, you may want to start with any Sports and know about it. 
+                                We want you to grow your passion for Sports. </p>
+
+                            <p>Who can see my updates?</p>
+                            <p>Your friends. We are building SportsExtraMile in such way that you get your location specific information about the sports you are following. </p>
+
+                            <p>How did the idea come about?</p>
+                            <p>Ah, the story is based on our struggle to get Badminton, Cricket and Table Tennis related information in our city. We explored available options and interacted with friends across cities – they had the same struggle. 
+                                Hence was the genesis of SportsExtraMile – perhaps its little long name in today’s funky world, but it conveys the objective clearly. </p>
+
+                            <p>The Team.</p>
+                            <p>Launched in Dec 2016, www.sportsextramile.com is founded by Arpit Shah (arpit.shah@sportsextramile.com ) 
+                                Mayank Bhargava (mayank.bhargava@sportsextramile.com ) and Dushyant Sharma (dushyant.sharma@sportsextramile.com ) with help of few friends.</p>
+                            <p>We share great enthusiasm for Technology and Sports and prior to SportsExtraMile, we have worked together for many years.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <!-- <footer class="row footer" style="margin-top: 150px;">
+                <div class="col-md-8 col-xs-12">
+                    <ul class="footer-links">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">privacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-xs-12 text-right foot-note">
+                    SXM Technologies Private Limited
+                </div>
+            </footer> -->
+            <script type="text/javascript" src="script/main.js"></script>
+        </div>
+    </body>
+
+</html>

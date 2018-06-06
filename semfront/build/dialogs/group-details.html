@@ -1,0 +1,53 @@
+<div class="modal-body clearfix popupListContainer" ng-controller="groupDetails as groupDetails">
+    <div class="headerContainer">
+        <div class="logoimg">
+            <img data-ng-src="http://stage.sportsextramile.com/glogo/{{groupDetails.group._id| imagefilter:108}}?{{groupDetails.time}}" err-src="/img/users-group-icon.png" />
+            <div class="uploadPicCont" ng-if="groupDetails.isAdmin">
+                <input class="uploadFile" type="file" onchange="angular.element(this).scope().groupDetails.uploadGroupLogo(this.files)" />
+                <div class="uploadPic">	
+                    <div class="uploadIcon"></div>
+                    <div class="uploadText">Change</div>
+                </div>
+            </div>
+        </div>
+        <h3>{{::groupDetails.group.grpName}}<br>
+            <p class="popupLocation"><i class="fa fa-map-marker" aria-hidden="true"></i><span>{{::groupDetails.group.city}}</span></p>
+		</h3>
+    </div>	
+    <div class="cb-col cb-col-100 popupLabelCont">
+        <span class="popupLabel">Sports associated:</span> <span>{{::groupDetails.group.sports}}</span>
+    </div>
+    <div class="cb-col cb-col-100 popupLabelCont">
+        <span class="popupLabel">Members</span>
+    </div>
+    <div class="cb-col cb-col-100 scrollContainer" style="height:250px;">
+		<div class="cb-col cb-col-100 profListing" ng-if="!groupDetails.group.users">
+			No members in the team.
+		</div>
+		<div class="cb-col cb-col-100 profListing" ng-repeat="user in groupDetails.group.users | orderBy:'userName'">
+			<div class="profPic">
+				<img class="profPicImg" profile-err-src data-ng-src="http://stage.sportsextramile.com/uploads/{{::user.uid | imgsize:40}}" title="{{::user.userName}}" alt="{{::user.userName}}" />
+				<span class="profPicInitials">{{::user.userName | initials | uppercase}}</span>
+			</div>
+			<div class="profDetails">
+				<a class="profName" data-ng-href="/profile/{{::user.userName | makeHyphen}}-{{::user.uid}}">
+					{{::user.userName}}
+				</a>
+			</div>
+			<!-- <div class="profRemove" ng-if="memberDetails.isAdmin || memberDetails.canEdit">
+				<button class="stdBtn" type="button" ng-hide="memberDetails.confirm.removePlayer[$index]" ng-click="memberDetails.confirm.removePlayer[$index] = true"><i class="fa fa-times" aria-hidden="true"></i></button>
+				<button class="stdBtn" type="button" ng-show="memberDetails.confirm.removePlayer[$index]" ng-click="memberDetails.confirm.removePlayer[$index] = false">No</button>
+				<button class="stdBtn" type="button" ng-show="memberDetails.confirm.removePlayer[$index]" ng-click="memberDetails.confirm.removePlayer[$index] = false;memberDetails.removeTeamMember(user.uid)" style="margin:0 5px;">Yes</button>
+			</div> -->				
+		</div>
+	</div>
+    <div class="cb-col cb-col-100 modal-footer mobiledd" data-ng-if="groupDetails.id == groupDetails.group.uid">
+        <ui-select class="single" ng-model="groupDetails.selFriends">
+            <ui-select-match placeholder="Invite friend">{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="friend in groupDetails.myFriends | filter: $select.search">
+                {{friend.name}}
+            </ui-select-choices>
+        </ui-select>
+        <input class="btn btnSubmit" type="button" value="Invite" data-ng-click="groupDetails.inviteFriends()" style="margin-top:10px;font-size:13px;" />
+    </div>	
+</div> 

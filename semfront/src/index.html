@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+    <head>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-7999525691080451",
+                enable_page_level_ads: true
+            });
+        </script>
+        <title>Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        @@include('gtmhead.html')
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description">
+        <meta content="Sports Extra Mile" property="og:site_name">
+        <meta content="website" property="og:type">
+        <meta content="https://www.sportsextramile.com/" property="og:url">
+        <meta content="https://www.sportsextramile.com/img/og.png" property="og:image">
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="/favicon.ico" />
+
+        @@if (doConcat === 1) {
+        @@loop('css.html', [ 
+        { "file": "common.css"}, 
+        { "file": "sxm-common.css"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('css.html', [ 
+        { "file": "bootstrap.min.css"}, 
+        { "file": "ngdialog.css"}, 
+        { "file": "ngDialog-theme-default.css"}, 
+        { "file": "login.css"}, 
+        { "file": "facilities.css"}, 
+        { "file": "profile.css"},
+        { "file": "detail.css"},
+        { "file": "style.css"}, 
+        { "file": "static.css"},
+        { "file": "select.css"},
+		{ "file": "events-cricket-admin1.css"}
+        ])
+        }
+
+        @@if (doConcat === 1) {
+        @@loop('scripts.html', [ 
+        { "file": "angular.js"}, 
+        { "file": "sxm-common.js"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('scripts.html', [
+        { "file": "lib/angular1.4.5.min.js"},
+        { "file": "lib/xeditable-0.2.0.js"},
+        { "file": "lib/angular-datepicker.js"},
+		{ "file": "lib/angular-youtube-embed.min.js"},
+        { "file": "lib/textAngular-rangy.min.js"},
+        { "file": "lib/textAngular-sanitize.min.js"},
+        { "file": "lib/textAngular.min.js"},
+        { "file": "lib/select.min.js"},
+        { "file": "lib/ngdialog.js"},
+        { "file": "shared.js"},
+        { "file": "anghome.js"},
+        { "file": "user.js"},
+        { "file": "header.js"},
+        { "file": "home.js"}
+        ])
+        }
+    </head>
+    <body>
+        @@include('gtmbody.html')
+        <div class="page-wrapper" data-ng-controller="Home as home">
+            <!-- header -->
+            @@include('header.html')
+			<div class="homepageBg"></div>
+            <div class="container"> 
+                <div class="row content homepage">
+                    <div class="col-md-8">
+					  <div class="row">	
+                        <!-- <h2><b>Facil</b>ities, Events and Discussions</h2> -->
+						<div class="loginIcons iconsClickable" style="padding:5px 10px 20px;">
+							<div class="loginIconsWrapper">
+								<div class="loginIcon" ng-repeat="sport in home.allsports" ng-click="sport.isplayed && home.getAllTournaments(sport.name)" ng-class="{'selected':sport.name == home.tournaments.sport, 'hideIcon':!sport.isplayed}" ng-if="sport.name != 'Handball' && sport.name != 'Water Sports' && sport.name != 'Fencing' && sport.name != 'Hiking' && sport.name != 'Gymnastics'">
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" title="{{::sport.name}}" class="{{::sport.name}}New img{{::$index}}" alt="" />
+									<span class="loginIconLabel" ng-bind="sport.name"></span>
+								</div>
+							</div>
+						</div>
+						<div class="tabsWrapper">
+							<div class="tabsContainer">
+								<ul class="loginTabsUL">
+									<li class="tabStyle" data-tab="Tab_MyFeed" ng-click="home.listMyFeed()">
+										<span class="tab_ico"></span>
+										<span class="tab_lbl">My Feed</span>
+									</li>
+									<li class="tabStyle" data-tab="Tab_Ongoing" ng-click="home.listRunningTournaments()">
+										<span class="tab_ico"></span>
+										<span class="tab_lbl">Ongoing</span>
+									</li>
+									<li class="tabStyle" data-tab="Tab_Past" ng-click="home.listPastTournaments()">
+										<span class="tab_ico"></span>
+										<span class="tab_lbl">Past</span>
+									</li>
+									<li class="tabStyle" data-tab="Tab_Upcoming" ng-click="home.listComingTournaments()">
+										<span class="tab_ico"></span>
+										<span class="tab_lbl">Upcoming</span>
+									</li>
+								</ul>
+							</div>
+							<div class="faketabsContainer"></div>
+						</div>
+						<div class="tabsDataContainer">	
+							<div id="Tab_MyFeed" class="tabItem tabContent">
+								<div class="event-box-parent clearfix">
+									<div class="ev-box one">
+										<div data-ng-repeat="dt in home.items">
+											<div ng-if="$even && (home.isMobile === false)" data-ng-switch on="dt.type">
+												@@include('homeboxes.html')
+											</div>
+											<div class="col-md-6" ng-if="home.isMobile" data-ng-switch on="dt.type">
+												@@include('homeboxes.html')
+											</div>
+										</div> 
+									</div>
+									<div class="ev-box two" data-ng-if="home.isMobile !== true">
+										<div data-ng-repeat="dt in home.items">
+											<div ng-if="$odd" data-ng-switch on="dt.type">
+												@@include('homeboxes.html')
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="Tab_Ongoing" class="tabItem tabContent">
+								<div class="col-md-12" ng-if="home.tournaments.running.data.length == 0">
+									No ongoing tournaments available in {{home.tournaments.sport}}.
+								</div>
+								<div ng-repeat="tournament in home.tournaments.running.data track by $index">
+									@@include('loginTournaments.html')
+								</div> 
+							</div>
+							<div id="Tab_Past" class="tabItem tabContent">
+								<div class="col-md-12" ng-if="home.tournaments.past.data.length == 0">
+									No past tournaments available in {{home.tournaments.sport}}.
+								</div>
+								<div ng-repeat="tournament in home.tournaments.past.data track by $index">
+									@@include('loginTournaments.html')
+								</div>
+							</div>
+							<div id="Tab_Upcoming" class="tabItem tabContent">
+								<div class="col-md-12" ng-if="home.tournaments.coming.data.length == 0">
+									No upcoming tournaments available in {{home.tournaments.sport}}.
+								</div>
+								<div ng-repeat="tournament in home.tournaments.coming.data track by $index">
+									@@include('loginTournaments.html') 
+								</div>
+							</div>
+						</div>                        
+					  </div>	
+					</div>
+                    <div class="col-md-4">
+                        <!-- Right Panel -->
+                        @@include('rightpanel.html')
+                    </div>
+                </div>
+            </div>
+        </div>
+        @@include('footerscripts.html')
+		<style type="text/css">
+			@media(max-width:767px) {
+				.homepage{margin-left:-20px;margin-right:-20px;}
+				.homepage .event-box-parent .box{box-shadow:1px 1px 1px 0 #617d8c;margin-bottom:10px;}
+			}
+		</style>
+		<script>
+			$(document).ready(function () {
+				var tab_id;
+				$('.tabs ul li, .tabsContainer ul li').click(function(){
+					tab_id = $(this).attr('data-tab');
+					$(this).siblings().removeClass('current');
+					$(this).addClass('current');
+					$("#"+tab_id).siblings('.tabContent').removeClass('current');
+					$("#"+tab_id).addClass('current');			
+				});
+				$('.tabs ul li:first-child, .tabsContainer ul li:first-child').addClass('current');
+				$('.tabs').each(function(item, index){
+					var dt = $(this).find('ul li:first-child').attr('data-tab');
+					$("#"+dt).addClass('current');
+				});
+				$('.tabsContainer').each(function(item, index){
+					var dt = $(this).find('ul li:first-child').attr('data-tab');
+					$("#"+dt).addClass('current');
+				});
+			});
+		</script>
+    </body>
+</html>

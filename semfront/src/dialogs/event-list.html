@@ -1,0 +1,18 @@
+<div class="modal-body clearfix popupListContainer" ng-controller="EventPopupController as evtCtrl">
+    <h3 class="popupHeading">Events in <span data-ng-bind="evtCtrl.city"></span><br>
+        <span class="popupMsg">Please Login or Register and explore the world of Sports around you.</span></h3>
+    <div class="col-sm-12 popupList eventPopup scrollContainer">	
+        <ul>
+            <li class="popupListItem" ng-repeat="event in evtCtrl.events">
+                <span class="popupEvtDate">
+                    <span ng-bind="event.evtDate | date : 'd' : '+0530'"></span>
+                    <span><b ng-bind="event.evtDate | date : 'MMM' : '+0530'"></b></span>
+                </span>
+                <p class="popupName">{{event.evtName}}</p>
+                <p class="popupSports">
+                    <span data-ng-repeat="sport in event.sports">{{::sport}}{{$last ? '' : ', '}}</span>
+                </p>
+            </li>
+        </ul>
+    </div>	
+</div> 

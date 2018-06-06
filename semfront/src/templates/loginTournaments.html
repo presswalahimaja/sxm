@@ -1,0 +1,42 @@
+<div class="col-md-6">
+    <div class="card">
+        <div class="dheader" style="float:left;width:100%;min-height:98px;">
+            <p class="thmb" ng-if="tournament.organizer"><img data-ng-src="@@host/images/org/{{tournament.organizer.id| imagefilter:80}}" title="{{::tournament.organizer.title}}" alt="" /></p>
+            <p class="thmb" ng-if="!tournament.organizer"><img data-ng-src="@@host/uploads/{{tournament.user.id| imgsize:108}}" title="{{::tournament.user.name}}" alt="" /></p>
+            <p class="ttitle" ng-if="tournament.organizer">
+                <a data-ng-href="/organization.html?orgId={{tournament.organizer.id}}">
+                    <span class="ename">{{::tournament.organizer.title}}</span>
+                </a> presents 
+                <a data-ng-href="/tournament.html?orgId={{tournament.organizer.id}}&tid={{tournament._id}}&title={{::tournament.title| makeHyphen}}">
+                    <span>{{::tournament.title}}</span>
+                </a>
+            </p>
+            <p class="ttitle" ng-if="!tournament.organizer">
+                <span class="ename">{{::tournament.user.name}}</span>
+                presents 
+                <a data-ng-href="/tournament.html?tid={{tournament._id}}&title={{::tournament.title| makeHyphen}}">
+                    <span>{{::tournament.title}}</span>
+                </a>
+            </p>
+            <span class="d-box-loc">{{tournament.startdate| date:"dd-MMM-yyyy"}} - {{tournament.enddate| date:"dd-MMM-yyyy"}}</span>
+            <span class="articleTag" ng-if="tournament.location" style="margin-left:5px;">{{tournament.location.join(', ')}}</span>
+        </div>
+        <div class="homboxImg">
+            <span class="ttitle" ng-if="tournament.organizer">
+                <a data-ng-href="/tournament.html?orgId={{tournament.organizer.id}}&tid={{tournament._id}}&title={{::tournament.title| makeHyphen}}">
+                    <img data-ng-src="@@host/tour/{{tournament._id| imagefilter:404}}" title="{{::tournament.title}}" alt="" />
+                </a>
+            </span>
+            <span class="ttitle" ng-if="!tournament.organizer">
+                <a data-ng-href="/tournament.html?tid={{tournament._id}}&title={{::tournament.title| makeHyphen}}">
+                    <img data-ng-src="@@host/tour/{{tournament._id| imagefilter:404}}" title="{{::tournament.title}}" alt="" />
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="col-md-6" ng-if="$index == 0 || $index % 4 == 0">
+    <div class="card" style="height:263px;float:left;">
+        <div google-adsense-login></div>
+    </div> 
+</div>

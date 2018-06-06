@@ -1,0 +1,14 @@
+<h3 style="border-bottom:none;">Invite your friends to SportsExtraMile by email</h3>
+<div id="Event" class="modal-body clearfix formContainer" ng-controller="inviteFriend as inviteFrd">
+    <form id="inviteFriend_form" class="form-horizontal col-sm-12 formValidations" name="inviteFrdForm" role="form" novalidate ng-submit="inviteFrdForm.$valid && inviteFrd.inviteFriends()">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <textarea class=" col-xs-12 col-sm-12" ng-class="{submitted:inviteFrd.isFocus.submitted}" auto-focus rows="3" type="text" name="event_name" placeholder="Add multiple emails separated by comma" data-ng-model="inviteFrd.email" required></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <input  id="btnCreateEvent" class="btn btnSubmit" type="submit" value="Invite" name="btnCreateEvent" ng-click="inviteFrd.isFocus.submitted = true" />
+            <button id="btnCancelEvent" class="btn btnCancel" ng-click="inviteFrd.cancel();inviteFrdForm.$valid = false;">Cancel</button>
+        </div>
+    </form>
+</div>

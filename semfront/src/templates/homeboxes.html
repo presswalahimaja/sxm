@@ -1,0 +1,315 @@
+<div class="box line1 facilityBox" data-ng-switch-when="F">
+    <div data-ng-if='dt.tags.length > 4'>
+        <div class="boxf-hd mlt">
+            <span data-ng-repeat="sportsImage in dt.tags|limitTo:6">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" title="{{::sportsImage}}" class=" {{::sportsImage}} imgsport1 left-round-img img-responsive img{{::$index}}" alt="" />
+            </span>
+
+            <p class="sub-ttl">
+                <a class="sub-ttl" ng-href="/facility/{{::dt.name| makeHyphen}}-{{::dt._id}}?type=F" data-ng-bind="::dt.name"></a>
+                <i class="fa fa-map-marker" aria-hidden="true"></i> <span data-ng-bind="::dt.city"></span>
+            </p>
+        </div>
+    </div>
+    <div data-ng-if='dt.tags.length < 5 && dt.tags.length != 1'>
+        <div class="boxf-hd">
+            <span data-ng-repeat="sportsImage in dt.tags">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" class="{{::sportsImage}} imgsport1 left-round-img img-responsive img{{::$index}}" alt="" title="{{::sportsImage}}" />
+            </span>
+
+            <p class="sub-ttl">
+                <a class="sub-ttl" ng-href="/facility/{{::dt.name| makeHyphen}}-{{::dt._id}}?type=F" data-ng-bind="::dt.name"></a>
+                <i class="fa fa-map-marker" aria-hidden="true"></i> <span data-ng-bind="::dt.city"></span>
+            </p>
+        </div>
+    </div>
+
+    <div data-ng-if='dt.tags.length == 1'>
+        <div class="boxf-hd">
+            <span data-ng-repeat="sportsImage in dt.tags">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" title="{{::sportsImage}}" class="{{::sportsImage}} imgsport0 left-round-img img-responsive" alt="" />
+            </span>
+
+            <p class="sub-ttl">
+                <a class="sub-ttl" ng-href="/facility/{{::dt.name| makeHyphen}}-{{::dt._id}}?type=F" data-ng-bind="::dt.name"></a>
+                <i class="fa fa-map-marker" aria-hidden="true"></i> <span data-ng-bind="::dt.city"></span>
+            </p>
+        </div>
+    </div>
+
+    <p class="card-banner F clearfix">
+        <a href="/facility/{{::dt.name| makeHyphen}}-{{::dt._id}}?type=F">
+            <img data-ng-src="@@host/facimg/{{::dt.gimg|facimgpath}}" class="img-responsive card-thumb">
+        </a>
+    </p>
+
+    <ul class="clearfix no dbox-envtwo">
+        <li class="eflw">
+            <a href="#" onclick="return false">
+                <span><i class="fa fa-heart ic" aria-hidden="true"></i></span>
+                <span data-ng-bind="dt.likeCount || '0'" data-ng-click="home.likeThisItem($index, 'facility')"></span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="row cte">
+        <p class="hf"><a class="linkColor" href="#" data-ng-click="home.homeCreateEvent(dt)"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Create event</a></p>
+        <p class="hf"><a class="linkColor" href="#" data-ng-click="home.homeCreateDiscussion(dt, 'F')"><i class="fa fa-comments" aria-hidden="true"></i> Create discussion</a></p>
+    </div>
+</div>
+<div class="scheduleWrapper homeEvent" data-ng-switch-when="E">
+	<div class="scheduleContainer">
+		<div class="schItem">
+			<div class="schDate">
+				<span class="schDateDate">{{dt.evtDate| date:"dd"}}</span>
+				<span class="schDateMonth">{{dt.evtDate| date:"MMM"}}</span>
+				<span class="schDateTime">{{dt.evtDate| date:"h"}}{{(dt.evtDate| date:"mm") == "00" ? " " : ":" + (dt.evtDate | date:"mm")}} {{dt.evtDate| date:"a"}}</span>
+			</div>
+			<div class="schTeams">
+				<a ng-href="/{{dt.sports[0] | lowercase}}/view.html?id={{dt._id}}&type=E" ng-bind-html="dt.evtName"></a>	
+				<div class="schRemove" ng-if="!schedule.toss && !schedule.result && tournament.isAdmin">
+					<button class="stdBtn" type="button" ng-click="tournament.confirm.removeSch[$index] = true" style="padding:0 6px;margin:0 0 5px 35px;"><i class="fa fa-times" aria-hidden="true"></i></button>
+					<button class="stdBtn" type="button" ng-show="tournament.confirm.removeSch[$index]" ng-click="tournament.confirm.removeSch[$index] = false">No</button>
+					<button class="stdBtn" type="button" ng-show="tournament.confirm.removeSch[$index]" ng-click="tournament.removeSchedule(schedule)" style="margin:0 5px;">Yes</button>
+				</div>
+			</div>
+			<div class="schRes">
+				<span ng-if="dt.uid == home.uid"><a ng-href="/{{dt.sports[0] | lowercase}}/score.html?id={{dt._id}}&type=E">Start Scoring</a></span>
+			</div>
+			<!-- <div class="schRes">
+				<span ng-if="!schedule.toss && !schedule.result && !tournament.isAdmin">Yet to start</span>
+				<span ng-if="schedule.toss && !schedule.result && !tournament.isAdmin"><a ng-href="/{{tournament.tournament.sport| lowercase}}/view.html?id={{schedule.eid}}&type=E" >Live</a></span>
+				<div ng-if="schedule.result">
+					<span ng-if="schedule.result.matchStatus === 'concluded'"><strong style="color:#3897f0;">{{schedule.result.winner.name}}</strong><span ng-if='schedule.result.winner'> won by </span>{{schedule.result.by}}</span>
+					<span ng-if="schedule.result.matchStatus === 'abandoned'">Match is abandoned.</span>
+					<span ng-if="schedule.result.matchStatus === 'bye'">Match is bye for <strong style="color:#3897f0;">{{schedule.result.winner.name}}</strong>.</span>
+				</div>
+				<span ng-if="tournament.isAdmin"><a ng-href="/{{tournament.tournament.sport| lowercase}}/score.html?id={{schedule.eid}}&type=E">Start Scoring</a></span>	
+			</div> -->
+		</div>
+	</div>
+</div>
+<!-- <div class="box event clearfix eventBox" ng-switch-when="E">
+    <div class="boxEhd">
+        <span data-ng-repeat="sportsImage in dt.sports">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" title="{{::sportsImage}}" class="{{::sportsImage}} imgsport0 left-round-img img-responsive" alt="" />
+        </span>
+        <p class="ename clearfix">
+            <a class="enamee" data-ng-href="/event/{{::dt.evtName| makeHyphen}}-{{::dt._id}}?type=E" data-ng-bind="::dt.evtName"></a>
+            <span class="ctcity"><i class="fa fa-map-marker" aria-hidden="true"></i> <span data-ng-bind="::dt.city"></span></span>
+            <span class="ctby">Created by : 
+                <span data-ng-if="home.uid == dt.uid">
+                    <a data-ng-href="/profile.html" data-ng-bind="::dt.userName"></a>
+                </span>
+                <span data-ng-if="home.uid != dt.uid">
+                    <a data-ng-href="/profile/{{dt.userName| makeHyphen}}-{{::dt.uid}}" data-ng-bind="::dt.userName"></a>
+                </span>
+            </span>
+        </p>
+    </div>
+    <div class="boxEcnt clearfix">
+        <div class="left">
+            <img data-ng-src="@@host/uploads/{{::dt.uid| imgsize:108}}" title="{{::dt.userName}}" class="left-round-img img-responsive img-circle " alt="" />
+            <span data-ng-if="home.uid == dt.uid">
+                <a data-ng-href="/profile.html" data-ng-bind="::dt.userName"></a>
+            </span>
+            <span data-ng-if="home.uid != dt.uid">
+                <a data-ng-href="/profile/{{dt.userName| makeHyphen}}-{{::dt.uid}}" data-ng-bind="::dt.userName"></a>
+            </span>
+        </div>
+        <div class="center">
+            <p class="ecr" ng-cloak>
+                Going for <span data-ng-bind="::dt.sports"></span><br/>
+                {{::dt.evtDate| date:"dd-MMM 'at' h:mma"}}<br/>
+                <span ng-repeat="eventFacility in dt.facility" data-ng-if="$index < 2">
+                    {{::eventFacility.facName}}{{$last ? '' : ($index==dt.facility.length-2) ? ' and ' : ', '}}
+                </span>
+                <span data-ng-if="dt.facility.length > 2">
+                    <span data-ng-bind="{{::dt.facility.length}} - 2"></span> other
+                </span>
+            </p>
+        </div>
+        <div class="right">
+            <span data-ng-repeat="player in dt.players" data-ng-if="$index < 2 && $index != 0">
+                <span class="userblk">
+                    <span data-ng-if="home.uid == player.uid">
+                        <img data-ng-src="@@host/uploads/{{::player.uid| imgsize:108}}" title="{{::player.name}}" class="left-round-img img-responsive img-circle " alt="" />
+                        <a data-ng-href="/profile.html" data-ng-bind="::player.name"></a>
+                    </span>
+                    <span data-ng-if="home.uid != player.uid">
+                        <img data-ng-src="@@host/uploads/{{::player.uid| imgsize:108}}" title="{{::player.name}}" class="left-round-img img-responsive img-circle " alt="" />
+                        <a data-ng-href="/profile/{{::player.name| makeHyphen}}-{{::player.uid}}" data-ng-bind="::player.name"></a>
+                    </span>
+
+                </span>
+            </span>
+            <span class="userblk" data-ng-if="dt.players.length > 2">
+                <span data-ng-bind="{{::dt.players.length}} - 2"></span> other
+            </span>
+        </div>
+    </div>
+    <ul class="clearfix clear no dbox-envtwo PLR10">
+        <li class="eflw">
+            <a href="#" onclick="return false">
+                <span data-ng-click="home.likeThisItem($index, 'events')"><i class="fa fa-heart ic" aria-hidden="true"></i></span>
+                <span data-ng-bind="dt.likeCount || 0" data-ng-click="home.likeThisItem($index, 'events')"></span>
+            </a>
+        </li>
+    </ul>
+    <p class="clearfix text-center boxEf"><a class="linkColor" href="#" onclick="return false" data-ng-click="home.homeCreateDiscussion(dt, 'E')"><i class="fa fa-comments" aria-hidden="true"></i> Create discussion</a></p>
+</div> -->
+<div class="box event d-box clearfix discBox" ng-switch-when="D">
+    <div class="dheader">
+        <p class="thmb"><img data-ng-src="@@host/uploads/{{::dt.uid| imgsize:108}}" title="{{::dt.userName}}" alt="" /></p>
+        <span class="d-ttl-text" data-ng-if="home.uid == dt.uid">
+            <a class="db-evname" data-ng-href="/profile.html" data-ng-bind="::dt.userName">
+                <span class="ename" data-ng-bind="::dt.userName"></span>
+            </a>
+        </span>
+        <span class="d-ttl-text" data-ng-if="home.uid != dt.uid">
+            <a class="db-evname" data-ng-href="/profile/{{dt.userName| makeHyphen}}-{{::dt.uid}}" data-ng-bind="::dt.userName">
+                <span class="ename" data-ng-bind="::dt.userName"></span>
+            </a>
+        </span>
+        <span class="d-box-loc">{{::dt.date| date:"dd-MMM 'at' h:mma"}}</span>
+        <p></p>
+        <span class="d-box-loc" data-ng-if="dt.event.evtName">Tagged event : 
+            <a data-ng-href="/event/{{::dt.event.evtName| makeHyphen}}-{{::dt.event.evtID}}?type=E" data-ng-bind="::dt.event.evtName"></a>
+        </span>
+        <span class="d-box-loc" data-ng-if="dt.facility.facName">Tagged facility : 
+            <a data-ng-href="/facility/{{::dt.facility.facName| makeHyphen}}-{{::dt.facility.facID}}?type=F" data-ng-bind="::dt.facility.facName"></a>
+        </span>
+    </div>
+    <div class="dcnt">
+        <p class="diss-intro" ng-click="home.showDetailDiscussion(dt._id, 'D')" data-ng-bind="::dt.body"></p>
+        <ul class="clearfix no dbox-envtwo">
+            <li class="eflw">
+                <a href="#" onclick="return false">
+                    <span data-ng-click="home.likeThisItem($index, 'discussion')"><i class="fa fa-heart ic" aria-hidden="true"></i></span>
+                    <span data-ng-bind="dt.likeCount || 0" data-ng-click="home.likeThisItem($index, 'discussion')"></span>
+                </a>
+            </li>
+            <li class="ecmt" ng-click="home.showDetailDiscussion(dt._id, 'D')"><i class="fa fa-comment ic" aria-hidden="true"></i> <span data-ng-bind="dt.comCount || '0'"></span></li>
+        </ul>
+        <div class="b-boxcmt">
+            <div data-ng-repeat="comment in dt.comments.slice(dt.comments.length - 2, dt.comments.length)">
+                <p class="cmt-by-name clearfix">
+                    <img data-ng-src="@@host/uploads/{{::comment.uid| imgsize:108}}" title="{{::comment.name}}" alt="" width="28" class="cmt-pic img-circle" />
+                    <a data-ng-href="/profile/{{::comment.name| makeHyphen}}-{{::comment.uid}}" data-ng-bind="::comment.name">
+                        <span class="ename" data-ng-bind="::comment.name"></span>
+                    </a>: 
+                    <span style="font-size:10px;">{{::comment.date| date:"dd-MMM 'at' h:mma"}}</span>
+                    <span class="d-box-loc" data-ng-bind-html="::comment.cmnt"></span>
+                </p>
+            </div>
+            <p class="cmt-bx clearfix">
+                <input class="col-sm-7 bx formInput" ng-class="{submitted:home.isFocus.submitted[$index]}" type="text" name="Comment" placeholder="Comment" data-ng-model="home.comment[$index]" data-ng-blur="home.isFocus.submitted[$index] = false;" required />
+                <input class="bx-btn" type="button" value="comment" data-ng-click="home.createComment(dt._id, $index)" />
+            </p>
+        </div>
+    </div>
+</div>
+<div class="box event d-box clearfix discBox" ng-switch-when="A">
+    <div class="dheader">
+        <p class="thmb"><img data-ng-src="@@host/uploads/{{::dt.uid| imgsize:108}}" title="{{::dt.userName}}" alt="" /></p>
+        <span class="d-ttl-text" data-ng-if="home.uid == dt.uid">
+            <a class="db-evname" data-ng-href="/profile.html" data-ng-bind="::dt.userName">
+                <span class="ename" data-ng-bind="::dt.userName"></span>
+            </a>
+        </span>
+        <span data-ng-if="home.uid != dt.uid">
+            <a class="db-evname" data-ng-href="/profile/{{::dt.userName| makeHyphen}}-{{::dt.uid}}" data-ng-bind="::dt.userName">
+                <span class="ename" data-ng-bind="::dt.userName"></span>
+            </a>
+        </span>
+        <span class="d-box-loc">{{::dt.date| date:"dd-MMM 'at' h:mma"}}</span>
+        <span class="articleTag">Article</span>
+    </div>
+    <div class="dcnt">
+        <p class="diss-intro" ng-click="home.showDetailArticle(dt._id, 'A', 'A')" data-ng-bind="::dt.title"></p>
+        <p class="diss-intro" ng-click="home.showDetailArticle(dt._id, 'A', 'A')" data-ng-bind="::dt.excerpt"></p>
+        <ul class="clearfix no dbox-envtwo">
+            <li class="eflw">
+                <a href="#" onclick="return false">
+                    <span data-ng-click="home.likeThisItem($index, 'article')"><i class="fa fa-heart ic" aria-hidden="true"></i></span>
+                    <span data-ng-bind="dt.likeCount || 0" data-ng-click="home.likeThisItem($index, 'article')"></span>
+                </a>
+            </li>
+            <li class="ecmt" ng-click="home.showDetailArticle(dt._id, 'A', 'A')"><i class="fa fa-comment ic" aria-hidden="true"></i> <span data-ng-bind="dt.comCount || '0'"></span></li>
+        </ul>
+        <!--        <div class="b-boxcmt">
+                    <div data-ng-repeat="comment in dt.comments.slice(dt.comments.length - 2, dt.comments.length)">
+                        <p class="cmt-by-name clearfix">
+                            <img data-ng-src="@@host/uploads/{{::comment.uid| imgsize:108}}" title="{{::comment.name}}" alt="" width="28" class="cmt-pic img-circle" />
+                            <a data-ng-href="viewprofile.html?uid={{::comment.uid}}" data-ng-bind="::comment.name">
+                                <span class="ename" data-ng-bind="::comment.name"></span>
+                            </a>: 
+                            <span style="font-size:10px;">{{::comment.date| date:"dd-MMM 'at' h:mma"}}</span>
+                            <span class="d-box-loc" data-ng-bind="::comment.cmnt"></span>
+                        </p>
+                    </div>
+                    <p class="cmt-bx clearfix">
+                        <input class="col-sm-7 bx formInput" ng-class="{submitted:home.isFocus.submitted[$index]}" type="text" name="Comment" placeholder="Comment" data-ng-model="home.comment[$index]" data-ng-blur="home.isFocus.submitted[$index] = false;" required />
+                        <input class="bx-btn" type="button" value="comment" data-ng-click="home.createComment(dt._id, $index)" />
+                    </p>
+                </div>-->
+    </div>
+</div>
+<div class="box event d-box clearfix discBox" ng-switch-when="T">
+    <div class="dheader">
+        <p class="thmb" ng-if="dt.organizer"><img data-ng-src="@@host/images/org/{{dt.organizer.id| imagefilter:80}}" title="{{::dt.organizer.title}}" alt="" /></p>
+        <p class="thmb" ng-if="dt.academy"><img data-ng-src="@@host/images/acd/{{dt.academy.id| imagefilter:80}}" title="{{::dt.academy.name}}" alt="" /></p>
+        <p class="thmb" ng-if="!dt.organizer && !dt.academy"><img data-ng-src="@@host/uploads/{{dt.user.id| imgsize:108}}" title="{{::dt.user.name}}" alt="" /></p>
+        <p class="ttitle" ng-if="dt.organizer">
+            <a data-ng-href="/organization.html?orgId={{dt.organizer.id}}">
+                <span class="ename">{{::dt.organizer.title}}</span>
+            </a> presents 
+            <a data-ng-href="/tournament.html?orgId={{dt.organizer.id}}&tid={{dt._id}}&title={{dt.title| makeHyphen}}">
+                <span>{{::dt.title}}</span>
+            </a>
+        </p>
+		<p class="ttitle" ng-if="dt.academy">
+            <a data-ng-href="/academy.html?aid={{dt.academy.id}}">
+                <span class="ename">{{::dt.academy.name}}</span>
+            </a> presents 
+            <a data-ng-href="/tournament.html?aid={{dt.academy.id}}&tid={{dt._id}}&title={{dt.title| makeHyphen}}">
+                <span>{{::dt.title}}</span>
+            </a>
+        </p>
+        <p class="ttitle" ng-if="!dt.organizer && !dt.academy">
+            <a data-ng-if="home.uid == dt.user.id" data-ng-href="/profile.html">
+                <span class="ename">{{::dt.user.name}}</span>
+            </a>
+            <a data-ng-if="home.uid != dt.user.id" data-ng-href="/profile/{{dt.user.name| makeHyphen}}-{{::dt.user.id}}">
+                <span class="ename">{{::dt.user.name}}</span>
+            </a> presents 
+            <a data-ng-href="/tournament.html?tid={{dt._id}}&title={{dt.title| makeHyphen}}">
+                <span>{{::dt.title}}</span>
+            </a>
+        </p>
+        <span class="d-box-loc">{{dt.startdate| date:"dd-MMM-yyyy"}} - {{dt.enddate| date:"dd-MMM-yyyy"}}</span>
+        <span class="articleTag">Tournament</span>
+        <span class="articleTag" ng-if="dt.location" style="margin-left:5px">{{dt.location.join(', ')}}</span>
+    </div>
+    <div class="homboxImg" ng-if="dt.organizer">
+        <a data-ng-href="/tournament.html?orgId={{dt.organizer.id}}&tid={{dt._id}}&title={{dt.title| makeHyphen}}">
+            <img data-ng-src="@@host/tour/{{dt._id| imagefilter:404}}" title="{{::dt.title}}" alt="" />
+        </a>	
+    </div>	
+    <div class="homboxImg" ng-if="!dt.organizer">
+        <a data-ng-href="/tournament.html?tid={{dt._id}}&title={{dt.title| makeHyphen}}">
+            <img data-ng-src="@@host/tour/{{dt._id| imagefilter:404}}" title="{{::dt.title}}" alt="" />
+        </a>	
+    </div>
+    <!-- <div class="theader">
+        <span>{{::dt.title}}</span>
+    </div>
+        <ul class="clearfix no dbox-envtwo">
+        <li class="eflw">
+            <a href="#" onclick="return false">
+                <span><i class="fa fa-heart ic" aria-hidden="true"></i></span>
+                <span data-ng-bind="dt.likeCount || '0'" data-ng-click="home.likeThisItem($index, 'facility')"></span>
+            </a>
+        </li>
+    </ul> -->
+</div>

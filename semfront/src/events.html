@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+
+    <head>
+        <title>Event details - Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        @@include('gtmhead.html')
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description">
+        <meta content="Sports Extra Mile" property="og:site_name">
+        <meta content="website" property="og:type">
+        <meta content="https://www.sportsextramile.com/" property="og:url">
+        <meta content="https://www.sportsextramile.com/img/og.png" property="og:image">
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+
+        @@if (doConcat === 1) {
+        @@loop('css.html', [ 
+        { "file": "common.css"}, 
+        { "file": "sxm-common.css"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('css.html', [ 
+        { "file": "bootstrap.min.css"}, 
+        { "file": "ngdialog.css"}, 
+        { "file": "ngDialog-theme-default.css"}, 
+        { "file": "login.css"}, 
+        { "file": "facilities.css"}, 
+        { "file": "profile.css"},
+        { "file": "detail.css"},
+        { "file": "style.css"}, 
+        { "file": "static.css"},
+        { "file": "select.css"}
+        ])
+        }
+
+        @@if (doConcat === 1) {
+        @@loop('scripts.html', [ 
+        { "file": "angular.js"}, 
+        { "file": "sxm-common.js"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('scripts.html', [
+        { "file": "lib/angular1.4.5.min.js"},
+        { "file": "lib/xeditable-0.2.0.js"},
+        { "file": "lib/angular-datepicker.js"},
+		{ "file": "lib/angular-youtube-embed.min.js"},
+        { "file": "lib/textAngular-rangy.min.js"},
+        { "file": "lib/textAngular-sanitize.min.js"},
+        { "file": "lib/textAngular.min.js"},
+        { "file": "lib/select.min.js"},
+        { "file": "lib/ngdialog.js"},
+        { "file": "shared.js"},
+        { "file": "anghome.js"},
+        { "file": "user.js"},
+        { "file": "header.js"},
+        { "file": "details.js"}
+        ])
+        }
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=@@gkey"></script>
+    </head>
+
+    <body ng-controller="Details as details">
+        @@include('gtmbody.html')
+        <!-- header -->
+        @@include('header.html')
+        <div class="container">
+            <!-- Login Area -->
+            <div class="row content clearfix evePage">
+                <div class="col-md-8" style="min-height:525px; background:#FFF">
+                    <div class="detail-page">
+                        <div class="banner">
+                            <img src="/img/size_1000_90.png" class="img-responsive" />
+                            <div class="d-block">
+                                <div class="d-date">
+                                    <span data-ng-bind="::details.details.evtDate| date:'dd MMM'"></span> <b data-ng-bind="::details.details.evtDate| date:'yyyy'"></b>
+                                </div>
+                                <div class="d-ename">
+                                    <p class="d-etitle" data-ng-bind="::details.details.evtName"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="two-box clearfix">
+                            <div class="box-one">
+                                <div>
+                                    <ul class="nav nav-tabs d-tabs ">
+                                        <li class="active">
+                                            <a href="#tab_default_111" data-toggle="tab">Facility Location</a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_default_211" data-toggle="tab">Facility Details</a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_default_311" data-toggle="tab">Sports</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab_default_111">
+                                            <!--<p class="inf-title">Google Map</p>-->
+                                            <div id="map" style="height:250px;width:100%;"></div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_default_211">
+                                            <h4 class="box-ttl" data-ng-bind="::details.details.facility.name">Name</h4>
+                                            <p class="inf-title" data-ng-bind="::details.details.facility.address">Address</p>
+                                            <p class="inf-intro" data-ng-bind="::details.details.facility.phone">Phone</p>
+                                            <p class="inf-intro" data-ng-bind="::details.details.facility.website">website</p>
+                                            <p class="inf-intro" data-ng-bind="::details.details.facility.tags.join(',')">tags</p>
+                                            <p class="inf-intro" data-ng-bind="::details.details.facility.url">Phone</p>
+                                        </div>
+                                        <div class="tab-pane" id="tab_default_311">
+                                            <ul class="facility">
+                                                <li ng-repeat="spt in details.details.facility.tags">
+                                                    <p class="spIcon">
+                                                        <img ng-src="/img/{{spt}}.png" class="img-responsive img-square"></p>
+                                                    <a class="spName" data-ng-href="/sport/{{::spt}}?type=S" data-ng-bind="::spt"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-two">
+                                <div>
+                                    <h4 class="box-ttl" data-ng-bind="details.details.evtName">Event Name</h4>
+                                    <p class="inf-intro">Created by <span data-ng-bind="details.details.userName"></span> on 
+                                        <span data-ng-bind="::details.details.dateCreated| date:'dd MMM yyyy'"></span></p>
+                                    <p class="inf-intro" data-ng-bind="::details.details.details"></p>
+                                    <p data-ng-bind="::details.details.evtLoc"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="two-box">
+                            <div class="box-one">
+                                <div>
+                                    <ul class="nav nav-tabs d-tabs ">
+                                        <li class="active">
+                                            <a href="#tab_default_11" data-toggle="tab" aria-expanded="true">Subscribers</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#tab_default_21" data-toggle="tab" aria-expanded="false">Groups</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab_default_11">
+                                            <ul class="event no xgrp">
+                                                <li ng-repeat="usr in details.details.players">
+                                                    <p class="popupPic"><img data-ng-src="@@host/uploads/{{usr.uid| imgsize:40}}" alt="" /></p>
+                                                    <a class="popupName" data-ng-href="/profile.html" data-ng-bind="::usr.name" data-ng-if="details.user.id == usr.uid"></a>
+                                                    <a class="popupName" data-ng-href="/profile/{{::usr.name| makeHyphen}}-{{::usr.uid}}" data-ng-bind="::usr.name" data-ng-if="details.user.id != usr.uid"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="tab-pane" id="tab_default_21">
+                                            <ul class="event no">
+                                                <li ng-repeat="grp in details.details.group">
+                                                    <p class="popupPic"><img data-ng-src="/img/users-group-icon.png" width="40" height="40" alt="" /></p>
+                                                    <a class="popupName" href="#" onclick="return false" data-ng-click="details.groupDetails(grp.gid)" data-ng-bind="::grp.grpName"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-two">
+                                <div class="">
+                                    <ul class="nav nav-tabs d-tabs ">
+                                        <li class="active">
+                                            <a href="#tab_default_1" data-toggle="tab" aria-expanded="true">Discussion</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active event-listing" id="tab_default_2">
+                                            <ul class="col-md-12 event no">
+                                                <li ng-repeat="d in details.details.disc| orderBy : '-date'">
+                                                    <span class="thumb"><span ng-bind="d.date | date : 'd' : '+0530'"></span>
+                                                        <span><b ng-bind="d.date | date : 'MMM' : '+0530'"></b></span>
+                                                    </span>
+                                                    <span class="title" style="cursor: pointer" ng-bind="::d.body | limitTo:75" data-ng-click="details.showDetailDiscussion(d._id, 'D')">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Right Panel -->
+                    @@include('rightpanel.html')
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        @@include('footer.html')
+        @@include('footerscripts.html')
+    </body>
+
+</html>

@@ -1,0 +1,65 @@
+<div class="logoSection">
+	<div class="orglogoCont">
+		<div class="orglogo">
+			<img data-ng-src="http://stage.sportsextramile.com/images/acd/{{ctrl.academy._id | imagefilter:80}}?{{ctrl.confirm.imgRefreshTime}}" class="img-responsive" />
+			<div class="uploadPicCont" ng-if="ctrl.academy.isAdmin">
+				<input class="uploadFile" type="file" onchange="angular.element(this).scope().ctrl.changeImages(this.files, 'AL')" />
+				<div class="uploadPic">	
+					<div class="uploadIcon"></div>
+					<div class="uploadText">Change</div>
+				</div>
+			</div>
+		</div>
+		<div class="orgTitle editableField">
+			<span ng-if="!ctrl.academy.isAdmin" class="orgTitleText" data-ng-bind="ctrl.academy.name"></span>
+			<span ng-if="ctrl.academy.isAdmin"><a class="orgTitleText" href="#" editable-textarea="ctrl.academy.name" e-rows="1" e-cols="70" onaftersave="ctrl.updateAcademy('name')" ng-bind="ctrl.academy.name || 'empty'"></a></span>
+		</div>
+	</div>					
+</div>
+<div class="cb-col cb-col-100 profListing">
+	<div class="cb-col cb-col-100 pageFormEditor" ng-class="{isEditable : ctrl.academy.isAdmin && !ctrl.confirm.isEditable}" ng-click="ctrl.editRichText()">
+		<div class="cb-col cb-col-100" ng-if="ctrl.confirm.isEditable">
+			<div text-angular="text-angular" placeholder="About {{ctrl.academy.name}}" name="htmlcontent" ng-model="ctrl.academy.about" ta-disabled="false"></div>
+			<div class="cb-col cb-col-100 text-right">
+				<button class="stdBtn" type="button" ng-click="ctrl.updateAcademy('about')" style="float:right;margin-top:5px;">Save</button>
+			</div>
+		</div>
+		<div class="cb-col cb-col-100" ng-if="!ctrl.confirm.isEditable">
+			<div ng-bind-html="ctrl.academy.about"></div>
+		</div>
+	</div>    
+</div>
+<div class="adminSection col-md-12 col-xs-12">
+	<h4>Managed by:</h4>
+	<div class="addItemBtn right10" data-ng-hide="ctrl.confirm.addAdminFlag" data-ng-click="ctrl.confirm.addAdminFlag = true; $event.stopPropagation();" ng-if="ctrl.academy.isAdmin">
+		<i class="fa fa-plus" aria-hidden="true"></i> Add Admins
+	</div>
+	<div auto-hide-popup flag="ctrl.confirm.addAdminFlag" data-ng-show="ctrl.confirm.addAdminFlag" data-ng-click="$event.stopPropagation();"> 	
+		<div class="addOrgBtnCont">
+			<ui-select multiple ng-model="ctrl.selAdmins">
+				<ui-select-match placeholder="Add admins">{{$item.name}}</ui-select-match>
+				<ui-select-choices repeat="admin in ctrl.admins | filter: $select.search track by $index">
+					{{admin.name}}
+				</ui-select-choices>
+			</ui-select>
+			<button class="addOrgBtn" type="button" ng-disabled="ctrl.confirm.btnDisable" ng-click="ctrl.addAdmin()">Add</button>	
+		</div>
+	</div>
+	<div class="cb-col cb-col-100">
+		<div class="row">
+			<div class="cb-col cb-col-100 profListing" ng-repeat="user in ctrl.academy.admins track by $index">
+				<div class="profPic">
+					<img class="profPicImg" profile-err-src data-ng-src="http://stage.sportsextramile.com/uploads/{{::user.id | imgsize:40}}" title="{{::user.name}}" alt="{{::user.name}}" />
+					<span class="profPicInitials">{{::user.name | initials | uppercase}}</span>
+				</div>
+				<div class="profDetails">
+					<a class="profName" data-ng-href="/profile/{{::user.name | makeHyphen}}-{{::user.id}}">
+						{{::user.name}}
+					</a>
+					<span class="profBio" data-ng-bind="user.about"></span>
+					<button class="PlayerDel" type="button" ng-disabled="ctrl.confirm.btnDisable" ng-click="ctrl.removeAdmin($index)" ng-hide="user.id === ctrl.academy.creator.id || user.id === ctrl.uid || ctrl.academy.isAdmin === false"></button>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>

@@ -1,0 +1,71 @@
+<div class="right-panel clearfix slidepanel" ng-controller="frndGrpCtrl as frndCtrl">
+    <div class="frd-groups">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#Friends">Friends (<span data-ng-bind="frndCtrl.myFriendsCount"></span>)</a></li>
+            <li><a data-toggle="tab" href="#Groups">Teams (<span data-ng-bind="frndCtrl.myGroupsCount"></span>)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="Friends" class="tab-pane fade in active">
+                <!-- <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" name="searchKeyword" class="search-query form-control" placeholder="Search friends" data-ng-model="search.name"/>
+                        <span class="input-group-btn">
+                            <button class="btn" type="button">
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div> -->
+                <div class="fri-container">
+                    <ul>
+                        <li class="fri-list" ng-repeat="friend in frndCtrl.myFriends| orderBy:'name' | filter:{name :search.name}:startsWith">
+                            <p class="popupPic"><img ng-src="http://stage.sportsextramile.com/uploads/{{::friend.uid| imgsize:40}}" alt="" /></p>
+                            <a class="popupName" data-ng-href="/profile/{{::friend.name | makeHyphen}}-{{::friend.uid}}" data-ng-bind="::friend.name"></a>
+                            <a class="q-match" href="#" data-ng-click="frndCtrl.quickMatch(friend.uid)"><div class="match"></div></a> 
+                        </li>
+                    </ul>
+                    <p class="cr-btn clear text-center">
+                        <a href="#" class="Create-group" style="margin-right:20px;" data-ng-click="frndCtrl.showPeople()">Players</a>
+                        <a href="#" class="Create-group" data-ng-click="frndCtrl.inviteFriend()">Invite</a>
+                    </p>
+                </div>
+            </div>
+            <div id="Groups" class="tab-pane fade">
+				<div id="custom-search-input" class="pSection" auto-hide-popup flag="frndCtrl.gsFlag">
+                    <div class="input-group col-md-12">
+                        <input class="search-query form-control" type="text" placeholder="Search Teams" data-ng-model="frndCtrl.gsearchquery" ng-model-options="{debounce: 500}" data-ng-change="frndCtrl.gsearchquery.length > 2 && frndCtrl.searchGroups()" data-ng-click="frndCtrl.gsearchquery.length > 2 && frndCtrl.togglePopup()" />
+                        <span class="input-group-btn">
+                            <button class="btn" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+					<div class="groupSearchCont" data-ng-show="frndCtrl.gsFlag">
+						<div class="groupSearchList">	
+							<div class="groupSearchItem" data-ng-repeat="grp in frndCtrl.allgroups | filter:frndCtrl.gsearchquery track by grp.pid">
+								<div class="searchName">{{::grp.name}} <span class="searchAdmin" data-ng-if="grp.admin"> - by {{::grp.admin}}</span></div>
+								<div class="searchCity">
+									<span data-ng-if="grp.sport">{{::grp.sport}},</span>
+									<span data-ng-if="grp.city"><i class="fa fa-map-marker" aria-hidden="true"></i> {{::grp.city}}</span>                                                    
+								</div>
+								<button class="addOrgBtn" type="button" ng-click="frndCtrl.subscribeGroup(grp)" data-ng-show="!grp.isSubscribed && !grp.reqSent">Subscribe</button>
+								<span class="addOrgBtn btnSent" data-ng-show="!grp.isSubscribed && grp.reqSent">Req Sent</span>
+							</div>	
+						</div>
+					</div>
+                </div>
+                <div class="fri-container">
+                    <ul>
+                        <li class="fri-list" ng-repeat="group in frndCtrl.myGroups| orderBy:'grpName'">
+                            <p class="popupPic"><img data-ng-src="http://stage.sportsextramile.com/glogo/{{group.gid | imagefilter:108}}" err-src="/img/users-group-icon.png" /></p>
+                            <a class="popupName" href="#" data-ng-click="frndCtrl.groupDetails(group.gid)" data-ng-bind="::group.grpName"></a>
+                        </li>
+                    </ul>
+                    <p class="cr-btn clear text-center">
+                        <a href="#" class="Create-group" data-ng-click="frndCtrl.createGroup()">Create Team</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

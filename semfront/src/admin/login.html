@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="semadmin">
+    <head>
+        <title>Login - Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+        <script type="text/javascript" src="./js/angular1.4.5.min.js"></script>
+        <script type="text/javascript" src="./js/angadmin.js"></script>
+        <link rel="stylesheet" href="../css/common.css" /><link rel="stylesheet" href="../css/sxm-common.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
+        <!--<link rel="stylesheet" href="styles.css">-->
+    </head>
+             
+    <body> 
+        <div class="loginPage" ng-controller="Login as main">
+            <div class="loginBg"></div>
+            <!-- Header -->
+            <header>                
+                <div class="container">
+                    <div class="row header">
+                        <div class="logo col-md-5">
+                            <a class="logoLink" href="/"><img class="logo-header" src="/img/sxm.png" alt="" /></a>
+                            <span class="login-logo hideInMobile">SportsExtraMile</span>
+                        </div>
+                        <div class="loginFormHeader hideInMobile" ng-cloak>
+                            <form name="loginForm" role="form" novalidate ng-submit="main.login()">
+                                <div class="formRow">
+                                    <div class="formItem loginUsername">
+                                        <input ng-class="{submitted:main.isFocus.login_submitted}" type="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" name="Username" ng-model="main.username" placeholder="Email" ng-focus="main.isFocus.emailErr = false" required />
+                                        <span class="alertMsg" ng-show="main.isFocus.emailErr">{{main.isFocus.loginMsg}}</span>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formItem loginPassword">
+                                        <input ng-class="{submitted:main.isFocus.login_submitted}" type="password" name="password" ng-model="main.password" placeholder="Password" ng-focus="main.isFocus.passErr = false" required />
+                                        <span class="alertMsg" ng-show="main.isFocus.passErr">{{main.isFocus.loginMsg}}</span>
+                                        <div class="formLink">
+                                            <a href="#" class="forgotLink" data-ng-click="main.forgotPassword()">Forgot password?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formItem loginBtn">
+                                    <button class="formBtn" type="submit" ng-click="main.isFocus.login_submitted = true;main.isFocus.reg_submitted = false;main.clearRegister();">LOGIN</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>	
+                </div>		
+            </header>
+            <div class="header_fake"></div>
+            <div>
+                <br/><br/>
+            </div>
+            <!-- Footer -->
+            <footer class="footer">
+                <!-- Tabs -->
+                <div class="tabs showInMobile">
+                    <ul>
+                        <li class="tab tab-1" data-tab="tab-1">Login</li>
+                        <li class="tab tab-2" data-tab="tab-2">Sign-up</li>
+                    </ul>
+                </div>
+                <div class="footer-inner">
+                    <div class="col-md-8 pull-left">
+                        <ul class="footer-links">
+                            <li><a href="/about-sportsextramile.html">About SportsExtraMile</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 text-right foot-note pull-right">
+                        SXM Technologies Pvt. Ltd.
+                    </div>
+                </div>
+            </footer>
+        </div>	
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

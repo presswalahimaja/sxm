@@ -1,0 +1,16 @@
+<div class="modal-body clearfix popupListContainer" ng-controller="myTournaments as ctrl">
+    <h3>My Tournaments</h3>
+    <div class="col-sm-12 scrollContainer">	
+		<div class="tournamentListCont">	
+			<div class="tItem" ng-if="ctrl.organizers.length == 0">
+				No tournaments available here.
+			</div>
+			<div class="tItem" data-ng-repeat="organizer in ctrl.organizers track by $index">
+				<p><a data-ng-href="/organization.html?orgId={{organizer.id}}"><strong>{{organizer.title}}</strong></a></p>
+			</div>
+			<div class="tItem" data-ng-repeat="tournament in ctrl.tournaments track by $index">
+				<p><a data-ng-href="/tournament?tid={{tournament.id}}"><strong>{{tournament.title}}</strong></a></p>
+			</div>
+		</div>
+    </div>	
+</div> 

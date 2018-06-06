@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+
+<head>
+    <title>Update Score Card - Sports Extra Mile</title>
+    <meta charset="utf-8" /> @@include('gtmhead.html')
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+    <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga"
+    />
+    <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description">
+    <meta content="Sports Extra Mile" property="og:site_name">
+    <meta content="website" property="og:type">
+    <meta content="https://www.sportsextramile.com/" property="og:url">
+    <meta content="https://www.sportsextramile.com/img/og.png" property="og:image">
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" /> 
+    @@if (doConcat === 1) { 
+        @@loop('css.html', [
+            { "file": "common.css"}, 
+            { "file": "sxm-common.css"} 
+        ]) 
+    }
+    
+    @@if (doConcat !== 1) { 
+        @@loop('css.html', [ 
+            { "file": "bootstrap.min.css"}, 
+            { "file": "login.css"}, 
+            { "file": "facilities.css"}, 
+            { "file": "profile.css"}, 
+            { "file": "detail.css"}, 
+            { "file": "style.css"}, 
+            { "file": "static.css"}, 
+            { "file": "select.css"},
+            { "file": "events-cricket-admin1.css"}
+        ]) 
+    }
+    
+    @@if (doConcat === 1) { 
+        @@loop('scripts.html', [ 
+            { "file": "angular.js"},
+            { "file": "sxm-common.js"} 
+        ])
+    }
+    
+    @@if (doConcat !== 1) { 
+        @@loop('scripts.html', [ 
+            { "file": "lib/angular1.4.5.min.js"}, 
+            { "file": "lib/xeditable-0.2.0.js"}, 
+            { "file": "lib/angular-datepicker.js"},
+			{ "file": "lib/angular-youtube-embed.min.js"},			
+            { "file": "lib/textAngular-rangy.min.js"}, 
+            { "file": "lib/textAngular-sanitize.min.js"},
+            { "file": "lib/textAngular.min.js"}, 
+            { "file": "lib/select.min.js"}, 
+            { "file": "lib/ngdialog.js"}, 
+            { "file": "shared.js"}, 
+            { "file": "anghome.js"}, 
+            { "file": "user.js"}, 
+            { "file": "header.js"}, 
+            { "file": "updateScoreBoard.ctrl.js"}
+        ]) 
+    }
+</head>
+
+<body ng-controller="ScoreBoardCtrl as sb">
+    @@include('gtmbody.html') @@include('header.html')
+    <div class="container">
+        <h2 class="MB20">
+            Modify Scorecard
+        </h2>
+        <div class="row MB20">
+            <div class="col-md-12">
+
+                <div class="row card" style="padding:10px 0px;">
+                    <div class="col-md-4">
+                        <form name="form" ng-submit="sb.loadEventDetails()" novalidate>
+                            <div class="form-group" ng-class="{'has-error':!form.query.$pristine && form.query.$invalid}">
+                                <label for="query">Event Id</label>
+                                <input id="query" name="query" type="text" ng-model="sb.qry" class="form-control" placeholder="5929d2750996d22c5c6cb5a2" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Load Scorecard</button>
+                            <button type="button" class="btn btn-default" ng-click="sb.resetQuery(form)">Reset</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row card section" ng-show="sb.eventData">
+                    <div class="inningcard card">
+                        <form name="sb.scoreBoardForm" ng-submit="sb.commit()" ng-keyup="sb.cancel($event)" ng-model-options="{updateOn: 'submit'}" novalidate>
+                            <!--Team 1-->
+                            <h4 ng-bind="sb.eventData.score.score.innings[0].name" style="margin:0px;"></h4>
+                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" style="border-top:1px solid #fff;">
+                                <div class="cb-col cb-col-55">Team Stats</div>
+                                <div class="cb-col cb-col-9 text-center"></div>
+                                <div class="cb-col cb-col-9 text-center">Run</div>
+                                <div class="cb-col cb-col-9 text-center">Overs</div>
+                                <div class="cb-col cb-col-9 text-center">Balls</div>
+                                <div class="cb-col cb-col-9 text-center">Wickets</div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-itms">
+                                <div class="cb-col cb-col-55 text-center"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[0].score" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[0].overs" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[0].balls" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[0].W" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                <div class="cb-col cb-col-16">Batsman</div>
+                                <div class="cb-col cb-col-13 text-center">Status</div>
+                                <div class="cb-col cb-col-13 text-center">Bowler</div>
+                                <div class="cb-col cb-col-13 text-center">Fielder</div>
+                                <div class="cb-col cb-col-9 text-center">Run</div>
+                                <div class="cb-col cb-col-9 text-center">Balls</div>
+                                <div class="cb-col cb-col-9 text-center">4s</div>
+                                <div class="cb-col cb-col-9 text-center">6s</div>
+                                <div class="cb-col cb-col-9 text-center">SR</div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batsman in sb.eventData.score.score.innings[0].batting">
+                                <div class="cb-col cb-col-16" ng-bind="batsman.name"></div>
+                                <div class="cb-col cb-col-13 text-center">
+                                    <select
+                                        ng-model="batsman.outObj.type" 
+                                        ng-change="sb.outTypeChanged(batsman)">
+                                            <option value="">Not out</option>
+                                            <option value="B">Bowled</option>
+                                            <option value="LB">LBW</option>
+                                            <option value="CB">Caught &amp; Bowled</option>
+                                            <option value="CF">Caught by fielder</option>
+                                            <option value="CW">Caught by WK</option>
+                                            <option value="RO">Run out</option>
+                                            <option value="ST">Stumped</option>
+                                            <option value="HW">Hit wicket</option>
+                                            <option value="RT">Retired hurt</option>
+                                            <option value="HH">Hit twice</option>
+                                            <option value="TO">Time out</option>
+                                            <option value="OF">Obstruct field</option>
+                                            <option value="HB">Handled the ball</option>
+                                            <option value="AO">Action (run) out</option>
+                                    </select>
+                                </div>
+                                <div class="cb-col cb-col-13 text-center">
+                                    <select ng-options="bowler.name for bowler in sb.opponent1 track by bowler.id" ng-model="batsman.outObj.bowler">
+                                        <option value="">-</option>
+                                    </select>
+                                </div>
+                                <div class="cb-col cb-col-13 text-center">
+                                    <select ng-options="fielder.name for fielder in sb.opponent1 track by fielder.id" ng-model="batsman.outObj.fielder">
+                                        <option value="">-</option>
+                                    </select>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="batsman.total" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="batsman.balls" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="batsman.four" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="batsman.sixes" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="batsman.SR" class="form-control input-sm text-right cb-col-80">
+                                </div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                <div class="cb-col cb-col-28">Bowler</div>
+                                <div class="cb-col cb-col-9 text-center">Over</div>
+                                <div class="cb-col cb-col-9 text-center">Balls</div>
+                                <div class="cb-col cb-col-9 text-center">Runs</div>
+                                <div class="cb-col cb-col-9 text-center">Maiden</div>
+                                <div class="cb-col cb-col-9 text-center">Wicket</div>
+                                <div class="cb-col cb-col-9 text-center">NB</div>
+                                <div class="cb-col cb-col-9 text-center">WD</div>
+                                <div class="cb-col cb-col-9 text-center">Eco</div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="bowler in sb.eventData.score.score.innings[0].bowling">
+                                <div class="cb-col cb-col-28" ng-bind="bowler.name"></div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.over_count" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.balls" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.runs" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.maiden" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.wicket" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.NB" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.WD" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.Eco" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" style="border-top:1px solid #fff;">
+                                <div class="cb-col cb-col-55">FOW</div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9 text-center">At</div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="fw in sb.eventData.score.score.innings[0].FOW">
+                                <div class="cb-col cb-col-55">
+                                    <select ng-options="{'id': outBatsman.id, 'name': outBatsman.name } as outBatsman.name for outBatsman in sb.eventData.score.score.innings[0].batting track by outBatsman.id" ng-model="fw.batsman"></select>
+                                </div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="fw.at" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                <div class="cb-col cb-col-46">Extras</div>
+                                <div class="cb-col cb-col-9 text-center">Total</div>
+                                <div class="cb-col cb-col-9 text-center">B</div>
+                                <div class="cb-col cb-col-9 text-center">Lb</div>
+                                <div class="cb-col cb-col-9 text-center">W</div>
+                                <div class="cb-col cb-col-9 text-center">Nb</div>
+                                <div class="cb-col cb-col-9 text-center">P</div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-itms">
+                                <div class="cb-col cb-col-46 text-center"></div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[0].extras.runs" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[0].extras.b" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[0].extras.lb" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[0].extras.wd" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[0].extras.nb" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[0].extras.p" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                            </div>
+                            <!--Team 2-->
+                            <h4 ng-bind="sb.eventData.score.score.innings[1].name" style="margin:0px;"></h4>
+                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" style="border-top:1px solid #fff;">
+                                <div class="cb-col cb-col-55">Team Stats</div>
+                                <div class="cb-col cb-col-9 text-center"></div>
+                                <div class="cb-col cb-col-9 text-center">Run</div>
+                                <div class="cb-col cb-col-9 text-center">Overs</div>
+                                <div class="cb-col cb-col-9 text-center">Balls</div>
+                                <div class="cb-col cb-col-9 text-center">Wickets</div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-itms">
+                                <div class="cb-col cb-col-55 text-center"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[1].score" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[1].overs" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[1].balls" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[1].W" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                <div class="cb-col cb-col-16">Batsman</div>
+                                <div class="cb-col cb-col-13 text-center">Status</div>
+                                <div class="cb-col cb-col-13 text-center">Bowler</div>
+                                <div class="cb-col cb-col-13 text-center">Fielder</div>
+                                <div class="cb-col cb-col-9 text-center">Run</div>
+                                <div class="cb-col cb-col-9 text-center">Balls</div>
+                                <div class="cb-col cb-col-9 text-center">4s</div>
+                                <div class="cb-col cb-col-9 text-center">6s</div>
+                                <div class="cb-col cb-col-9 text-center">SR</div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batsman in sb.eventData.score.score.innings[1].batting">
+                                <div class="cb-col cb-col-16" ng-bind="batsman.name"></div>
+                                <div class="cb-col cb-col-13 text-center">
+                                    <select
+                                        ng-model="batsman.outObj.type" 
+                                        ng-change="sb.outTypeChanged(batsman)">
+                                            <option value="">Not out</option>
+                                            <option value="B">Bowled</option>
+                                            <option value="LB">LBW</option>
+                                            <option value="CB">Caught &amp; Bowled</option>
+                                            <option value="CF">Caught by fielder</option>
+                                            <option value="CW">Caught by WK</option>
+                                            <option value="RO">Run out</option>
+                                            <option value="ST">Stumped</option>
+                                            <option value="HW">Hit wicket</option>
+                                            <option value="RT">Retired hurt</option>
+                                            <option value="HH">Hit twice</option>
+                                            <option value="TO">Time out</option>
+                                            <option value="OF">Obstruct field</option>
+                                            <option value="HB">Handled the ball</option>
+                                            <option value="AO">Action (run) out</option>
+                                    </select>
+                                </div>
+                                <div class="cb-col cb-col-13 text-center">
+                                    <select ng-options="bowler.name for bowler in sb.opponent2 track by bowler.id" ng-model="batsman.outObj.bowler">
+                                        <option value="">-</option>
+                                    </select>
+                                </div>
+                                <div class="cb-col cb-col-13 text-center">
+                                    <select ng-options="fielder.name for fielder in sb.opponent2 track by fielder.id" ng-model="batsman.outObj.fielder">
+                                        <option value="">-</option>
+                                    </select>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="batsman.total" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="batsman.balls" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="batsman.four" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="batsman.sixes" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="batsman.SR" class="form-control input-sm text-right cb-col-80">
+                                </div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                <div class="cb-col cb-col-28">Bowler</div>
+                                <div class="cb-col cb-col-9 text-center">Over</div>
+                                <div class="cb-col cb-col-9 text-center">Balls</div>
+                                <div class="cb-col cb-col-9 text-center">Runs</div>
+                                <div class="cb-col cb-col-9 text-center">Maiden</div>
+                                <div class="cb-col cb-col-9 text-center">Wicket</div>
+                                <div class="cb-col cb-col-9 text-center">NB</div>
+                                <div class="cb-col cb-col-9 text-center">WD</div>
+                                <div class="cb-col cb-col-9 text-center">Eco</div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="bowler in sb.eventData.score.score.innings[1].bowling">
+                                <div class="cb-col cb-col-28" ng-bind="bowler.name"></div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.over_count" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.balls" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.runs" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.maiden" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.wicket" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.NB" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.WD" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="bowler.Eco" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" style="border-top:1px solid #fff;">
+                                <div class="cb-col cb-col-55">FOW</div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9 text-center">At</div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="fw in sb.eventData.score.score.innings[1].FOW">
+                                <div class="cb-col cb-col-55">
+                                    <select name="playerSelect" ng-options="{'id': outBatsman.id, 'name': outBatsman.name } as outBatsman.name for outBatsman in sb.eventData.score.score.innings[1].batting track by outBatsman.id" ng-model="fw.batsman"></select>
+                                </div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9"></div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="fw.at" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                <div class="cb-col cb-col-46">Extras</div>
+                                <div class="cb-col cb-col-9 text-center">Total</div>
+                                <div class="cb-col cb-col-9 text-center">B</div>
+                                <div class="cb-col cb-col-9 text-center">Lb</div>
+                                <div class="cb-col cb-col-9 text-center">W</div>
+                                <div class="cb-col cb-col-9 text-center">Nb</div>
+                                <div class="cb-col cb-col-9 text-center">P</div>
+                            </div>
+                            <div class="cb-col cb-col-100 cb-scrd-itms">
+                                <div class="cb-col cb-col-46 text-center"></div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[1].extras.runs" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[1].extras.b" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[1].extras.lb" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[1].extras.wd" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[1].extras.nb" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                                <div class="cb-col cb-col-9">
+                                    <input type="text" ng-model="sb.eventData.score.score.innings[1].extras.p" class="form-control input-sm text-right cb-col-80" integer>
+                                </div>
+                            </div>
+                            <!--Submit-->
+                            <div class="row">
+                                <div class="col-md-12 text-right" style="padding-top:20px;padding-right:20px;">
+                                    <button type="submit" class="btn btn-primary" ng-disabled="sb.isUpdating">{{sb.isUpdating ? 'Committing' : 'Commit'}}</button>
+                                    <button type="button" class="btn btn-default" ng-click="sb.rollbackChanges()">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    @@include('footer.html') @@include('footerscripts.html')
+    <script type="text/javascript" src="script/main.js"></script>
+</body>
+
+</html>

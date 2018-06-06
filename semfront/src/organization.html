@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+    <head>
+        <title>Organization - Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        @@include('gtmhead.html')
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description" />
+        <meta content="Sports Extra Mile" property="og:site_name" />
+        <meta content="website" property="og:type" />
+        <meta content="https://www.sportsextramile.com/" property="og:url" />
+        <meta content="https://www.sportsextramile.com/img/og.png" property="og:image" />
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+		<style type="text/css">
+			@media(max-width:767px) {
+				.organizationPage.row{margin-left:-20px !important;margin-right:-20px !important;}
+				.organizationPage .card{box-shadow:1px 1px 1px 0 #617d8c;margin-bottom:10px;}
+			}	
+		</style>
+        @@include('footerscripts.html')
+
+        @@if (doConcat === 1) {
+        @@loop('css.html', [ 
+        { "file": "common.css"}, 
+        { "file": "sxm-common.css"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('css.html', [ 
+        { "file": "bootstrap.min.css"},
+        { "file": "xeditable.min.css"},		
+        { "file": "ngdialog.css"}, 
+        { "file": "ngDialog-theme-default.css"}, 
+        { "file": "login.css"}, 
+        { "file": "facilities.css"}, 
+        { "file": "profile.css"},
+        { "file": "detail.css"},
+        { "file": "style.css"}, 
+        { "file": "static.css"},
+        { "file": "select.css"},
+        { "file": "lightgallery.css"},
+		{ "file": "events-cricket-admin1.css"}
+        ])
+        }
+
+        @@if (doConcat === 1) {
+        @@loop('scripts.html', [ 
+        { "file": "angular.js"}, 
+        { "file": "sxm-common.js"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('scripts.html', [
+        { "file": "lib/angular1.4.5.min.js"},
+        { "file": "lib/xeditable-0.2.0.js"},
+        { "file": "lib/angular-datepicker.js"},
+		{ "file": "lib/angular-youtube-embed.min.js"},
+        { "file": "lib/textAngular-rangy.min.js"},
+        { "file": "lib/textAngular-sanitize.min.js"},
+        { "file": "lib/textAngular.min.js"},
+        { "file": "lib/select.min.js"},
+        { "file": "lib/ngdialog.js"},
+        { "file": "shared.js"},
+        { "file": "anghome.js"},
+		{ "file": "login.js"},
+        { "file": "user.js"},
+        { "file": "header.js"},
+        { "file": "organizer.js"}
+        ])
+        }
+    </head>
+    <body ng-controller="EditOrganizer as organizer">
+        @@include('gtmbody.html')
+        @@include('header.html')
+		<custom-dialog dialog-msg="{{organizer.confirm.dialogMsg}}" dialog-show="organizer.confirm.dialogShow" handler="organizer.dialogHandler()"></custom-dialog>
+        <div class="container" ng-cloak>
+            <div class="row content clearfix evePage organizationPage">
+                <div class="col-md-8 myPageContent">
+					<div class="card">
+						<div class="bannerSection">
+							<img data-ng-src="@@host/images/org/{{organizer.organizer._id| imagefilter:850 }}?{{organizer.confirm.imgRefreshTime}}" class="img-responsive" />
+							<div class="uploadPicCont" ng-if="(organizer.isAdmin && (organizer.isDroid == false))">
+								<input class="uploadFile" type="file" onchange="angular.element(this).scope().organizer.changeImages(this.files, 'OB')" />
+								<div class="uploadPic">	
+									<div class="uploadIcon"></div>
+									<div class="uploadText">Change</div>
+								</div>
+							</div>
+                            <div class="uploadPicCont" ng-if="(organizer.isAdmin && (organizer.isDroid == true))">
+								<a class="uploadFile" href="#ChangePicture" role="button" data-toggle="modal" ng-click="organizer.imageDiag('OB')">Change</a>
+								<div class="uploadPic">	
+									<div class="uploadIcon"></div>
+									<div class="uploadText">Change</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="logoSection">
+							<div class="orglogoCont">
+								<div class="orglogo">
+									<img data-ng-src="@@host/images/org/{{organizer.organizer._id| imagefilter:80}}?{{organizer.confirm.imgRefreshTime}}" class="img-responsive" />
+									<div class="uploadPicCont" ng-if="(organizer.isAdmin && (organizer.isDroid == false))">
+										<input class="uploadFile" type="file" onchange="angular.element(this).scope().organizer.changeImages(this.files, 'OL')" />
+										<div class="uploadPic">	
+											<div class="uploadIcon"></div>
+											<div class="uploadText">Change</div>
+										</div>
+									</div>
+                                    <div class="uploadPicCont" ng-if="(organizer.isAdmin && (organizer.isDroid == true))">
+										<a class="uploadFile" href="#ChangePicture" role="button" data-toggle="modal" ng-click="organizer.imageDiag('OL')">Change</a>
+										<div class="uploadPic">	
+											<div class="uploadIcon"></div>
+											<div class="uploadText">Change</div>
+										</div>
+									</div>
+								</div>
+								<div class="orgTitle editableField">
+									<span class="orgTitleText" data-ng-bind="organizer.organizer.title" ng-if="!organizer.isAdmin"></span>
+									<span ng-if="organizer.isAdmin"><a class="orgTitleText" href="#" editable-textarea="organizer.organizer.title" e-rows="1" e-cols="70" onaftersave="organizer.setOrganizerProfile('title')" ng-bind="organizer.organizer.title || 'empty'"></a></span>
+								</div>
+							</div>
+							<div class="cb-col cb-col-50 profListing">
+								<div class="cb-col cb-col-100 pageFormEditor" ng-class="{isEditable : organizer.isAdmin && !organizer.confirm.isEditable}" ng-click="organizer.editRichText()">
+									<div class="cb-col cb-col-100" ng-if="organizer.confirm.isEditable">
+										<div text-angular="text-angular" placeholder="About {{organizer.organizer.title}}" name="htmlcontent" ng-model="organizer.organizer.about" ta-disabled="false"></div>
+										<div class="cb-col cb-col-100 text-right">
+											<button class="stdBtn" type="button" ng-click="organizer.setOrganizerProfile('about')" style="float:right;margin-top:5px;">Save</button>
+										</div>
+									</div>
+									<div class="cb-col cb-col-100" ng-if="!organizer.confirm.isEditable">
+										<div ng-bind-html="organizer.organizer.about"></div>
+									</div>
+								</div>
+							</div>
+							<div class="adminSection col-md-6 col-xs-12">
+								<h4>Managed by:</h4>
+								<div class="addItemBtn right10" data-ng-hide="organizer.addOrg" data-ng-click="organizer.addOrg = true; $event.stopPropagation();" ng-if="organizer.isAdmin">
+									<i class="fa fa-plus" aria-hidden="true"></i> Add Organizers
+								</div>
+								<div auto-hide-popup flag="organizer.addOrg" data-ng-show="organizer.addOrg" data-ng-click="$event.stopPropagation();"> 	
+									<div class="addOrgBtnCont">
+										<ui-select multiple ng-model="organizer.selAdmins">
+											<ui-select-match placeholder="Add organizers">{{$item.name}}</ui-select-match>
+											<ui-select-choices repeat="friend in organizer.allfriends | filter: $select.search track by friend.uid">
+												{{friend.name}}
+											</ui-select-choices>
+										</ui-select>
+										<button class="addOrgBtn" type="button" ng-disabled="organizer.confirm.btnDisable" ng-click="organizer.addAdmin()">Add</button>	
+									</div>
+								</div>
+								<div class="cb-col cb-col-100">
+									<div class="row">
+										<div class="cb-col cb-col-100 profListing" ng-repeat="user in organizer.organizer.users">
+											<div class="profPic">
+												<img class="profPicImg" profile-err-src data-ng-src="@@host/uploads/{{::user.uid | imgsize:40}}" title="{{::user.name}}" alt="{{::user.name}}" />
+												<span class="profPicInitials">{{::user.name | initials | uppercase}}</span>
+											</div>
+											<div class="profDetails">
+												<a class="profName" data-ng-href="/profile/{{::user.name | makeHyphen}}-{{::user.uid}}">
+													{{::user.name}}
+												</a>
+												<span class="profBio" data-ng-bind="user.about"></span>
+												<button class="PlayerDel" type="button" ng-disabled="organizer.confirm.btnDisable" ng-click="organizer.removeAdmin($index)" ng-hide="user.uid === organizer.organizer.creator.id || user.uid === organizer.uid || organizer.isAdmin === false"></button>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card section" tab-scroller="">
+						<div class="subtabWrapper">
+							<div class="subtabContainer">
+								<ul class="scrolltabContainer">
+									<li class="subtabStyle scrolltab">Activities</li>
+									<li class="subtabStyle scrolltab">Pics</li>
+								</ul>
+							</div>
+							<div class="fakesubtabContainer"></div>
+						</div>
+						<div class="subtabDataContainer">
+							<div class="scrolltabDataContainer">
+								<div class="scrolltabData">
+									<div class="tournamentSection">
+										<h4>
+											<span>Activities</span>
+											<div class="infoSection" ng-if="organizer.isAdmin">
+												<span customtip class="infoIcon1" title="Create your organization’s activity (any event or tournament) for any sport or fitness. You can update and promote all details about your activity. Page is accessible without registration, so you can share link of your tournament page to your friends or on other social networks and promote it."></span>
+												<!-- <span class="infoContent">Create your organization’s activity (any event or tournament) for any sport or fitness. You can update and promote all details about your activity. Page is accessible without registration, so you can share link of your tournament page to your friends or on other social networks and promote it.</span> -->
+											</div>
+										</h4>
+										<div id="addItemBtn" class="addItemBtn right10" data-toggle="collapse" data-target="#tournamentFormCont" ng-if="organizer.isAdmin">
+											<i class="fa fa-plus" aria-hidden="true"></i> Create Tournament
+										</div>																
+										<form id="tournamentFormCont" class="pageForm collapse" name="tournamentForm" role="form" novalidate ng-submit="tournamentForm.$valid && organizer.checkMobileNo()" accept-charset="UTF-8" style="padding:5px 0;">
+											<div class="pageFormRow">
+												<div class="pageFormCol col-md-6 col-xs-12">
+													<label class="pageFormLbl hideInMobile">Title</label>
+													<input class="col-md-12" ng-class="{submitted:organizer.isFocus.submitted}" type="text" name="tournamentTitle" ng-model="organizer.tournament.title" placeholder="Tournament name" required />
+												</div>
+												<div class="pageFormCol col-md-6 col-xs-12 mobiledd">
+													<label class="pageFormLbl hideInMobile">Select Sport</label>
+													<ui-select class="single" ng-class="{submitted:organizer.isFocus.submitted}" ng-model="organizer.tournament.sport" ng-required="true" on-select="organizer.loadFacilities()">
+														<ui-select-match placeholder="Select sport">{{$select.selected}}</ui-select-match>
+														<ui-select-choices repeat="sport in organizer.allsports | filter: $select.search track by $index">
+															{{sport}}
+														</ui-select-choices>
+													</ui-select>	
+												</div>
+											</div>
+											<div class="pageFormRow">
+												<div class="pageFormCol col-md-6 col-xs-12">
+													<label class="pageFormLbl hideInMobile">Start Date</label>
+													<datepicker datepicker-mobile="true" date-format="dd MMM y" date-set="{{organizer.datetime.startdate.toString()}}">
+														<input class="col-sm-12" ng-class="{invDate:organizer.datetime.invalidDate}" type="text" name="event_startdate" placeholder="Start date" data-ng-model="organizer.datetime.startdate" data-ng-readonly="true" required />
+													</datepicker>
+												</div>
+												<div class="pageFormCol col-md-6 col-xs-12">
+													<label class="pageFormLbl hideInMobile">End Date</label>
+													<datepicker datepicker-mobile="true" date-format="dd MMM y" date-set="{{organizer.datetime.startdate.toString()}}">
+														<input class="col-sm-12" ng-class="{invDate:organizer.datetime.invalidDate}" type="text" name="event_enddate" placeholder="End date" data-ng-model="organizer.datetime.enddate" data-ng-readonly="true" required />
+													</datepicker>
+												</div>
+											</div>
+											<div class="pageFormRow">
+												<div class="pageFormCol col-md-12 col-xs-12">
+													<div class="loginPrivacy inpage">
+														<label ng-class="{'checked':organizer.isFocus.privacy,'submitted':organizer.isFocus.submitted}">
+															<input type="checkbox" name="checkbox" value="check" id="agree" ng-model="organizer.isFocus.privacy" ng-required="true" />
+														</label> I have read and understood <a href="/privacy.html" target="_blank">Privacy Policy</a>
+													</div>
+												</div>
+											</div>
+											<div class="pageFormCol formTournamentBtn col-md-12 col-xs-12" ng-hide="organizer.confirm.userMobile == false">											
+												<button class="pageFormBtn" type="submit" name="orgSubmit" ng-click="organizer.isFocus.submitted = true;">Create</button>
+												<button class="pageFormBtn btnCancel" type="button" name="orgCancel" ng-click="organizer.cancel();" style="margin-right:10px">Cancel</button>
+											</div>
+										</form>
+										<!-- Check for the mobile no -->
+										<div class="cb-col cb-col-100 profListing" ng-if="organizer.confirm.userMobile == false">
+											<div class="cb-col cb-col-51 cb-sm-100" style="color:red;margin-bottom:5px;">
+												Your mobile number is not updated. Please update it here.
+											</div>
+											<div class="cb-col cb-col-49 cb-sm-100">
+												<form class="formValidations" name="addMobileForm" role="form" novalidate ng-submit="addMobileForm.$valid && organizer.addMobileNo()">
+													<input class="addOrgInput" ng-class="{submitted:organizer.confirm.addMobile}" type="number" ng-minlength="10" ng-maxlength="10" name="mobile" ng-model="organizer.confirm.mobileno" placeholder="Mobile number" required />
+													<input class="addOrgBtn" type="submit" value="Add" ng-disabled="organizer.confirm.btnDisable" ng-click="organizer.confirm.addMobile = true"></input>
+												</form>
+											</div>
+										</div>
+										<!-- Tournament listing -->
+										<div class="col-md-12 nodataContainer" ng-if="!organizer.organizer.tournaments.length">
+											No tournaments available here.
+										</div>
+										<div class="col-md-6" ng-repeat="tournament in organizer.organizer.tournaments | orderBy:'-startdate'">
+											<div class="card">
+												<div class="dheader">
+													<p class="thmb"><img data-ng-src="@@host/images/org/{{organizer.organizer._id | imagefilter:80}}?{{organizer.confirm.imgRefreshTime}}" title="{{::organizer.organizer.title}}" alt="" /></p>
+													<p class="ttitle">
+														<a data-ng-href="/organization.html?orgId={{organizer.organizer._id}}">
+															<span class="ename">{{organizer.organizer.title}}</span>
+														</a> presents 
+														<a data-ng-href="/tournament.html?orgId={{organizer.organizer._id}}&tid={{tournament.id}}">
+															<span>{{::tournament.title}}</span>
+														</a>
+													</p>
+													<span class="d-box-loc">{{tournament.startdate| date:"dd-MMM-yyyy"}} - {{tournament.enddate| date:"dd-MMM-yyyy"}}</span>
+													<span class="articleTag">Tournament</span>
+												</div>
+												<div class="homboxImg">
+													<a data-ng-href="/tournament.html?orgId={{organizer.organizer._id}}&tid={{tournament.id}}">
+														<img data-ng-src="@@host/tour/{{tournament.id | imagefilter:404}}?{{organizer.confirm.imgRefreshTime}}" title="{{::tournament.title}}" alt="" />
+													</a>	
+												</div>
+											</div>	
+										</div>
+									</div>
+								</div>
+								<div class="scrolltabData">
+									<div class="gallerySection" id="gallerySection">
+										<h4>Pics</h4>
+										<div class="addItemBtn right10" ng-if="organizer.isAdmin">
+											<i class="fa fa-plus" aria-hidden="true"></i> Upload Images
+											<input class="uploadImgBtn" type="file" multiple onchange="angular.element(this).scope().organizer.uploadImages(this.files)" />
+										</div>
+										<div class="gallery">			
+											<div class="col-md-12" ng-if="organizer.organizer.gallery.length == 0">
+												No images available here.
+											</div>
+											<div id="lightgallery" class="lightgallery">
+												<a class="galleryItem" lightgallery ng-repeat="gal in organizer.organizer.gallery | orderBy:reverse:true" ng-href="@@host/posts/{{gal.id | imgsize}}">
+													<i class="fa fa-times-circle closeBtn" ng-hide="organizer.confirm.removeImg[$index]" ng-click="$event.stopPropagation();$event.preventDefault();organizer.confirm.removeImg = null;organizer.confirm.removeImg[$index] = true;"></i>
+													<div class="cb-col cb-col-65 profListing closeBtnOptions" ng-show="organizer.confirm.removeImg[$index]">
+														<button class="stdBtn scoreBtn cb-col-100 confirmBtn" type="submit" ng-click="organizer.removeImage($event, gal.id);">Confirm</button>
+														<button class="stdBtn scoreBtn cb-col-100" type="button" ng-click="$event.stopPropagation();$event.preventDefault();organizer.confirm.removeImg = false;">Cancel</button>
+													</div>
+													<img class="img-responsive" ng-src="@@host/posts/{{gal.id | imgsize:206 }}" ng-class="{'removeImg':organizer.confirm.removeImg[$index]}" />
+												</a>				
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>
+                </div>		
+                <div class="col-md-4">
+                    <!-- Right Panel -->
+                    @@include('rightpanel.html')
+                    <!-- <div class="card col-md-12">Sponsers</div> -->
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/lib/lightgallery.min.js"></script>
+        <script type="text/javascript" src="js/lib/lg-thumbnail.min.js"></script>
+        <script type="text/javascript" src="js/lib/lg-fullscreen.min.js"></script>
+        <script type="text/javascript" src="script/main.js"></script>
+    </body>
+</html>

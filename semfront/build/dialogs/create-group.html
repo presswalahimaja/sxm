@@ -1,0 +1,42 @@
+<h3>Create Team</h3>
+<div id="Event" class="modal-body clearfix formContainer" ng-controller="createGroup as createGrp">
+    <form class="form-horizontal col-sm-12 formValidations" name="createGrpForm" role="form" novalidate ng-submit="createGrpForm.$valid && createGrp.createGroup()">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="Title" class="col-sm-12 control-label" >Team Name</label>
+                <input class="col-sm-12" ng-class="{submitted:createGrp.isFocus.submitted}" auto-focus type="text" placeholder="Team Name" name="group_name" data-ng-model="createGrp.grpName" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 mobiledd">
+				<label for="Friends" class="col-sm-12 control-label">Friends</label>
+                <ui-select multiple ng-model="createGrp.selectedFrds">
+                    <ui-select-match placeholder="Invite friends...">{{ $item.name}}</ui-select-match>
+                    <ui-select-choices repeat="myFrnd in createGrp.myFriends | filter: $select.search">
+                        {{myFrnd.name}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="City" class="col-sm-12 control-label">City</label>
+                <select id="ddlLocations" class="col-sm-12" ng-class="{submitted:createGrp.isFocus.submitted}" name="ddlLocations" data-ng-model="createGrp.selLocations" required >
+                    <option data-ng-repeat="city in createGrp.myLocations" ng-selected="{{city == createGrp.selLocations}}" value="{{::city}}">{{::city}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="Sport" class="col-sm-12 control-label">Sport</label>
+                <select id="ddlCities" class="col-sm-12" ng-class="{submitted:createGrp.isFocus.submitted}" name="ddlCities" data-ng-model="createGrp.selSports" required >
+                    <option data-ng-repeat="sport in createGrp.sports" ng-selected="{{sport == createGrp.selSports}}" value="{{::sport}}">{{::sport}}</option>
+                </select>
+            </div>	
+        </div>
+        <div class="modal-footer">
+            <input  id="btnCreateEvent" class="btn btnSubmit" type="submit" value="Create" name="btnCreateEvent" ng-click="createGrp.isFocus.submitted = true" />
+            <button id="btnCancelEvent" class="btn btnCancel" ng-click="createGrp.cancel();createGrpForm.$valid = false;">Cancel</button>
+        </div>
+    </form>
+</div>

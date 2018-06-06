@@ -1,0 +1,119 @@
+<h3>Create Individual Match</h3>
+<div class="modal-body clearfix formContainer" ng-controller="CreateIndividualMatchController as ctrl">
+	<form class="form-horizontal col-md-12 formValidations" name="CreateIndividualMatchForm" role="form" novalidate ng-submit="CreateIndividualMatchForm.$valid && ctrl.validDate() && ctrl.createMatch()">
+		<div class="form-group">
+			<div class="col-md-12 col-xs-12">
+				<label class="col-md-12 control-label hideInMobile">Select teams</label>
+			</div>	
+			<div class="col-md-5 col-xs-12 text-center">
+				<ui-select class="single" ng-class="{submitted:ctrl.confirm.submitted}" ng-model="ctrl.match.team1" ng-required="true" on-select="ctrl.listSquad('team1',ctrl.match.team1._id)">
+					<ui-select-match placeholder="Team-1">{{$select.selected.grpName}}</ui-select-match>
+					<ui-select-choices repeat="group in ctrl.userGroups | filter: $select.search track by $index">
+						{{group.grpName}}
+					</ui-select-choices>
+				</ui-select>
+			</div>
+			<div class="col-md-2 col-xs-12 text-center" style="font-size:13px;">V/S</div>
+			<div class="col-md-5 col-xs-12 text-center">
+				<ui-select class="single" ng-class="{submitted:ctrl.confirm.submitted}" ng-model="ctrl.match.team2" ng-required="true" on-select="ctrl.listSquad('team2',ctrl.match.team2._id)">
+					<ui-select-match placeholder="Team-2">{{$select.selected.grpName}}</ui-select-match>
+					<ui-select-choices repeat="group in ctrl.userGroups | filter: $select.search track by $index">
+						{{group.grpName}}
+					</ui-select-choices>
+				</ui-select>
+			</div>
+		</div>
+		<!-- <div id="Team1">
+			<div class="col-md-12 popupList form-horizontal">
+				<label for="Title" class="col-md-12 control-label">Select team</label>
+				<ul style="float:left;max-height:200px;overflow-y:auto;">
+					<div ng-if="ctrl.userGroups == undefined || ctrl.userGroups.length == 0">
+						User has not created any teams.
+					</div>
+					<li class="popupListItem" style="padding:15px 0 0 30px;min-height:1px;" ng-repeat="group in ctrl.userGroups | orderBy:'grpName' track by $index">
+						<input type="radio" ng-model="player.selected" ng-value="group" style="position:absolute;left:0px;width:16px;height:16px;top:11px;" />
+						<span class="inf-intro" style="color:#333333;" ng-bind="group.grpName"></span>
+					</li>
+				</ul>			
+			</div>
+		</div> -->
+		<div class="col-md-6 col-xs-12">
+			<div class="form-group">
+				<label class="col-md-12 control-label hideInMobile">Date</label>
+				<datepicker datepicker-mobile="true" date-format="dd-MMM-y" date-set="{{ctrl.datetime.date.toString()}}">
+					<input class="col-xs-12 datetime" type="text" name="event_date" placeholder="dd-MMM-yyyy" data-ng-model="ctrl.datetime.date" data-ng-readonly="true" required />
+				</datepicker>
+			</div>
+		</div>
+		<div class="col-md-6 col-xs-12">	
+			<div class="form-group">
+				<label class="col-md-12 control-label hideInMobile">Time</label>
+				<select id="date_hour" class="col-sm-4 col-xs-4 datetime" name="hour" ng-class="{invdate:ctrl.datetime.invalidDate}" data-ng-model="ctrl.datetime.selHour" required>
+					<option data-ng-repeat="hour in ctrl.datetime.hours" ng-selected="{{hour.value == ctrl.datetime.selHour}}" value="{{hour.value}}">{{hour.text}}</option>
+				</select>
+				<select id="date_min"  class="col-sm-4 col-xs-4 datetime" name="minute" ng-class="{invdate:ctrl.datetime.invalidDate}" data-ng-model="ctrl.datetime.selMinute" data-ng-options="min for min in ctrl.datetime.minutes" required></select>
+				<select id="date_mer"  class="col-sm-4 col-xs-4 datetime" name="meridian" ng-class="{invdate:ctrl.datetime.invalidDate}" data-ng-model="ctrl.datetime.selMer" required>
+					<option value="AM">AM</option>
+					<option value="PM">PM</option>
+				</select>
+			</div>
+		</div>
+        <div class="modal-footer">
+            <input id="btnCreateEvent" class="btn btnSubmit" type="submit" value="Create" name="btnCreateTournament" ng-disabled="ctrl.confirm.btnDisable" ng-click="ctrl.confirm.submitted = true" />
+            <button id="btnCancelEvent" class="btn btnCancel" ng-click="ctrl.cancelPopup();CreateIndividualMatchForm.$valid = false;">Cancel</button>
+        </div>
+    </form>
+	<div class="col-md-12 playerListSection" ng-if="ctrl.team1squad != undefined">
+		<div class="popupHeader">{{ctrl.match.team1.grpName}} squad</div>
+		<div class="col-md-12" ng-if="ctrl.team1squad.length == 0">
+			<span>No players in the team.</span>
+		</div>
+		<div class="col-md-12" ng-if="ctrl.team1squad.length > 0">
+			<span ng-repeat="player in ctrl.team1squad | orderBy:'userName' track by player.uid">	
+				<a ng-if="player.uid === ctrl.uid" class="text-blue" href='/profile.html'>{{player.userName}}{{$last ? "" : ", "}}</a>
+				<a ng-if="player.uid !== ctrl.uid" class="text-blue" href='/profile/{{player.userName | makeHyphen}}-{{player.uid}}'>{{player.userName}}{{$last ? "" : ", "}}</a>
+			</span>
+		</div>
+	</div>
+	<div class="col-md-12 playerListSection" ng-if="ctrl.team2squad != undefined">
+		<div class="popupHeader">{{ctrl.match.team2.grpName}} squad</div>
+		<div class="col-md-12" ng-if="ctrl.team2squad.length == 0">
+			<span>No players in the team.</span>
+		</div>
+		<div class="col-md-12" ng-if="ctrl.team2squad.length > 0">
+			<span ng-repeat="player in ctrl.team2squad | orderBy:'userName' track by player.uid">	
+				<a ng-if="player.uid === ctrl.uid" class="text-blue" href='/profile.html'>{{player.userName}}{{$last ? "" : ", "}}</a>
+				<a ng-if="player.uid !== ctrl.uid" class="text-blue" href='/profile/{{player.userName | makeHyphen}}-{{player.uid}}'>{{player.userName}}{{$last ? "" : ", "}}</a>
+			</span>
+		</div>
+	</div>
+	<div class="col-md-12 playerListSection">
+		<div data-toggle="collapse" data-target="#createTeam">
+			<i class="fa fa-plus" aria-hidden="true"></i> <strong>Create Team</strong>
+		</div> 
+		<div class="row">
+			@@include('create-team.html')
+		</div>	
+	</div>
+</div>
+<style type="text/css">
+.popupHeader{
+	padding: 4px 10px;
+    color: #333333;
+	background: #d9ecf9;
+	float: left;
+	width: 100%;
+	margin: 0 0 5px 0;
+}
+.playerListSection{
+	font-size: 13px;
+    line-height: 17px;
+    margin: 0 0 10px 0;
+}
+.btn, .pageForm .pageFormBtn{
+	font-size: 13px !important;
+}
+.addItemBtn{
+	height: 30px;
+}
+</style>

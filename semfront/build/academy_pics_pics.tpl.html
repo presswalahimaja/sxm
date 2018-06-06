@@ -1,0 +1,22 @@
+<div class="cb-col cb-col-100">
+	<h4>Pics</h4>
+	<div class="addItemBtn right10" data-toggle="collapse" data-target="#uploadImages" ng-if="ctrl.academy.isAdmin">
+		<i class="fa fa-plus" aria-hidden="true"></i> Upload Images
+		<input class="uploadImgBtn" type="file" multiple onchange="angular.element(this).scope().ctrl.uploadImages(this.files)" />
+	</div>
+	<div class="cb-col cb-col-100 profListing" ng-if="!ctrl.academy.gallery.length">
+		No images available on this academy.
+	</div>
+	<div class="cb-col cb-col-100 gallery" style="padding-top:10px">			
+		<div id="lightgallery" class="lightgallery">
+			<a class="galleryItem" lightgallery ng-repeat="gal in ctrl.academy.gallery | orderBy:reverse:true" ng-href="http://stage.sportsextramile.com/posts/{{gal.id | imgsize}}">
+				<i class="fa fa-times-circle closeBtn" ng-hide="ctrl.confirm.removeImg[$index]" ng-click="$event.stopPropagation();$event.preventDefault();ctrl.confirm.removeImg = null;ctrl.confirm.removeImg[$index] = true;"></i>
+				<div class="cb-col cb-col-65 profListing closeBtnOptions" ng-show="ctrl.confirm.removeImg[$index]">
+					<button class="stdBtn scoreBtn cb-col-100 confirmBtn" type="submit" ng-click="ctrl.removeImage($event, gal.id);">Confirm</button>
+					<button class="stdBtn scoreBtn cb-col-100" type="button" ng-click="$event.stopPropagation();$event.preventDefault();ctrl.confirm.removeImg = false;">Cancel</button>
+				</div>
+				<img class="img-responsive" ng-src="http://stage.sportsextramile.com/posts/{{gal.id | imgsize:206 }}" ng-class="{'removeImg':ctrl.confirm.removeImg[$index]}" />
+			</a>				
+		</div>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+<!-- Result -->
+<div class="cb-col cb-col-100" style="margin:20px auto 0;font-size:42px;width:73%;">
+	<span ng-if="crick.event.result.matchStatus === 'concluded'">
+		{{crick.event.result.winner.name}} won by {{crick.event.result.by}}
+	</span>
+	<span ng-if="crick.event.result.matchStatus === 'abandoned'">
+		Match is abandoned.
+	</span>
+</div>
+<!-- Man of the match -->
+<div class="cb-col cb-col-100" ng-if="crick.event.result.mom" style="margin:10px auto 0;font-size:42px;width:73%;">
+	<span>Man of the match: {{crick.event.result.mom.name}}</span>
+</div>

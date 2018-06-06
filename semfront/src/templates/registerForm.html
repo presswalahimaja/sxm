@@ -1,0 +1,46 @@
+<form name="registerForm" role="form" novalidate ng-submit="registerForm.$valid && main.validateEmail() && main.register()" accept-charset="UTF-8">
+	<div class="formRow">	
+		<div class="formItem loginEmail">
+			<input ng-class="{submitted:main.isFocus.reg_submitted, 'invEmail':main.isFocus.invEmail}" type="text" name="email" ng-model="main.email" placeholder="Email or Mobile" required />
+		</div>
+		<div class="formItem loginPswd">
+			<input ng-class="{submitted:main.isFocus.reg_submitted}" type="password" name="pswd" ng-model="main.pswd" placeholder="Password" ng-focus="main.isFocus.pswd = true" ng-blur="main.isFocus.pswd = false" ng-minlength="6" ng-maxlength="128" required />	
+			<span class="alertMsg" ng-cloak ng-show="registerForm.pswd.$error.minlength && main.isFocus.pswd">Password is too short (6 or more characters) </span>
+		</div>
+	</div>
+	<div class="formRow">
+		<div class="formItem loginFname">
+			<input ng-class="{submitted:main.isFocus.reg_submitted}" type="text" name="fName" ng-model="main.fName" placeholder="First Name" ng-maxlength="128" required />
+		</div>
+		<div class="formItem loginLname">
+			<input ng-class="{submitted:main.isFocus.reg_submitted}" type="text" name="lName" ng-model="main.lName" placeholder="Last Name" ng-maxlength="128" required />
+		</div>                                        
+	</div>
+	<div class="formRow">	
+		<div class="formItem loginSports">
+			<ui-select multiple ng-class="{submitted:main.isFocus.reg_submitted}" ng-model="main.sports" ng-required="true">
+				<ui-select-match placeholder="Select Sports">{{$item.name}}</ui-select-match>
+				<ui-select-choices repeat="sport in main.allsports | filter: $select.search">
+					{{sport.name}}
+				</ui-select-choices>
+			</ui-select>
+		</div>
+		<div class="formItem loginLoc">
+			<ui-select multiple ng-class="{submitted:main.isFocus.reg_submitted}" ng-model="main.userCities" ng-required="true">
+				<ui-select-match placeholder="Select Locations">{{$item}}</ui-select-match>
+				<ui-select-choices repeat="city in main.filterObjArray(main.allcities, 'City') | filter: $select.search track by $index">
+					{{city}}
+				</ui-select-choices>
+			</ui-select>
+		</div>
+		<div class="formItem loginPrivacy">
+			<label ng-class="{'checked':main.isFocus.privacy,'submitted':main.isFocus.reg_submitted}">
+				<input type="checkbox" name="checkbox" value="check" id="agree" ng-model="main.isFocus.privacy" ng-required="true" />
+			</label> I have read and understood <a href="/privacy.html" target="_blank">Privacy Policy</a>
+		</div>
+		<div class="formItem regError" ng-if="main.isFocus.register">User already exists. Retireve your password by clicking <a href="" ng-click="main.openForgotPassword()">here</a></div>
+	</div>	
+	<div class="formItem loginBtn">
+		<input class="formBtn" type="submit" name="op" value="SIGN-UP" ng-click="main.isFocus.reg_submitted = true;main.isFocus.login_submitted = false;main.clearLogin();" />
+	</div>
+</form>

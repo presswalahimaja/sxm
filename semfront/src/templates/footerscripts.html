@@ -1,0 +1,100 @@
+@@if (doConcat === 1) {
+@@loop('scripts.html', [ 
+{ "file": "extras.js"}
+]) 
+}
+@@if (doConcat !== 1) {
+@@loop('scripts.html', [ 
+{ "file": "/lib/jquery1.12.2.js"}, 
+{ "file": "/lib/bootstrap.min.js"}, 
+{ "file": "/lib/jquery.easing.min.1.3.js"},
+{ "file": "/lib/jquery-slim-scroll.js"}
+])
+}
+<script>
+    $(document).ready(function () {
+        $('.discussion-list').slimScroll({
+            position: 'right',
+            height: '180px',
+            railVisible: true,
+            alwaysVisible: true
+        });
+        $('.fri-container ul').slimScroll({
+            position: 'right',
+            height: '270px',
+            railVisible: true,
+            alwaysVisible: true
+        });
+
+    });
+
+    $(document).ready(function () {
+        $("#user-block li.mobo-search").on("click", function (e) {
+            $(this).parent().parent().addClass("open");
+			$(".headerSearch").addClass("open");
+        });
+
+        $(".quick-links .mobo-cls").on("click", function (e) {
+            $(this).parent().removeClass("open");
+			$(".headerSearch").removeClass("open");
+        });
+	
+        $('.event-pop > li').hover(function () {
+            $(this).addClass('open');
+        }, function () {
+            $(this).removeClass('open');
+        });
+		
+		$(".menuBtnMobi").on("click", function(e){
+			$(this).parent().toggleClass("open");
+		});
+	
+		// Login page tabs
+		var selTab = '';
+		var isopen = false;
+		$('.slideMenuBtn').on('click', function(e){
+			e.preventDefault();
+			var tabItem = $(this).attr('data-tab');
+			$('.slideMenuContent').removeClass('current');
+			$("#"+tabItem+'_tab.slideMenuContent').addClass('current');	
+			$(this).parent().parent(".menuMobi").toggleClass("open");
+		});
+	
+        $(".tgl a").on("click", function (e) {
+            $(".right-panel").toggleClass("open");
+        });
+
+    });
+
+$(document).mouseup(function (e)
+{
+	var container = $(".headerSearch");
+
+	if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+	{
+		container.parent().removeClass("open");
+	}
+});
+$(document).mouseup(function (e)
+{
+	var container = $(".menuMobi");
+
+	if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+	{
+		container.removeClass("open");
+	}
+});
+$(document).mouseup(function (e)
+{
+	var container = $(".right-panel");
+
+	if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+	{
+		container.removeClass("open");
+	}
+});
+
+</script>

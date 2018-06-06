@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+    <head>
+        <title>Cricket Scorecard - Sports Extra Mile</title>
+        <meta charset="utf-8" /> @@include('gtmhead.html')
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description" />
+        <meta content="Sports Extra Mile" property="og:site_name" />
+        <meta content="website" property="og:type" />
+        <meta content="https://www.sportsextramile.com/" property="og:url" />
+        <meta content="https://www.sportsextramile.com/img/og.png" property="og:image" />
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" /> 
+        @@include('footerscripts.html')
+
+        @@if (doConcat === 1) { 
+        @@loop('css.html', [ 
+        { "file": "common.css"}, 
+        { "file": "sxm-common.css"} 
+        ]) 
+        } 
+        @@if (doConcat !== 1) { 
+        @@loop('css.html', [ 
+        { "file": "bootstrap.min.css"}, 
+        { "file": "xeditable.min.css"}, 
+        { "file": "ngdialog.css"}, 
+        { "file": "ngDialog-theme-default.css"}, 
+        { "file": "login.css"}, 
+        { "file": "facilities.css"}, 
+        { "file": "profile.css"}, 
+        { "file": "detail.css"}, 
+        { "file": "style.css"}, 
+        { "file": "static.css"}, 
+        { "file": "select.css"}, 
+        { "file": "events-cricket-admin1.css"}
+        ]) 
+        } 
+        @@if (doConcat === 1) 
+        { @@loop('scripts.html', [ 
+        { "file": "angular.js"}, 
+        { "file": "sxm-common.js"} ]) 
+        } 
+        @@if (doConcat !== 1) 
+        { 
+        @@loop('scripts.html', [ 
+        { "file": "lib/angular1.4.5.min.js"}, 
+        { "file": "lib/xeditable-0.2.0.js"}, 
+        { "file": "lib/angular-datepicker.js"},
+		{ "file": "lib/angular-youtube-embed.min.js"},
+        { "file": "lib/textAngular-rangy.min.js"}, 
+        { "file": "lib/textAngular-sanitize.min.js"}, 
+        { "file": "lib/textAngular.min.js"}, 
+        { "file": "lib/select.min.js"}, 
+        { "file": "lib/ngdialog.js"}, 
+        { "file": "shared.js"}, 
+        { "file": "anghome.js"}, 
+        { "file": "login.js"},
+        { "file": "user.js"}, 
+        { "file": "header.js"} 
+        ]) 
+        }
+        <script src="/js/sports/Cricket.js"></script>
+        <script src="/js/events-cricket-admin1.js"></script>
+    </head>
+    <body ng-controller="CricketMaster as crick" ng-cloak ng-class="{'disableRefresh': crick.confirm.isOffline}">
+        @@include('gtmbody.html')
+        <!-- header -->
+        @@include('header.html')
+		<custom-dialog dialog-msg="{{crick.confirm.dialogMsg}}" dialog-show="crick.confirm.dialogShow" handler="crick.dialogHandler()"></custom-dialog>
+		<div class="container">
+            <div class="row content scorecardadmin">
+                <!-- Left Panel -->
+                <div class="col-md-8 myPageContent">
+					<!-- Match Toss details -->
+					<div class="matchStateSection">
+						<div class="card showInMobile">
+							<h4 class="col-xs-12 snapdownTitle" style="margin:0;">
+								{{::crick.event.participants[0].name}} vs {{::crick.event.participants[1].name}}
+								<span class="snapdownArrow" style="display:none;"></span>
+							</h4>
+						</div>
+						<div class="row">							
+							<div id="topSection" style="float:left;width:100%;">
+								<div class="col-md-6 col-xs-12">
+									<!-- Match summary -->
+									<div class="card A sectionHeight" ng-class="{'withres':crick.scorecard != undefined && crick.event.result != undefined}">
+										<h4 class="hideInMobile">{{::crick.event.participants[0].name}} vs {{::crick.event.participants[1].name}}</h4>
+										<!-- Sharing options - Mobile -->
+										<div class="shareIcons" ng-if="!crick.isMobile" style="bottom:auto;top:40px;right:10px;z-index:1">
+											@@include('share.html')
+										</div>
+										<div class="col-md-12 out" style="padding-top:10px;">
+											<p class="inf-intro"><strong>Date & Time</strong>: {{::crick.event.evtDate| date:"dd-MMM 'at' h:mma"}}</p>
+											<p class="inf-intro" ng-if="crick.event.facility.facName"><strong>Venue</strong>: {{::crick.event.facility.facName}}</p>
+										</div>
+										<div class="col-md-12" style="padding:10px" ng-if="crick.checkRR != '' && crick.prevBatting && crick.matchResult.pName == undefined && !crick.isMobile">
+											<div class="cb-col cb-col-100" ng-bind-html="crick.checkRR"></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-xs-12">
+									<div class="card B sectionHeight" ng-class="{'withres':crick.scorecard != undefined && crick.event.result != undefined}">
+										<!-- Start Match -->
+										<div class="statItem" ng-hide="crick.scid || crick.event.result !== undefined">
+											<div class="col-md-12">
+												<button class="stdBtn" type="button" ng-disabled="crick.confirm.btnDisable" ng-click="crick.startMatch()" style="width:150px;">Start Match</button>
+											</div>
+										</div>
+										<!-- Set Playing 11 and Toss -->
+										<div ng-if="crick.scid && crick.scorecard === undefined && crick.event.result === undefined">
+											<div class="col-md-12" ng-show="crick.confirm.setPlaying11Flag">
+												<div class="statItem">
+													<span class="cb-col cb-col-100">Do you want to set 11 players?</span>
+													<button class="stdBtn" type="button" ng-click="crick.openPlayingElevenPopupInit()" style="margin:5px 10px 0 0;">Yes</button>
+													<button class="stdBtn" type="button" ng-click="crick.setDefaultSquad()" style="margin:5px 0 0 0;">Skip</button>	
+												</div>
+											</div>
+											<div class="col-md-12" ng-if="!crick.confirm.setPlaying11Flag">
+												<div class="statItem" ng-if="crick.event.toss">
+													<span class="statLabel cb-col cb-col-20 cb-sm-25">Toss:</span>
+													<span class="statLabel cb-col cb-col-80 cb-sm-75" ng-show="crick.scorecard !== undefined" ng-bind="crick.event.toss.name"></span>
+													<span class="cb-col cb-col-60 cb-sm-75" ng-show="crick.scorecard === undefined">
+														<select class="stdSelect" ng-model="crick.event.toss.pid">
+															<option ng-repeat="pl in crick.event.participants" value="{{pl.pid}}" ng-selected="pl.pid == crick.event.toss.pid">{{pl.name}}</option>
+														</select>
+													</span>
+												</div>
+												<div class="statItem" ng-if="crick.event.toss.pid != undefined">
+													<span class="statLabel cb-col cb-col-20 cb-sm-25">Decision:</span>
+													<span class="statLabel cb-col cb-col-80 cb-sm-75" ng-show="crick.scorecard !== undefined" ng-bind="crick.event.toss.decision"></span>
+													<span class="cb-col cb-col-60 cb-sm-75" ng-show="crick.scorecard === undefined">
+														<select class="stdSelect" ng-model="crick.event.toss.decision" ng-change="crick.setToss()">
+															<option value="Bat">Bat</option>
+															<option value="Bowl">Bowl</option>
+														</select>
+													</span>
+												</div>
+												<!-- Set Overs & Wickets-->
+												<div ng-if="crick.event.toss.pid != undefined && crick.event.toss.decision != undefined">
+													<form class="formValidations" name="setMatchInfoForm" role="form" novalidate ng-submit="setMatchInfoForm.$valid && crick.setMatchInfo()">
+														<div class="statItem">
+															<span class="statLabel cb-col cb-col-20 cb-sm-25">Overs:</span>
+															<span class="cb-col cb-col-60 cb-sm-75">
+																<input class="addOrgInput" ng-class="{submitted:crick.confirm.matchInfoSubmit}" type="text" name="matchOvers" ng-model="crick.event.overs" placeholder="Enter Overs properly" required />
+															</span>
+														</div>
+														<div class="statItem">
+															<span class="statLabel cb-col cb-col-20 cb-sm-25">Players:</span>
+															<span class="cb-col cb-col-60 cb-sm-75">
+																<input class="addOrgInput" ng-class="{submitted:crick.confirm.matchInfoSubmit}" type="text" name="matchWickets" ng-model="crick.event.wickets" placeholder="Enter Players properly" required />
+															</span>
+														</div>
+														<div class="statItem">
+															<input class="stdBtn" type="submit" value="Start Innings" ng-click="crick.confirm.matchInfoSubmit = true" style="width:150px;"></input>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+										<!-- Toss summary -->
+										<div class="statItem" ng-if="crick.scorecard != undefined">
+											<div class="col-md-12">
+												<p class="inf-intro">
+													<strong>{{crick.event.toss.name}}</strong> won the toss and elected to <strong>{{crick.event.toss.decision}}</strong> first. <strong>{{crick.event.overs}}</strong> overs per side.
+												</p>
+											</div>
+										</div>
+										<!-- Result summary -->
+										<div class="statItem" ng-if="crick.matchResult.matchStatus">
+											<div class="col-md-12">	
+												<p class="inf-intro">													
+													<span ng-if="crick.matchResult.matchStatus === 'abandoned'">Match is cancelled.</span>
+													<span ng-if="crick.matchResult.matchStatus === 'bye'">{{crick.matchResult.pName}} won by {{crick.matchResult.by}}</span>
+													<span ng-if="crick.matchResult.matchStatus === 'concluded'">{{crick.matchResult.pName}} won by {{crick.matchResult.by}}</span>
+													<span ng-if="crick.matchResult.matchStatus === 'draw'">{{crick.matchResult.by}}</span>
+												</p>
+											</div>
+										</div>
+										<!-- Finish Match -->
+										<!-- <div class="statItem" ng-if="crick.scorecard != undefined && crick.event.result == undefined">
+											<div class="col-md-12" ng-hide="crick.confirm.hasResult || crick.confirm.resultType">
+												<button class="stdBtn" type="button" ng-click="crick.checkMatchStatus()">Finish Match</button>
+											</div>
+											<span class="col-md-12 inf-intro confirmMsg" ng-if="crick.confirm.resultType === 'abd'">Do you want to continue?</span>
+											<div class="col-md-12" ng-show="crick.confirm.hasResult">
+												<button class="stdBtn btnCancel" type="button" ng-click="crick.cancelFinishMatch()">Cancel</button>
+												<button class="stdBtn" type="button" ng-disabled="crick.confirm.btnDisable" ng-click="crick.saveResult()">Confirm</button>
+											</div>
+											<div class="col-md-12" ng-if="crick.confirm.resultType === 'dl' && !crick.confirm.hasResult">
+												<div ng-if="crick.confirm.dlType == undefined">
+													<span class="inf-intro confirmMsg">Match is not completed, Select DL method to finish match</span>
+													<ui-select class="single" ng-model="crick.confirm.dlType" style="width:258px;" on-select="crick.checkDLType(crick.confirm.dlType)">
+														<ui-select-match placeholder="Select DL Option">{{$select.selected}}</ui-select-match>
+														<ui-select-choices repeat="dl in crick.DLOptions | filter: $select.search track by $index">
+															{{::dl}}
+														</ui-select-choices>
+													</ui-select>
+												</div>
+												<div ng-if="crick.confirm.dlType === 'concluded'">
+												  <form name="dlForm" role="form" novalidate ng-submit="dlForm.$valid && crick.saveDLResult()" accept-charset="UTF-8">
+													<ui-select class="single" ng-class="{submitted: crick.confirm.submitted}" ng-model="crick.confirm.dlWinner" style="width:258px;" on-select="" ng-required="true">
+														<ui-select-match placeholder="Select winning team">{{$select.selected.name}}</ui-select-match>
+														<ui-select-choices repeat="team in crick.allteams | filter: $select.search track by team.id">
+															{{::team.name}}
+														</ui-select-choices>
+													</ui-select>
+													<div style="width:100%;float:left;margin:5px 0;">
+														<span class="inf-intro" style="float:left;width:58px;line-height:27px;">won by</span> 
+														<input class="addOrgInput" ng-class="{submitted: crick.confirm.submitted}" type="text" ng-model="crick.confirm.dlRun" placeholder="Runs" style="width:80px;margin:0 10px 0 0;" required />
+														<span class="inf-intro" style="float:left;width:58px;line-height:27px;">Runs</span>
+													</div>
+													<button class="stdBtn btnCancel" type="button" ng-click="crick.cancelFinishMatch()">Cancel</button>
+													<button class="stdBtn" type="submit" ng-disabled="crick.confirm.btnDisable" name="dlFormSubmit" ng-click="crick.confirm.submitted = true">Confirm</button>
+												  </form>
+												</div>	
+											</div>
+										</div> -->
+										<!-- Man of the Match -->
+										<div class="statItem" ng-if="crick.scorecard != undefined && crick.event.result != undefined && crick.event.result.matchStatus != 'abandoned' && crick.event.result.matchStatus != 'bye'">
+											<div class="col-md-12 mobiledd">
+												<strong style="font-size:14px;line-height:26px;padding-right:5px;float:left;">Man of the Match: </strong>
+												<!-- <a href="/profile/{{crick.mom.userName| makeHyphen}}-{{crick.mom.uid}}" ng-if="crick.event.result && crick.event.result.mom" style="line-height:26px;float:left;">{{crick.mom.userName}}</a> -->
+												<ui-select class="single momDropdown" ng-model="crick.mom" on-select="crick.confirm.momFlag = true">
+													<ui-select-match placeholder="Select player">{{$select.selected.userName}}</ui-select-match>
+													<ui-select-choices group-by="crick.groupTeamMembers" repeat="pl in crick.allplayers | orderBy:'userName' | filter: $select.search track by pl.uid">
+														{{::pl.userName}}
+													</ui-select-choices>
+												</ui-select>
+											</div>
+											<div class="col-md-12" ng-show="crick.confirm.momFlag" style="padding:10px;">
+												<button class="stdBtn btnCancel" type="button" ng-click="crick.confirm.momFlag = false">Cancel</button>
+												<button class="stdBtn" type="button" ng-disabled="crick.confirm.btnDisable" ng-click="crick.saveMoM()">Confirm</button>
+											</div>
+										</div>
+										<!-- Update user stats -->
+										<div class="statItem" ng-if="crick.scorecard != undefined &&  crick.event.result != undefined && crick.event.result.matchStatus != 'abandoned' && crick.event.result.matchStatus != 'bye'">
+											<div class="col-md-12" ng-if="crick.event.score.isFinished != undefined">
+												User Stats updated.
+											</div>
+											<div class="col-md-12" ng-if="crick.event.score.isFinished == undefined">
+												<div ng-hide="crick.confirm.usFlag">
+													<button class="stdBtn" type="button" ng-click="crick.confirm.usFlag = true" style="width:161px;">Update User Stats</button>
+												</div>
+												<div ng-show="crick.confirm.usFlag">
+													<button class="stdBtn btnCancel" type="button" ng-click="crick.confirm.usFlag = false">Cancel</button>
+													<button class="stdBtn" type="button" ng-disabled="crick.confirm.btnDisable" ng-click="crick.updateUserStats()">Confirm</button>
+												</div>
+											</div>	
+										</div>
+										<!-- Update points table -->
+										<div class="statItem" ng-if="crick.event.result != undefined">
+											<div class="col-md-12" ng-if="crick.event.isPointsTableUpdated != undefined">
+												Points table updated.
+											</div>
+											<div class="col-md-12" ng-if="crick.event.isPointsTableUpdated == undefined">
+												<div ng-hide="crick.confirm.ptFlag">
+													<button class="stdBtn" type="button" ng-click="crick.confirm.ptFlag = true">Update Points Table</button>
+												</div>
+												<div ng-show="crick.confirm.ptFlag">
+													<button class="stdBtn btnCancel" type="button" ng-click="crick.confirm.ptFlag = false">Cancel</button>
+													<button class="stdBtn" type="button" ng-disabled="crick.confirm.btnDisable" ng-click="crick.updatePointsTable()">Confirm</button>
+												</div>
+											</div>											
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-if="crick.showInnings && crick.scorecard == undefined">
+						<div class="card">
+							<div class="col-md-12" style="padding:10px;">
+								<strong>{{crick.event.toss.name}}</strong> won the toss and elected to <strong>{{crick.event.toss.decision}}</strong> first. <strong>{{crick.event.overs}}</strong> overs per side.
+							</div>
+							<div class="col-md-12" style="padding:5px 10px 10px;float:left;">
+								<button class="stdBtn" type="button" ng-click="crick.showInnBtn = true;crick.showInnings = false;" style="margin-right:10px">Change</button>
+								<button class="stdBtn" type="button" ng-click="crick.startInnings()">Confirm</button>
+							</div>
+						</div>
+					</div>
+					<div class="card section level2Tabs" tab-scroller="" ng-init="crick.confirm.scoreBtnFlag = true;">
+						<div class="subtabWrapper">
+							<div class="subtabContainer">
+								<ul class="scrolltabContainer">
+									<li class="subtabStyle scrolltab" ng-click="crick.confirm.scoreBtnFlag = true;">Scoring</li>
+									<li class="subtabStyle scrolltab" ng-click="crick.confirm.scoreBtnFlag = false;">Scorecard</li>
+									<li class="subtabStyle scrolltab" ng-click="crick.confirm.scoreBtnFlag = false;">Details</li>
+									<li class="subtabStyle scrolltab" ng-click="crick.confirm.scoreBtnFlag = false;">Runs Per Over</li>
+								</ul>
+							</div>
+							<div class="fakesubtabContainer"></div>
+						</div>
+						<div class="subtabDataContainer">
+							<div class="scrolltabDataContainer">
+								<div class="scrolltabData">
+									<!-- Match not started -->
+									<div ng-if="crick.scorecard === undefined && crick.event.result === undefined" style="padding:10px">
+										The scorecard will appear once the match starts.
+									</div>
+									<!-- Match is abandoned/bye/draw -->
+									<div ng-if="crick.scorecard === undefined && crick.event.result !== undefined" style="padding:10px">
+										<span ng-if="crick.event.result.matchStatus === 'abandoned'">Match is cancelled.</span>
+										<span ng-if="crick.event.result.matchStatus === 'bye'">{{crick.event.result.winner.name}} won by {{crick.event.result.by}}</span>
+										<span ng-if="crick.event.result.matchStatus === 'draw'">{{crick.event.result.by}}</span>
+									</div>
+									<!-- Match scorecard -->
+									<div ng-if="crick.scorecard !== undefined && crick.event.result === undefined">
+										<div class="tab-section" ng-if="crick.currBatting != null">
+											<!-- Current Inning -->
+											<div class="inningcard scoringTab">
+												<h4>{{crick.currBatting.name}} Inning
+													<div style="float:right;">{{crick.currBatting.score}}-{{crick.currBatting.W}} ({{crick.currBatting.overs}}.{{crick.currBatting.balls}}) ({{crick.currBatting.id == crick.scorecard.innings[0].id ? crick.team1CRR : crick.team2CRR}})</div>
+												</h4>
+												<div class="tab-section">
+													<!-- Batting -->
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+														<div class="cb-col cb-col-20">Batsman</div>
+														<div class="cb-col cb-col-38">
+															<!-- Add new batsman -->
+															<a ng-show="crick.currBatting.batting.length < crick.teams[crick.batIndex].players.length && crick.currBattingPlayer.length < 2" ng-click="crick.selectPlayer(crick.teams[crick.batIndex].players, crick.currBatting.id, crick.teams[crick.batIndex].id)" href="javascript:void(0);" class="standardbtn addbtn">Add Batsman</a>
+														</div>
+														<div class="cb-col cb-col-8 text-right">R</div>
+														<div class="cb-col cb-col-8 text-right">B</div>
+														<div class="cb-col cb-col-8 text-right">4s</div>
+														<div class="cb-col cb-col-8 text-right">6s</div>
+														<div class="cb-col cb-col-10 text-right">SR</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batsman in crick.currBatting.batting track by batsman.id" ng-if="batsman.batting">
+														<div class="cb-col cb-col-58 cb-sm-48">
+															<div class="cb-col cb-col-100 mobiledd">
+																<input class="strikeBtn" type="radio" name="strike" data-ng-model="crick.strikeIndex" data-ng-value="$index" ng-click="crick.setStrike($index)" ng-if="batsman.batting">
+																<span class="cb-text-link" ng-class="{'plOnStrike': batsman.batting}" ng-bind="batsman.name" ng-if="batsman.balls !== 0"></span>
+																<span class="cb-text-link" ng-class="{'plOnStrike': batsman.batting}" ng-bind="batsman.name" ng-if="batsman.balls === 0" ng-click="crick.selectPlayer(crick.teams[crick.batIndex].players, crick.currBatting.id, crick.teams[crick.batIndex].id, true, $index, batsman)"></span>
+															</div>
+															<!-- <div class="cb-col cb-col-40">
+																<span class="text-gray" ng-if="batsman.batting">Batting</span>
+															</div> -->
+														</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{batsman.total}}</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{batsman.balls}}</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{batsman.four}}</div>
+														<div class="cb-col cb-col-8	text-right text-gray">{{batsman.sixes}}</div>
+														<div class="cb-col cb-col-10 text-right text-gray">{{crick.isMobile ? (batsman.SR | number:0) : batsman.SR}}</div>
+													</div>
+													<!-- Extra Runs -->
+													<div class="cb-col cb-col-100 cb-scrd-itms Extra">
+														<div class="cb-col cb-col-58 cb-sm-48 cb-xs-20 text-gray cap">Extras </div>
+														<div class="cb-col cb-col-8 cb-sm-13 cb-xs-15 text-right text-bold fig">{{crick.currBatting.extras.runs}}</div>
+														<div class="cb-col cb-col-34 cb-sm-39 cb-xs-65 text-gray br">&nbsp;(b {{crick.currBatting.extras.b}}, lb {{crick.currBatting.extras.lb}}, w {{crick.currBatting.extras.wd}}, nb {{crick.currBatting.extras.nb}}, p {{crick.currBatting.extras.p}})</div>
+													</div>													
+													<!-- Current Partnership -->
+													<div class="cb-col cb-col-100 cb-scrd-itms">
+														<span>Partnership:</span>
+														<span ng-if="crick.currBatting.FOW.length == 0"><span ng-bind="crick.currBatting.score"></span><!-- (<span ng-bind="crick.currInningOverMap.length*6 + crick.currInningCurrOver.length"></span>) --></span>
+														<span ng-if="crick.currBatting.FOW.length >  0"><span ng-bind="crick.currBatting.score - crick.currBatting.FOW[crick.currBatting.FOW.length - 1].at"></span><!-- (<span ng-bind="crick.currInningOvers*6 + crick.currInningBalls - crick.overToBalls(crick.currInningFOW[crick.currInningFOW.length-1].overs)"></span>) --></span>
+													</div>													
+													<!-- Total Runs -->
+													<!-- <div class="cb-col cb-col-100 cb-scrd-itms Extra">
+														<div class="cb-col cb-col-58 cb-sm-48 cb-xs-20 text-gray cap">Total </div>
+														<div class="cb-col cb-col-8 cb-sm-13 cb-xs-15 text-right text-bold fig">{{crick.currBatting.score}}</div>
+														<div class="cb-col cb-col-34 cb-sm-39 cb-xs-65 text-gray br">&nbsp;({{crick.currBatting.W}} wkts, {{crick.currBatting.overs}}.{{crick.currBatting.balls}} Overs)</div>
+													</div> -->
+													<!-- Bowlers -->
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+														<div class="cb-col cb-col-14">Bowler</div>
+														<div class="cb-col cb-col-29">
+															<!-- Add new bowler -->
+															<!-- <a ng-show="crick.currBowling.bowling.length < crick.teams[crick.bowlIndex].players.length" ng-click="crick.selectPlayer(crick.teams[crick.bowlIndex].players, 'bowler', crick.currBowling.id, crick.teams[crick.bowlIndex].id)" href="javascript:void(0);" class="standardbtn">Add Bowler</a> -->
+															<a ng-show="crick.currBowling.bowling.length < crick.teams[crick.bowlIndex].players.length" ng-click="crick.selectBowler(crick.teams[crick.bowlIndex].players, crick.currBowling.id, crick.teams[crick.bowlIndex].id)" href="javascript:void(0);" class="standardbtn addbtn">{{crick.currBowling.bowling.length > 0 ? "Change" : "Add Bowler"}}</a>
+														</div>
+														<div class="cb-col cb-col-8 text-right">O</div>
+														<div class="cb-col cb-col-8 text-right">M</div>
+														<div class="cb-col cb-col-8 text-right">R</div>
+														<div class="cb-col cb-col-8 text-right">{{crick.isMobile ? "W" : "Wkt"}}</div>
+														<div class="cb-col cb-col-8 text-right">wd</div>
+														<div class="cb-col cb-col-8 text-right">nb</div>
+														<div class="cb-col cb-col-9 text-right">{{crick.isMobile ? "E" : "Eco"}}</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-if="crick.bowlerStrikeIndex != null" style="border-bottom:none;">
+														<div class="cb-col cb-col-43 mobiledd">
+															<input class="strikeBtn" type="radio" name="strikeBall" data-ng-model="crick.bowlerStrikeIndex" data-ng-value="crick.bowlerStrikeIndex">
+															<span class="cb-text-link plOnStrike" ng-bind="crick.currBowling.bowling[crick.bowlerStrikeIndex].name"></span>
+														</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{crick.currBowling.bowling[crick.bowlerStrikeIndex].over_count}}.{{crick.currBowling.bowling[crick.bowlerStrikeIndex].balls}}</div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.bowlerStrikeIndex].maiden"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.bowlerStrikeIndex].runs"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.bowlerStrikeIndex].wicket"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.bowlerStrikeIndex].WD"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.bowlerStrikeIndex].NB"></div>
+														<div class="cb-col cb-col-9 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.bowlerStrikeIndex].Eco"></div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-if="crick.bowlerStrikeIndex === null && crick.lastBowlerStrikeIndex !== null" style="border-bottom:none;">
+														<div class="cb-col cb-col-43 mobiledd">
+															<input class="strikeBtn" type="radio" name="strikeBall" data-ng-model="crick.bowlerStrikeIndex" data-ng-value="crick.lastBowlerStrikeIndex">
+															<span class="cb-text-link plOnStrike" ng-bind="crick.currBowling.bowling[crick.lastBowlerStrikeIndex].name"></span>
+														</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{crick.currBowling.bowling[crick.lastBowlerStrikeIndex].over_count}}.{{crick.currBowling.bowling[crick.lastBowlerStrikeIndex].balls}}</div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.lastBowlerStrikeIndex].maiden"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.lastBowlerStrikeIndex].runs"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.lastBowlerStrikeIndex].wicket"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.lastBowlerStrikeIndex].WD"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.lastBowlerStrikeIndex].NB"></div>
+														<div class="cb-col cb-col-9 text-right text-gray" ng-bind="crick.currBowling.bowling[crick.lastBowlerStrikeIndex].Eco"></div>
+													</div>
+												</div>
+											</div>
+											<!-- Current overmap and Undo -->
+											<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+												<div class="cb-col cb-col-80 text-gray">
+													<div class="cb-col cb-col-100 text-gray">
+														<span ng-repeat="ov in crick.currBatting.currOver track by $index">{{ov.a}}{{$last ? '' : ', '}}</span>
+													</div>
+												</div>
+												<div class="cb-col cb-col-20 undo">
+													<button class="stdBtn scoreBtn addbtn" type="button" ng-click="crick.undo()" style="float:right;">Undo</button>
+												</div>
+											</div>											
+										</div>										
+									</div>	
+									<!-- Match result-->
+									<div ng-if="crick.scorecard !== undefined && crick.event.result !== undefined">
+										<div class="headerBlock">
+											<h5>{{::crick.scorecard.innings[0].name}} <span style="float:right">{{crick.scorecard.innings[0].score}}/{{crick.scorecard.innings[0].W}} ({{crick.scorecard.innings[0].overs}}.{{crick.scorecard.innings[0].balls}} Ovs) ({{crick.team1CRR}})</span></h5>
+											<h5>{{::crick.scorecard.innings[1].name}} <span style="float:right">{{crick.scorecard.innings[1].score}}/{{crick.scorecard.innings[1].W}} ({{crick.scorecard.innings[1].overs}}.{{crick.scorecard.innings[1].balls}} Ovs) ({{crick.team2CRR}})</span></h5>
+										</div>
+									</div>
+									<!-- Sharing options - Mobile -->
+									<div class="shareIcons1" ng-if="crick.isMobile">
+										@@include('share.html')
+									</div>
+								</div>
+								<div class="scrolltabData">
+									<!-- Match not started -->
+									<div style="padding:10px" ng-if="crick.scorecard === undefined && crick.event.result === undefined">
+										The scorecard will appear once the match starts.
+									</div>
+									<!-- Match is abandoned/bye/draw -->
+									<div ng-if="crick.scorecard === undefined && crick.event.result !== undefined" style="padding:10px">
+										<span ng-if="crick.event.result.matchStatus === 'abandoned'">Match is cancelled.</span>
+										<span ng-if="crick.event.result.matchStatus === 'bye'">{{crick.event.result.winner.name}} won by {{crick.event.result.by}}</span>
+										<span ng-if="crick.event.result.matchStatus === 'draw'">{{crick.event.result.by}}</span>
+									</div>
+									<!-- Match scorecard -->
+									<div ng-if="crick.scorecard !== undefined">
+										<h4 class="hidden-xs">Scorecards</h4>
+										<div class="tab-section" ng-if="crick.currBatting != null">
+											<!-- Inning 1 -->
+											<div class="inningcard second" ng-show="crick.prevBatting">
+												<h4>{{crick.prevBatting.name}} Inning
+													<div style="float:right;">
+														{{crick.prevBatting.score}}-{{crick.prevBatting.W}} ({{crick.prevBatting.overs}}.{{crick.prevBatting.balls}}) ({{crick.prevBatting.id == crick.scorecard.innings[0].id ? crick.team1CRR : crick.team2CRR}})
+													</div>
+												</h4>
+												<div class="tab-section" style="float:left;width:100%;">
+													<!-- Batting -->
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+														<div class="cb-col cb-col-29">Batsman</div>
+														<div class="cb-col cb-col-29"></div>
+														<div class="cb-col cb-col-8 text-right">R</div>
+														<div class="cb-col cb-col-8 text-right">B</div>
+														<div class="cb-col cb-col-8 text-right">4s</div>
+														<div class="cb-col cb-col-8 text-right">6s</div>
+														<div class="cb-col cb-col-10 text-right">SR</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batsman in crick.prevBatting.batting track by batsman.id">
+														<div class="cb-col cb-col-58 cb-sm-48">
+															<div class="cb-col cb-col-60">
+																<span class="cb-text-link" ng-bind="batsman.name"></span>
+															</div>
+															<div class="cb-col cb-col-40">
+																<span class="text-gray" ng-if="batsman.batting">Not out</span>
+																<span class="text-gray" ng-if="batsman.outObj">
+																	<span ng-if="batsman.outObj.type == 'B'">
+																		Bowled {{batsman.outObj.bowler.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'RT'">
+																		Retired Hurt
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'RR'">
+																		Retired
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'HW'">
+																		Hit Wicket B {{batsman.outObj.bowler.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'CB'">
+																		Caught & Bowled {{batsman.outObj.bowler.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'CF' || batsman.outObj.type == 'CW'">
+																		C {{batsman.outObj.fielder.name}} B {{batsman.outObj.bowler.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'ST'">
+																		St {{batsman.outObj.fielder.name}} B {{batsman.outObj.bowler.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'RO'">
+																		Run Out {{batsman.outObj.fielder.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'LB'">
+																		LBW {{batsman.outObj.bowler.name}}
+																	</span>
+																</span>
+															</div>
+														</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{batsman.total}}</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{batsman.balls}}</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{batsman.four}}</div>
+														<div class="cb-col cb-col-8	text-right text-gray">{{batsman.sixes}}</div>
+														<div class="cb-col cb-col-10 text-right text-gray">{{crick.isMobile ? (batsman.SR | number:0) : batsman.SR}}</div>
+													</div>
+													<!-- Extra Runs -->
+													<div class="cb-col cb-col-100 cb-scrd-itms Extra">
+														<div class="cb-col cb-col-58 cb-sm-48 cb-xs-20 text-gray cap">Extras</div>
+														<div class="cb-col cb-col-8 cb-sm-13 cb-xs-15 text-right text-bold fig">{{crick.prevBatting.extras.runs}}</div>
+														<div class="cb-col cb-col-34 cb-sm-39 cb-xs-65 text-gray br">&nbsp;(b {{crick.prevBatting.extras.b}}, lb {{crick.prevBatting.extras.lb}}, w {{crick.prevBatting.extras.wd}}, nb {{crick.prevBatting.extras.nb}}, p {{crick.prevBatting.extras.p}})</div>
+													</div>
+													<!-- Total Runs -->
+													<div class="cb-col cb-col-100 cb-scrd-itms Extra">
+														<div class="cb-col cb-col-58 cb-sm-48 cb-xs-20 text-gray cap">Total</div>
+														<div class="cb-col cb-col-8 cb-sm-13 cb-xs-15 text-right text-bold fig">{{crick.prevBatting.score}}</div>
+														<div class="cb-col cb-col-34 cb-sm-39 cb-xs-65 text-gray br">&nbsp;({{crick.prevBatting.W}} wkts, {{crick.prevBatting.overs}}.{{crick.prevBatting.balls}} Overs)</div>
+													</div>
+													<!-- Yet to Bat/Did not bat -->
+													<div class="cb-col cb-col-100 cb-scrd-itms ytbRow" ng-if="crick.prevBattingYTB.length > 0">
+														<div class="cb-col cb-col-28 cb-sm-22" style="float:left;line-height:18px;font-size:12px;">Did not Bat</div>
+														<div class="cb-col cb-col-72 cb-sm-78">
+															<span ng-repeat="player in crick.prevBattingYTB track by $index">
+																<span class="cb-text-link" style="line-height:18px;font-size:12px;">{{player.userName}}{{$last ? '' : ', '}}</span>
+															</span>
+														</div>
+													</div>
+													<!-- Fall of Wickets -->
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" ng-if="crick.prevBatting.FOW.length">
+														<div class="cb-col cb-col-100">Fall of Wickets</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-if="crick.prevBatting.FOW.length">
+														<div style="float:left;padding-right:7px;white-space:nowrap;" ng-repeat="fow in crick.prevBatting.FOW track by $index">
+															<span>{{fow.at}}-{{$index + 1}}</span> <span>({{fow.batsman.name}}){{$last ? '' : ', '}}</span>
+														</div>
+													</div>
+													<!-- Bowlers -->
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+														<div class="cb-col cb-col-43">Bowler</div>
+														<div class="cb-col cb-col-8 text-right">O</div>
+														<div class="cb-col cb-col-8 text-right">M</div>
+														<div class="cb-col cb-col-8 text-right">R</div>
+														<div class="cb-col cb-col-8 text-right">{{crick.isMobile ? "W" : "Wkt"}}</div>
+														<div class="cb-col cb-col-8 text-right">wd</div>
+														<div class="cb-col cb-col-8 text-right">nb</div>
+														<div class="cb-col cb-col-9 text-right">{{crick.isMobile ? "E" : "Eco"}}</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="bowler in crick.prevBowling.bowling track by bowler.id">
+														<div class="cb-col cb-col-43">
+															<span class="cb-text-link" ng-bind="bowler.name"></span>
+														</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{bowler.over_count}}.{{bowler.balls}}</div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="bowler.maiden"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="bowler.runs"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="bowler.wicket"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="bowler.WD"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="bowler.NB"></div>
+														<div class="cb-col cb-col-9 text-right text-gray" ng-bind="bowler.Eco"></div>
+													</div>
+												</div>
+											</div>
+											<!-- Inning 2 -->
+											<div class="inningcard">
+												<h4>{{crick.currBatting.name}} Inning
+													<div style="float:right;">{{crick.currBatting.score}}-{{crick.currBatting.W}} ({{crick.currBatting.overs}}.{{crick.currBatting.balls}}) ({{crick.currBatting.id == crick.scorecard.innings[0].id ? crick.team1CRR : crick.team2CRR}})</div>
+												</h4>
+												<div class="tab-section" style="float:left;width:100%;">
+													<!-- Batting -->
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+														<div class="cb-col cb-col-29">Batsman</div>
+														<div class="cb-col cb-col-29"></div>
+														<div class="cb-col cb-col-8 text-right">R</div>
+														<div class="cb-col cb-col-8 text-right">B</div>
+														<div class="cb-col cb-col-8 text-right">4s</div>
+														<div class="cb-col cb-col-8 text-right">6s</div>
+														<div class="cb-col cb-col-10 text-right">SR</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batsman in crick.currBatting.batting track by batsman.id">
+														<div class="cb-col cb-col-58 cb-sm-48">
+															<div class="cb-col cb-col-60">
+																<span class="cb-text-link" ng-bind="batsman.name"></span>
+															</div>
+															<div class="cb-col cb-col-40">
+																<span class="text-gray" ng-if="batsman.batting">{{crick.event.result ? "Not out" : "Batting"}} </span>
+																<span class="text-gray" ng-if="batsman.outObj">
+																	<span ng-if="batsman.outObj.type == 'B'">
+																		b {{batsman.outObj.bowler.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'RT'">
+																		retired hurt
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'RR'">
+																		retired
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'HW'">
+																		hit wicket b {{batsman.outObj.bowler.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'OF'">
+																		obstruct field
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'TO'">
+																		time out
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'CB'">
+																		c&b {{batsman.outObj.bowler.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'CF' || batsman.outObj.type == 'CW'">
+																		c {{batsman.outObj.fielder.name}} b {{batsman.outObj.bowler.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'ST'">
+																		st {{batsman.outObj.fielder.name}} b {{batsman.outObj.bowler.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'RO'">
+																		run out {{batsman.outObj.fielder.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'AO'">
+																		run out {{batsman.outObj.fielder.name}}
+																	</span>
+																	<span ng-if="batsman.outObj.type == 'LB'">
+																		lbw {{batsman.outObj.bowler.name}}
+																	</span>
+																</span>
+															</div>
+														</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{batsman.total}}</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{batsman.balls}}</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{batsman.four}}</div>
+														<div class="cb-col cb-col-8	text-right text-gray">{{batsman.sixes}}</div>
+														<div class="cb-col cb-col-10 text-right text-gray">{{crick.isMobile ? (batsman.SR | number:0) : batsman.SR}}</div>
+													</div>
+													<!-- Extra Runs -->
+													<div class="cb-col cb-col-100 cb-scrd-itms Extra">
+														<div class="cb-col cb-col-58 cb-sm-48 cb-xs-20 text-gray cap">Extras </div>
+														<div class="cb-col cb-col-8 cb-sm-13 cb-xs-15 text-right text-bold fig">{{crick.currBatting.extras.runs}}</div>
+														<div class="cb-col cb-col-34 cb-sm-39 cb-xs-65 text-gray br">&nbsp;(b {{crick.currBatting.extras.b}}, lb {{crick.currBatting.extras.lb}}, w {{crick.currBatting.extras.wd}}, nb {{crick.currBatting.extras.nb}}, p {{crick.currBatting.extras.p}})</div>
+													</div>
+													<!-- Total Runs -->
+													<div class="cb-col cb-col-100 cb-scrd-itms Extra">
+														<div class="cb-col cb-col-58 cb-sm-48 cb-xs-20 text-gray cap">Total </div>
+														<div class="cb-col cb-col-8 cb-sm-13 cb-xs-15 text-right text-bold fig">{{crick.currBatting.score}}</div>
+														<div class="cb-col cb-col-34 cb-sm-39 cb-xs-65 text-gray br">&nbsp;({{crick.currBatting.W}} wkts, {{crick.currBatting.overs}}.{{crick.currBatting.balls}} Overs)</div>
+													</div>
+													<!-- Yet to Bat/Did not bat -->
+													<div class="cb-col cb-col-100 cb-scrd-itms ytbRow" ng-if="crick.currBattingYTB.length > 0">
+														<div class="cb-col cb-col-28 cb-sm-22" style="float:left;line-height:18px;font-size:12px;">{{crick.event.result == undefined ? 'Yet to Bat' : 'Did not Bat'}}</div>
+														<div class="cb-col cb-col-72 cb-sm-78">
+															<span ng-repeat="player in crick.currBattingYTB">
+																<span class="cb-text-link" style="line-height:18px;font-size:12px;">{{player.userName}}{{$last ? '' : ', '}}</span>
+															</span>
+														</div>
+													</div>
+													<!-- Fall of Wickets -->
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" ng-if="crick.currBatting.FOW.length">
+														<div class="cb-col cb-col-100">Fall of Wickets</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-if="crick.currBatting.FOW.length">
+														<div style="float:left;padding-right:7px;white-space:nowrap;" ng-repeat="fow in crick.currBatting.FOW track by $index">
+															<span>{{fow.at}}-{{$index + 1}}</span> <span>({{fow.batsman.name}}){{$last ? '' : ', '}}</span>
+														</div>
+													</div>
+													<!-- Bowlers -->
+													<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+														<div class="cb-col cb-col-43">Bowler</div>
+														<div class="cb-col cb-col-8 text-right">O</div>
+														<div class="cb-col cb-col-8 text-right">M</div>
+														<div class="cb-col cb-col-8 text-right">R</div>
+														<div class="cb-col cb-col-8 text-right">{{crick.isMobile ? "W" : "Wkt"}}</div>
+														<div class="cb-col cb-col-8 text-right">wd</div>
+														<div class="cb-col cb-col-8 text-right">nb</div>
+														<div class="cb-col cb-col-9 text-right">{{crick.isMobile ? "E" : "Eco"}}</div>
+													</div>
+													<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="bowler in crick.currBowling.bowling track by bowler.id">
+														<div class="cb-col cb-col-43">
+															<span class="cb-text-link" ng-bind="bowler.name"></span>
+														</div>
+														<div class="cb-col cb-col-8 text-right text-gray">{{bowler.over_count}}.{{bowler.balls}}</div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="bowler.maiden"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="bowler.runs"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="bowler.wicket"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="bowler.WD"></div>
+														<div class="cb-col cb-col-8 text-right text-gray" ng-bind="bowler.NB"></div>
+														<div class="cb-col cb-col-9 text-right text-gray" ng-bind="bowler.Eco"></div>
+													</div>
+												</div>
+											</div>											
+										</div>										
+									</div>									
+								</div>
+								<div class="scrolltabData">
+									<div class="officialSection">
+										<h4>Officials</h4>
+										<div id="addEventOff" class="addItemBtn right10" data-toggle="collapse" data-target="#addEventOfficial">
+											<i class="fa fa-plus" aria-hidden="true"></i> Add Official
+										</div>
+										<form id="addEventOfficial" class="pageForm collapse" name="addEventOfficialForm" role="form" novalidate ng-submit="addEventOfficialForm.$valid && crick.addEventOfficial(crick.newOfficial)">
+											<div class="pageFormRow">
+												<div class="pageFormCol col-md-5 col-xs-6 mobiledd">
+													<ui-select class="single" ng-class="{submitted:crick.isOfficial.submitted}" ng-model="crick.newOfficial.user" ng-required="true">
+														<ui-select-match placeholder="Select Official">{{$select.selected.userName}}</ui-select-match>
+														<ui-select-choices repeat="official in crick.officials | filter: $select.search track by official.uid">
+															{{::official.userName}}
+														</ui-select-choices>
+													</ui-select>
+												</div>
+												<div class="pageFormCol col-md-4 col-xs-6 mobiledd">
+													<ui-select class="single" ng-class="{submitted:crick.isOfficial.submitted}" ng-model="crick.newOfficial.role" ng-required="true">
+														<ui-select-match placeholder="Select Role">{{$select.selected.role}}</ui-select-match>
+														<ui-select-choices repeat="officialRole in crick.officialRoles | filter: $select.search track by officialRole.code">
+															{{::officialRole.role}}
+														</ui-select-choices>
+													</ui-select>
+												</div>
+												<div class="pageFormCol col-md-3 col-xs-12">
+													<button class="pageFormBtn" type="submit" name="addEventOfficialSubmit" ng-disabled="crick.confirm.btnDisable" ng-click="crick.isOfficial.submitted = true">Add</button>
+													<button class="pageFormBtn btnCancel" type="button" name="addEventOfficialCancel" ng-click="crick.cancelEventOfficial()" style="margin-right:10px">Cancel</button>
+												</div>
+											</div>
+										</form>
+										<div class="cb-col cb-col-100">
+											<div class="cb-col cb-col-100 profListing" ng-if="!crick.event.officials.length">
+												No officials in the team.
+											</div>
+											<div class="cb-col cb-col-100 profListing" ng-repeat="official in crick.event.officials track by $index">
+												<div class="profPic">
+													<img class="profPicImg" profile-err-src data-ng-src="@@host/uploads/{{::official.uid | imgsize:40}}" title="{{::official.userName}}" alt="{{::official.userName}}" />
+													<span class="profPicInitials">{{::official.userName | initials | uppercase}}</span>
+												</div>
+												<div class="profDetails">
+													<a class="profName" data-ng-href="/profile/{{::official.userName | makeHyphen}}-{{::official.uid}}">
+														{{::official.userName}}
+													</a>
+													<span class="profRole" ng-bind="official.role"></span>
+												</div>
+												<div class="profRemove">
+													<button class="stdBtn" type="button" ng-hide="crick.confirm.remOfficial[$index]" ng-click="crick.confirm.remOfficial[$index] = true"><i class="fa fa-times" aria-hidden="true"></i></button>
+													<button class="stdBtn" type="button" ng-show="crick.confirm.remOfficial[$index]" ng-disabled="crick.confirm.btnDisable" ng-click="crick.confirm.remOfficial[$index] = false">No</button>
+													<button class="stdBtn" type="button" ng-show="crick.confirm.remOfficial[$index]" ng-disabled="crick.confirm.btnDisable" ng-click="crick.removeEventOfficial(official.uid)" style="margin:0 5px;">Yes</button>
+												</div>
+											</div>
+										</div>
+									</div>	
+									<div class="officialSection">
+										<h4>Squads</h4>
+										<div class="tabs">
+											<ul>
+												<li data-tab="Tab_Team1" style="margin:0 0 0 5px;">{{crick.event.participants[0].name}}</li>
+												<li data-tab="Tab_Team2">{{crick.event.participants[1].name}}</li>
+											</ul>
+										</div>
+										<div id="Tab_Team1" class="cb-col cb-col-100 tabItem tabContent">
+											<div class="addItemBtn right10" ng-click="crick.openPlayingElevenPopup('team1')" style="top:0;">
+												<i class="fa fa-plus" aria-hidden="true"></i> Set Playing Squad
+											</div>
+											<div class="cb-col cb-col-100">
+												<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+													<div class="cb-col cb-col-100">Players</div>
+												</div>
+												<div class="cb-col cb-col-100 profListing" ng-if="!crick.event.participants[0].playingEleven">
+													No players in the team.
+												</div>
+												<div class="cb-col cb-col-100 profListing" ng-repeat="player in crick.event.participants[0].playingEleven | orderBy:'userName' track by player.uid">
+													<div class="profPic">
+														<img class="profPicImg" profile-err-src data-ng-src="@@host/uploads/{{::player.uid | imgsize:40}}?{{crick.confirm.imgRefreshTime}}" title="{{::player.userName}}" alt="{{::player.userName}}" />
+														<span class="profPicInitials">{{::player.userName | initials | uppercase}}</span>
+													</div>
+													<div class="profDetails">
+														<a class="profName" data-ng-href="/profile/{{::player.userName | makeHyphen}}-{{::player.uid}}">
+															{{::player.userName}}
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="Tab_Team2" class="cb-col cb-col-100 tabItem tabContent">
+											<div class="addItemBtn right10" ng-click="crick.openPlayingElevenPopup('team2')" style="top:0;">
+												<i class="fa fa-plus" aria-hidden="true"></i> Set Playing Squad
+											</div>
+											<div class="cb-col cb-col-100">
+												<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+													<div class="cb-col cb-col-100">Players</div>
+												</div>
+												<div class="cb-col cb-col-100 profListing" ng-if="!crick.event.participants[1].playingEleven">
+													No players in the team.
+												</div>
+												<div class="cb-col cb-col-100 profListing" ng-repeat="player in crick.event.participants[1].playingEleven | orderBy:'userName' track by player.uid">
+													<div class="profPic">
+														<img class="profPicImg" profile-err-src data-ng-src="@@host/uploads/{{::player.uid | imgsize:40}}?{{crick.confirm.imgRefreshTime}}" title="{{::player.userName}}" alt="{{::player.userName}}" />
+														<span class="profPicInitials">{{::player.userName | initials | uppercase}}</span>
+													</div>
+													<div class="profDetails">
+														<a class="profName" data-ng-href="/profile/{{::player.userName | makeHyphen}}-{{::player.uid}}">
+															{{::player.userName}}
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>																				
+									</div>
+									<div class="officialSection">
+										<h4>&nbsp;</h4>
+										<div id="addEventVideoLink" class="addItemBtn right10" data-toggle="collapse" data-target="#addEventVideo">
+											<i class="fa fa-plus" aria-hidden="true"></i> Add Event Video
+										</div>
+										<form id="addEventVideo" class="pageForm collapse" name="addEventVideoForm" role="form" novalidate ng-submit="addEventVideoForm.$valid && crick.addEventVideo()">
+											<div class="pageFormRow">	
+												<div class="pageFormCol col-md-9 col-xs-12">
+													<input ng-class="{submitted:crick.confirm.vSubmitted}" type="text" name="eventVideoLink" ng-model="crick.eventVideoLink" placeholder="Video Link" required />
+												</div>
+												<div class="pageFormCol col-md-3 col-xs-12">
+													<button class="pageFormBtn" type="submit" name="addEventVideoSubmit" ng-disabled="crick.confirm.btnDisable" ng-click="crick.confirm.vSubmitted = true">Add</button>
+													<button class="pageFormBtn btnCancel" type="button" name="cancelEventVideo" ng-click="crick.cancelEventVideo()" style="margin-right:10px">Cancel</button>
+												</div>
+											</div>	
+										</form>
+									</div>
+									<div class="officialSection" ng-if="crick.scorecard !== undefined">
+										<h4>&nbsp;</h4>
+										<div class="addItemBtn right10">
+											<i class="fa fa-plus" aria-hidden="true"></i> <a target="_blank" ng-href="/cricket/youtube.html?id={{crick.event._id}}&type=E" style="color:#3897f1">Open Youtube Page</a>
+										</div>
+										<div class="cb-col cb-col-100">
+											<!-- <button class="stdBtn scoreBtn cb-col-15" type="button" ng-class="{active: crick.event.youtubeFlag == 'toss'}" ng-click="crick.setYoutubeFlag('toss')" ng-if="crick.event.toss">Toss</button>  -->
+											<!-- <button class="stdBtn scoreBtn cb-col-15" type="button" ng-class="{active: crick.event.youtubeFlag == 'summary'}" ng-click="crick.setYoutubeFlag('summary')" ng-if="crick.scorecard != undefined && crick.event.result == undefined">Summary</button> -->
+											<!-- <button class="stdBtn scoreBtn cb-col-15" type="button" ng-class="{active: crick.event.youtubeFlag == 'summary1'}" ng-click="crick.setYoutubeFlag('summary1')" ng-if="crick.scorecard != undefined && crick.event.result == undefined">Summary-1</button> -->
+											<button class="stdBtn scoreBtn cb-col-15" type="button" ng-class="{active: crick.event.youtubeFlag == 'summary_2'}" ng-click="crick.setYoutubeFlag('summary_2')" ng-if="crick.scorecard != undefined && crick.event.result == undefined">Summary - 2</button>
+											<!-- <button class="stdBtn scoreBtn cb-col-15" type="button" ng-class="{active: crick.event.youtubeFlag == 'inning1'}" ng-click="crick.setYoutubeFlag('inning1')" ng-if="crick.scorecard != undefined && crick.scorecard.innings[0] != undefined">First Inning</button> -->
+											<!-- <button class="stdBtn scoreBtn cb-col-15" type="button" ng-class="{active: crick.event.youtubeFlag == 'inning2'}" ng-click="crick.setYoutubeFlag('inning2')" ng-if="crick.scorecard != undefined && crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">Second Inning</button> -->
+											<!-- <button class="stdBtn scoreBtn cb-col-15" type="button" ng-class="{active: crick.event.youtubeFlag == 'fullscorecard'}" ng-click="crick.setYoutubeFlag('fullscorecard')" ng-if="crick.scorecard != undefined && crick.scorecard.innings[0] != undefined">Full Scorecard</button> -->
+											<!-- <button class="stdBtn scoreBtn cb-col-15" type="button" ng-class="{active: crick.event.youtubeFlag == 'result'}" ng-click="crick.setYoutubeFlag('result')" ng-if="crick.event.result != undefined">Result</button>  -->
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.event.youtubeFlag == 'TotalRunsByOverChart'}" ng-click="crick.setYoutubeFlag('TotalRunsByOverChart')" ng-if="crick.scorecard != undefined && crick.scorecard.innings[0] != undefined">Total Runs By Over Chart</button>
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.event.youtubeFlag == 'RunsPerOverChart'}" ng-click="crick.setYoutubeFlag('RunsPerOverChart')" ng-if="crick.scorecard != undefined && crick.scorecard.innings[0] != undefined">Runs Per Over Chart</button>
+											<!-- <button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.event.youtubeFlag == 'matchsummary'}" ng-click="crick.setYoutubeFlag('matchsummary')" ng-if="crick.scorecard != undefined && crick.scorecard.innings[0] != undefined">Match Summary</button> -->
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.event.youtubeFlag == 'match_summary_2'}" ng-click="crick.setYoutubeFlag('match_summary_2')" ng-if="crick.scorecard != undefined && crick.scorecard.innings[0] != undefined">Match Summary - 2</button>
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.event.youtubeFlag == 'first_inning_2'}" ng-click="crick.setYoutubeFlag('first_inning_2')" ng-if="crick.scorecard != undefined && crick.scorecard.innings[0] != undefined">First Inning - 2</button>
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.event.youtubeFlag == 'second_inning_2'}" ng-click="crick.setYoutubeFlag('second_inning_2')" ng-if="crick.scorecard != undefined && crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">Second Inning - 2</button>
+										</div>
+									</div>
+								</div>
+								<div class="scrolltabData">
+									<!-- Match not started -->
+									<div ng-if="crick.scorecard === undefined && crick.event.result === undefined" style="padding:10px">
+										Charts will appear once the match starts.
+									</div>
+									<!-- Match is abandoned/bye/draw -->
+									<div ng-if="crick.scorecard === undefined && crick.event.result !== undefined" style="padding:10px">
+										<span ng-if="crick.event.result.matchStatus === 'abandoned'">Match is cancelled.</span>
+										<span ng-if="crick.event.result.matchStatus === 'bye'">{{crick.event.result.winner.name}} won by {{crick.event.result.by}}</span>
+										<span ng-if="crick.event.result.matchStatus === 'draw'">{{crick.event.result.by}}</span>
+									</div>
+									<!-- Match charts -->
+									<div ng-if="crick.scorecard !== undefined">
+										<h4>Runs Per Over</h4>
+										<div class="cb-col cb-col-100">
+											<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+												<div class="cb-col cb-col-20">{{crick.isMobile ? "O" : "Overs"}}</div>
+												<div class="cb-col cb-col-40" ng-repeat="team in crick.teams track by $index">
+													<div class="cb-col cb-col-100 text-left">{{team.name}}</div>
+												</div>
+											</div>	
+										</div>
+										<div class="cb-col cb-col-100" ng-class="{separator: $first}" ng-repeat="over in crick.runsPerOver track by $index">
+											<div class="cb-col cb-col-100 cb-scrd-itms">
+												<div class="cb-col cb-col-20">{{over.over}}</div>	
+												<div class="cb-col cb-col-40" ng-if="over.team1.bowler">
+													<div class="cb-col cb-col-100 cb-sm-100 text-left"><span class="text-bold">{{over.team1.runs}}</span> (Total - {{over.team1.total}}/{{over.team1.wicket}})</div>
+													<div class="cb-col cb-col-100 cb-sm-100 text-left" style="font-size:12px;">{{over.team1.bowler}}</div>
+													<div class="cb-col cb-col-100 cb-sm-100 text-left" style="font-size:12px;">
+														[<span ng-repeat="ov in over.team1.overmap track by $index">{{ov}}{{$last ? "" : ", "}}</span>]
+													</div>
+												</div>
+												<div class="cb-col cb-col-40" ng-if="over.team2.bowler">
+													<div class="cb-col cb-col-100 cb-sm-100 text-left"><span class="text-bold">{{over.team2.runs}}</span> (Total - {{over.team2.total}}/{{over.team2.wicket}})</div>
+													<div class="cb-col cb-col-100 cb-sm-100 text-left" style="font-size:12px;">{{over.team2.bowler}}</div>
+													<div class="cb-col cb-col-100 cb-sm-100 text-left" style="font-size:12px;">
+														[<span ng-repeat="ov in over.team2.overmap track by $index">{{ov}}{{$last ? "" : ", "}}</span>]
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>	
+                </div>
+                <!-- Right Panel -->
+                <div class="col-md-4 scoringGrid" id="crht">
+					<div class="scoreControl cb-col cb-col-100" ng-show="crick.scorecard !== undefined && crick.event.result === undefined && (!crick.isMobile || crick.confirm.scoreBtnFlag)" style="padding-bottom:15px">
+						<div class="tabs">
+							<ul ng-init="crick.selectedTab = 'runstab'">
+								<li class="tab" ng-class="{current: crick.selectedTab == 'runstab'}" ng-click="crick.cancelOut();crick.selectedTab = 'runstab'" style="padding:7px 15px;">Runs</li>
+								<li class="tab" ng-class="{current: crick.selectedTab == 'extrastab'}" ng-click="crick.cancelOut();crick.checkStrike(); crick.selectedTab = 'extrastab'" style="padding:7px 15px;">Extra</li>
+								<li class="tab" ng-class="{current: crick.selectedTab == 'outtab'}" ng-click="crick.checkStrike(); crick.selectedTab = 'outtab'" style="padding:7px 15px;">Out</li>
+							</ul>							
+						</div>
+						<div class="cb-col cb-col-100" style="padding:5px 0 0 0">
+							<div id="runstab" ng-class="{current: crick.selectedTab == 'runstab'}" class="cb-col cb-col-100 tabItem tabContent">
+								<div class="cb-col cb-col-100">
+									<div class="cb-col cb-col-100">
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.addRun == '0'}" ng-click="crick.checkStrike(); crick.addRun = '0'; crick.confirm.addRun = true;">0</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.addRun == '1'}" ng-click="crick.checkStrike(); crick.addRun = '1'; crick.confirm.addRun = true;">1</button>
+										<button class="stdBtn scoreBtn cb-col-48" type="button" ng-click="crick.checkStrike()">Others</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.addRun == '2'}" ng-click="crick.checkStrike(); crick.addRun = '2'; crick.confirm.addRun = true;">2</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.addRun == '3'}" ng-click="crick.checkStrike(); crick.addRun = '3'; crick.confirm.addRun = true;">3</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.addRun == '5'}" ng-click="crick.checkStrike(); crick.addRun = '5'; crick.confirm.addRun = true;">5</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.addRun == '7'}" ng-click="crick.checkStrike(); crick.addRun = '7'; crick.confirm.addRun = true;">7</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.addRun == '4'}" ng-click="crick.checkStrike(); crick.addRun = '4'; crick.confirm.addRun = true;">4</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.addRun == '6'}" ng-click="crick.checkStrike(); crick.addRun = '6'; crick.confirm.addRun = true;">6</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.addRun == '4OT'}" ng-click="crick.checkStrike(); crick.addRun = '4OT'; crick.confirm.addRun = true;">4OT</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.addRun == '6OT'}" ng-click="crick.checkStrike(); crick.addRun = '6OT'; crick.confirm.addRun = true;">6OT</button>
+									</div>
+									<div class="cb-col cb-col-100" ng-show="crick.confirm.addRun" style="padding-top:5px;">
+										<!-- <div class="scoreLblConfirm">{{crick.currBatting.batting[crick.strikeIndex].name}} hit <strong>{{crick.addRun}}</strong> runs</div> -->
+										<button class="stdBtn scoreBtn cb-col-38 confirmBtn" type="button" ng-click="crick.addScore(crick.addRun); crick.addRun = null; crick.confirm.addRun = false; crick.confirm.otherRuns = false;">Confirm</button>
+										<button class="stdBtn scoreBtn cb-col-38" type="button" ng-click="crick.addRun = null; crick.confirm.addRun = false; crick.confirm.otherRuns = false;">Cancel</button>
+									</div>
+								</div>
+							</div> 
+							<div id="extrastab" ng-class="{current: crick.selectedTab == 'extrastab'}" class="cb-col cb-col-100 tabItem tabContent">
+								<div class="cb-col cb-col-100">
+									<div class="cb-col cb-col-100">
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraType == 'WD'}" ng-click="crick.extraType = 'WD'; crick.extraRun = null; crick.confirm.hideout = true;">Wide</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraType == 'NB'}" ng-click="crick.extraType = 'NB'; crick.extraRun = null; crick.confirm.hideout = true;">NB</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraType == 'LB'}" ng-click="crick.extraType = 'LB'; crick.extraRun = null; crick.confirm.hideout = true;">LB</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraType == 'BY'}" ng-click="crick.extraType = 'BY'; crick.extraRun = null; crick.confirm.hideout = true;">Bye</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraType == 'PT'}" ng-click="crick.extraType = 'PT'; crick.extraRun = null; crick.confirm.hideout = true;">Penalty</button>
+									</div>
+									<div class="cb-col cb-col-100" ng-show="crick.extraType && crick.setOut == null" style="margin:4px 0 0 0;">
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-if="crick.extraType == 'WD' || crick.extraType == 'NB'" ng-class="{active: crick.extraRun == '0'}" ng-click="crick.extraRun = '0'; crick.confirm.extra = true;">+0</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '1'}" ng-click="crick.extraRun = '1'; crick.confirm.extra = true;">+1</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '2'}" ng-click="crick.extraRun = '2'; crick.confirm.extra = true;">+2</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '3'}" ng-click="crick.extraRun = '3'; crick.confirm.extra = true;">+3</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '4'}" ng-click="crick.extraRun = '4'; crick.confirm.extra = true;">+4</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '5'}" ng-click="crick.extraRun = '5'; crick.confirm.extra = true;">+5</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '6'}" ng-click="crick.extraRun = '6'; crick.confirm.extra = true;">+6</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '7'}" ng-click="crick.extraRun = '7'; crick.confirm.extra = true;">+7</button>
+									</div>
+									<div class="cb-col cb-col-100" ng-show="crick.extraType == 'NB' && crick.setOut == null">
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '1LB'}" ng-click="crick.extraRun = '1LB'; crick.confirm.extra = true;">1LB</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '2LB'}" ng-click="crick.extraRun = '2LB'; crick.confirm.extra = true;">2LB</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '3LB'}" ng-click="crick.extraRun = '3LB'; crick.confirm.extra = true;">3LB</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '4LB'}" ng-click="crick.extraRun = '4LB'; crick.confirm.extra = true;">4LB</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '1BY'}" ng-click="crick.extraRun = '1BY'; crick.confirm.extra = true;">1BY</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '2BY'}" ng-click="crick.extraRun = '2BY'; crick.confirm.extra = true;">2BY</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '3BY'}" ng-click="crick.extraRun = '3BY'; crick.confirm.extra = true;">3BY</button>
+										<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.extraRun == '4BY'}" ng-click="crick.extraRun = '4BY'; crick.confirm.extra = true;">4BY</button>
+									</div>
+									<div class="cb-col cb-col-100" ng-if="crick.extraType" style="padding-top:5px;">
+										<!-- <div class="scoreLblConfirm" ng-if="crick.extraRun && crick.extraType == 'NB'">Adding <strong>1</strong> extra <strong>+ {{crick.extraRun}}</strong> runs in {{crick.currBatting.batting[crick.strikeIndex].name}} account.</div>
+										<div class="scoreLblConfirm" ng-if="crick.extraRun && crick.extraType != 'NB'">Adding <strong>1</strong> extra <strong>+ {{crick.extraRun}}</strong> extra.</div> -->
+										<button class="stdBtn scoreBtn cb-col-38 confirmBtn" type="button" ng-if="crick.extraRun && crick.confirm.extra && !crick.setOut" ng-click="crick.addScore(crick.extraRun, crick.extraType); crick.confirm.extra = false; crick.confirm.hideout = false; crick.selectedTab = 'runstab'">Confirm</button>
+										<button class="stdBtn scoreBtn cb-col-38" type="button" ng-if="crick.extraType && !crick.setOut" ng-click="crick.clearExtra(); crick.confirm.extra = false; crick.confirm.hideout = false; crick.selectedTab = 'runstab'">Cancel</button>
+									</div>
+								</div>
+							</div>
+							<div id="outtab" ng-class="{current: crick.selectedTab == 'outtab'}" class="cb-col cb-col-100 tabItem tabContent">
+								<div class="cb-col cb-col-100">
+									<button class="stdBtn scoreBtn cb-col-32" type="button" ng-class="{active: crick.outType == 'B'}" ng-if="!crick.extraType" ng-click="crick.outType = 'B';">Bowled</button>
+									<button class="stdBtn scoreBtn cb-col-32" type="button" ng-class="{active: crick.outType == 'LB'}" ng-if="!crick.extraType" ng-click="crick.outType = 'LB';">LBW</button>
+									<button class="stdBtn scoreBtn cb-col-32" type="button" ng-class="{active: crick.outType == 'CO'}" ng-if="!crick.extraType" ng-click="crick.outType = 'CO';">Catch</button>
+									<button class="stdBtn scoreBtn cb-col-32" type="button" ng-class="{active: crick.outType == 'RO'}" ng-click="crick.outType = 'RO';">Run Out</button>
+									<button class="stdBtn scoreBtn cb-col-32" type="button" ng-class="{active: crick.outType == 'ST'}" ng-if="!(crick.extraType == 'NB' || crick.extraType == 'LB' || crick.extraType == 'BY')" ng-click="crick.outType = 'ST';">Stumped</button>
+									<button class="stdBtn scoreBtn cb-col-32" type="button" ng-class="{active: crick.outType == 'HW'}" ng-if="!(crick.extraType == 'NB' || crick.extraType == 'LB' || crick.extraType == 'BY') && crick.confirm.otherOuts" ng-click="crick.outType = 'HW';">Hit Wicket</button>
+									<button class="stdBtn scoreBtn cb-col-32" type="button" ng-click="crick.confirm.otherOuts = true" ng-if="!crick.confirm.otherOuts">Others</button>
+									<button class="stdBtn scoreBtn cb-col-38" type="button" ng-class="{active: crick.outType == 'RT'}" ng-if="!crick.extraType && crick.confirm.otherOuts" ng-click="crick.outType = 'RT';">Retired Out</button>
+                                    <button class="stdBtn scoreBtn cb-col-38" type="button" ng-class="{active: crick.outType == 'RR'}" ng-if="!crick.extraType && crick.confirm.otherOuts" ng-click="crick.outType = 'RR';">Retired</button>
+									<button class="stdBtn scoreBtn cb-col-30" type="button" ng-class="{active: crick.outType == 'HH'}" ng-if="!(crick.extraType == 'WD' || crick.extraType == 'LB' || crick.extraType == 'BY') && crick.confirm.otherOuts" ng-click="crick.outType = 'HH';">Hit Twice</button>
+									<button class="stdBtn scoreBtn cb-col-29" type="button" ng-class="{active: crick.outType == 'TO'}" ng-if="!crick.extraType && crick.confirm.otherOuts" ng-click="crick.outType = 'TO';">Time Out</button>
+									<button class="stdBtn scoreBtn cb-col-49" type="button" ng-class="{active: crick.outType == 'OF'}" ng-if="crick.confirm.otherOuts" ng-click="crick.outType = 'OF';">Obstruct Field</button>
+									<button class="stdBtn scoreBtn cb-col-49" type="button" ng-class="{active: crick.outType == 'HB'}" ng-if="!(crick.extraType == 'LB' || crick.extraType == 'BY') && crick.confirm.otherOuts" ng-click="crick.outType = 'HB';">Handle the Ball</button>
+									<button class="stdBtn scoreBtn cb-col-49" type="button" ng-class="{active: crick.outType == 'RO'}" ng-if="crick.confirm.otherOuts" ng-click="crick.outType = 'AO';">Action (Run) Out</button>
+								</div>
+								<div class="cb-col cb-col-100" ng-if="crick.outType == 'RO' || crick.outType == 'OF' || crick.outType == 'HB' || crick.outType == 'RT' || crick.outType == 'RR'">
+									<span class="scoreSubLbl">Select Batsman</span>
+									<select class="stdSelect" ng-model="crick.outBat" ng-options="pl.name for pl in crick.currBattingPlayer">
+									</select>
+								</div>
+								<div class="cb-col cb-col-100" ng-if="crick.outType == 'RO' || crick.outType == 'CO' || crick.outType == 'ST'">
+									<span class="scoreSubLbl">Select Fielder</span>
+									<select class="stdSelect" ng-model="crick.fielder" ng-options="pl.userName for pl in crick.teams[crick.bowlIndex].players| orderBy:'userName'">
+									</select>
+								</div>
+								<div class="cb-col cb-col-100" ng-if="crick.outType == 'RO'">
+									<span class="scoreSubLbl">Batsman Runs</span>
+									<div class="cb-col cb-col-100">
+										<div class="cb-col cb-col-100">
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.outRuns == '0'}" ng-click="crick.outRuns = '0'; crick.confirm.out = true;">+0</button>
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.outRuns == '1'}" ng-click="crick.outRuns = '1'; crick.confirm.out = true;">+1</button>
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.outRuns == '2'}" ng-click="crick.outRuns = '2'; crick.confirm.out = true;">+2</button>
+										</div>
+										<div class="cb-col cb-col-100">
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.outRuns == '3'}" ng-click="crick.outRuns = '3'; crick.confirm.out = true;">+3</button>
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.outRuns == '4'}" ng-click="crick.outRuns = '4'; crick.confirm.out = true;">+4</button>
+											<button class="stdBtn scoreBtn cb-col-24" type="button" ng-class="{active: crick.outRuns == '5'}" ng-click="crick.outRuns = '5'; crick.confirm.out = true;">+5</button>
+										</div>
+									</div>
+								</div>
+								<div class="cb-col cb-col-100" style="padding-top:5px;">
+									<!-- <div class="scoreLblConfirm" ng-if="crick.outType == 'B' || crick.outType == 'LB' || crick.outType == 'CO' || crick.outType == 'ST' || crick.outType == 'HW' || crick.outType == 'HH'">{{crick.currBatting.batting[crick.strikeIndex].name}} is out</div>
+									<div class="scoreLblConfirm" ng-if="crick.outType == 'AO'">Non Striker : {{crick.currBatting.batting[crick.nsIndex].name}} is out without ball</div>
+									<div class="scoreLblConfirm" ng-if="crick.outType == 'RO' && crick.outBat">{{crick.outBat.name}} is Run Out <span ng-if="crick.fielder">by {{crick.fielder.userName}}</span></div> -->
+									<button class="stdBtn scoreBtn cb-col-38 confirmBtn" ng-if="crick.outType && crick.checkFielder()" type="button" ng-click="crick.tryOut(); crick.confirm.out = false; crick.confirm.otherOuts = false; crick.selectedTab = 'runstab'">Confirm</button>
+									<button class="stdBtn scoreBtn cb-col-38" type="button" ng-if="crick.outType && crick.checkFielder()" ng-click="crick.clearOutOptions(); crick.confirm.out = false; crick.confirm.otherOuts = false; crick.extraType = null; crick.selectedTab = 'runstab'">Cancel</button>
+								</div>
+							</div>
+						</div>					
+					</div>
+					<!-- Required Rate for Mobile -->
+					<div class="cb-col cb-col-100" ng-if="crick.checkRR != '' && crick.prevBatting && crick.matchResult.pName == undefined && crick.isMobile && crick.confirm.scoreBtnFlag">
+						<div class="cb-col cb-col-100" ng-bind-html="crick.checkRR"></div>
+						<div class="cb-col cb-col-75">
+							<div><strong>{{::crick.scorecard.innings[0].name}}</strong> <span style="float:right">{{crick.scorecard.innings[0].score}}/{{crick.scorecard.innings[0].W}} ({{crick.scorecard.innings[0].overs}}.{{crick.scorecard.innings[0].balls}} Ovs)</span></div>
+						</div>
+					</div>
+					<!-- Extra buttons (Switch Innings, Update Score, Refresh) -->
+					<div class="cb-col cb-col-100" ng-if="crick.scorecard !== undefined && crick.confirm.scoreBtnFlag" style="padding-top:15px;">
+						<button class="stdBtn scoreBtn cb-col-49 cb-sm-36" type="button" ng-click="crick.confirm.switchInn = true;crick.confirm.upScore = false;crick.confirm.flush = false;" ng-if="!crick.prevBowling">Switch Innings</button>
+						<button class="stdBtn scoreBtn cb-col-48 cb-sm-36" type="button" ng-click="crick.confirm.upScore = true;crick.confirm.switchInn = false;crick.confirm.flush = false;">Update Score</button>
+						<button class="stdBtn scoreBtn cb-col-49 cb-sm-24" type="button" ng-click="crick.confirm.flush = true;crick.confirm.switchInn = false;crick.confirm.upScore = false;">Refresh</button>
+						<div class="cb-col cb-col-100" ng-show="crick.confirm.switchInn">
+							<button class="stdBtn scoreBtn cb-col-38 confirmBtn" type="button" ng-click="crick.confirm.switchInn = false;crick.isSwitchInnings()">Confirm</button>
+							<button class="stdBtn scoreBtn cb-col-38" type="button" ng-click="crick.confirm.switchInn = false;">Cancel</button>
+						</div>
+						<div class="cb-col cb-col-100" ng-show="crick.confirm.upScore">
+							<button class="stdBtn scoreBtn cb-col-38 confirmBtn" type="button" ng-click="crick.confirm.upScore = false;crick.goToUpdateScore()">Confirm</button>
+							<button class="stdBtn scoreBtn cb-col-38" type="button" ng-click="crick.confirm.upScore = false;">Cancel</button>
+						</div>
+						<div class="cb-col cb-col-100" ng-show="crick.confirm.flush">
+							<button class="stdBtn scoreBtn cb-col-38 confirmBtn" type="button" ng-click="crick.confirm.flush = false;crick.flushLocal()">Confirm</button>
+							<button class="stdBtn scoreBtn cb-col-38" type="button" ng-click="crick.confirm.flush = false;">Cancel</button>
+						</div>
+					</div>		
+					<!-- Finish Match -->
+					<div class="cb-col cb-col-100" ng-if="crick.event.result == undefined">
+						<div class="row">	
+							<div class="cb-col cb-col-100 profListing">
+								<button id="FinishMatchBtn" class="stdBtn scoreBtn cb-col-49" type="button" ng-click="crick.confirm.showFinishOpt = true;crick.updateFinishOptions()">Finish Match</button>
+							</div>
+							<div class="cb-col cb-col-100" ng-if="crick.confirm.showFinishOpt">								
+								<form name="finishMatchForm" role="form" novalidate ng-submit="finishMatchForm.$valid && crick.saveResult()" accept-charset="UTF-8">
+									<div class="cb-col cb-col-100 profListing mobiledd" ng-if="crick.matchResult.matchStatus !== 'concluded'">
+										<ui-select class="single" ng-class="{submitted: crick.confirm.submitted}" ng-model="crick.finishType" ng-required="true" on-select="crick.focusCancelBtn()">
+											<ui-select-match placeholder="Select finish match type">{{$select.selected.type}}</ui-select-match>
+											<ui-select-choices repeat="finType in crick.finishOptions | filter:{showOption:true} | filter: $select.search track by $index">
+												{{::finType.type}}
+											</ui-select-choices>
+										</ui-select>
+									</div>
+									<div class="cb-col cb-col-100 profListing mobiledd" ng-if="crick.finishType.winnerShow && !crick.confirm.hideFinishOptions">
+										<ui-select class="single" ng-class="{submitted: crick.confirm.submitted}" ng-model="crick.confirm.winner" on-select="crick.matchResult.pid = crick.confirm.winner.id;crick.matchResult.pName = crick.confirm.winner.name;crick.focusCancelBtn()" ng-required="crick.finishType.winnerReq">
+											<ui-select-match placeholder="Select winning team">{{$select.selected.name}}</ui-select-match>
+											<ui-select-choices repeat="team in crick.allteams | filter: $select.search track by team.id">
+												{{::team.name}}
+											</ui-select-choices>
+										</ui-select>
+									</div>
+									<div class="cb-col cb-col-100 profListing" ng-if="crick.finishType.summaryShow && !crick.confirm.hideFinishOptions">
+										<input name="teamName" class="addOrgInput" ng-class="{submitted: crick.confirm.submitted}" type="text" ng-model="crick.confirm.by" placeholder="Comments" ng-required="crick.finishType.summaryReq" />
+									</div>
+									<div class="cb-col cb-col-100 profListing" ng-if="crick.finishType && crick.finishType.code == 'abandoned'">
+										Match is abandoned. Do you want to continue?
+									</div>
+									<div class="cb-col cb-col-100 profListing">
+										<button class="stdBtn scoreBtn cb-col-38 confirmBtn" type="submit" ng-disabled="crick.confirm.btnDisable" ng-click="crick.confirm.submitted = true;">Confirm</button>
+										<button id="CancelMatchBtn" class="stdBtn scoreBtn cb-col-38" type="button" ng-click="crick.cancelFinishMatch();">Cancel</button>
+									</div>
+								</form>	
+							</div>
+						</div>	
+					</div>
+                    <!-- Desktop Right Panel -->
+					<div ng-if="crick.isMobile">
+                        @@include('rightpanel.html')
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <style type="text/css">
+			body.disableRefresh{
+			  /* Disables pull-to-refresh but allows overscroll glow effects. */
+			  overscroll-behavior-y: contain;
+			}
+            .twocol { clear: both; position: relative; }
+            .twocol .swt .scoreBtn { width: 100% !important;}
+            .twocol .swt ,
+            .twocol .fls.scoreBtn { width: 47% !important; float: left;}
+            .twocol .fls.scoreBtn { margin-left: 10px;}
+            .twocol .swtinner { position: absolute; left :10px; right: 10px; top: 28px; width: 90%;}
+            .twocol .swtinner .scoreBtn  { width: 46% !important; float: left; }
+            @media(max-width:480px) {
+                .inningcard .pro-tabinner .cb-scrd-sub-hdr {font-size: 11px;font-weight: 600;}
+                .inningcard .pro-tabinner {font-size: 12px !important;}
+            }
+            #crht ul.nav     {border-bottom: 1px solid #1866DB ;}
+            #crht ul.nav li             { margin-bottom: -2px; }
+            #crht ul.nav li:hover a     { border: 0; }
+            #crht ul.nav li a:hover,
+            #crht ul.nav li.active a   { background: #1866DB !important; color: #fff; border-radius: 3px 3px 0 0; border: 0;}
+            #crht ul.nav li a          { padding: 7px 15px; font-weight: 600; }
+            #crht .tab-content.rttab   { padding: 5px 0; border-bottom: 2px dotted #ccc; margin-bottom: 15px;}
+            #crht ul.nav li {}
+            .stdBtn.desk { display: block;}
+            .stdBtn.mobibtn { display: none;}
+            .cb-scrd-sub-hdr .mobhd b { font-weight: normal;}
+            .linkIcon { display: none;}
+
+            @media(min-width:769px) {
+                .inningcard.card.second .collapse { display: block !important; height: auto;}    
+            }
+            @media(max-width:767px) {
+                /*.inningcard.card.second .collapse { display: none ; height: 0px;}*/
+                .inf-intro { line-height: 1;}
+                .cb-scrd-sub-hdr,
+                .cb-scrd-itms { padding: 4px 5px;}
+                .card h4 {     font-size: 14px; line-height: 1; }
+                .linkIcon { display: inline-block;}
+                .cb-scrd-sub-hdr .mobhd b { display: none;}
+                #crht {width: 100% !important;}
+				.scorecardadmin{margin-left:-20px;margin-right:-20px;}
+				.level2Tabs{margin-bottom:0px !important;}
+				.matchStateSection{margin-bottom:10px; box-shadow:2px 2px 8px 1px #617d8c;}
+                .matchStateSection .card {margin-bottom: 0px !important; padding-bottom: 0; min-height: auto !important; box-shadow: none;}
+                .matchStateSection .card.B {padding-bottom: 10px;}
+				.matchStateSection .card .out{display: none;}
+                .inningcard .cb-scrd-itms .cb-sm-48 {width: 58% !important;}
+                .inningcard .cb-scrd-itms.Extra .cap {min-width: 45px;}
+                .pro-tabinner .inningcard h4 .cb-md-hide{ display: block;}
+                .stdBtn.desk     { display: none;}
+                .stdBtn.mobibtn  { display: block; float: none; display: inline-block; }
+                .inningcard .cb-scrd-itms.Extra .cap,
+                .inningcard .cb-scrd-itms.Extra .fig,
+                .inningcard .cb-scrd-itms.Extra .br { width: auto !important; display: inline-block;padding-right: 3px;}
+                .PTZ                                { padding-top: 0!important; }
+                .inningcard.card.second {}
+				.scoringGrid .scoreBtn{padding:6px 6px 8px;}
+                /*.inningcard.card.second .pro-tabinner { display: none;}*/
+            }
+        </style>
+        @@include('footer.html')
+        <script type="text/javascript" src="/script/main.js"></script>
+        <script type="text/javascript">
+			jQuery(document).ready(function () {
+				if (jQuery(window).width() < 768) {
+					setTimeout(function () {
+						jQuery(".linkIcon").on("click", function (e) {
+							jQuery(this).toggleClass('fa-caret-up fa-caret-down');
+						});
+					}, 3000);
+				}
+			});
+        </script>
+    </body>
+</html>

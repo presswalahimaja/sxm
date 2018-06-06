@@ -1,0 +1,15 @@
+<div class="modal-body clearfix popupListContainer" ng-controller="FacilityPopupController as facCtrl">
+    <h3 class="popupHeading">Facilities in <span data-ng-bind="facCtrl.city"></span><br/>
+        <span class="popupMsg">Please Login or Register and explore the world of Sports around you.</span></h3>
+    <div class="col-sm-12 popupList facPopup scrollContainer">	
+        <ul>
+            <li class="popupListItem" ng-repeat="fac in facCtrl.facilities">
+                <p class="popupPic"><img data-ng-src="@@host/facimg/{{::fac.gimg|facimgpath}}" title="{{::fac.name}}" alt="" /></p>
+                <p class="popupName" data-ng-bind="fac.name"></p>
+                <p class="popupSports">
+                    <span data-ng-repeat="sport in fac.tags">{{::sport}}{{$last ? '' : ', '}}</span>
+                </p>
+            </li>
+        </ul>
+    </div>	
+</div> 

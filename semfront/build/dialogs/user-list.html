@@ -1,0 +1,15 @@
+<div class="modal-body clearfix popupListContainer" ng-controller="UserPopupController as userCtrl">
+    <h3 class="popupHeading">Players in <span data-ng-bind="userCtrl.city"></span><br>
+        <span class="popupMsg">Please Login or Register and explore the world of Sports around you.</span></h3>
+    <div class="col-sm-12 popupList userPopup scrollContainer">	
+        <ul>
+            <li class="popupListItem" ng-repeat="user in userCtrl.users">
+                <p class="popupPic"><img data-ng-src="http://stage.sportsextramile.com/uploads/{{::user._id| imgsize:40}}" title="{{::user.fName}} {{::user.lName}}" alt="" /></p>
+                <p class="popupName">{{user.fName}} {{user.lName}}</p>	
+                <p class="popupSports">
+                    <span data-ng-repeat="sport in user.sports">{{::sport}}{{$last ? '' : ', '}}</span>
+                </p>
+            </li>
+        </ul>
+    </div>	
+</div> 

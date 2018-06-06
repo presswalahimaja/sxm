@@ -1,0 +1,48 @@
+<div id="createTeam" class="pageForm collapse">
+	<form name="ctrl.newTeamForm" role="form" novalidate ng-submit="ctrl.createTeam(ctrl.newTeamForm.$valid)">
+		<div class="pageFormRow" ng-class="{ 'has-error' : ctrl.newTeamForm.teamName.$invalid && !ctrl.newTeamForm.teamName.$pristine }">
+			<div class="pageFormCol col-md-12 col-xs-12">
+				<label class="pageFormLbl">Team Name</label>
+				<input name="teamName" class="addOrgInput" type="text" ng-model="ctrl.newteam.name" placeholder="Team name" required />
+				<p ng-show="ctrl.newTeamForm.teamName.$invalid && !ctrl.newTeamForm.teamName.$pristine" class="help-block">required</p>
+			</div>
+		</div>
+		<div class="pageFormRow" ng-if="ctrl.newteam.players.length > 0">
+			<div class="pageFormCol col-md-12 col-xs-12">
+				<label>Player Details</label> <span class="help-block" style="padding:0px;margin:0px;display:inline-block;" ng-if="ctrl.newteam.players.length > 0">(1st player will be an admin)</span>
+			</div>
+		</div>	
+		<div class="pageFormRow form-group" ng-repeat="player in ctrl.newteam.players track by $index" style="position:relative;">
+			<div class="pageFormCol col-md-4 col-xs-9" ng-class="{ 'has-error' : ctrl.newTeamForm['playerFname_' + $index].$invalid && !ctrl.newTeamForm['playerFname_' + $index].$pristine }">
+				<input class="col-md-12 col-xs-12" type="text" name="playerFname_{{$index}}" ng-model="player.fName" placeholder="First Name" required />
+				<p ng-show="ctrl.newTeamForm['playerFname_' + $index].$invalid && !ctrl.newTeamForm['playerFname_' + $index].$pristine" class="help-block">required</p>
+			</div>
+			<div class="pageFormCol col-md-4 col-xs-9">
+				<input class="col-md-12 col-xs-12" type="text" name="playerLname_{{$index}}" ng-model="player.lName" placeholder="Last Name" />
+			</div>
+			<div class="pageFormCol col-md-3 col-xs-9" ng-class="{ 'has-error' : (ctrl.newTeamForm['playerEmail_' + $index].$invalid && !ctrl.newTeamForm['playerEmail_' + $index].$pristine) || (!player.email && !player.mobile) }">
+				<input class="col-md-12 col-xs-12" type="text" name="playerEmail_{{$index}}" ng-model="player.contact" placeholder="Email/Mobile" ng-change="ctrl.validatePlayerContact(player)" />
+				<p ng-show="ctrl.newTeamForm['playerEmail_' + $index].$invalid && !ctrl.newTeamForm['playerEmail_' + $index].$pristine" class="help-block">required</p>
+				<p ng-show="!ctrl.newTeamForm['playerEmail_' + $index].$pristine && !player.email && !player.mobile && player.contact" class="help-block">Invalid</p>
+			</div>
+			<div class="pageFormCol col-md-1" style="text-align:right;">	
+				<button type="button" name="removePlayer" ng-click="ctrl.removePlayer($index)">X</button>
+			</div>
+		</div>
+		<div class="pageFormCol formTournamentBtn col-md-12 col-xs-12">
+			<button class="pageFormBtn" type="button" name="addPlayer" ng-click="ctrl.addPlayer()">+ Add Player</button>
+		</div>
+		<div class="pageFormCol formTournamentBtn col-md-12 col-xs-12">
+			<button class="pageFormBtn" ng-disabled="ctrl.confirm.btnDisable" type="submit">Create</button>
+			<button class="pageFormBtn btnCancel" type="button" name="cancelTeam" ng-click="ctrl.resetTeamForm()" style="margin-right:10px">Cancel</button>
+		</div>
+		<div class="pageFormRow">
+			<div class="alert alert-success" ng-if="ctrl.newteam.success">
+				Team created successfully!
+			</div>
+			<div class="alert alert-danger" ng-if="ctrl.newteam.failed">
+				Fill all the details properly!
+			</div>
+		</div>
+	</form>
+</div>

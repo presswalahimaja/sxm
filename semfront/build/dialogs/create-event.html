@@ -1,0 +1,81 @@
+<h3>Create Event</h3>
+<div id="Event" class="modal-body clearfix formContainer" ng-controller="createEvent as createEvt">
+    <form id="createEvent_form" class="form-horizontal col-sm-12 formValidations" name="createEventForm" role="form" novalidate ng-submit="createEventForm.$valid && createEvt.createEventSubmit()">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="Title" class="col-sm-12 control-label">Event Title</label>
+                <input class="col-sm-12" ng-class="{submitted:createEvt.isFocus.submitted}" auto-focus type="text" name="event_name" placeholder="Event Title" data-ng-model="createEvt.eventName" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="State" class="col-sm-12 control-label">Select State</label>
+                <select id="ddlStates" class="col-sm-12" ng-class="{submitted:createEvt.isFocus.submitted}" name="ddlStates" data-ng-model="createEvt.selState" ng-change="createEvt.loadCities(createEvt.selState)" required>
+                    <option data-ng-repeat="state in createEvt.states" value="{{::state}}">{{::state}}</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="City" class="col-sm-12 control-label">Select City</label>
+                <select id="ddlCities" class="col-sm-12" name="ddlCities" ng-class="{submitted:createEvt.isFocus.submitted}" data-ng-model="createEvt.selCity" ng-change="createEvt.getFacilities(createEvt.selCity)" required>
+                    <option data-ng-repeat="city in createEvt.cities" value="{{::city}}">{{::city}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="Sports" class="col-sm-12 control-label">Select Sports</label>
+                <select id="ddlSports" class="col-sm-12" name="ddlSports" ng-class="{submitted:createEvt.isFocus.submitted}" data-ng-model="createEvt.selSport" ng-change="createEvt.getFacilities(createEvt.selSport)" data-ng-options="o as o for o in createEvt.sports"
+                        required></select>
+            </div>
+            <div class="col-sm-6">
+                <label for="Facility" class="col-sm-12 control-label">Select Facility</label>
+                <select id="ddlFacilities" class="col-sm-12" name="ddlFacilities" data-ng-model="createEvt.selFacility">
+                    <option ng-repeat="o in createEvt.facilities" value="{{::o._id}}">{{::o.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="date" class="col-sm-12 control-label">Date</label>
+                <datepicker date-format="dd MMM y" date-min-limit="{{createEvt.datetime.yesterday.toString()}}" datepicker-mobile="true" date-set="{{createEvt.datetime.date}}">
+                    <input class="col-sm-12 datetime" type="text" name="event_date" placeholder="dd MMM, yyyy" data-ng-model="createEvt.datetime.date" data-ng-readonly="true" required />
+                </datepicker>
+            </div>
+            <div class="col-sm-6">
+                <label for="Time" class="col-sm-12 control-label">Time</label>
+                <select id="date_hour" class="col-sm-4 datetime" name="hour" ng-class="{invdate:createEvt.datetime.invalidDate}" data-ng-model="createEvt.datetime.selHour" required>
+                    <option data-ng-repeat="hour in createEvt.datetime.hours" ng-selected="{{hour.value == createEvt.datetime.selHour}}" value="{{hour.value}}">{{hour.text}}</option>
+                </select>
+                <select id="date_min" class="col-sm-4 datetime" name="minute" ng-class="{invdate:createEvt.datetime.invalidDate}" data-ng-model="createEvt.datetime.selMinute" data-ng-options="min for min in createEvt.datetime.minutes" required></select>
+                <select id="date_mer" class="col-sm-4 datetime" name="meridian" ng-class="{invdate:createEvt.datetime.invalidDate}" data-ng-model="createEvt.datetime.selMer" required>
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 mobiledd" data-ng-if="createEvt.myFriends">
+				<label for="ddlfrds" class="col-sm-12 control-label">Invite Friends</label>
+                <ui-select multiple ng-model="createEvt.selectedFrds">
+                    <ui-select-match>{{ $item.name}}</ui-select-match>
+                    <ui-select-choices repeat="myFrnd in createEvt.myFriends | filter: $select.search">
+                        {{myFrnd.name}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-sm-6 mobiledd" data-ng-if="createEvt.myGroups">
+				<label for="ddlGroups" class="col-sm-12 control-label">Invite Groups</label>
+                <ui-select multiple ng-model="createEvt.selGroup">
+                    <ui-select-match>{{ $item.grpName}}</ui-select-match>
+                    <ui-select-choices repeat="myGrp in createEvt.myGroups | filter: $select.search">
+                        {{myGrp.grpName}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <input id="btnCreateEvent" class="btn btnSubmit" type="submit" value="Create" name="btnCreateEvent" ng-click="createEvt.isFocus.submitted = true" />
+            <button id="btnCancelEvent" class="btn btnCancel" ng-click="createEvt.cancel();createEventForm.$valid = false;">Cancel</button>
+        </div>
+    </form>
+</div>

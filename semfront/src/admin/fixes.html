@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  ng-app="semadmin"> 
+    <head>
+        <title>Admin - Content</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="./js/angular1.4.5.min.js"></script>
+        <script type="text/javascript" src="./js/angadmin.js"></script>
+        <link rel="stylesheet" href="../css/common.css" /><link rel="stylesheet" href="../css/sxm-common.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
+        <style type="text/css">
+            table {background-color: white;}
+            div.content {background-color: white; padding:5px;}
+        </style>
+    </head>
+    <body data-ng-controller="Fixes as fixes">
+        <div class="page-wrapper">
+            <div class="container">
+                <table class="table table-bordered"><tr>
+                        <td>
+                            Delete match: 
+                            TID: <input type="text" name="iid" data-ng-model="fixes.iid">
+                            <span ng-hide="fixes.type !== 'TE'"> EID: <input type="text" name="eid" data-ng-model="fixes.eid"></span><br/>
+                            Type:<br/>
+                            Tournament : <input type="radio" name="type" value="T" data-ng-model="fixes.type"><br/> 
+                            Event in Tournament : <input type="radio" name="type" value="TE" data-ng-model="fixes.type"><br/>
+                        </td>
+                        <td>
+                            <button ng-click="fixes.getData()">Get</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div ng-show="fixes.item">
+                                <B>Tournament:</b><br/>
+                                Startate: {{fixes.item.startdate| date:'medium'}}<br/>
+                                Enddate: {{fixes.item.enddate| date:'medium'}}<br/>
+                                Title: <b>{{fixes.item.title}}</b><br/><br/>
+                                <div ng-show="fixes.type == 'TE'">
+                                    <b>
+                                        Event Detail:
+                                    </b><br/>
+                                    Title: <b>{{fixes.item.schedule[0].evtName}}</b><br/>
+                                    Date: {{fixes.item.schedule[0].evtDate| date:'medium'}}<br/>
+
+                                </div>
+                                <input type="button" ng-click="fixes.remove()" name="Confirm-Delete" value="Confirm-Delete"/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <hr/>
+                <table class="table table-bordered"><tr>
+                        <td>
+                            Update Player: 
+                            ID: <input type="text" name="uid" data-ng-model="fixes.uid">
+                        </td>
+                        <td>
+                            <button ng-click="fixes.getUData()">Get</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div ng-show="fixes.user">
+                                <B>User: </b><br/>
+                                Name: {{fixes.user.fName}} {{fixes.user.lName}}<br/>
+                                Mobile: <input type="text" name="mobile" data-ng-model="fixes.mobile">
+                                Email: <input type="text" name="email" data-ng-model="fixes.email">
+                                
+                                <input type="button" ng-click="fixes.updateUser()" name="Update" value="Update"/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

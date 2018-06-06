@@ -1,0 +1,20 @@
+<form name="loginForm" role="form" novalidate ng-submit="loginForm.$valid && main.login()">
+	<div class="formRow">
+		<div class="formItem loginUsername">
+			<input ng-class="{submitted:main.isFocus.login_submitted}" type="text" name="Username" ng-model="main.username" placeholder="Email or Mobile" ng-focus="main.isFocus.emailErr = false" required />
+			<span class="alertMsg" ng-show="main.isFocus.emailErr">{{main.isFocus.loginMsg}}</span>
+		</div>
+	</div>
+	<div class="formRow">
+		<div class="formItem loginPassword">
+			<input ng-class="{submitted:main.isFocus.login_submitted}" type="password" name="password" ng-model="main.password" placeholder="Password" ng-focus="main.isFocus.passErr = false" required />
+			<span class="alertMsg" ng-show="main.isFocus.passErr">{{main.isFocus.loginMsg}}</span>
+			<div class="formLink">
+				<a href="#" class="forgotLink" data-ng-click="main.forgotPassword()">Forgot password?</a>
+			</div>
+		</div>							
+	</div>
+	<div class="formItem loginBtn">
+		<button class="formBtn" type="submit" ng-click="main.isFocus.login_submitted = true;main.isFocus.reg_submitted = false;main.clearRegister();">LOGIN</button>
+	</div>
+</form>

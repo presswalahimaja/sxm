@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+    <head>
+        <title>Organization - Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        <!-- Google Tag Manager -->
+<script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'});
+        var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PTCRNH7');</script>
+<!-- End Google Tag Manager -->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description" />
+        <meta content="Sports Extra Mile" property="og:site_name" />
+        <meta content="website" property="og:type" />
+        <meta content="https://www.sportsextramile.com/" property="og:url" />
+        <meta content="https://www.sportsextramile.com/img/og.png" property="og:image" />
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+		<style type="text/css">
+			@media(max-width:767px) {
+				.organizationPage.row{margin-left:-20px !important;margin-right:-20px !important;}
+				.organizationPage .card{box-shadow:1px 1px 1px 0 #617d8c;margin-bottom:10px;}
+			}	
+		</style>
+        
+
+<script type="text/javascript" src="/js//lib/jquery1.12.2.js"></script>
+<script type="text/javascript" src="/js//lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js//lib/jquery.easing.min.1.3.js"></script>
+<script type="text/javascript" src="/js//lib/jquery-slim-scroll.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.discussion-list').slimScroll({
+            position: 'right',
+            height: '180px',
+            railVisible: true,
+            alwaysVisible: true
+        });
+        $('.fri-container ul').slimScroll({
+            position: 'right',
+            height: '270px',
+            railVisible: true,
+            alwaysVisible: true
+        });
+
+    });
+
+    $(document).ready(function () {
+        $("#user-block li.mobo-search").on("click", function (e) {
+            $(this).parent().parent().addClass("open");
+			$(".headerSearch").addClass("open");
+        });
+
+        $(".quick-links .mobo-cls").on("click", function (e) {
+            $(this).parent().removeClass("open");
+			$(".headerSearch").removeClass("open");
+        });
+	
+        $('.event-pop > li').hover(function () {
+            $(this).addClass('open');
+        }, function () {
+            $(this).removeClass('open');
+        });
+		
+		$(".menuBtnMobi").on("click", function(e){
+			$(this).parent().toggleClass("open");
+		});
+	
+		// Login page tabs
+		var selTab = '';
+		var isopen = false;
+		$('.slideMenuBtn').on('click', function(e){
+			e.preventDefault();
+			var tabItem = $(this).attr('data-tab');
+			$('.slideMenuContent').removeClass('current');
+			$("#"+tabItem+'_tab.slideMenuContent').addClass('current');	
+			$(this).parent().parent(".menuMobi").toggleClass("open");
+		});
+	
+        $(".tgl a").on("click", function (e) {
+            $(".right-panel").toggleClass("open");
+        });
+
+    });
+
+$(document).mouseup(function (e)
+{
+	var container = $(".headerSearch");
+
+	if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+	{
+		container.parent().removeClass("open");
+	}
+});
+$(document).mouseup(function (e)
+{
+	var container = $(".menuMobi");
+
+	if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+	{
+		container.removeClass("open");
+	}
+});
+$(document).mouseup(function (e)
+{
+	var container = $(".right-panel");
+
+	if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+	{
+		container.removeClass("open");
+	}
+});
+
+</script>
+
+        
+        
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/xeditable.min.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/ngdialog.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/ngDialog-theme-default.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/login.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/facilities.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/profile.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/detail.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/static.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/select.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/lightgallery.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/events-cricket-admin1.css" />
+
+        
+
+        
+        
+        <script type="text/javascript" src="/js/lib/angular1.4.5.min.js"></script>
+<script type="text/javascript" src="/js/lib/xeditable-0.2.0.js"></script>
+<script type="text/javascript" src="/js/lib/angular-datepicker.js"></script>
+<script type="text/javascript" src="/js/lib/angular-youtube-embed.min.js"></script>
+<script type="text/javascript" src="/js/lib/textAngular-rangy.min.js"></script>
+<script type="text/javascript" src="/js/lib/textAngular-sanitize.min.js"></script>
+<script type="text/javascript" src="/js/lib/textAngular.min.js"></script>
+<script type="text/javascript" src="/js/lib/select.min.js"></script>
+<script type="text/javascript" src="/js/lib/ngdialog.js"></script>
+<script type="text/javascript" src="/js/shared.js"></script>
+<script type="text/javascript" src="/js/anghome.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/js/user.js"></script>
+<script type="text/javascript" src="/js/header.js"></script>
+<script type="text/javascript" src="/js/organizer.js"></script>
+
+        
+    </head>
+    <body ng-controller="EditOrganizer as organizer">
+        <!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTCRNH7"
+        height="0" width="0" style="display:none;visibility:hidden">
+
+</iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+        <header ng-controller="headCtrl as head" ng-cloak>
+    <div class="container">
+        <!-- Header -->
+        <div class="row header">
+            <div class="logo col-md-7 col-sm-6 col-xs-9" ng-class="{mobiheader: head.isMobileDevice}">
+                <div class="row">
+                    <div style="width:50px;float:left;">
+                        <a href="/">
+							<img class="logo-header" src="/img/sxm.png" alt="" />
+							<span class="homeLabel showInMobile hideInPrint">Home</span>
+						</a>
+                    </div>					
+					<div class="headerSearch " auto-hide-popup flag="head.isPopupVisible">
+						<div class="input-group col-md-12">
+							<input type="text" name="searchKeyword" class="search-query form-control" placeholder="Search Friends" data-ng-model="head.searchKeyword" ng-model-options="{debounce: 500}" data-ng-change="head.searchFriends()" data-ng-click="head.searchKeyword.length > 2 && head.togglePopup()" />
+							<span class="input-group-btn">
+								<button class="btn" type="button" style="border-radius:0">
+									<span class=" glyphicon glyphicon-search"></span>
+								</button>
+							</span>
+						</div>
+						<div class="friends-search-results ng-hide" ng-show="head.isPopupVisible">
+							<div class="fri-container scroll-wrapper">
+								<ul class="find-friends-list add">
+									<li class="fri-list" ng-class="{morePadd:f.reqSent == 1 && f.isFriend == 0}" data-ng-repeat="f in head.searchedFriends | filter : head.searchKeyword">
+										<p class="popupPic"><img ng-src="http://stage.sportsextramile.com/uploads/{{::f._id| imgsize:40}}" alt="" /></p>
+										<a class="popupName" data-ng-href="/profile/{{::f.fName}}-{{::f.lName}}-{{f._id}}">{{::f.fName}} {{::f.lName}}</a>
+										<a id="add-{{f._id}}" class="add-as-friend" href="#" data-ng-click="head.addAsFriend(f._id);f.reqSent = 1" data-ng-show="f.isFriend == 0 && f.reqSent == 0">Add</a>
+										<span class="sentBtn" data-ng-show="f.isFriend == 0 && f.reqSent == 1">Request pending</span>
+										<br/>
+										<p class="popupLocation">
+											<i class="fa fa-map-marker" aria-hidden="true"></i>
+											<span data-ng-repeat="locations in f.location">{{::locations}}{{$last ? '' : ', '}}</span>
+										</p>
+										<p class="popupLocation">
+											<span data-ng-repeat="sport in f.sports">{{::sport}}{{$last ? '' : ', '}}</span>
+										</p>
+									</li>
+									<li class="noData" data-ng-if="head.searchKeyword && head.searchKeyword.length < 3">
+										Please enter 3 character for the search results.
+									</li>
+									<li class="noData" data-ng-if="head.noData">
+										No results to display
+									</li>
+								</ul>
+							</div>
+							<!-- <p class="invBtn">
+									<a href="#" class="Create-group" data-ng-click="head.inviteFriend()">Invite friends</a>
+							</p> -->
+						</div>
+					</div>
+					<div class="homeBtn hideInMobile">
+						<a href="/"><img src="/img/home.png" width="25" height="25" /></a>
+					</div>
+					<div class="evtBtn hideInMobile" data-ng-click="head.createDiscussion()">
+						<i class="fa fa-comments" aria-hidden="true" style="padding:0;float:left;font-size:22px;"></i>
+						<span>Post Message</span>
+					</div>
+                </div>
+            </div>
+            <div class="col-md-5 quick-links text-right col-sm-6 col-xs-3">
+                <ul class="nav navbar-nav pull-right" id="user-block">
+                    <li class="notifications-wrapper">
+                        <a class="notificationBtn" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <div class="glyphicon glyphicon-bell"></div>
+                            <div class="count" data-ng-bind="head.notificationCount"></div>
+                        </a>
+                        <ul class="list friend-request dropdown-menu scrollContainer">
+                            <li class="noNotifications" ng-if="head.notificationCount == 0"><span>No notifications</span></li>
+                            <li class="reqList nList" style="color: rgb(51, 51, 51);" data-ng-repeat="listFrnd in head.notifications.reqPending| orderBy:'dateR':true">
+                                <p class="notiProfilePic">
+                                    <img ng-src="http://stage.sportsextramile.com/uploads/{{listFrnd.fid| imgsize:40}}" alt="" />
+                                </p>
+                                <p class="reqCity">
+                                    <a class="friend-request-name" data-ng-href="/profile/{{::listFrnd.name | makeHyphen}}-{{::listFrnd.fid}}" data-ng-bind="::listFrnd.name"></a>
+                                </p>
+                                <p class="reqSports">
+                                    <span data-ng-repeat="city in listFrnd.city">{{::city}}{{$last ? '' : ', '}}</span>
+                                </p>
+                                <p class="reqSports">
+                                    <span data-ng-repeat="sport in listFrnd.sports">{{::sport}}{{$last ? '' : ', '}}</span>
+                                </p>
+                                <span class="notiDate">{{::listFrnd.dateR| date:"dd-MMM 'at' h:mma"}}</span>
+								<button class="stdBtnSmall reqReject" type="button" ng-click="head.acceptreject(listFrnd.fid, listFrnd.name, 'friend', false)">Reject</button>
+								<button class="stdBtnSmall reqAccept" type="button" ng-click="head.acceptreject(listFrnd.fid, listFrnd.name, 'friend', true)">Accept</button>
+							</li>
+                            <li class="nList" style="color: rgb(51, 51, 51);" data-ng-repeat="listGroup in head.notifications.groupReq">
+                                <p class="notiProfilePic">
+                                    <img ng-src="/img/users-group-icon.png" height="40px;" width="40px;" alt="" />
+                                </p>
+                                <p class="nTitle">
+									<a data-ng-href="/profile/{{listGroup.userPending[0].userName | makeHyphen}}-{{listGroup.userPending[0].uid}}" data-ng-bind="listGroup.userPending[0].userName"></a> wants to join
+                                    <a href="javascript:void(0)" data-ng-click="head.groupDetails(listGroup._id)" data-ng-bind="::listGroup.grpName"></a>
+                                </p>
+								<button class="stdBtnSmall reqReject" type="button" ng-click="head.acceptrejectgroup(listGroup.userPending[0].uid, listGroup._id, listGroup.grpName, true)">Reject</button>
+								<button class="stdBtnSmall reqAccept" type="button" ng-click="head.acceptrejectgroup(listGroup.userPending[0].uid, listGroup._id, listGroup.grpName, true)">Accept</button>
+							</li>
+                            <li style="color: rgb(51, 51, 51);" data-ng-repeat="listDiscussion in head.notifications.discInvite| orderBy:'date':true">
+                                <p class="notiProfilePic">
+                                    <img ng-src="http://stage.sportsextramile.com/uploads/{{listDiscussion.inviterID| imgsize:40}}" alt="" />
+                                </p>
+                                <span style="cursor: pointer" data-ng-cloak ng-click="head.showNotification(listDiscussion.discID, 'D')">{{::listDiscussion.inviter}} has tagged you in a discussion</span>
+                                <span class="notiDate">{{::listDiscussion.date| date:"dd-MMM 'at' h:mma"}}</span>
+                            </li>
+                            <li style="color: rgb(51, 51, 51);" data-ng-repeat="events in head.notifications.events| orderBy:'evtDate':true">
+                                <p class="notiProfilePic">
+                                    <img ng-src="http://stage.sportsextramile.com/uploads/{{events.inviterID| imgsize:40}}" alt="" />
+                                </p>
+                                <span style="cursor: pointer" data-ng-cloak ng-click="head.showNotification(events.evtID, 'E');">
+                                    {{::events.evtName}} <br/>
+                                    {{::events.inviter}} has invited you to an event on {{::events.evtDate| date:"dd-MMM 'at' h:mma"}}
+                                </span>
+                                <span class="notiDate">{{::events.evtDate| date:"dd-MMM 'at' h:mma"}}</span>
+                            </li>
+                            <li style="color: rgb(51, 51, 51);" data-ng-repeat="noti in head.notifications.noti">
+                                <p class="notiProfilePic">
+                                    <img class="noCircle" ng-src="/img/sxm.png" alt="" />
+                                </p>
+                                <span style="cursor: pointer" data-ng-cloak ng-click="head.showNotification(noti._id, 'N')">{{::noti.message}}</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle hideInMobile" data-toggle="dropdown">
+                            <img ng-src="http://stage.sportsextramile.com/uploads/{{head.id| imgsize:40}}" class="left-round-img img-responsive img-circle" alt="" />
+                            <span class="user-profile-block" style=""><strong ng-bind="::head.profile.fName"></strong><br/>
+                                <span class="user-state" ng-bind="::head.profile.location.toString()"></span>
+                            </span>
+                            <span class="caret"></span>
+                        </a>
+						<ul class="dropdown-menu" ng-if="head.isAuthed">
+                            <li><a href="/profile.html"><span class="glyphicon glyphicon-user pull-right"></span>My Profile</a></li>
+                            <li class="divider"></li>
+                            <li class="tgl"><a href="#"><span class="glyphicon glyphicon-user pull-right"></span>My Friends</a></li>
+							<li data-ng-click="head.createTournament()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Create Tournament</a></li>
+							<li class="divider"></li>
+							<li data-ng-click="head.myTournaments()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>My Tournaments</a></li>
+							<li class="divider"></li>
+							<li data-ng-click="head.createIndividualMatch()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Create Match</a></li>
+							<li class="divider"></li>
+							<li data-ng-click="head.contactus()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Contact us</a></li>
+							<li class="divider"></li>
+							<li class="tgl-m divider"></li>
+                            <li><a href="#" ng-click="head.logout()"><span class="glyphicon glyphicon-log-out pull-right"></span>Log Out</a></li>
+                        </ul>
+						<ul class="dropdown-menu" ng-if="!head.isAuthed">
+							<li><a href="/login.html"><span class="glyphicon glyphicon-user pull-right"></span>Login</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.contactus()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Contact us</a></li>
+							<li class="divider"></li>
+							<li><a href="/about-sportsextramile.html" target="_blank">About SportsExtraMile</a></li>
+							<li class="divider"></li>
+							<li><a href="/privacy.html" target="_blank">Privacy Policy</a></li>
+						</ul>
+                    </li>
+					<li class="menuMobi" ng-if="head.isMobileDevice">
+						<div class="menuBtnMobi glyphicon glyphicon-menu-hamburger"></div>
+						<ul class="dropdown-menu" ng-if="head.isAuthed">
+                            <li><a href="/profile.html"><span class="glyphicon glyphicon-user pull-right"></span>My Profile</a></li>
+                            <li class="divider"></li>
+                            <li class="tgl"><a href="#"><span class="glyphicon glyphicon-user pull-right"></span>My Friends</a></li>
+                            <li class="divider"></li>
+							<li ng-click="head.createDiscussion()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Post Message</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.createTournament()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Create Tournament</a></li>
+							<li class="tgl-m divider"></li>
+							<li ng-click="head.myTournaments()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>My Tournaments</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.createIndividualMatch()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Create Match</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.contactus()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Contact us</a></li>
+							<li class="tgl-m divider"></li>
+                            <li><a href="#" ng-click="head.logout()"><span class="glyphicon glyphicon-log-out pull-right"></span>Log Out</a></li>
+                        </ul>
+						<ul class="dropdown-menu" ng-if="!head.isAuthed">
+							<li ng-click="head.loginForm()"><a href=""><span class="glyphicon glyphicon-user pull-right"></span>Login</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.registerForm()"><a href=""><span class="glyphicon glyphicon-user pull-right"></span>Register</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.contactus()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Contact us</a></li>
+							<li class="divider"></li>
+							<li><a href="/about-sportsextramile.html" target="_blank">About SportsExtraMile</a></li>
+							<li class="divider"></li>
+							<li><a href="/privacy.html" target="_blank">Privacy Policy</a></li>
+						</ul>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="fakeHeader"></div>
+		<custom-dialog dialog-msg="{{organizer.confirm.dialogMsg}}" dialog-show="organizer.confirm.dialogShow" handler="organizer.dialogHandler()"></custom-dialog>
+        <div class="container" ng-cloak>
+            <div class="row content clearfix evePage organizationPage">
+                <div class="col-md-8 myPageContent">
+					<div class="card">
+						<div class="bannerSection">
+							<img data-ng-src="http://stage.sportsextramile.com/images/org/{{organizer.organizer._id| imagefilter:850 }}?{{organizer.confirm.imgRefreshTime}}" class="img-responsive" />
+							<div class="uploadPicCont" ng-if="(organizer.isAdmin && (organizer.isDroid == false))">
+								<input class="uploadFile" type="file" onchange="angular.element(this).scope().organizer.changeImages(this.files, 'OB')" />
+								<div class="uploadPic">	
+									<div class="uploadIcon"></div>
+									<div class="uploadText">Change</div>
+								</div>
+							</div>
+                            <div class="uploadPicCont" ng-if="(organizer.isAdmin && (organizer.isDroid == true))">
+								<a class="uploadFile" href="#ChangePicture" role="button" data-toggle="modal" ng-click="organizer.imageDiag('OB')">Change</a>
+								<div class="uploadPic">	
+									<div class="uploadIcon"></div>
+									<div class="uploadText">Change</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="logoSection">
+							<div class="orglogoCont">
+								<div class="orglogo">
+									<img data-ng-src="http://stage.sportsextramile.com/images/org/{{organizer.organizer._id| imagefilter:80}}?{{organizer.confirm.imgRefreshTime}}" class="img-responsive" />
+									<div class="uploadPicCont" ng-if="(organizer.isAdmin && (organizer.isDroid == false))">
+										<input class="uploadFile" type="file" onchange="angular.element(this).scope().organizer.changeImages(this.files, 'OL')" />
+										<div class="uploadPic">	
+											<div class="uploadIcon"></div>
+											<div class="uploadText">Change</div>
+										</div>
+									</div>
+                                    <div class="uploadPicCont" ng-if="(organizer.isAdmin && (organizer.isDroid == true))">
+										<a class="uploadFile" href="#ChangePicture" role="button" data-toggle="modal" ng-click="organizer.imageDiag('OL')">Change</a>
+										<div class="uploadPic">	
+											<div class="uploadIcon"></div>
+											<div class="uploadText">Change</div>
+										</div>
+									</div>
+								</div>
+								<div class="orgTitle editableField">
+									<span class="orgTitleText" data-ng-bind="organizer.organizer.title" ng-if="!organizer.isAdmin"></span>
+									<span ng-if="organizer.isAdmin"><a class="orgTitleText" href="#" editable-textarea="organizer.organizer.title" e-rows="1" e-cols="70" onaftersave="organizer.setOrganizerProfile('title')" ng-bind="organizer.organizer.title || 'empty'"></a></span>
+								</div>
+							</div>
+							<div class="cb-col cb-col-50 profListing">
+								<div class="cb-col cb-col-100 pageFormEditor" ng-class="{isEditable : organizer.isAdmin && !organizer.confirm.isEditable}" ng-click="organizer.editRichText()">
+									<div class="cb-col cb-col-100" ng-if="organizer.confirm.isEditable">
+										<div text-angular="text-angular" placeholder="About {{organizer.organizer.title}}" name="htmlcontent" ng-model="organizer.organizer.about" ta-disabled="false"></div>
+										<div class="cb-col cb-col-100 text-right">
+											<button class="stdBtn" type="button" ng-click="organizer.setOrganizerProfile('about')" style="float:right;margin-top:5px;">Save</button>
+										</div>
+									</div>
+									<div class="cb-col cb-col-100" ng-if="!organizer.confirm.isEditable">
+										<div ng-bind-html="organizer.organizer.about"></div>
+									</div>
+								</div>
+							</div>
+							<div class="adminSection col-md-6 col-xs-12">
+								<h4>Managed by:</h4>
+								<div class="addItemBtn right10" data-ng-hide="organizer.addOrg" data-ng-click="organizer.addOrg = true; $event.stopPropagation();" ng-if="organizer.isAdmin">
+									<i class="fa fa-plus" aria-hidden="true"></i> Add Organizers
+								</div>
+								<div auto-hide-popup flag="organizer.addOrg" data-ng-show="organizer.addOrg" data-ng-click="$event.stopPropagation();"> 	
+									<div class="addOrgBtnCont">
+										<ui-select multiple ng-model="organizer.selAdmins">
+											<ui-select-match placeholder="Add organizers">{{$item.name}}</ui-select-match>
+											<ui-select-choices repeat="friend in organizer.allfriends | filter: $select.search track by friend.uid">
+												{{friend.name}}
+											</ui-select-choices>
+										</ui-select>
+										<button class="addOrgBtn" type="button" ng-disabled="organizer.confirm.btnDisable" ng-click="organizer.addAdmin()">Add</button>	
+									</div>
+								</div>
+								<div class="cb-col cb-col-100">
+									<div class="row">
+										<div class="cb-col cb-col-100 profListing" ng-repeat="user in organizer.organizer.users">
+											<div class="profPic">
+												<img class="profPicImg" profile-err-src data-ng-src="http://stage.sportsextramile.com/uploads/{{::user.uid | imgsize:40}}" title="{{::user.name}}" alt="{{::user.name}}" />
+												<span class="profPicInitials">{{::user.name | initials | uppercase}}</span>
+											</div>
+											<div class="profDetails">
+												<a class="profName" data-ng-href="/profile/{{::user.name | makeHyphen}}-{{::user.uid}}">
+													{{::user.name}}
+												</a>
+												<span class="profBio" data-ng-bind="user.about"></span>
+												<button class="PlayerDel" type="button" ng-disabled="organizer.confirm.btnDisable" ng-click="organizer.removeAdmin($index)" ng-hide="user.uid === organizer.organizer.creator.id || user.uid === organizer.uid || organizer.isAdmin === false"></button>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card section" tab-scroller="">
+						<div class="subtabWrapper">
+							<div class="subtabContainer">
+								<ul class="scrolltabContainer">
+									<li class="subtabStyle scrolltab">Activities</li>
+									<li class="subtabStyle scrolltab">Pics</li>
+								</ul>
+							</div>
+							<div class="fakesubtabContainer"></div>
+						</div>
+						<div class="subtabDataContainer">
+							<div class="scrolltabDataContainer">
+								<div class="scrolltabData">
+									<div class="tournamentSection">
+										<h4>
+											<span>Activities</span>
+											<div class="infoSection" ng-if="organizer.isAdmin">
+												<span customtip class="infoIcon1" title="Create your organization’s activity (any event or tournament) for any sport or fitness. You can update and promote all details about your activity. Page is accessible without registration, so you can share link of your tournament page to your friends or on other social networks and promote it."></span>
+												<!-- <span class="infoContent">Create your organization’s activity (any event or tournament) for any sport or fitness. You can update and promote all details about your activity. Page is accessible without registration, so you can share link of your tournament page to your friends or on other social networks and promote it.</span> -->
+											</div>
+										</h4>
+										<div id="addItemBtn" class="addItemBtn right10" data-toggle="collapse" data-target="#tournamentFormCont" ng-if="organizer.isAdmin">
+											<i class="fa fa-plus" aria-hidden="true"></i> Create Tournament
+										</div>																
+										<form id="tournamentFormCont" class="pageForm collapse" name="tournamentForm" role="form" novalidate ng-submit="tournamentForm.$valid && organizer.checkMobileNo()" accept-charset="UTF-8" style="padding:5px 0;">
+											<div class="pageFormRow">
+												<div class="pageFormCol col-md-6 col-xs-12">
+													<label class="pageFormLbl hideInMobile">Title</label>
+													<input class="col-md-12" ng-class="{submitted:organizer.isFocus.submitted}" type="text" name="tournamentTitle" ng-model="organizer.tournament.title" placeholder="Tournament name" required />
+												</div>
+												<div class="pageFormCol col-md-6 col-xs-12 mobiledd">
+													<label class="pageFormLbl hideInMobile">Select Sport</label>
+													<ui-select class="single" ng-class="{submitted:organizer.isFocus.submitted}" ng-model="organizer.tournament.sport" ng-required="true" on-select="organizer.loadFacilities()">
+														<ui-select-match placeholder="Select sport">{{$select.selected}}</ui-select-match>
+														<ui-select-choices repeat="sport in organizer.allsports | filter: $select.search track by $index">
+															{{sport}}
+														</ui-select-choices>
+													</ui-select>	
+												</div>
+											</div>
+											<div class="pageFormRow">
+												<div class="pageFormCol col-md-6 col-xs-12">
+													<label class="pageFormLbl hideInMobile">Start Date</label>
+													<datepicker datepicker-mobile="true" date-format="dd MMM y" date-set="{{organizer.datetime.startdate.toString()}}">
+														<input class="col-sm-12" ng-class="{invDate:organizer.datetime.invalidDate}" type="text" name="event_startdate" placeholder="Start date" data-ng-model="organizer.datetime.startdate" data-ng-readonly="true" required />
+													</datepicker>
+												</div>
+												<div class="pageFormCol col-md-6 col-xs-12">
+													<label class="pageFormLbl hideInMobile">End Date</label>
+													<datepicker datepicker-mobile="true" date-format="dd MMM y" date-set="{{organizer.datetime.startdate.toString()}}">
+														<input class="col-sm-12" ng-class="{invDate:organizer.datetime.invalidDate}" type="text" name="event_enddate" placeholder="End date" data-ng-model="organizer.datetime.enddate" data-ng-readonly="true" required />
+													</datepicker>
+												</div>
+											</div>
+											<div class="pageFormRow">
+												<div class="pageFormCol col-md-12 col-xs-12">
+													<div class="loginPrivacy inpage">
+														<label ng-class="{'checked':organizer.isFocus.privacy,'submitted':organizer.isFocus.submitted}">
+															<input type="checkbox" name="checkbox" value="check" id="agree" ng-model="organizer.isFocus.privacy" ng-required="true" />
+														</label> I have read and understood <a href="/privacy.html" target="_blank">Privacy Policy</a>
+													</div>
+												</div>
+											</div>
+											<div class="pageFormCol formTournamentBtn col-md-12 col-xs-12" ng-hide="organizer.confirm.userMobile == false">											
+												<button class="pageFormBtn" type="submit" name="orgSubmit" ng-click="organizer.isFocus.submitted = true;">Create</button>
+												<button class="pageFormBtn btnCancel" type="button" name="orgCancel" ng-click="organizer.cancel();" style="margin-right:10px">Cancel</button>
+											</div>
+										</form>
+										<!-- Check for the mobile no -->
+										<div class="cb-col cb-col-100 profListing" ng-if="organizer.confirm.userMobile == false">
+											<div class="cb-col cb-col-51 cb-sm-100" style="color:red;margin-bottom:5px;">
+												Your mobile number is not updated. Please update it here.
+											</div>
+											<div class="cb-col cb-col-49 cb-sm-100">
+												<form class="formValidations" name="addMobileForm" role="form" novalidate ng-submit="addMobileForm.$valid && organizer.addMobileNo()">
+													<input class="addOrgInput" ng-class="{submitted:organizer.confirm.addMobile}" type="number" ng-minlength="10" ng-maxlength="10" name="mobile" ng-model="organizer.confirm.mobileno" placeholder="Mobile number" required />
+													<input class="addOrgBtn" type="submit" value="Add" ng-disabled="organizer.confirm.btnDisable" ng-click="organizer.confirm.addMobile = true"></input>
+												</form>
+											</div>
+										</div>
+										<!-- Tournament listing -->
+										<div class="col-md-12 nodataContainer" ng-if="!organizer.organizer.tournaments.length">
+											No tournaments available here.
+										</div>
+										<div class="col-md-6" ng-repeat="tournament in organizer.organizer.tournaments | orderBy:'-startdate'">
+											<div class="card">
+												<div class="dheader">
+													<p class="thmb"><img data-ng-src="http://stage.sportsextramile.com/images/org/{{organizer.organizer._id | imagefilter:80}}?{{organizer.confirm.imgRefreshTime}}" title="{{::organizer.organizer.title}}" alt="" /></p>
+													<p class="ttitle">
+														<a data-ng-href="/organization.html?orgId={{organizer.organizer._id}}">
+															<span class="ename">{{organizer.organizer.title}}</span>
+														</a> presents 
+														<a data-ng-href="/tournament.html?orgId={{organizer.organizer._id}}&tid={{tournament.id}}">
+															<span>{{::tournament.title}}</span>
+														</a>
+													</p>
+													<span class="d-box-loc">{{tournament.startdate| date:"dd-MMM-yyyy"}} - {{tournament.enddate| date:"dd-MMM-yyyy"}}</span>
+													<span class="articleTag">Tournament</span>
+												</div>
+												<div class="homboxImg">
+													<a data-ng-href="/tournament.html?orgId={{organizer.organizer._id}}&tid={{tournament.id}}">
+														<img data-ng-src="http://stage.sportsextramile.com/tour/{{tournament.id | imagefilter:404}}?{{organizer.confirm.imgRefreshTime}}" title="{{::tournament.title}}" alt="" />
+													</a>	
+												</div>
+											</div>	
+										</div>
+									</div>
+								</div>
+								<div class="scrolltabData">
+									<div class="gallerySection" id="gallerySection">
+										<h4>Pics</h4>
+										<div class="addItemBtn right10" ng-if="organizer.isAdmin">
+											<i class="fa fa-plus" aria-hidden="true"></i> Upload Images
+											<input class="uploadImgBtn" type="file" multiple onchange="angular.element(this).scope().organizer.uploadImages(this.files)" />
+										</div>
+										<div class="gallery">			
+											<div class="col-md-12" ng-if="organizer.organizer.gallery.length == 0">
+												No images available here.
+											</div>
+											<div id="lightgallery" class="lightgallery">
+												<a class="galleryItem" lightgallery ng-repeat="gal in organizer.organizer.gallery | orderBy:reverse:true" ng-href="http://stage.sportsextramile.com/posts/{{gal.id | imgsize}}">
+													<i class="fa fa-times-circle closeBtn" ng-hide="organizer.confirm.removeImg[$index]" ng-click="$event.stopPropagation();$event.preventDefault();organizer.confirm.removeImg = null;organizer.confirm.removeImg[$index] = true;"></i>
+													<div class="cb-col cb-col-65 profListing closeBtnOptions" ng-show="organizer.confirm.removeImg[$index]">
+														<button class="stdBtn scoreBtn cb-col-100 confirmBtn" type="submit" ng-click="organizer.removeImage($event, gal.id);">Confirm</button>
+														<button class="stdBtn scoreBtn cb-col-100" type="button" ng-click="$event.stopPropagation();$event.preventDefault();organizer.confirm.removeImg = false;">Cancel</button>
+													</div>
+													<img class="img-responsive" ng-src="http://stage.sportsextramile.com/posts/{{gal.id | imgsize:206 }}" ng-class="{'removeImg':organizer.confirm.removeImg[$index]}" />
+												</a>				
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>
+                </div>		
+                <div class="col-md-4">
+                    <!-- Right Panel -->
+                    <div class="right-panel clearfix slidepanel" ng-controller="frndGrpCtrl as frndCtrl">
+    <div class="frd-groups">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#Friends">Friends (<span data-ng-bind="frndCtrl.myFriendsCount"></span>)</a></li>
+            <li><a data-toggle="tab" href="#Groups">Teams (<span data-ng-bind="frndCtrl.myGroupsCount"></span>)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="Friends" class="tab-pane fade in active">
+                <!-- <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" name="searchKeyword" class="search-query form-control" placeholder="Search friends" data-ng-model="search.name"/>
+                        <span class="input-group-btn">
+                            <button class="btn" type="button">
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div> -->
+                <div class="fri-container">
+                    <ul>
+                        <li class="fri-list" ng-repeat="friend in frndCtrl.myFriends| orderBy:'name' | filter:{name :search.name}:startsWith">
+                            <p class="popupPic"><img ng-src="http://stage.sportsextramile.com/uploads/{{::friend.uid| imgsize:40}}" alt="" /></p>
+                            <a class="popupName" data-ng-href="/profile/{{::friend.name | makeHyphen}}-{{::friend.uid}}" data-ng-bind="::friend.name"></a>
+                            <a class="q-match" href="#" data-ng-click="frndCtrl.quickMatch(friend.uid)"><div class="match"></div></a> 
+                        </li>
+                    </ul>
+                    <p class="cr-btn clear text-center">
+                        <a href="#" class="Create-group" style="margin-right:20px;" data-ng-click="frndCtrl.showPeople()">Players</a>
+                        <a href="#" class="Create-group" data-ng-click="frndCtrl.inviteFriend()">Invite</a>
+                    </p>
+                </div>
+            </div>
+            <div id="Groups" class="tab-pane fade">
+				<div id="custom-search-input" class="pSection" auto-hide-popup flag="frndCtrl.gsFlag">
+                    <div class="input-group col-md-12">
+                        <input class="search-query form-control" type="text" placeholder="Search Teams" data-ng-model="frndCtrl.gsearchquery" ng-model-options="{debounce: 500}" data-ng-change="frndCtrl.gsearchquery.length > 2 && frndCtrl.searchGroups()" data-ng-click="frndCtrl.gsearchquery.length > 2 && frndCtrl.togglePopup()" />
+                        <span class="input-group-btn">
+                            <button class="btn" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+					<div class="groupSearchCont" data-ng-show="frndCtrl.gsFlag">
+						<div class="groupSearchList">	
+							<div class="groupSearchItem" data-ng-repeat="grp in frndCtrl.allgroups | filter:frndCtrl.gsearchquery track by grp.pid">
+								<div class="searchName">{{::grp.name}} <span class="searchAdmin" data-ng-if="grp.admin"> - by {{::grp.admin}}</span></div>
+								<div class="searchCity">
+									<span data-ng-if="grp.sport">{{::grp.sport}},</span>
+									<span data-ng-if="grp.city"><i class="fa fa-map-marker" aria-hidden="true"></i> {{::grp.city}}</span>                                                    
+								</div>
+								<button class="addOrgBtn" type="button" ng-click="frndCtrl.subscribeGroup(grp)" data-ng-show="!grp.isSubscribed && !grp.reqSent">Subscribe</button>
+								<span class="addOrgBtn btnSent" data-ng-show="!grp.isSubscribed && grp.reqSent">Req Sent</span>
+							</div>	
+						</div>
+					</div>
+                </div>
+                <div class="fri-container">
+                    <ul>
+                        <li class="fri-list" ng-repeat="group in frndCtrl.myGroups| orderBy:'grpName'">
+                            <p class="popupPic"><img data-ng-src="http://stage.sportsextramile.com/glogo/{{group.gid | imagefilter:108}}" err-src="/img/users-group-icon.png" /></p>
+                            <a class="popupName" href="#" data-ng-click="frndCtrl.groupDetails(group.gid)" data-ng-bind="::group.grpName"></a>
+                        </li>
+                    </ul>
+                    <p class="cr-btn clear text-center">
+                        <a href="#" class="Create-group" data-ng-click="frndCtrl.createGroup()">Create Team</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                    <!-- <div class="card col-md-12">Sponsers</div> -->
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/lib/lightgallery.min.js"></script>
+        <script type="text/javascript" src="js/lib/lg-thumbnail.min.js"></script>
+        <script type="text/javascript" src="js/lib/lg-fullscreen.min.js"></script>
+        <script type="text/javascript" src="script/main.js"></script>
+    </body>
+</html>

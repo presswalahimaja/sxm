@@ -1,0 +1,62 @@
+<div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray" ng-if="ctrl.academy.isAdmin">
+	<div id="contactFormBtn" data-toggle="collapse" data-target="#contactForm" style="float:right;color:#3897f1;cursor:pointer;">
+		<i class="fa fa-plus" aria-hidden="true"></i> {{ctrl.academy.address ? 'Update Address' : 'Add Address'}}
+	</div>
+</div>
+<div class="cb-col cb-col-100">
+	<form id="contactForm" class="pageForm collapse" name="contactForm" role="form" novalidate ng-submit="contactForm.$valid && ctrl.updateAcademy('contact')" accept-charset="UTF-8">
+		<div class="pageFormRow">
+			<div class="pageFormCol col-md-6 col-xs-12">
+				<label for="address" class="pageFormLbl hideInMobile">Address</label>
+				<input id="address" class="col-md-12" type="text" placeholder="Address" ng-model="ctrl.academy.address" />
+			</div>
+			<div class="pageFormCol col-md-6 col-xs-12">
+				<label for="city" class="pageFormLbl hideInMobile">City</label>
+				<input id="city" class="col-md-12" type="text" placeholder="City" ng-model="ctrl.academy.city" />
+			</div>
+		</div>
+		<div class="pageFormRow">
+			<div class="pageFormCol col-md-6 col-xs-12">
+				<label for="state" class="pageFormLbl hideInMobile">State</label>
+				<input id="state" class="col-md-12" type="text" placeholder="State" ng-model="ctrl.academy.state" />
+			</div>
+			<div class="pageFormCol col-md-6 col-xs-12">
+				<label for="country" class="pageFormLbl hideInMobile">Country</label>
+				<input id="country" class="col-md-12" type="text" placeholder="Country" ng-model="ctrl.academy.country" />
+			</div>
+		</div>
+		<div class="pageFormRow">
+			<div class="pageFormCol col-md-6 col-xs-12">
+				<label for="phone" class="pageFormLbl hideInMobile">Phone</label>
+				<input id="phone" class="col-md-12" type="text" placeholder="Phone" ng-model="ctrl.academy.phone" />
+			</div>
+			<div class="pageFormCol col-md-6 col-xs-12" style="margin-top:20px;">
+				<button class="pageFormBtn" type="submit" name="contactSubmit">Save</button>
+				<button class="pageFormBtn btnCancel" type="button" name="cantactCancel" ng-click="ctrl.cancelForm('contactFormBtn');" style="margin-right:10px">Cancel</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="cb-col cb-col-100">
+	<div class="cb-col cb-col-50 cb-sm-100 profListing">	
+		<div class="cb-col cb-col-100" ng-if="ctrl.academy.address || ctrl.academy.city || ctrl.academy.state || ctrl.academy.country">
+			<div class="cb-col cb-col-100" style="font-weight:600;">Address:</div>
+			<div class="cb-col cb-col-100" ng-if="ctrl.academy.address">
+				{{ctrl.academy.address}} <br/>
+			</div>	
+			<div class="cb-col cb-col-100">
+				{{ctrl.academy.city ? ctrl.academy.city + ', ' : ''}}
+				{{ctrl.academy.state ? ctrl.academy.state + ', ' : ''}}
+				{{ctrl.academy.country}}
+			</div>
+		</div>
+		<div class="cb-col cb-col-100" ng-if="ctrl.academy.phone">
+			<br/>
+			<div class="cb-col cb-col-100" style="font-weight:600;">Phone:</div>
+			{{ctrl.academy.phone}}
+		</div>
+	</div>	
+	<div class="cb-col cb-col-50 cb-sm-100 profListing">
+		<div class="cb-col cb-col-100" style="font-weight:600;">Map</div>
+	</div>
+</div>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+    <head>
+        <title>Events Admin - Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        @@include('gtmhead.html')
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description" />
+        <meta content="Sports Extra Mile" property="og:site_name" />
+        <meta content="website" property="og:type" />
+        <meta content="https://www.sportsextramile.com/" property="og:url" />
+        <meta content="https://www.sportsextramile.com/img/og.png" property="og:image" />
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+
+        @@if (doConcat === 1) {
+        @@loop('css.html', [ 
+        { "file": "common.css"}, 
+        { "file": "sxm-common.css"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('css.html', [ 
+        { "file": "bootstrap.min.css"}, 
+        { "file": "xeditable.min.css"},
+        { "file": "ngdialog.css"}, 
+        { "file": "ngDialog-theme-default.css"}, 
+        { "file": "login.css"}, 
+        { "file": "facilities.css"}, 
+        { "file": "profile.css"},
+        { "file": "detail.css"},
+        { "file": "style.css"}, 
+        { "file": "static.css"},
+        { "file": "select.css"},
+        { "file": "events-cricket-admin.css"}
+        ])
+        }
+
+        @@if (doConcat === 1) {
+        @@loop('scripts.html', [ 
+        { "file": "angular.js"}, 
+        { "file": "sxm-common.js"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('scripts.html', [
+        { "file": "lib/angular1.4.5.min.js"},
+        { "file": "lib/xeditable-0.2.0.js"},
+        { "file": "lib/angular-datepicker.js"},
+		{ "file": "lib/angular-youtube-embed.min.js"},
+        { "file": "lib/textAngular-rangy.min.js"},
+        { "file": "lib/textAngular-sanitize.min.js"},
+        { "file": "lib/textAngular.min.js"},
+        { "file": "lib/select.min.js"},
+        { "file": "lib/ngdialog.js"},
+        { "file": "shared.js"},
+        { "file": "anghome.js"},
+        { "file": "user.js"},
+        { "file": "header.js"},
+        { "file": "events-cricket-admin.js"}
+        ])
+        }
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=@@gkey"></script>
+    </head>
+
+    <body ng-controller="CricketMaster as crick">
+        @@include('gtmbody.html')
+        <!-- header -->
+        @@include('header.html')
+        <div class="container">
+            <div class="row content clearfix facPage">
+                <div class="col-md-8 myPageContent">
+                    <!-- Banner sections -->
+                    <div class="bannerSection card">
+                        <img data-ng-src="http://p.imgci.com/db/PICTURES/CMS/259800/259866.jpg" class="img-responsive" />
+                    </div>
+                    <!-- End Banner sections -->
+                    <!-- Title, venues and map -->
+                    <div class="customcolumn card" style="float:left;">
+                        <h4>{{::crick.data.team[0].name}} vs {{::crick.data.team[1].name}}</h4>
+                        <div class="pro-tabinner">
+                            <div class="tab-section setmargin">
+                                <p class="inf-intro"><strong>Sports</strong>: {{::crick.data.sport}}</p>
+                                <p class="inf-intro"><strong>Date & Time</strong>:  {{::crick.data.dt}}</p>
+                                <p class="inf-intro"><strong>Venue</strong>:  {{::crick.data.venue}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="customcolumn card" style="height:150px;">
+                        Google map comes here
+                    </div>
+                    <!-- End Title, venues and map -->
+                    <!-- Select players -->
+                    <div class="card">
+                        <h4>Select Players</h4>
+                        <div class="pro-tabinner">
+                            <div class="tab-section setmargin">
+                                <p class="introtext">
+                                    <strong ng-bind="::crick.data.team[0].name"></strong>: <a href="javascript:void(0);" class="absRightposition standardbtn">Select Players</a>
+                                </p>
+                                <p class="introtext">
+                                    <strong ng-bind="::crick.data.team[1].name"></strong>: <a href="javascript:void(0);" class="absRightposition standardbtn">Select Players</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Select players -->
+                    <!-- Score cards -->
+                    <div class="card" ng-if="crick.data.status == 'start'">
+                        <div class="carddiv">Scorecards<a style="right:18px;top:4px;" href="javascript:void(0);" class="absRightposition standardbtn">Add Inning</a></div>
+                        <div class="pro-tabinner">
+                            <div class="tab-section setmargin">
+                                <!-- Inning 1 -->    
+                                <div class="inningcard card" ng-if="crick.data.team[0].inning == true">
+                                    <div class="carddiv">{{::crick.data.team[0].name}} - First Inning</div>
+                                    <div class="pro-tabinner">
+                                        <div class="tab-section" style="border-top:1px solid #fff;">
+                                            <!-- score header -->
+                                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                                <div class="cb-col cb-col-27">Batsman</div>
+                                                <div class="cb-col cb-col-28"></div>
+                                                <div class="cb-col cb-col-8 text-right">R</div>
+                                                <div class="cb-col cb-col-8 text-right">B</div>
+                                                <div class="cb-col cb-col-8 text-right">4s</div>
+                                                <div class="cb-col cb-col-8 text-right" style="padding-right:10px;">6s</div>
+                                                <div class="cb-col cb-col-8 text-right">SR</div>
+                                            </div>
+                                            <!-- End score header -->
+                                            <!-- Plyaer list -->
+                                            <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="i1 in crick.data.team[0].players| filter: crick.isPlayerLive">
+                                                <div class="cb-col cb-col-27 ">
+                                                    <a href="#" class="cb-text-link" ng-bind="i1.name"></a>
+                                                </div>
+                                                <div class="cb-col cb-col-28"><span class="text-gray" ng-bind="i1.detail"></span></div>
+                                                <div class="cb-col cb-col-8 text-right text-gray">{{crick.playerStat('run', i1)}}</div> <!-- Runs -->
+                                                <div class="cb-col cb-col-8 text-right text-gray">{{crick.playerStat('balls', i1)}}</div> <!-- Ball -->
+                                                <div class="cb-col cb-col-8 text-right text-gray">{{crick.playerStat('four', i1)}}</div> <!-- Four -->
+                                                <div class="cb-col cb-col-8	text-right text-gray" style="padding-right:10px;">{{crick.playerStat('six', i1)}}</div> <!-- Six -->
+                                                <div class="cb-col cb-col-8 text-right text-gray">{{crick.playerStat('sr', i1)}}</div> <!-- Strike rate -->
+                                                <!-- Enter players run on each ball -->
+                                                <div class="cb-col-100">
+                                                    <span ng-repeat="run in i1.runs track by $index" class="additionalstyle cb-col-padding">
+                                                        <!-- 123 -->
+                                                        <select ng-model="i1.runs[$index]" class="ddStyle text-gray">
+                                                            <option value=""></option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="6">6</option>
+                                                            <option value="out">Out</option>
+                                                        </select>
+                                                        <!-- End 123 -->
+                                                        <!-- <input type="text" class="txtbatsmanrun" ng-model="i1.runs[$index]"> -->
+                                                    </span>
+                                                    <span ng-if="i1.status != 'out'" class="runsbtn cb-col-padding" ng-click="crick.addRunBox(i1.runs);"></span>
+                                                </div>
+                                                <!-- End Enter players run on each ball -->
+                                            </div>
+                                            <!-- End player list -->
+                                            <!-- Total runs and wickets -->
+                                            <div class="cb-col cb-col-100 cb-scrd-itms">
+                                                <div class="cb-col cb-col-55 text-gray">Total</div>
+                                                <div class="cb-col cb-col-8 text-gray text-right">{{crick.totalInningsRun(1)}}</div>
+                                                <div class="cb-col-20 cb-col text-gray">&nbsp;({{crick.fallOfWickets(0)}} wkts, {{crick.totalInningsOvers(1)}} Overs)</div>
+                                            </div>
+                                            <!-- End Total runs and overs -->
+                                            <!-- Bowlers balls details in each overs -->
+                                            <p class="rightpos introtext">
+                                                <span class="cb-col-overaddstyle"><input style="text-align:left;" ng-model="crick.playername" type="text" class="txtbatsmanrun"></span>
+                                                <a href="javascript:void(0);" class="standardbtn" ng-click="crick.addNewOvers(1);">Add Overs</a>
+                                            </p>
+                                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                                <div class="cb-col cb-col-3">No.</div>
+                                                <div class="cb-col cb-col-20">Bowlers</div>
+                                                <div class="cb-col cb-col-65">Status of each ball</div>
+                                                <div class="cb-col cb-col-10 text-right">Total Runs</div>
+                                            </div>
+                                            <div ng-repeat="bowlers in crick.data.team[1].players">
+                                                <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="bowl in bowlers.overs">
+                                                    <div class="cb-col cb-col-3 text-gray" ng-bind="{{bowl.overNum}}"></div>
+                                                    <div class="cb-col cb-col-20">
+                                                        <span class="cb-col-bowler100 text-gray" style="border:none;" ng-bind="bowlers.name"></span>
+                                                    </div>
+                                                    <div class="cb-col cb-col-65">
+                                                        <!-- <span ng-repeat="i in [1,2,3,4,5,6]" class="cb-col-padding">
+                                                            <input type="text" class="txtbatsmanrun">
+                                                        </span> -->
+                                                        <span ng-repeat="i2 in bowl.runPerball track by $index" class="additionalstyle cb-col-padding">
+                                                            <select ng-model="bowl.runPerball[$index]" class="ddStyle text-gray">
+                                                                <option value=""></option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="6">6</option>
+                                                                <option value="wk">wk</option>
+                                                            </select>
+                                                        </span>
+                                                        <span class="runsbtn cb-col-padding" ng-if="crick.currentOverBall(bowl) <= 6" ng-click="crick.addBallBox(bowl);"></span>
+                                                    </div>
+                                                    <div class="cb-col cb-col-10 text-right text-gray">22</div>
+                                                </div>
+                                            </div>
+                                            <!-- End Bowlers balls details in each overs -->
+                                        </div>
+                                    </div>
+                                </div>      
+                                <!-- End Inning 1 -->
+                                <!-- Inning 2 -->
+                                <div class="inningcard card" ng-if="crick.data.team[1].inning == true">
+                                    <div class="carddiv">{{::crick.data.team[1].name}} - Second Inning</div>
+                                    <div class="pro-tabinner">
+                                        <div class="tab-section" style="border-top:1px solid #fff;">
+                                            <!-- score header -->
+                                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                                <div class="cb-col cb-col-27">Batsman</div>
+                                                <div class="cb-col cb-col-28"></div>
+                                                <div class="cb-col cb-col-8 text-right">R</div>
+                                                <div class="cb-col cb-col-8 text-right">B</div>
+                                                <div class="cb-col cb-col-8 text-right">4s</div>
+                                                <div class="cb-col cb-col-8 text-right" style="padding-right:10px;">6s</div>
+                                                <div class="cb-col cb-col-8 text-right">SR</div>
+                                            </div>
+                                            <!-- End score header -->
+                                            <!-- Plyaer runs -->
+                                            <div class="cb-col cb-col-100 cb-scrd-itms">
+                                                <div class="cb-col cb-col-27 ">
+                                                    <a href="#" class="cb-text-link">Jignesh Sharma</a>
+                                                </div>
+                                                <div class="cb-col cb-col-28"><span class="text-gray">c ABC b XYZ</span></div>
+                                                <div class="cb-col cb-col-8 text-right text-gray">10</div>
+                                                <div class="cb-col cb-col-8 text-right text-gray">19</div>
+                                                <div class="cb-col cb-col-8 text-right text-gray">2</div>
+                                                <div class="cb-col cb-col-8	text-right text-gray" style="padding-right:10px;">0</div>
+                                                <div class="cb-col cb-col-8 text-right text-gray"> 52.63 </div>
+                                            </div>
+                                            <div class="cb-col cb-col-100 cb-scrd-itms">
+                                                <div class="cb-col cb-col-27 ">
+                                                    <a href="#" class="cb-text-link">Dushyant Sharma</a>
+                                                </div>
+                                                <div class="cb-col cb-col-28"><span class="text-gray">c Arpit b Arpit</span></div>
+                                                <div class="cb-col cb-col-8 text-right text-gray">10</div>
+                                                <div class="cb-col cb-col-8 text-right text-gray">19</div>
+                                                <div class="cb-col cb-col-8 text-right text-gray">2</div>
+                                                <div class="cb-col cb-col-8	text-right text-gray" style="padding-right:10px;">0</div>
+                                                <div class="cb-col cb-col-8 text-right text-gray"> 52.63 </div>
+                                            </div>
+                                            <!-- Total runs and wickets -->
+                                            <div class="cb-col cb-col-100 cb-scrd-itms">
+                                                <div class="cb-col cb-col-55 text-gray">Total</div>
+                                                <div class="cb-col cb-col-8 text-gray text-right">130</div>
+                                                <div class="cb-col-20 cb-col text-gray">&nbsp;(2 wkts, 20 Ov)</div>
+                                            </div>
+                                            <!-- End Total runs and overs -->
+                                            <!-- Bowlers balls details in each overs -->
+                                            <p class="rightpos introtext">
+                                                <a href="javascript:void(0);" class="standardbtn">Add Overs</a>
+                                            </p>
+                                            <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                                <div class="cb-col cb-col-3">No.</div>
+                                                <div class="cb-col cb-col-20">Bowlers</div>
+                                                <div class="cb-col cb-col-65">Status of each ball</div>
+                                                <div class="cb-col cb-col-10 text-right">Total Runs</div>
+                                            </div>
+                                            <div class="cb-col cb-col-100 cb-scrd-itms">
+                                                <div class="cb-col cb-col-3">1</div>
+                                                <div class="cb-col cb-col-20">
+                                                    <span class="cb-col-bowler100"><input type="text" class="txtbowler txtbatsmanrun"></span>
+                                                </div>
+                                                <div class="cb-col cb-col-65">
+                                                    <span ng-repeat="i in [1, 2, 3, 4, 5, 6]" class="cb-col-padding"><input type="text" class="txtbatsmanrun"></span>
+                                                </div>
+                                                <div class="cb-col cb-col-10 text-right">22</div>
+                                            </div>
+                                            <!-- End Bowlers balls details in each overs -->
+                                        </div>
+                                    </div>
+                                </div>      
+                                <!-- End Inning 2 -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Score cards -->
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        @@include('footer.html')
+        @@include('footerscripts.html')
+    </body>
+</html>

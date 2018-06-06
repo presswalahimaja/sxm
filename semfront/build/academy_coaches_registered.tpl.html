@@ -1,0 +1,73 @@
+<h4>&nbsp;</h4>
+<div id="addItemBtn" class="addItemBtn right10" data-toggle="collapse" data-target="#UserFormCont" ng-if="ctrl.academy.isAdmin">
+	<i class="fa fa-plus" aria-hidden="true"></i> Create Coach
+</div>
+<form id="UserFormCont" class="pageForm collapse" name="newMemberForm" role="form" novalidate ng-submit="newMemberForm.$valid && ctrl.addAcademyCoach(newMemberForm)">
+	<div class="cb-col cb-col-35 cb-sm-100">
+		<div class="pageFormCol col-md-12 col-xs-12">
+			<input class="col-md-12" ng-class="{submitted:ctrl.confirm.submitted}" type="text" name="fName" ng-model="ctrl.newMember.fName" placeholder="First Name" required />
+		</div>
+		<div class="pageFormCol col-md-12 col-xs-12">
+			<input class="col-md-12" ng-class="{submitted:ctrl.confirm.submitted}" type="text" name="lName" ng-model="ctrl.newMember.lName" placeholder="Last Name" />
+		</div>
+		<div class="pageFormCol col-md-12 col-xs-12">
+			<input class="col-md-12" ng-class="{submitted:ctrl.confirm.submitted, 'ng-invalid':newMemberForm.$dirty && !ctrl.newMember.email && !ctrl.newMember.mobile && ctrl.newMember.contact}" type="text" name="contact" ng-model="ctrl.newMember.contact" ng-change="ctrl.validateMemberContact()" placeholder="Email/Mobile" required />
+			<p ng-show="newMemberForm.$dirty && !ctrl.newMember.email && !ctrl.newMember.mobile && ctrl.newMember.contact" class="help-block">Invalid</p>
+		</div>
+	</div>
+	<div class="cb-col cb-col-65 cb-sm-100 pageFormEditor">
+		<div class="pageFormCol col-md-12 col-xs-12">
+			<div text-angular="text-angular" placeholder="Details" name="htmlcontent" ng-model="ctrl.newMember.about" ta-disabled="false"></div>
+		</div>
+		<div class="pageFormCol col-md-12 col-xs-12">
+			<button class="pageFormBtn" type="submit" ng-disabled="ctrl.confirm.btnDisable" ng-click="ctrl.confirm.submitted = true;">Add</button>
+			<button class="pageFormBtn btnCancel" type="button" ng-click="ctrl.resetNewMemberForm(newMemberForm)" style="margin-right:10px">Reset</button>
+		</div>
+	</div>
+	<div class="cb-col cb-col-100 cb-sm-100">
+		<div class="col-md-12 col-xs-12">
+			<div class="alert alert-success" ng-if="ctrl.newMember.success">
+				{{ctrl.addedPlayer}} added in Academy.
+			</div>
+			<div class="alert alert-danger" ng-if="ctrl.newMember.failed">
+				Something went wrong!
+			</div>
+		</div>
+	</div>	
+</form>
+<div class="cb-col cb-col-100">
+	<div class="cb-col cb-col-100 profListing" ng-if="!ctrl.academy.coaches.length">
+		No Registered Coach details available for this academy.
+	</div>
+	<div class="cb-col cb-col-100 profListing" ng-if="ctrl.confirm.uploadStatus">
+		<div class="alert alert-success" ng-if="ctrl.confirm.uploadStatus === 1">
+			User profile pic updated.
+		</div>
+		<div class="alert alert-danger" ng-if="ctrl.confirm.uploadStatus === 2">
+			User has already updated his/her profile pic.
+		</div>
+		<div class="alert alert-danger" ng-if="ctrl.confirm.uploadStatus === 3">
+			Something went wrong!
+		</div>
+	</div>
+	<div class="cb-col cb-col-100 profListing" ng-repeat="coach in ctrl.academy.coaches track by coach.id" ng-if="coach.isArchived == undefined || coach.isArchived == false">
+		<div class="profPic">
+			<img class="profPicImg" profile-err-src data-ng-src="http://stage.sportsextramile.com/uploads/{{::coach.id | imgsize:40}}?{{ctrl.confirm.imgRefreshTime}}" title="{{::coach.name}}" alt="{{::coach.name}}" />
+			<span class="profPicInitials">{{::coach.name | initials | uppercase}}</span>
+			<div class="profPicUpload" ng-if="ctrl.academy.isAdmin">
+				<i class="fa fa-camera profPicCam" aria-hidden="true"></i>
+				<input class="uploadProfile" size="20" type="file" onchange="angular.element(this).scope().ctrl.updateProfPic(this.files, angular.element(this).scope().coach.id)" />
+			</div>
+		</div>
+		<div class="profDetails">
+			<a class="profName" data-ng-href="/profile/{{::coach.name | makeHyphen}}-{{::coach.id}}">
+				{{::coach.name}}
+			</a>
+		</div>
+		<div class="profRemove" ng-if="ctrl.academy.isAdmin">
+			<button class="stdBtn" type="button" ng-hide="ctrl.confirm.archiveCoach[$index]" ng-click="ctrl.confirm.archiveCoach = null;ctrl.confirm.archiveCoach[$index] = true">Archive</button>
+			<button class="stdBtn" type="button" ng-show="ctrl.confirm.archiveCoach[$index]" ng-click="ctrl.confirm.archiveCoach[$index] = false">No</button>
+			<button class="stdBtn" type="button" ng-show="ctrl.confirm.archiveCoach[$index]" ng-click="ctrl.confirm.archiveCoach[$index] = false;ctrl.archiveAcademyCoach(coach.id)" style="margin:0 5px;">Yes</button>
+		</div>
+	</div>
+</div>

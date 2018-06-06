@@ -1,0 +1,45 @@
+<div class="modal-body clearfix formContainer" ng-controller="Login as main">	
+	<form class="cb-col cb-col-100 form-horizontal formValidations" name="registerForm" role="form" novalidate ng-submit="registerForm.$valid && main.validateEmail() && main.register()" accept-charset="UTF-8" style="padding-top:15px;">
+		<div class="cb-col cb-col-100 profListing loginEmail">
+			<input class="cb-col cb-col-100" ng-class="{submitted:main.isFocus.reg_submitted, 'invEmail':main.isFocus.invEmail}" type="text" name="email" ng-model="main.email" placeholder="Email or Mobile" required />
+		</div>
+		<div class="cb-col cb-col-100 profListing loginPswd">
+			<input class="cb-col cb-col-100" ng-class="{submitted:main.isFocus.reg_submitted}" type="password" name="pswd" ng-model="main.pswd" placeholder="Password" ng-focus="main.isFocus.pswd = true" ng-blur="main.isFocus.pswd = false" ng-minlength="6" ng-maxlength="128" required />	
+			<span class="alertMsg" ng-cloak ng-show="registerForm.pswd.$error.minlength && main.isFocus.pswd">Password is too short (6 or more characters) </span>
+		</div>
+		<div class="cb-col cb-col-100 profListing loginFname">
+			<input class="cb-col cb-col-100" ng-class="{submitted:main.isFocus.reg_submitted}" type="text" name="fName" ng-model="main.fName" placeholder="First Name" ng-maxlength="128" required />
+		</div>
+		<div class="cb-col cb-col-100 profListing loginLname">
+			<input class="cb-col cb-col-100" ng-class="{submitted:main.isFocus.reg_submitted}" type="text" name="lName" ng-model="main.lName" placeholder="Last Name" ng-maxlength="128" required />
+		</div>                                        
+		<div class="cb-col cb-col-100 profListing">
+			<ui-select multiple ng-class="{submitted:main.isFocus.reg_submitted}" ng-model="main.sports" ng-required="true">
+				<ui-select-match placeholder="Select Sports">{{$item.name}}</ui-select-match>
+				<ui-select-choices repeat="sport in main.allsports | filter: $select.search">
+					{{sport.name}}
+				</ui-select-choices>
+			</ui-select>
+		</div>
+		<div class="cb-col cb-col-100 profListing">
+			<ui-select multiple ng-class="{submitted:main.isFocus.reg_submitted}" ng-model="main.userCities" ng-required="true">
+				<ui-select-match placeholder="Select Locations">{{$item}}</ui-select-match>
+				<ui-select-choices repeat="city in main.filterObjArray(main.allcities, 'City') | filter: $select.search track by $index">
+					{{city}}
+				</ui-select-choices>
+			</ui-select>
+		</div>
+		<div class="cb-col cb-col-100 profListing loginPrivacy">
+			<label ng-class="{'checked':main.isFocus.privacy,'submitted':main.isFocus.reg_submitted}">
+				<input type="checkbox" name="checkbox" value="check" id="agree" ng-model="main.isFocus.privacy" ng-required="true" />
+			</label> I have read and understood <a href="/privacy.html" target="_blank">Privacy Policy</a>
+		</div>
+		<div class="cb-col cb-col-100 profListing regError" ng-if="main.isFocus.register">
+			User already exists. Retireve your password by clicking <a href="" ng-click="main.openForgotPassword()">here</a>
+		</div>
+		<div class="cb-col cb-col-100 profListing">
+            <input id="btnCreateEvent" class="btn btnSubmit" type="submit" value="SIGN-UP" name="btnSubmit" ng-click="main.isFocus.reg_submitted = true;" />
+            <input id="btnCancelEvent" class="btn btnCancel" type="submit" value="Cancel"  name="btnCancel" ng-click="main.cancel();" style="float:right;" />
+        </div>		
+	</form>
+</div>

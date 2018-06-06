@@ -1,0 +1,21 @@
+<div ng-controller="imgUpload as img">
+    <div class="modal-header" >
+        <button type="button" class="close" data-ng-submit="img.save()" ></button>
+        <p class="title">Change Picture</p>
+    </div> 
+
+    <div class="modal-body clearfix">
+        <div><input type="file" id="fileInput" onchange="angular.element(this).scope().img.uploadFile(this.files)"/></div>
+        <!--<div class="cropArea">
+          <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+        </div>
+        <div>Cropped Image:</div>
+        <div><img ng-src="{{myCroppedImage}}" /></div>-->
+        <div>Picture should be less than 2 MB in size.</div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn"  ng-click="img.save()">save</button>
+        <button class="btn" ng-click="img.cancel()">Cancel</button>
+    </div>
+</div>
+

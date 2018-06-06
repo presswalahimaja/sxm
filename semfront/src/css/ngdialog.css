@@ -1,0 +1,560 @@
+@-webkit-keyframes ngdialog-fadeout {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ngdialog-fadeout {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes ngdialog-fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes ngdialog-fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.ngdialog,
+.ngdialog *,
+.ngdialog *:before,
+.ngdialog *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.ngdialog {
+    position: fixed;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 9998;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.ngdialog-overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: ngdialog-fadein 0.5s;
+    animation: ngdialog-fadein 0.5s;
+}
+
+.ngdialog.ngdialog-closing .ngdialog-overlay {
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: ngdialog-fadeout 0.5s;
+    animation: ngdialog-fadeout 0.5s;
+}
+
+.ngdialog-content {
+    background: white;
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: ngdialog-fadein 0.5s;
+    animation: ngdialog-fadein 0.5s;
+}
+.ngdialog-content .locationList .locItems{
+    text-align: right;
+}
+.ngdialog-content .locationList .dropdown-menu a{
+    font-size: 12px;
+    color: #666666;
+    padding: 3px 0px;
+}
+.ngdialog-content .locationList #btnCloseEvent{
+    margin-top: 20px;
+}
+.ngdialog.ngdialog-closing .ngdialog-content {
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: ngdialog-fadeout 0.5s;
+    animation: ngdialog-fadeout 0.5s;
+}
+
+.ngdialog-close:before {
+    font-family: 'Open Sans',Arial,sans-serif;
+    content: '\00D7';
+    cursor: pointer;
+}
+
+body.ngdialog-open {
+    overflow: hidden;
+}
+
+
+/* Datepicker Styling */
+
+datepicker a, [datepicker] a, .datepicker a{
+    color:inherit;
+    text-decoration:none;
+}
+datepicker a:hover, [datepicker] a:hover, .datepicker a:hover{
+    text-decoration:none;
+}
+datepicker select, datepicker select:focus, datepicker select:hover,
+.datepicker select, .datepicker select:focus, .datepicker select:hover,
+[datepicker] select, [datepicker] select:focus, [datepicker] select:hover{
+    width:100%;
+    overflow: hidden;
+    background:none;
+    color:#fff;
+    background-color: #138EFA;
+    border-radius:2px;
+    border: 0;
+    margin-top:5px;
+}
+datepicker, .datepicker, [datepicker],
+._720kb-datepicker-calendar-header,
+._720kb-datepicker-calendar-body,
+._720kb-datepicker-calendar-days-header,
+._720kb-datepicker-calendar-years-pagination-pages {
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size: 13.5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+    float: left;
+    clear: right;
+    position: relative;
+}
+._720kb-datepicker-calendar {
+    background: white;
+    color: #333;
+    position: absolute;
+    z-index: 999;
+    min-width: 220px;
+    margin: 0 auto;
+    width: 101%;
+    -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+    /* visibility: hidden; */
+	display: none;
+    overflow:hidden;
+    margin-left:-0.5%;
+    padding: 0 0 2% 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+._720kb-datepicker-calendar._720kb-datepicker-open, ._720kb-datepicker-calendar._720kb-datepicker-forced-to-open {
+   /*  visibility: visible; */
+   display: block;
+}
+._720kb-datepicker-calendar-header {
+    text-align: center;
+    font-size: 15px;
+    line-height: 26px;
+}
+._720kb-datepicker-calendar-header:nth-child(odd) {
+    background: #138EFA;
+}
+._720kb-datepicker-calendar-header:nth-child(even) {
+    background: #7BC6FC;
+}
+._720kb-datepicker-calendar-header-left,
+._720kb-datepicker-calendar-header-middle,
+._720kb-datepicker-calendar-header-right {
+    width: 15%;
+    float: left;
+}
+._720kb-datepicker-calendar-header-middle {
+    width: 70%;
+}
+
+._720kb-datepicker-calendar-header-closed-pagination::after {
+    content: " \25BE";
+}
+
+._720kb-datepicker-calendar-header-opened-pagination::after {
+    content: " \25BE";
+    margin-left: 4px;
+    position: relative;
+    bottom: -3px;
+    display:inline-block;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+._720kb-datepicker-calendar-body {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+._720kb-datepicker-calendar-day {
+    cursor: pointer;
+    font-size: 11px;
+    width: 13.2%;
+    margin: 1px;
+    padding: 0;
+    float: left;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+._720kb-datepicker-calendar-day:hover,._720kb-datepicker-calendar-day._720kb-datepicker-active {
+    background: rgba(0, 0, 0, 0.03);
+}
+._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
+    text-decoration:none;
+    padding:3% 9% 4% 9%;
+    font-size: 13.5px;
+    color:rgba(0, 0, 0, 0.55);
+    font-weight: bold;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+._720kb-datepicker-calendar-header a:hover {
+    color:rgba(0, 0, 0, 0.9);
+    background: rgba(255, 255, 255, 0.45);
+}
+._720kb-datepicker-calendar-month {
+    color:#fff;
+}
+._720kb-datepicker-calendar-month span {
+    font-size: 13px;
+    color:rgba(0, 0, 0, 0.4);
+}
+._720kb-datepicker-calendar-month a span  i {
+    font-style: normal;
+    font-size:15px;
+}
+._720kb-datepicker-calendar-month a, ._720kb-datepicker-calendar-month a:hover {
+    padding: 3px;
+    margin-left:1%;
+}
+._720kb-datepicker-calendar-years-pagination{
+    padding:2% 0 0 0;
+    float:left;
+    clear: right;
+    width: 100%;
+}
+._720kb-datepicker-calendar-years-pagination a, ._720kb-datepicker-calendar-years-pagination a:hover {
+    font-size:12px;
+    padding:0 7px;
+    font-weight: normal;
+    margin:3px 1% 0 1%;
+    line-height: 20px;
+    display: inline-block;
+}
+._720kb-datepicker-calendar-years-pagination a._720kb-datepicker-active {
+    color:rgba(0, 0, 0, 0.9);
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.45);
+}
+._720kb-datepicker-calendar-years-pagination-pages a,._720kb-datepicker-calendar-years-pagination-pages a:hover{
+    padding:5px 10px;
+}
+._720kb-datepicker-calendar-days-header{
+    max-width: 100%;
+    margin:0 auto;
+    padding:0;
+    background: rgba(19, 142, 250, 0.08);
+    border-bottom:1px solid rgba(0,0,0,0.02);
+}
+._720kb-datepicker-calendar-days-header div{
+    width: 14.18%;
+    font-weight: 500;
+    font-size: 10.5px;
+    padding:1px;
+    float:left;
+    text-align: center;
+    color:rgba(0,0,0,0.7);
+}
+._720kb-datepicker-calendar-days
+._720kb-datepicker-default-button{
+    font-size: 18.5px;
+    position: relative;
+    bottom:-0.5px;
+}
+._720kb-datepicker-default-button{
+    padding:0 4.5px;
+}
+._720kb-datepicker-calendar-header-middle._720kb-datepicker-mobile-item{
+    width:95%;
+    float:none;
+    margin:0 auto;
+}
+._720kb-datepicker-item-hidden{
+    visibility:hidden;
+}
+._720kb-datepicker-calendar-day._720kb-datepicker-disabled,
+._720kb-datepicker-calendar-day._720kb-datepicker-disabled:hover,
+._720kb-datepicker-calendar-years-pagination a._720kb-datepicker-disabled,
+._720kb-datepicker-calendar-years-pagination a._720kb-datepicker-disabled:hover,
+._720kb-datepicker-calendar-years-pagination a._720kb-datepicker-active._720kb-datepicker-disabled,
+._720kb-datepicker-calendar-years-pagination a._720kb-datepicker-active._720kb-datepicker-disabled:hover{
+    color:rgba(0,0,0,0.2);
+    background: rgba(25,2,0,0.02);
+    cursor: default;
+}
+
+/* Detail Discussion Styling */
+.discussionPopup{
+    font-family: 'Open Sans',Arial,sans-serif;
+    color: #808080;
+}
+.discussionPopup .detailHeader.dheader{
+    line-height: 16px;
+    padding: 17px 5px 0 80px;
+    min-height: 86px;
+}
+.discussionPopup .dheader{
+    border-bottom: none;
+    min-height: 75px;
+	background: transparent;
+}
+.discussionPopup .cmnt_hname{
+    color: #333;
+    font-size: 14px;
+    font-weight: 700;
+    float: left;
+/*    padding: 0 0 0 0;*/
+    width: 100%;
+}
+.discussionPopup .disc_uname{
+    padding: 0;
+}
+.discussionPopup .disc_body{
+    font-size: 14px;
+    line-height: 16px;
+    padding: 20px 0 25px;
+    float: left;
+    width: 100%;
+    color: #262626;
+}
+.discussionPopup .disc_detail{
+    padding: 0 0 3px 0;
+}
+.discussionPopup .commentContainer{
+    float: left;
+    width: 100%;
+}
+.discussionPopup .commentItem{
+    float:left;
+    width: 100%;
+    height: auto;
+    border-bottom: none;
+    padding: 17px 5px 0 80px !important;
+    line-height: 16px;
+}
+.discussionPopup ul{
+    float: left;
+    margin: 0;
+    padding: 10px 0 0 0;
+    width: 100%;
+}
+.discussionPopup ul li{
+    border-right: 2px solid #262626;
+    float: left;
+    font-weight: bold;
+    line-height: 16px;
+    list-style: outside none none;
+    padding:0 10px 0 0;
+    margin: 0 10px 0 0;
+}
+.discussionPopup ul li:last-child{
+    border-right: none;
+}
+.discussionPopup .cmnt_date{
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size: 10px;
+}
+.discussionPopup .cmnt_header{
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #E6E6FA;
+}
+.discussionPopup .cmnt_total{
+    margin-left: 10px;
+}
+.discussionPopup .cmnt_header .fa-heart{
+    color: #c1272d;
+}
+.discussionPopup .cmnt_name{
+    font-weight: bold;
+}
+.discussionPopup .cmnt_body{
+    margin-top: 7px;
+}
+
+/* Popup list styling */
+.popupList{
+    color: #808080;
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size: 12px;
+    line-height: 16px;	
+}
+.popupList.scrollContainer{
+    height: 484px;
+}
+.popupList ul{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.popupList ul li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    padding: 15px 100px 0 50px;
+    min-height: 50px;
+}
+.facPopup.popupList ul li{
+	padding: 10px 0 10px 100px;
+    min-height: 28px;
+}
+.discPopup.popupList ul li{
+	padding: 10px 0 0 50px;
+}
+.eventPopup.popupList ul li{
+	padding: 10px 100px 3px 40px;
+	min-height: 45px;
+}
+h3.popupHeading{
+	line-height: 30px;
+	padding: 6px 0 10px;
+}
+h3.popupHeading .popupMsg{
+	color: #3897f0 !important;
+    font-size: 14px !important;
+}
+.popupPic{
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 10px;
+}
+.popupPic img{
+    border-radius: 50%;
+	width: 40px;
+	height: 40px;
+}
+.facPopup .popupPic img{
+	border-radius: 0;
+	width: 85px;
+	height: auto;
+}
+.popupName{
+    font-size: 14px;
+    font-weight: bold;
+	margin: 0;
+	color: #333;
+}
+.popupDate{
+	color: #808080;
+	font-size: 10px;
+	font-weight: normal;
+}
+.popupEvtDate{
+	float: left;
+    width: 28px;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    text-align: center;
+    font-size: 16px;
+    background-color: #7f7f7f;
+    line-height: 1;
+    border-radius: 4px;
+    color: #ffffff;
+    font-weight:500;
+    padding: 3px 0;
+}
+.popupEvtDate b{
+    display: block;
+    font-size:9px;
+    font-weight:500;
+}
+.popupDisc{
+	font-size: 12px;
+	line-height: 16px;
+	margin: 0;
+}
+.popupSports{
+    margin: 0;
+    line-height: 14px;
+}
+.popupBtn{
+    background: #262626;
+    border: none;
+    border-radius: 0;
+    color: #ffffff;
+    height: 22px;
+    position: absolute;
+    right: 0;
+    top: 16px;
+    padding: 2px 10px;
+    font-size: 13px;
+    margin: 0;
+}	
+.popupBtn:hover{
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.popupLocation{
+    color: #a2a2a2;
+    font-size: 14px;
+    line-height: 14px;
+    margin: 0;
+}
+.popupLocation span{
+    color: #555555;
+    padding: 0 0 0 5px;
+}
+.popupLabelCont{
+    padding:5px 10px 0;
+    color: #555555 !important;
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size: 14px;	
+}
+.popupLabel{
+    color:#333333 !important;
+    font-weight:600;
+	font-size:14px;
+}
+.scrollContainer{height:200px;overflow-x:hidden;font-size:14px;}
+.noData{padding:10px 0;}
+.scrollWrapper::-webkit-scrollbar{width:8px;background-color:#cccccc;}
+.scrollWrapper::-webkit-scrollbar-thumb{background-color:#666666;}
+.scrollWrapper::-webkit-scrollbar-thumb:hover{background-color:#999999;border:1px solid #666666;}
+.scrollWrapper::-webkit-scrollbar-thumb:active{background-color:#666666;border:1px solid #666666;}
+.scrollWrapper::-webkit-scrollbar-track{border:1px gray solid;-webkit-box-shadow:0 0 2px gray inset;}
+.ngdialog-content .listRemoveTeam .stdBtn{padding:3px 10px;}

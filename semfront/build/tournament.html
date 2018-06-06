@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+    <head>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!--#if expr="$QUERY_STRING = /title=([a-zA-Z0-9\-]+)/" -->
+        <!--#set var="title" value="$1" -->
+        <!--#endif -->
+        <!--#if expr="$QUERY_STRING = /tid=([0-9a-z]{24})/" -->
+        <!--#set var="tid" value="$1" -->
+        <!--#endif -->
+        <!--#if expr="$tid = /([0-9a-z]{1})/" -->
+        <!--#set var="tid1" value="$1" -->
+        <!--#endif -->
+        <!--#if expr="$tid = /^.{1}([0-9a-z])/" -->
+        <!--#set var="tid2" value="$1" -->
+        <!--#endif -->
+        <title>Tournament - Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        <!-- Google Tag Manager -->
+<script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'});
+        var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PTCRNH7');</script>
+<!-- End Google Tag Manager -->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description" />
+        <meta property="og:title" content='Tournament - Sports Extra Mile'  /> 
+        <meta property="og:site_name" content="Sports Extra Mile"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://www.sportsextramile.com/"/>
+        <meta property="og:image:secure_url" content='https://www.sportsextramile.com/tour/<!--#echo var="tid1" -->/<!--#echo var="tid2" -->/<!--#echo var="tid" -->-270x850.jpg'/>
+        <meta property="og:image" content='https://www.sportsextramile.com/tour/<!--#echo var="tid1" -->/<!--#echo var="tid2" -->/<!--#echo var="tid" -->-270x850.jpg'  />
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMX_8Y8l89UDbLnbewhfXFcRhCs-uzoPQ"></script>
+        
+
+<script type="text/javascript" src="/js//lib/jquery1.12.2.js"></script>
+<script type="text/javascript" src="/js//lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js//lib/jquery.easing.min.1.3.js"></script>
+<script type="text/javascript" src="/js//lib/jquery-slim-scroll.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.discussion-list').slimScroll({
+            position: 'right',
+            height: '180px',
+            railVisible: true,
+            alwaysVisible: true
+        });
+        $('.fri-container ul').slimScroll({
+            position: 'right',
+            height: '270px',
+            railVisible: true,
+            alwaysVisible: true
+        });
+
+    });
+
+    $(document).ready(function () {
+        $("#user-block li.mobo-search").on("click", function (e) {
+            $(this).parent().parent().addClass("open");
+			$(".headerSearch").addClass("open");
+        });
+
+        $(".quick-links .mobo-cls").on("click", function (e) {
+            $(this).parent().removeClass("open");
+			$(".headerSearch").removeClass("open");
+        });
+	
+        $('.event-pop > li').hover(function () {
+            $(this).addClass('open');
+        }, function () {
+            $(this).removeClass('open');
+        });
+		
+		$(".menuBtnMobi").on("click", function(e){
+			$(this).parent().toggleClass("open");
+		});
+	
+		// Login page tabs
+		var selTab = '';
+		var isopen = false;
+		$('.slideMenuBtn').on('click', function(e){
+			e.preventDefault();
+			var tabItem = $(this).attr('data-tab');
+			$('.slideMenuContent').removeClass('current');
+			$("#"+tabItem+'_tab.slideMenuContent').addClass('current');	
+			$(this).parent().parent(".menuMobi").toggleClass("open");
+		});
+	
+        $(".tgl a").on("click", function (e) {
+            $(".right-panel").toggleClass("open");
+        });
+
+    });
+
+$(document).mouseup(function (e)
+{
+	var container = $(".headerSearch");
+
+	if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+	{
+		container.parent().removeClass("open");
+	}
+});
+$(document).mouseup(function (e)
+{
+	var container = $(".menuMobi");
+
+	if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+	{
+		container.removeClass("open");
+	}
+});
+$(document).mouseup(function (e)
+{
+	var container = $(".right-panel");
+
+	if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+	{
+		container.removeClass("open");
+	}
+});
+
+</script>
+        <script type="text/javascript" src="script/jquery.touchSwipe.min.js"></script>
+
+        
+        
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/xeditable.min.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/ngdialog.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/ngDialog-theme-default.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/login.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/facilities.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/profile.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/detail.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/static.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/select.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/lightgallery.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/events-cricket-admin1.css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/jquery.bxslider.min.css" />
+
+        
+
+        
+        
+        <script type="text/javascript" src="/js/lib/angular1.4.5.min.js"></script>
+<script type="text/javascript" src="/js/lib/angular-touch.min.js"></script>
+<script type="text/javascript" src="/js/lib/xeditable-0.2.0.js"></script>
+<script type="text/javascript" src="/js/lib/angular-datepicker.js"></script>
+<script type="text/javascript" src="/js/lib/angular-youtube-embed.min.js"></script>
+<script type="text/javascript" src="/js/lib/textAngular-rangy.min.js"></script>
+<script type="text/javascript" src="/js/lib/textAngular-sanitize.min.js"></script>
+<script type="text/javascript" src="/js/lib/textAngular.min.js"></script>
+<script type="text/javascript" src="/js/lib/select.min.js"></script>
+<script type="text/javascript" src="/js/lib/ngdialog.js"></script>
+<script type="text/javascript" src="/js/shared.js"></script>
+<script type="text/javascript" src="/js/anghome.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/js/user.js"></script>
+<script type="text/javascript" src="/js/header.js"></script>
+<script type="text/javascript" src="/js/tournament.js"></script>
+
+                
+    </head> 
+    <body id="body" ng-controller="Tournament as tournament">
+        <!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTCRNH7"
+        height="0" width="0" style="display:none;visibility:hidden">
+
+</iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+        <header ng-controller="headCtrl as head" ng-cloak>
+    <div class="container">
+        <!-- Header -->
+        <div class="row header">
+            <div class="logo col-md-7 col-sm-6 col-xs-9" ng-class="{mobiheader: head.isMobileDevice}">
+                <div class="row">
+                    <div style="width:50px;float:left;">
+                        <a href="/">
+							<img class="logo-header" src="/img/sxm.png" alt="" />
+							<span class="homeLabel showInMobile hideInPrint">Home</span>
+						</a>
+                    </div>					
+					<div class="headerSearch " auto-hide-popup flag="head.isPopupVisible">
+						<div class="input-group col-md-12">
+							<input type="text" name="searchKeyword" class="search-query form-control" placeholder="Search Friends" data-ng-model="head.searchKeyword" ng-model-options="{debounce: 500}" data-ng-change="head.searchFriends()" data-ng-click="head.searchKeyword.length > 2 && head.togglePopup()" />
+							<span class="input-group-btn">
+								<button class="btn" type="button" style="border-radius:0">
+									<span class=" glyphicon glyphicon-search"></span>
+								</button>
+							</span>
+						</div>
+						<div class="friends-search-results ng-hide" ng-show="head.isPopupVisible">
+							<div class="fri-container scroll-wrapper">
+								<ul class="find-friends-list add">
+									<li class="fri-list" ng-class="{morePadd:f.reqSent == 1 && f.isFriend == 0}" data-ng-repeat="f in head.searchedFriends | filter : head.searchKeyword">
+										<p class="popupPic"><img ng-src="http://stage.sportsextramile.com/uploads/{{::f._id| imgsize:40}}" alt="" /></p>
+										<a class="popupName" data-ng-href="/profile/{{::f.fName}}-{{::f.lName}}-{{f._id}}">{{::f.fName}} {{::f.lName}}</a>
+										<a id="add-{{f._id}}" class="add-as-friend" href="#" data-ng-click="head.addAsFriend(f._id);f.reqSent = 1" data-ng-show="f.isFriend == 0 && f.reqSent == 0">Add</a>
+										<span class="sentBtn" data-ng-show="f.isFriend == 0 && f.reqSent == 1">Request pending</span>
+										<br/>
+										<p class="popupLocation">
+											<i class="fa fa-map-marker" aria-hidden="true"></i>
+											<span data-ng-repeat="locations in f.location">{{::locations}}{{$last ? '' : ', '}}</span>
+										</p>
+										<p class="popupLocation">
+											<span data-ng-repeat="sport in f.sports">{{::sport}}{{$last ? '' : ', '}}</span>
+										</p>
+									</li>
+									<li class="noData" data-ng-if="head.searchKeyword && head.searchKeyword.length < 3">
+										Please enter 3 character for the search results.
+									</li>
+									<li class="noData" data-ng-if="head.noData">
+										No results to display
+									</li>
+								</ul>
+							</div>
+							<!-- <p class="invBtn">
+									<a href="#" class="Create-group" data-ng-click="head.inviteFriend()">Invite friends</a>
+							</p> -->
+						</div>
+					</div>
+					<div class="homeBtn hideInMobile">
+						<a href="/"><img src="/img/home.png" width="25" height="25" /></a>
+					</div>
+					<div class="evtBtn hideInMobile" data-ng-click="head.createDiscussion()">
+						<i class="fa fa-comments" aria-hidden="true" style="padding:0;float:left;font-size:22px;"></i>
+						<span>Post Message</span>
+					</div>
+                </div>
+            </div>
+            <div class="col-md-5 quick-links text-right col-sm-6 col-xs-3">
+                <ul class="nav navbar-nav pull-right" id="user-block">
+                    <li class="notifications-wrapper">
+                        <a class="notificationBtn" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <div class="glyphicon glyphicon-bell"></div>
+                            <div class="count" data-ng-bind="head.notificationCount"></div>
+                        </a>
+                        <ul class="list friend-request dropdown-menu scrollContainer">
+                            <li class="noNotifications" ng-if="head.notificationCount == 0"><span>No notifications</span></li>
+                            <li class="reqList nList" style="color: rgb(51, 51, 51);" data-ng-repeat="listFrnd in head.notifications.reqPending| orderBy:'dateR':true">
+                                <p class="notiProfilePic">
+                                    <img ng-src="http://stage.sportsextramile.com/uploads/{{listFrnd.fid| imgsize:40}}" alt="" />
+                                </p>
+                                <p class="reqCity">
+                                    <a class="friend-request-name" data-ng-href="/profile/{{::listFrnd.name | makeHyphen}}-{{::listFrnd.fid}}" data-ng-bind="::listFrnd.name"></a>
+                                </p>
+                                <p class="reqSports">
+                                    <span data-ng-repeat="city in listFrnd.city">{{::city}}{{$last ? '' : ', '}}</span>
+                                </p>
+                                <p class="reqSports">
+                                    <span data-ng-repeat="sport in listFrnd.sports">{{::sport}}{{$last ? '' : ', '}}</span>
+                                </p>
+                                <span class="notiDate">{{::listFrnd.dateR| date:"dd-MMM 'at' h:mma"}}</span>
+								<button class="stdBtnSmall reqReject" type="button" ng-click="head.acceptreject(listFrnd.fid, listFrnd.name, 'friend', false)">Reject</button>
+								<button class="stdBtnSmall reqAccept" type="button" ng-click="head.acceptreject(listFrnd.fid, listFrnd.name, 'friend', true)">Accept</button>
+							</li>
+                            <li class="nList" style="color: rgb(51, 51, 51);" data-ng-repeat="listGroup in head.notifications.groupReq">
+                                <p class="notiProfilePic">
+                                    <img ng-src="/img/users-group-icon.png" height="40px;" width="40px;" alt="" />
+                                </p>
+                                <p class="nTitle">
+									<a data-ng-href="/profile/{{listGroup.userPending[0].userName | makeHyphen}}-{{listGroup.userPending[0].uid}}" data-ng-bind="listGroup.userPending[0].userName"></a> wants to join
+                                    <a href="javascript:void(0)" data-ng-click="head.groupDetails(listGroup._id)" data-ng-bind="::listGroup.grpName"></a>
+                                </p>
+								<button class="stdBtnSmall reqReject" type="button" ng-click="head.acceptrejectgroup(listGroup.userPending[0].uid, listGroup._id, listGroup.grpName, true)">Reject</button>
+								<button class="stdBtnSmall reqAccept" type="button" ng-click="head.acceptrejectgroup(listGroup.userPending[0].uid, listGroup._id, listGroup.grpName, true)">Accept</button>
+							</li>
+                            <li style="color: rgb(51, 51, 51);" data-ng-repeat="listDiscussion in head.notifications.discInvite| orderBy:'date':true">
+                                <p class="notiProfilePic">
+                                    <img ng-src="http://stage.sportsextramile.com/uploads/{{listDiscussion.inviterID| imgsize:40}}" alt="" />
+                                </p>
+                                <span style="cursor: pointer" data-ng-cloak ng-click="head.showNotification(listDiscussion.discID, 'D')">{{::listDiscussion.inviter}} has tagged you in a discussion</span>
+                                <span class="notiDate">{{::listDiscussion.date| date:"dd-MMM 'at' h:mma"}}</span>
+                            </li>
+                            <li style="color: rgb(51, 51, 51);" data-ng-repeat="events in head.notifications.events| orderBy:'evtDate':true">
+                                <p class="notiProfilePic">
+                                    <img ng-src="http://stage.sportsextramile.com/uploads/{{events.inviterID| imgsize:40}}" alt="" />
+                                </p>
+                                <span style="cursor: pointer" data-ng-cloak ng-click="head.showNotification(events.evtID, 'E');">
+                                    {{::events.evtName}} <br/>
+                                    {{::events.inviter}} has invited you to an event on {{::events.evtDate| date:"dd-MMM 'at' h:mma"}}
+                                </span>
+                                <span class="notiDate">{{::events.evtDate| date:"dd-MMM 'at' h:mma"}}</span>
+                            </li>
+                            <li style="color: rgb(51, 51, 51);" data-ng-repeat="noti in head.notifications.noti">
+                                <p class="notiProfilePic">
+                                    <img class="noCircle" ng-src="/img/sxm.png" alt="" />
+                                </p>
+                                <span style="cursor: pointer" data-ng-cloak ng-click="head.showNotification(noti._id, 'N')">{{::noti.message}}</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle hideInMobile" data-toggle="dropdown">
+                            <img ng-src="http://stage.sportsextramile.com/uploads/{{head.id| imgsize:40}}" class="left-round-img img-responsive img-circle" alt="" />
+                            <span class="user-profile-block" style=""><strong ng-bind="::head.profile.fName"></strong><br/>
+                                <span class="user-state" ng-bind="::head.profile.location.toString()"></span>
+                            </span>
+                            <span class="caret"></span>
+                        </a>
+						<ul class="dropdown-menu" ng-if="head.isAuthed">
+                            <li><a href="/profile.html"><span class="glyphicon glyphicon-user pull-right"></span>My Profile</a></li>
+                            <li class="divider"></li>
+                            <li class="tgl"><a href="#"><span class="glyphicon glyphicon-user pull-right"></span>My Friends</a></li>
+							<li data-ng-click="head.createTournament()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Create Tournament</a></li>
+							<li class="divider"></li>
+							<li data-ng-click="head.myTournaments()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>My Tournaments</a></li>
+							<li class="divider"></li>
+							<li data-ng-click="head.createIndividualMatch()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Create Match</a></li>
+							<li class="divider"></li>
+							<li data-ng-click="head.contactus()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Contact us</a></li>
+							<li class="divider"></li>
+							<li class="tgl-m divider"></li>
+                            <li><a href="#" ng-click="head.logout()"><span class="glyphicon glyphicon-log-out pull-right"></span>Log Out</a></li>
+                        </ul>
+						<ul class="dropdown-menu" ng-if="!head.isAuthed">
+							<li><a href="/login.html"><span class="glyphicon glyphicon-user pull-right"></span>Login</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.contactus()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Contact us</a></li>
+							<li class="divider"></li>
+							<li><a href="/about-sportsextramile.html" target="_blank">About SportsExtraMile</a></li>
+							<li class="divider"></li>
+							<li><a href="/privacy.html" target="_blank">Privacy Policy</a></li>
+						</ul>
+                    </li>
+					<li class="menuMobi" ng-if="head.isMobileDevice">
+						<div class="menuBtnMobi glyphicon glyphicon-menu-hamburger"></div>
+						<ul class="dropdown-menu" ng-if="head.isAuthed">
+                            <li><a href="/profile.html"><span class="glyphicon glyphicon-user pull-right"></span>My Profile</a></li>
+                            <li class="divider"></li>
+                            <li class="tgl"><a href="#"><span class="glyphicon glyphicon-user pull-right"></span>My Friends</a></li>
+                            <li class="divider"></li>
+							<li ng-click="head.createDiscussion()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Post Message</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.createTournament()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Create Tournament</a></li>
+							<li class="tgl-m divider"></li>
+							<li ng-click="head.myTournaments()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>My Tournaments</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.createIndividualMatch()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Create Match</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.contactus()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Contact us</a></li>
+							<li class="tgl-m divider"></li>
+                            <li><a href="#" ng-click="head.logout()"><span class="glyphicon glyphicon-log-out pull-right"></span>Log Out</a></li>
+                        </ul>
+						<ul class="dropdown-menu" ng-if="!head.isAuthed">
+							<li ng-click="head.loginForm()"><a href=""><span class="glyphicon glyphicon-user pull-right"></span>Login</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.registerForm()"><a href=""><span class="glyphicon glyphicon-user pull-right"></span>Register</a></li>
+							<li class="divider"></li>
+							<li ng-click="head.contactus()"><a href=""><span class="fa fa-comments pull-right" style="margin-top:3px"></span>Contact us</a></li>
+							<li class="divider"></li>
+							<li><a href="/about-sportsextramile.html" target="_blank">About SportsExtraMile</a></li>
+							<li class="divider"></li>
+							<li><a href="/privacy.html" target="_blank">Privacy Policy</a></li>
+						</ul>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="fakeHeader"></div>
+		<custom-dialog dialog-msg="{{tournament.confirm.dialogMsg}}" dialog-show="tournament.confirm.dialogShow" handler="tournament.dialogHandler()"></custom-dialog>
+        <div class="container" ng-cloak ng-class="{mobisite: tournament.isMobileDevice}">
+            <div class="row content tournamentpage clearfix evePage adPage">
+                <!-- Left Panel -->
+                <div class="col-md-8 myPageContent">
+                    <div class="bannerSection card">
+                        <img data-ng-src="http://stage.sportsextramile.com/tour/{{tournament.tournament._id| imagefilter:850}}?{{tournament.confirm.imgRefreshTime}}" class="img-responsive" />
+                        <div class="uploadPicCont" ng-if="(tournament.isAdmin && (tournament.isDroid == false))" style="top:6px;bottom:auto;">
+                            <input class="uploadFile" type="file" onchange="angular.element(this).scope().tournament.changeImages(this.files)" />
+                            <div class="uploadPic">	
+                                <div class="uploadIcon"></div>
+                                <div class="uploadText">Change</div>
+                            </div>
+                        </div>
+                        <div class="uploadPicCont" ng-if="(tournament.isAdmin && (tournament.isDroid == true))" style="top:6px;bottom:auto;">
+                            <div class="uploadPic" ng-click="profile.imageDiag()">	
+                                <a class="uploadIcon" href="#ChangePicture" role="button" data-toggle="modal" ng-click="tournament.imageDiag()">Change</a>
+                                <!--div class="uploadIcon"></div-->
+                                <div class="uploadText">Change</div>
+                            </div>
+                        </div>
+                        <div class="bannerTitle">
+                            <div class="bannerTitleHeading">{{tournament.tournament.title}}<span ng-if="tournament.tournament.location"> - {{tournament.tournament.location.join(', ')}}</span></div>
+                            <div class="bannerTitleDate">{{tournament.tournament.startdate}} - {{tournament.tournament.enddate}}</div>
+                        </div>
+						<div class="shareIcons">
+							<style type="text/css">
+    .resp-sharing-button__link,
+    .resp-sharing-button__icon {
+        display: inline-block
+    }
+
+    .resp-sharing-button__link {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .resp-sharing-button {
+        border-radius: 5px;
+        transition: 25ms ease-out;
+        padding: 5px;
+        font-family: Helvetica Neue,Helvetica,Arial,sans-serif
+    }
+
+    .resp-sharing-button__icon svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        vertical-align: top
+    }
+
+    .resp-sharing-button--small svg {
+        margin: 0;
+        vertical-align: middle
+    }
+
+    /* Non solid icons get a stroke */
+    .resp-sharing-button__icon {
+        stroke: #fff;
+        fill: none
+    }
+
+    /* Solid icons get a fill */
+    .resp-sharing-button__icon--solid,
+    .resp-sharing-button__icon--solidcircle {
+        fill: #fff;
+        stroke: none
+    }
+
+    .resp-sharing-button--twitter {
+        background-color: #55acee
+    }
+
+    .resp-sharing-button--twitter:hover {
+        background-color: #2795e9
+    }
+
+    .resp-sharing-button--pinterest {
+        background-color: #bd081c
+    }
+
+    .resp-sharing-button--pinterest:hover {
+        background-color: #8c0615
+    }
+
+    .resp-sharing-button--facebook {
+        background-color: #3b5998
+    }
+
+    .resp-sharing-button--facebook:hover {
+        background-color: #2d4373
+    }
+
+    .resp-sharing-button--tumblr {
+        background-color: #35465C
+    }
+
+    .resp-sharing-button--tumblr:hover {
+        background-color: #222d3c
+    }
+
+    .resp-sharing-button--reddit {
+        background-color: #5f99cf
+    }
+
+    .resp-sharing-button--reddit:hover {
+        background-color: #3a80c1
+    }
+
+    .resp-sharing-button--google {
+        background-color: #dd4b39
+    }
+
+    .resp-sharing-button--google:hover {
+        background-color: #c23321
+    }
+
+    .resp-sharing-button--linkedin {
+        background-color: #0077b5
+    }
+
+    .resp-sharing-button--linkedin:hover {
+        background-color: #046293
+    }
+
+    .resp-sharing-button--email {
+        background-color: #777
+    }
+
+    .resp-sharing-button--email:hover {
+        background-color: #5e5e5e
+    }
+
+    .resp-sharing-button--xing {
+        background-color: #1a7576
+    }
+
+    .resp-sharing-button--xing:hover {
+        background-color: #114c4c
+    }
+
+    .resp-sharing-button--whatsapp {
+        background-color: #25D366
+    }
+
+    .resp-sharing-button--whatsapp:hover {
+        background-color: #1da851
+    }
+
+    .resp-sharing-button--hackernews {
+        background-color: #FF6600
+    }
+    .resp-sharing-button--hackernews:hover, .resp-sharing-button--hackernews:focus {   background-color: #FB6200 }
+
+    .resp-sharing-button--vk {
+        background-color: #507299
+    }
+
+    .resp-sharing-button--vk:hover {
+        background-color: #43648c
+    }
+
+    .resp-sharing-button--facebook {
+        background-color: #3b5998;
+        border-color: #3b5998;
+    }
+
+    .resp-sharing-button--facebook:hover,
+    .resp-sharing-button--facebook:active {
+        background-color: #2d4373;
+        border-color: #2d4373;
+    }
+
+    .resp-sharing-button--twitter {
+        background-color: #55acee;
+        border-color: #55acee;
+    }
+
+    .resp-sharing-button--twitter:hover,
+    .resp-sharing-button--twitter:active {
+        background-color: #2795e9;
+        border-color: #2795e9;
+    }
+
+    .resp-sharing-button--google {
+        background-color: #dd4b39;
+        border-color: #dd4b39;
+    }
+
+    .resp-sharing-button--google:hover,
+    .resp-sharing-button--google:active {
+        background-color: #c23321;
+        border-color: #c23321;
+    }
+
+    .resp-sharing-button--tumblr {
+        background-color: #35465C;
+        border-color: #35465C;
+    }
+
+    .resp-sharing-button--tumblr:hover,
+    .resp-sharing-button--tumblr:active {
+        background-color: #222d3c;
+        border-color: #222d3c;
+    }
+
+    .resp-sharing-button--email {
+        background-color: #777777;
+        border-color: #777777;
+    }
+
+    .resp-sharing-button--email:hover,
+    .resp-sharing-button--email:active {
+        background-color: #5e5e5e;
+        border-color: #5e5e5e;
+    }
+
+    .resp-sharing-button--pinterest {
+        background-color: #bd081c;
+        border-color: #bd081c;
+    }
+
+    .resp-sharing-button--pinterest:hover,
+    .resp-sharing-button--pinterest:active {
+        background-color: #8c0615;
+        border-color: #8c0615;
+    }
+
+</style>
+<div class="share">
+    <!-- Sharingbutton Whatsapp -->
+	<a class="resp-sharing-button__link" href="whatsapp://send?text={{currUrl}}">
+        <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--large showInMobile">
+            <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+                <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M519 454c4 2 7 10-1 31-6 16-33 29-49 29-96 0-189-113-189-167 0-26 9-39 18-48 8-9 14-10 18-10h12c4 0 9 0 13 10l19 44c5 11-9 25-15 31-3 3-6 7-2 13 25 39 41 51 81 71 6 3 10 1 13-2l19-24c5-6 9-4 13-2zM401 200c-110 0-199 90-199 199 0 68 35 113 35 113l-20 74 76-20s42 32 108 32c110 0 199-89 199-199 0-111-89-199-199-199zm0-40c133 0 239 108 239 239 0 132-108 239-239 239-67 0-114-29-114-29l-127 33 34-124s-32-49-32-119c0-131 108-239 239-239z"/>
+                </svg>
+            </div></div>
+    </a>
+	
+	<!-- Sharingbutton Facebook -->
+    <a class="resp-sharing-button__link" href="https://www.facebook.com/sharer/sharer.php?u={{currUrl}}" target="_blank" aria-label="Share on Facebook">
+        <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--large"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+                <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M445 643h-90V419h-75v-87h75v-64q0-55 32-86 30-29 80-29 28 0 67 3v78h-47q-42 0-42 38v60h86l-11 87h-75v224z"/>
+                </svg>
+            </div></div>
+    </a>
+
+    <!-- Sharingbutton Twitter -->
+    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Sports%20extra%20mile&amp;url={{currUrl}}" target="_blank" aria-label="Share on Twitter">
+        <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--large"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+                <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M679 239s-21 34-55 57c7 156-107 329-314 329-103 0-169-50-169-50s81 17 163-45c-83-5-103-77-103-77s23 6 50-2c-93-23-89-110-89-110s23 14 50 14c-84-65-34-148-34-148s76 107 228 116c-22-121 117-177 188-101 37-6 71-27 71-27s-12 41-49 61c30-2 63-17 63-17z"/>
+                </svg>
+            </div></div>
+    </a>
+
+    <!-- Sharingbutton Google+ -->
+    <!--a class="resp-sharing-button__link" href="https://plus.google.com/share?url={{currUrl}}" target="_blank" aria-label="Share on Google+">
+        <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--large">
+            <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+                <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M487 370c21 129-62 237-195 237-114 0-207-93-207-207s93-207 207-207c89 0 138 54 138 54l-56 54s-29-32-82-32c-71 0-128 59-128 131 0 73 57 131 128 131 81 0 113-58 117-90H292v-71h195zm189-59v59h59v60h-59v59h-59v-59h-59v-60h59v-59h59z"/>
+                </svg>
+            </div></div>
+    </a-->
+    
+</div>
+						</div>
+                    </div>
+                    <div class="tabsWrapper">
+                        <div class="tabsContainer">
+                            <ul tab-script is-published="tournament.isPublished" ng-show="!tournament.isPublished">
+                                <li class="tabStyle" data-tab="Tab_Details">
+                                    <span class="tab_ico"></span>
+                                    <span class="tab_lbl">Teams</span>
+                                </li>
+                                <li class="tabStyle" data-tab="Tab_Stats">
+                                    <span class="tab_ico"></span>
+                                    <span class="tab_lbl">Stats</span>
+                                </li>
+                                <li class="tabStyle" data-tab="Tab_Schedule">
+                                    <span class="tab_ico"></span>
+                                    <span class="tab_lbl">Schedule</span>
+                                </li>
+                                <li class="tabStyle" data-tab="Tab_Pics">
+                                    <span class="tab_ico"></span>
+                                    <span class="tab_lbl">Pics</span>
+                                </li>
+                            </ul>
+                            <ul tab-script is-published="tournament.isPublished" ng-show="tournament.isPublished">
+                                <li class="tabStyle" data-tab="Tab_Schedule">
+                                    <span class="tab_ico"></span>
+                                    <span class="tab_lbl">Schedule</span>
+                                </li>								
+                                <li class="tabStyle" data-tab="Tab_Stats">
+                                    <span class="tab_ico"></span>
+                                    <span class="tab_lbl">Stats</span>
+                                </li>
+                                <li class="tabStyle" data-tab="Tab_Details">
+                                    <span class="tab_ico"></span>
+                                    <span class="tab_lbl">Teams</span>
+                                </li>	
+                                <li class="tabStyle" data-tab="Tab_Pics">
+                                    <span class="tab_ico"></span>
+                                    <span class="tab_lbl">Pics</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="faketabsContainer"></div>
+                    </div>
+                    <div class="tabsDataContainer">	
+                        <div id="Tab_Details" class="tabItem tabContent">
+                            <div class="card section detailSection pageForm" tab-scroller="">
+                                <div class="subtabWrapper">
+                                    <div class="subtabContainer">
+                                        <ul class="scrolltabContainer">
+                                            <li class="subtabStyle scrolltab">Teams</li>
+                                            <li class="subtabStyle scrolltab">Groups</li>
+                                            <li class="subtabStyle scrolltab">Info</li>
+                                            <li class="subtabStyle scrolltab">Officials</li>											
+                                        </ul>
+                                    </div>
+                                    <div class="fakesubtabContainer"></div>
+                                </div>
+                                <div class="subtabDataContainer">
+                                    <div class="scrolltabDataContainer">
+                                        <!-- Teams -->
+										<div class="scrolltabData">
+                                            <h4 class="no-margin">
+                                                <span>Teams</span>
+                                                <!-- <div class="infoSection" ng-if="tournament.isAdmin">
+                                                        <span customtip class="infoIcon1" title="Add Teams to your tournament – individual or groups.  Start typing name and system will show list of all Teams. You can just select them from list and it will be added. All Data are saved automatically."></span>
+                                                </div> -->
+                                            </h4>
+                                            <div class="addItemBtn right10" data-toggle="collapse" data-target="#createTeam" ng-if="tournament.isAdmin">
+                                                <i class="fa fa-plus" aria-hidden="true"></i> Create Team
+                                            </div>
+                                            <div id="createTeam" class="pageForm collapse">
+                                                <form name="tournament.newTeamForm" role="form" novalidate ng-submit="tournament.createTeam(tournament.newTeamForm.$valid)">
+                                                    <div class="pageFormRow" ng-class="{ 'has-error' : tournament.newTeamForm.teamName.$invalid && !tournament.newTeamForm.teamName.$pristine }">
+                                                        <div class="pageFormCol col-md-12 col-xs-12">
+                                                            <label class="pageFormLbl">Team Name</label>
+                                                            <input name="teamName" class="addOrgInput" type="text" ng-model="tournament.newteam.name" placeholder="Team name" required />
+                                                            <p ng-show="tournament.newTeamForm.teamName.$invalid && !tournament.newTeamForm.teamName.$pristine" class="help-block">required</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pageFormRow" ng-if="tournament.newteam.players.length > 0">
+                                                        <div class="pageFormCol col-md-12 col-xs-12">
+                                                            <label>Player Details</label> <span class="help-block" style="padding:0px;margin:0px;display:inline-block;" ng-if="tournament.newteam.players.length > 0">(1st player will be an admin)</span>
+                                                        </div>
+                                                    </div>	
+                                                    <div class="pageFormRow form-group" ng-class="{duplicate:$index == tournament.newteam.ind1 || $index == tournament.newteam.ind2}" ng-repeat="player in tournament.newteam.players track by $index" style="position:relative;">
+                                                        <div class="pageFormCol col-md-4 col-xs-9" ng-class="{ 'has-error' : tournament.newTeamForm['playerFname_' + $index].$invalid && !tournament.newTeamForm['playerFname_' + $index].$pristine }">
+                                                            <input class="col-md-12 col-xs-12" type="text" name="playerFname_{{$index}}" ng-model="player.fName" placeholder="First Name" required />
+                                                            <p ng-show="tournament.newTeamForm['playerFname_' + $index].$invalid && !tournament.newTeamForm['playerFname_' + $index].$pristine" class="help-block">required</p>
+                                                        </div>
+                                                        <div class="pageFormCol col-md-4 col-xs-9">
+                                                            <input class="col-md-12 col-xs-12" type="text" name="playerLname_{{$index}}" ng-model="player.lName" placeholder="Last Name" />
+                                                        </div>
+                                                        <div class="pageFormCol col-md-3 col-xs-9" ng-class="{ 'has-error' : (tournament.newTeamForm['playerEmail_' + $index].$invalid && !tournament.newTeamForm['playerEmail_' + $index].$pristine) || (!player.email && !player.mobile) }">
+                                                            <input class="col-md-12 col-xs-12" type="text" name="playerEmail_{{$index}}" ng-model="player.contact" placeholder="Email/Mobile" ng-change="tournament.validatePlayerContact(player)" />
+                                                            <p ng-show="tournament.newTeamForm['playerEmail_' + $index].$invalid && !tournament.newTeamForm['playerEmail_' + $index].$pristine" class="help-block">required</p>
+                                                            <p ng-show="!tournament.newTeamForm['playerEmail_' + $index].$pristine && !player.email && !player.mobile && player.contact" class="help-block">Invalid</p>
+                                                        </div>
+                                                        <div class="pageFormCol col-md-1" style="text-align:right;">	
+                                                            <button type="button" name="removePlayer" ng-click="tournament.removePlayer($index)">X</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pageFormCol formTournamentBtn col-md-12 col-xs-12">
+                                                        <button class="pageFormBtn" type="button" name="addPlayer" ng-click="tournament.addPlayer()">+ Add Player</button>
+                                                    </div>
+                                                    <div class="pageFormCol formTournamentBtn col-md-12 col-xs-12">
+                                                        <button class="pageFormBtn" ng-disabled="tournament.confirm.btnDisable" type="submit">Create</button>
+                                                        <button class="pageFormBtn btnCancel" type="button" name="cancelTeam" ng-click="tournament.resetTeamForm()" style="margin-right:10px">Cancel</button>
+                                                    </div>
+                                                    <div class="pageFormRow col-md-12 col-xs-12">
+                                                        <div class="alert alert-success" ng-if="tournament.newteam.success">
+                                                            {{tournament.newteam.msg}}
+                                                        </div>
+                                                        <div class="alert alert-danger" ng-if="tournament.newteam.failed">
+                                                            {{tournament.newteam.msg}}
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="cb-col cb-col-100 profListing">
+                                                <div class="cb-col cb-col-100" ng-if="!tournament.tournament.participants.length">
+                                                    No Teams available here.
+                                                </div>
+                                                <ul class="listContainer">
+                                                    <li class="listItem col-md-6 col-xs-12" data-ng-repeat="pr in tournament.tournament.participants | orderBy:'name' track by pr.pid">
+                                                        <p class="listThumb"><img data-ng-src="http://stage.sportsextramile.com/glogo/{{pr.pid| imagefilter:108}}" err-src="/img/users-group-icon.png" /></p>
+                                                        <div class="cb-col cb-col-100">
+															<div class="listTitle">
+																<a ng-click="tournament.grpParticipantDetails(pr.pid, tournament.tournament._id)" ng-bind="pr.name"></a>
+																<i class="fa fa-pencil" aria-hidden="true" ng-if="tournament.isAdmin" ng-click="tournament.confirm.isEditable = pr.pid; tournament.confirm.teamName = pr.name" style="cursor:pointer;"></i>
+															</div>
+															<div ng-if="pr.pid == tournament.confirm.isEditable">
+																<input class="addOrgInput" type="text" ng-model="tournament.confirm.teamName" placeholder="Team name" />
+																<div class="cb-col cb-col-100" style="margin-top:5px;">
+																	<span class="cb-col cb-col-47" ng-if="tournament.confirm.dupTeam" ng-bind="tournament.confirm.dupTeam" style="font-size:11px;color:red;line-height:13px;"></span>
+																	<button class="stdBtn" type="button" ng-click="tournament.updateGroup(pr.pid, tournament.confirm.teamName)" style="float:right;">Save</button>
+																	<button class="stdBtn" type="button" ng-click="tournament.confirm.isEditable = null;" style="float:right;margin-right:5px;">Cancel</button>
+																</div>
+															</div>
+														</div>														
+														<div class="listRemoveTeam">
+                                                            <button class="stdBtn" type="button" ng-hide="pr.pid == tournament.confirm.removeTeam" ng-if="tournament.isAdmin" ng-click="tournament.confirm.removeTeam = pr.pid" style="padding:0 6px;"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                            <button class="stdBtn" type="button" ng-show="pr.pid == tournament.confirm.removeTeam" ng-click="tournament.confirm.removeTeam = null">No</button>
+                                                            <button class="stdBtn" type="button" ng-show="pr.pid == tournament.confirm.removeTeam" ng-click="tournament.confirm.removeTeam = null; tournament.removeParticipant(pr.pid)" style="margin:0 5px;">Yes</button>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- Groups -->
+										<div class="scrolltabData">
+											<h4 ng-if="tournament.isAdmin">Tournament Groups</h4>
+                                            <!--<h4>
+                                                <span>Tournament Groups</span>
+                                                <div class="infoSection" ng-if="tournament.isAdmin">
+                                                        <span customtip class="infoIcon1" title="You can create groups of Teams from this section, as many tournaments require groups for scheduling. Please note, these are tournament specific groups and they are accessible only for selected tournament."></span>
+                                                </div>
+                                            </h4>-->
+                                            <div id="addGroupBtn" class="addItemBtn right10" data-toggle="collapse" data-target="#addGroup" ng-if="tournament.isAdmin">
+                                                <i class="fa fa-plus" aria-hidden="true"></i> Create Group
+                                            </div>						
+                                            <form id="addGroup" class="pageForm collapse" name="groupForm" role="form" novalidate ng-submit="groupForm.$valid && tournament.createTournamentGroup()" accept-charset="UTF-8">
+                                                <div class="pageFormRow">
+                                                    <div class="pageFormCol col-md-3 col-xs-5">
+                                                        <input ng-class="{submitted:tournament.isFocus.gSubmitted}" type="text" name="groupName" ng-model="tournament.tournament.newgroup.name" placeholder="Group name" required />
+                                                    </div>	
+                                                    <div class="pageFormCol col-md-9 col-xs-7">
+                                                        <ui-select multiple class="col-md-12" ng-class="{submitted:tournament.isFocus.gSubmitted}" ng-model="tournament.tournament.newgroup.participants" ng-required="true">
+                                                            <ui-select-match placeholder="Add Teams">{{$item.name}}</ui-select-match>
+                                                            <ui-select-choices repeat="pt in tournament.tournament.participants | filter: $select.search track by pt.pid">
+                                                                {{::pt.name}}
+                                                            </ui-select-choices>
+                                                        </ui-select>
+                                                    </div>
+                                                </div>
+                                                <div class="pageFormCol formTournamentBtn col-md-12 col-xs-12" style="padding-bottom:10px">
+                                                    <button class="pageFormBtn" type="submit" name="groupSubmit" ng-click="tournament.isFocus.gSubmitted = true;">Create</button>
+                                                    <button class="pageFormBtn btnCancel" type="button" name="groupCancel" ng-disabled="tournament.confirm.btnDisable" ng-click="tournament.cancelTournamentGroup()" style="margin-right:10px">Cancel</button>
+                                                </div>			
+                                            </form>
+                                            <div class="cb-col cb-col-100">
+                                                <div class="cb-col cb-col-100 profListing" ng-if="!tournament.tournament.groups.length">
+                                                    No Groups available here.
+                                                </div>
+												<div class="cb-col cb-col-100" ng-repeat="gr in tournament.tournament.groups | orderBy:'name' track by $index">
+                                                    <div class="cb-col cb-col-100 profListing" ng-if="tournament.isAdmin">														
+														<div class="cb-col cb-col-25 editableField">
+															<span><a href="#" editable-textarea="gr.name" e-rows="1" e-cols="70" onaftersave="tournament.updateTournamentGroup(gr)" ng-bind="gr.name || 'empty'"></a></span>
+														</div>
+														<div class="cb-col cb-col-75">
+															<ui-select multiple ng-model="gr.participants" on-select="tournament.updateTournamentGroup(gr)" on-remove="tournament.updateTournamentGroup(gr)" ng-if="tournament.isAdmin">
+																<ui-select-match placeholder="Add participants">{{$item.name}}</ui-select-match>
+																<ui-select-choices repeat="pt in tournament.tournament.participants | filter: $select.search track by pt.pid">
+																	{{::pt.name}}
+																</ui-select-choices>
+															</ui-select>
+														</div>
+													</div>
+													<div class="cb-col cb-col-100" ng-if="!tournament.isAdmin">
+														<h4 style="margin:0 0 1px 0">{{gr.name}}</h4>
+														<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="pt in gr.participants track by $index">
+															<div class="cb-col cb-col-100">
+																<a style="cursor:pointer" ng-if="pt.type == 'G'" data-ng-click="tournament.grpParticipantDetails(pt.pid)">{{::pt.name}}</a>
+																<a style="cursor:pointer" ng-if="pt.type == 'I'" data-ng-href="/profile/{{::pt.fName}}-{{::pt.lName}}-{{::pt.pid}}">{{::pt.name}}</a>
+															</div>
+														</div>
+													</div>                             
+                                                </div>
+                                            </div>
+                                        </div>
+										<!--- Info -->
+                                        <div class="scrolltabData">
+                                            <div class="pageFormRow">
+                                                <div class="pageFormCol col-md-12 col-xs-12 editableField">
+                                                    <span class="orgTitleText" data-ng-bind="tournament.tournament.title" ng-if="!tournament.isAdmin"></span>
+                                                    <span ng-if="tournament.isAdmin">
+                                                        <a class="orgTitleText" href="#" editable-textarea="tournament.tournament.title" e-rows="1" e-cols="70" onaftersave="tournament.updateTournament('title')" ng-bind="tournament.tournament.title || 'empty'"></a>
+                                                    </span> 
+                                                    <span class="orgTitleOrg"> Organized by 
+                                                        <span ng-if="tournament.tournament.organizer">
+                                                            <a href="/organization.html?orgId={{::tournament.tournament.organizer.id}}">{{tournament.tournament.organizer.title}}</a>
+                                                        </span>
+														<span ng-if="tournament.tournament.academy">
+                                                            <a href="/academy.html?aid={{::tournament.tournament.academy.id}}">{{tournament.tournament.academy.name}}</a>
+                                                        </span>
+                                                        <span ng-if="!tournament.tournament.organizer && !tournament.tournament.academy">
+                                                            <a data-ng-if="tournament.uid == tournament.tournament.user.id" data-ng-href="/profile.html">
+                                                                <span>{{::tournament.tournament.user.name}}</span>
+                                                            </a>
+                                                            <a data-ng-if="tournament.uid != tournament.tournament.user.id" data-ng-href="/profile/{{::tournament.tournament.user.name| makeHyphen}}-{{::tournament.tournament.user.id}}">
+                                                                <span>{{::tournament.tournament.user.name}}</span>
+                                                            </a>
+                                                        </span>
+                                                    </span>	
+                                                </div>
+                                            </div>							
+                                            <div class="pageFormRow row2">
+                                                <div class="pageFormCol col-md-12 col-xs-12">
+                                                    <p ng-if="!tournament.isAdmin" style="margin:0">
+                                                        <span data-ng-bind="tournament.tournament.startdate"></span> - <span data-ng-bind="tournament.tournament.enddate"></span>
+                                                    </p>
+                                                    <p ng-if="tournament.isAdmin" style="margin:0">
+                                                        <span class="tourDate">
+                                                            <datepicker datepicker-mobile="true" date-format="dd MMM y" date-set="{{tournament.tournament.startdate.toString()}}">
+                                                                <input class="col-sm-12" type="text" name="event_startdate" placeholder="dd MMM yyyy" data-ng-model="tournament.tournament.startdate" ng-change="tournament.updateTournament('startdate')" data-ng-readonly="true" />
+                                                            </datepicker>
+                                                        </span> 
+                                                        <span class="tourDate">
+                                                            <datepicker datepicker-mobile="true" date-format="dd MMM y" date-set="{{tournament.tournament.enddate.toString()}}">
+                                                                <input class="col-sm-12" type="text" name="event_enddate"   placeholder="dd MMM yyyy" data-ng-model="tournament.tournament.enddate" ng-change="tournament.updateTournament('enddate')" data-ng-readonly="true" />
+                                                            </datepicker>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <div class="pageFormCol col-md-12 col-xs-12">									
+                                                    <label class="pageFormLbl">Sport:</label>
+                                                    <span ng-if="!tournament.isAdmin"><strong>{{tournament.tournament.sport| lowercase}}</strong></span>
+                                                    <a class="tdVenue" href="#" editable-select="tournament.tournament.sport" e-ng-options="s as s for s in tournament.allsports" onaftersave="tournament.updateTournament('sport')" ng-if="tournament.isAdmin">
+                                                        {{ tournament.tournament.sport || 'empty' }}
+                                                    </a>
+                                                    <!-- <ui-select class="single" ng-model="tournament.tournament.sport" on-select="tournament.updateTournament('sport')">
+                                                                    <ui-select-match placeholder="Select sport">{{$select.selected}}</ui-select-match>
+                                                                    <ui-select-choices repeat="sport in tournament.allsports | filter: $select.search track by $index">
+                                                                                    {{sport}}
+                                                                    </ui-select-choices>
+                                                    </ui-select> -->
+                                                </div>
+                                                <div class="pageFormCol col-md-12 col-xs-12">
+                                                    <label class="pageFormLbl">Location:</label>
+                                                    <div data-ng-repeat="loc in tournament.tournament.location" ng-if="!tournament.isAdmin">
+                                                        <span><strong>{{::loc}}</strong>{{$last ? '' : ', '}}</span>
+                                                    </div>	
+                                                    <ui-select ng-if="tournament.isAdmin" multiple ng-model="tournament.tournament.location" on-select="tournament.updateTournament('location')" on-remove="tournament.updateTournament('location')">
+                                                        <ui-select-match placeholder="Select locations">{{$item}}</ui-select-match>
+                                                        <ui-select-choices repeat="city in tournament.allcities | filter: $select.search track by $index">
+                                                            {{city}}
+                                                        </ui-select-choices>
+                                                    </ui-select>
+                                                </div>
+                                                <div class="pageFormCol col-md-12 col-xs-12">
+                                                    <label class="pageFormLbl">Venue:</label>
+                                                    <div style="float:left">
+                                                        <div data-ng-repeat="fac in tournament.tournament.selFac" ng-if="!tournament.isAdmin">
+                                                            <span><strong>{{::fac.facName}}</strong>{{$last ? '' : ', '}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <ui-select ng-if="tournament.isAdmin" multiple ng-model="tournament.tournament.selFac" on-select="tournament.updateTournament('facility')" on-remove="tournament.updateTournament('facility')">
+                                                        <ui-select-match placeholder="Select venue">{{$item.facName}}</ui-select-match>
+                                                        <ui-select-choices repeat="facility in tournament.allfacilities | filter: $select.search track by $index">
+                                                            {{facility.facName}}
+                                                        </ui-select-choices>
+                                                    </ui-select>
+                                                </div>
+                                            </div>
+                                            <div class="pageFormRow row2 googlemapclass">
+                                                <div class="pageFormCol col-md-12 col-xs-12">
+                                                    <gmap mwidth="400px" mheight="180px" markers="tournament.markers">Google map</gmap>
+                                                </div>
+                                            </div>
+                                            <div class="pageFormRow">
+                                                <div class="pageFormCol col-md-12 col-xs-12">
+                                                    <label class="pageFormLbl" style="width:100%">Rules:</label>
+                                                    <div ng-if="!tournament.isAdmin" ng-bind-html="tournament.tournament.rules" style="width:100%"></div>
+                                                    <div ng-if="tournament.isAdmin" class="ta-toolbar btn-toolbar pageFormEditor">
+                                                        <div style="margin:0 0 10px 0;" text-angular="text-angular" placeholder="Tournament rules" name="htmlcontent" ng-model="tournament.tournament.rules" ta-disabled="disabled"></div>
+                                                        <button class="pageFormBtn" type="button" ng-click="tournament.updateTournament('rules')">Save</button>
+                                                        <button class="pageFormBtn btnCancel" type="button" ng-click="tournament.tournament.rules = ''" style="margin-right:10px">Clear</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Official details -->
+										<div class="scrolltabData">
+                                            <h4 style="margin:0;">Officials</h4>
+                                            <div id="addOff" class="addItemBtn right10" data-toggle="collapse" data-target="#addOfficial" ng-if="tournament.isAdmin">
+                                                <i class="fa fa-plus" aria-hidden="true"></i> Add Official
+                                            </div>							
+                                            <form id="addOfficial" class="pageForm collapse" name="addOfficialForm" role="form" novalidate ng-submit="tournament.addOfficial(tournament.newOfficial)">
+                                                <div class="pageFormRow">
+                                                    <div class="pageFormCol col-md-4 col-xs-12">
+                                                        <input class="col-md-12" ng-class="{submitted:tournament.isFocus.official.submitted}" type="text" name="officialFname" ng-change="tournament.isFocus.official.confirm = false;" ng-model="tournament.newOfficial.fName" placeholder="First Name" required />
+                                                    </div>
+                                                    <div class="pageFormCol col-md-4 col-xs-12">
+                                                        <input class="col-md-12" type="text" name="officialLname" ng-change="tournament.isFocus.official.confirm = false;" ng-model="tournament.newOfficial.lName" placeholder="Last Name" />
+                                                    </div>
+                                                    <div class="pageFormCol col-md-4 col-xs-12">
+                                                        <input class="col-md-12" ng-class="{submitted:tournament.isFocus.official.submitted, 'invEmail':tournament.isFocus.official.invEmail}" type="text" name="officialEmail" ng-change="tournament.isFocus.official.confirm = false;" ng-model="tournament.newOfficial.username" placeholder="Email / Mobile" />
+                                                    </div>
+                                                    <div class="pageFormCol col-md-12 col-xs-12" ng-hide="addOfficialForm.$valid && tournament.isFocus.official.confirm">
+                                                        <button class="pageFormBtn" type="button" name="addOfficialSubmit" ng-click="tournament.isFocus.official.submitted = true; tournament.checkForm(addOfficialForm.$valid)">Add</button>
+                                                        <button class="pageFormBtn btnCancel" type="button" name="addOfficialClear" ng-click="tournament.newOfficial = {};tournament.isFocus.official.invEmail = false;" style="margin-right:10px">Clear</button>
+                                                    </div>
+                                                    <div class="pageFormCol col-md-12 col-xs-12" ng-show="addOfficialForm.$valid && tournament.isFocus.official.confirm">
+                                                        <button class="pageFormBtn" type="submit" ng-disabled="tournament.confirm.btnDisable" name="addOfficialConfirm" ng-click="tournament.isFocus.official.submitted = true">Confirm</button>
+                                                        <button class="pageFormBtn btnCancel" type="button" name="addOfficialCancel" ng-click="tournament.cancelOfficial()" style="margin-right:10px">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </form>						
+                                            <div class="tournamentListCont">	
+                                                <div class="cb-col cb-col-100 profListing" ng-if="!tournament.officials.length">
+                                                    No officials available here.
+                                                </div>
+                                                <div class="cb-col cb-col-100 cb-scrd-itms" data-ng-repeat="official in tournament.officials track by $index">
+													<div class="cb-col cb-col-100">
+														<div class="profPic">
+															<img class="profPicImg" profile-err-src data-ng-src="http://stage.sportsextramile.com/uploads/{{::official.uid | imgsize:40}}" title="{{::official.userName}}" alt="{{::official.userName}}" />
+															<span class="profPicInitials">{{::official.userName | initials | uppercase}}</span>
+														</div>
+														<div class="profDetails">
+															<a class="profName" data-ng-href="/profile/{{::official.userName | makeHyphen}}-{{::official.uid}}">
+																{{::official.userName}}
+															</a>
+															<span class="profRole break-word">{{official.team}}</span>
+														</div>
+														<div class="profRemove" ng-if="tournament.isAdmin">
+															<button class="stdBtn" type="button" ng-hide="tournament.confirm.removePlayer[$index]" ng-click="tournament.confirm.removePlayer[$index] = true"><i class="fa fa-times" aria-hidden="true"></i></button>
+															<button class="stdBtn" type="button" ng-show="tournament.confirm.removePlayer[$index]" ng-disabled="tournament.confirm.btnDisable" ng-click="tournament.confirm.removePlayer[$index] = false">No</button>
+															<button class="stdBtn" type="button" ng-show="tournament.confirm.removePlayer[$index]" ng-disabled="tournament.confirm.btnDisable" ng-click="tournament.confirm.removePlayer[$index] = false;tournament.removeOfficial(official.uid)" style="margin:0 5px;">Yes</button>
+														</div>
+													</div>
+                                                </div>
+                                            </div>
+                                        </div>										
+                                    </div>	
+                                </div>	
+                            </div>
+                        </div>						
+                        <div id="Tab_Stats" class="tabItem tabContent">
+                            <div class="card section pSection" tab-scroller="">
+                                <div class="subtabWrapper">
+                                    <div class="subtabContainer">
+                                        <ul class="scrolltabContainer">										
+                                            <li class="subtabStyle scrolltab">Top Batsmen</li>
+                                            <li class="subtabStyle scrolltab">Top Bowlers</li>
+                                            <li class="subtabStyle scrolltab">Top Fielders</li>
+                                            <li class="subtabStyle scrolltab">Points</li>
+                                        </ul>                                        
+                                    </div>
+                                    <div class="fakesubtabContainer"></div>
+                                </div>	
+                                <div class="subtabDataContainer">
+                                    <div class="scrolltabDataContainer">
+										<!-- Top Batsmen -->
+                                        <div class="scrolltabData">
+                                            <div class="cb-col cb-col-100">
+												<div class="cb-col cb-col-100 cb-scrd-itms">
+													<div class="cb-col cb-col-14 cb-sm-100 cb-md-hide" style="line-height:27px;">Batting stats for</div>
+													<div class="cb-col cb-col-46 cb-sm-100 mobiledd">
+														<ui-select class="single" ng-model="tournament.confirm.selTeam" on-select="tournament.updateStats(tournament.confirm.selTeam.pid)">
+															<ui-select-match placeholder="Select team">{{$select.selected.name}}</ui-select-match>
+															<ui-select-choices repeat="team in tournament.allTeams | filter: $select.search track by $index">
+																{{::team.name}}
+															</ui-select-choices>
+														</ui-select>
+													</div>
+												</div>												
+                                                <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                                    <div class="cb-col cb-col-40">{{tournament.isMobileDevice ? '' : 'Top Batsmen'}}</div>
+                                                    <div class="cb-col cb-col-10 text-right">M</div>
+                                                    <div class="cb-col cb-col-10 text-right">R</div>
+                                                    <div class="cb-col cb-col-10 text-right">4</div>
+                                                    <div class="cb-col cb-col-10 text-right">6</div>
+                                                    <div class="cb-col cb-col-10 text-right">50</div>
+                                                    <div class="cb-col cb-col-10 text-right">100</div>
+                                                </div>
+                                                <div class="cb-col cb-col-100 cb-scrd-itms" ng-if="!tournament.topBatsmen.length">
+                                                    <div class="cb-col cb-col-100 text-gray">No data available here</div>
+                                                </div>
+                                                <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batsman in tournament.topBatsmen | orderBy:'-battingStats.totalRun' track by $index" ng-if="batsman.name != null">
+                                                    <div class="cb-col cb-col-40">
+														<div class="cb-col cb-col-100">
+															<div class="profPic">
+																<img class="profPicImg" profile-err-src data-ng-src="http://stage.sportsextramile.com/uploads/{{::batsman.pid | imgsize:40}}" title="{{::batsman.name}}" alt="{{::batsman.name}}" />
+																<span class="profPicInitials">{{::batsman.name | initials | uppercase}}</span>
+															</div>
+															<div class="profDetails">
+																<a class="profName" data-ng-href="/profile/{{::batsman.name | makeHyphen}}-{{::batsman.pid}}">
+																	{{::batsman.name}}
+																</a>
+																<span class="profRole break-word">{{batsman.team}}</span>
+															</div>
+                                                        </div>	
+                                                    </div>
+                                                    <div class="cb-col cb-col-10 text-right text-gray">{{batsman.totalInnings}}</div>
+                                                    <div class="cb-col cb-col-10 text-right text-gray">{{batsman.battingStats.totalRun}}</div>
+                                                    <div class="cb-col cb-col-10 text-right text-gray">{{batsman.battingStats.totalFours}}</div>
+                                                    <div class="cb-col cb-col-10 text-right text-gray">{{batsman.battingStats.totalSixes}}</div>
+                                                    <div class="cb-col cb-col-10 text-right text-gray">{{batsman.battingStats.totalFifties}}</div>
+                                                    <div class="cb-col cb-col-10 text-right text-gray">{{batsman.battingStats.totalCenturies}}</div>
+                                                </div>												
+											</div>
+                                        </div>
+                                        <!-- Top Bowlers -->
+										<div class="scrolltabData">
+                                            <div class="cb-col cb-col-100">
+												<div class="cb-col cb-col-100 cb-scrd-itms">
+													<div class="cb-col cb-col-14 cb-sm-100 cb-md-hide" style="line-height:27px;">Bowling stats for</div>
+													<div class="cb-col cb-col-46 cb-sm-100 mobiledd">
+														<ui-select class="single" ng-model="tournament.confirm.selTeam" on-select="tournament.updateStats(tournament.confirm.selTeam.pid)">
+															<ui-select-match placeholder="Select team">{{$select.selected.name}}</ui-select-match>
+															<ui-select-choices repeat="team in tournament.tournament.participants | filter: $select.search track by $index">
+																{{::team.name}}
+															</ui-select-choices>
+														</ui-select>
+													</div>
+												</div>
+                                                <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                                    <div class="cb-col cb-col-43 text-left">{{tournament.isMobileDevice ? '' : 'Top Bowlers'}}</div>
+                                                    <div class="cb-col cb-col-11 text-right">M</div>
+                                                    <div class="cb-col cb-col-11 text-right">O</div>
+                                                    <div class="cb-col cb-col-11 text-right">R</div>
+                                                    <div class="cb-col cb-col-11 text-right">W</div>
+                                                    <div class="cb-col cb-col-13 text-right">E</div>
+                                                </div>
+                                                <div class="cb-col cb-col-100 cb-scrd-itms" ng-if="!tournament.topBowlers.length">
+                                                    <div class="cb-col cb-col-100 text-gray">No data available here</div>
+                                                </div>
+                                                <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="bowler in tournament.topBowlers | orderBy:['-bowlingStats.totalWickets', 'bowlingStats.eco'] track by $index" ng-if="bowler.name != null">
+                                                    <div class="cb-col cb-col-43">
+                                                        <div class="cb-col cb-col-100">
+                                                            <div class="profPic">
+																<img class="profPicImg" profile-err-src data-ng-src="http://stage.sportsextramile.com/uploads/{{::bowler.pid | imgsize:40}}" title="{{::bowler.name}}" alt="{{::bowler.name}}" />
+																<span class="profPicInitials">{{::bowler.name | initials | uppercase}}</span>
+															</div>
+															<div class="profDetails">
+																<a class="profName" data-ng-href="/profile/{{::bowler.name | makeHyphen}}-{{::bowler.pid}}">
+																	{{::bowler.name}}
+																</a>
+																<span class="profRole break-word">{{bowler.team}}</span>
+															</div>
+                                                        </div>
+                                                    </div>	
+                                                    <div class="cb-col cb-col-11 text-right text-gray">{{bowler.totalInnings}}</div>
+                                                    <div class="cb-col cb-col-11 text-right text-gray">{{bowler.bowlingStats.totalOvers}}</div>
+                                                    <div class="cb-col cb-col-11 text-right text-gray">{{bowler.bowlingStats.totalRun}}</div>
+                                                    <div class="cb-col cb-col-11 text-right text-gray">{{bowler.bowlingStats.totalWickets}}</div>
+                                                    <div class="cb-col cb-col-13 text-right text-gray">{{bowler.bowlingStats.eco| number:2}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Top Filders -->
+										<div class="scrolltabData">
+                                            <div class="cb-col cb-col-100">
+												<div class="cb-col cb-col-100 cb-scrd-itms">
+													<div class="cb-col cb-col-40 cb-sm-50 mobiledd">
+														<ui-select class="single" ng-model="tournament.confirm.fieldingType" on-select="tournament.getFildingStats()">
+															<ui-select-match placeholder="Fielding type">{{$select.selected.type}}</ui-select-match>
+															<ui-select-choices repeat="flType in tournament.fieldingTypes | filter: $select.search track by $index">
+																{{::flType.type}}
+															</ui-select-choices>
+														</ui-select>
+													</div>
+													<!-- Regenerate Stats button -->
+													<div class="cb-col cb-col-60 cb-sm-50" ng-if="tournament.isAdmin">
+														<button class="stdBtn" type="button" ng-click="tournament.regenerateFieldingStats()" style="float:right;">Regenerate Stats</button>
+													</div>
+												</div>
+                                                <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                                    <div class="cb-col cb-col-52 text-left">{{tournament.isMobileDevice ? '' : 'Top Fielders'}}</div>
+                                                    <!-- <div class="cb-col cb-col-12 text-right">M</div> -->
+                                                    <div class="cb-col cb-col-12 text-right">{{tournament.isMobileDevice ? 'CT' : 'Catches'}}</div>
+                                                    <div class="cb-col cb-col-12 text-right">{{tournament.isMobileDevice ? 'RO' : 'RunOuts'}}</div>
+                                                    <div class="cb-col cb-col-12 text-right">{{tournament.isMobileDevice ? 'ST' : 'Stumpings'}}</div>
+                                                    <div class="cb-col cb-col-12 text-right">Total</div>
+                                                </div>
+                                                <div class="cb-col cb-col-100 cb-scrd-itms" ng-if="!tournament.topFielders.length">
+                                                    <div class="cb-col cb-col-100 text-gray">No data available here</div>
+                                                </div>
+                                                <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="fielder in tournament.topFielders | orderBy:'-total' track by fielder.pid" ng-if="fielder.name != null && fielder.total > 0">
+                                                    <div class="cb-col cb-col-52">
+                                                        <div class="cb-col cb-col-100">
+															<div class="profPic">
+																<img class="profPicImg" profile-err-src data-ng-src="http://stage.sportsextramile.com/uploads/{{::fielder.pid | imgsize:40}}" title="{{::fielder.name}}" alt="{{::fielder.name}}" />
+																<span class="profPicInitials">{{::fielder.name | initials | uppercase}}</span>
+															</div>
+															<div class="profDetails">
+																<a class="profName" data-ng-href="/profile/{{::fielder.name | makeHyphen}}-{{::fielder.pid}}">
+																	{{::fielder.name}}
+																</a>
+																<span class="profRole break-word">{{fielder.team}}</span>
+															</div>
+                                                        </div>	
+                                                    </div>
+                                                    <!-- <div class="cb-col cb-col-12 text-right text-gray">{{fielder.totalInnings}}</div> -->
+                                                    <div class="cb-col cb-col-12 text-right text-gray">{{(fielder.CB ? fielder.CB : 0) + (fielder.CF ? fielder.CF : 0)}}</div>
+                                                    <div class="cb-col cb-col-12 text-right text-gray">{{fielder.RO ? fielder.RO : 0}}</div>
+                                                    <div class="cb-col cb-col-12 text-right text-gray">{{fielder.ST ? fielder.ST : 0}}</div>
+                                                    <div class="cb-col cb-col-12 text-right text-gray">{{fielder.total}}</div>
+                                                </div>												
+											</div>
+                                        </div>
+                                        <!-- Points Table -->
+										<div class="scrolltabData">
+											<!-- Regenerate Points Table button -->
+											<div class="cb-col cb-col-100 cb-scrd-itms" ng-if="tournament.isAdmin">
+												<button class="stdBtn" type="button" ng-click="tournament.regeneratePointsTable()" style="float:right;">Regenerate Points Table</button>
+											</div>
+                                            <div class="cb-col cb-col-100 cb-scrd-itms" ng-if="!tournament.tournament.teamPoints.length">
+                                                <div class="cb-col cb-col-100 text-gray">No data available here</div>
+                                            </div>
+                                            <div class="cb-col cb-col-100" ng-repeat="group in tournament.tournament.teamPoints | orderBy:'name' track by $index">
+                                                <h4 ng-if="group.name" style="margin:0 0 1px 0">{{group.name}}</h4>
+                                                <div class="cb-col cb-col-100 cb-scrd-sub-hdr cb-bg-gray">
+                                                    <div class="cb-col cb-col-38">Team</div>
+                                                    <div class="cb-col cb-col-10 text-right">Pl</div>
+                                                    <div class="cb-col cb-col-9 text-right">W</div>
+                                                    <div class="cb-col cb-col-9 text-right">L</div>
+                                                    <div class="cb-col cb-col-9 text-right">D</div>
+                                                    <div class="cb-col cb-col-10 text-right">Pts</div>
+                                                    <div class="cb-col cb-col-15 text-right">NRR</div>
+                                                </div>
+                                                <div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="team in group.teams | orderBy:['-pts', '-nrr'] track by $index">
+                                                    <div class="cb-col cb-col-38">{{team.name}}</div>
+                                                    <div class="cb-col cb-col-10 text-right text-gray">{{team.played}}</div>
+                                                    <div class="cb-col cb-col-9 text-right text-gray">{{team.won}}</div>
+                                                    <div class="cb-col cb-col-9 text-right text-gray">{{team.lost}}</div>
+                                                    <div class="cb-col cb-col-9 text-right text-gray">{{team.draw}}</div>
+                                                    <div class="cb-col cb-col-10 text-right text-gray">{{team.pts}}</div>
+                                                    <div class="cb-col cb-col-15 text-right text-gray">{{team.nrr > 0 ? '+' : ''}}{{team.nrr| number:2}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>	
+                            </div>
+                        </div>                    
+                        <div id="Tab_Schedule" class="tabItem tabContent">
+                            <div class="card scheduleSection pSectionList section">
+                                <h4 style="margin:0;background:#113145;">
+                                    <!-- <div class="infoSection" ng-if="tournament.isAdmin">
+                                            <span customtip class="infoIcon1" title="Tournament schedule is prepared in this section. You can create round for your tournament e.g. First round, Second Round, Quarter Final, Semi Final & Final. You can add match to each round. While adding a match, if you select Round – Team 1 and Team 2 dropdown will show list of teams for that group. If match is between teams of different group, leave Group blank and you can select Team across groups. Remember to publish round only after your schedule is final – Round is visible to you only until it is published. Once round is published, all scheduled matches are visible to all participants and their friends."></span>
+                                    </div> -->
+                                    &nbsp;
+                                </h4>
+                                <div class="addItemBtn right10" data-toggle="collapse" data-target="#addRound" ng-if="tournament.isAdmin">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Create Round
+                                </div>
+                                <div id="addRound" class="pSectionSearch collapse">
+                                    <div class="addOrgBtnCont" style="padding-top:10px;">
+                                        <form class="formValidations" name="addRoundForm" role="form" novalidate ng-submit="addRoundForm.$valid && tournament.createRound()">
+                                            <input class="addOrgInput" ng-class="{submitted:tournament.confirm.addRoundSubmit}" type="text" name="roundName" ng-model="tournament.tournament.newround.name" placeholder="Round name" required />
+                                            <input class="addOrgBtn" style="top:10px;" type="submit" value="Add" ng-disabled="tournament.confirm.btnDisable" ng-click="tournament.confirm.addRoundSubmit = true"></input>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="cb-col cb-col-100 profListing" ng-if="!tournament.tournament.rounds.length">
+                                    No Rounds available here.
+                                </div>
+                                <!-- Today's Matches -->
+                                <div class="cb-col cb-col-100" ng-if="tournament.todaysSchedule.length > 0">
+                                    <h4 style="margin-bottom:10px;">Today's Matches</h4>
+                                    <div class="" ng-repeat="schedule in tournament.todaysSchedule | orderBy:'evtDate' track by $index" style="padding-top:10px;">
+                                        <div class="scheduleWrapper">
+                                            <div class="schContainer">
+												<div class="schGroup">
+													<span ng-if="schedule.groupName">{{schedule.groupName}} match</span>
+													<span ng-if="schedule.facility"> <i class="fa fa-map-marker red-color" aria-hidden="true" style="font-size:13px;"></i> {{schedule.facility.facName}}</span>
+												</div>
+												<div class="schRemove" ng-if="!schedule.toss && !schedule.result && tournament.isAdmin">
+													<button class="stdBtn" type="button" ng-click="tournament.confirm.removeSch[$index] = true" style="padding:0 6px;margin:0 0 5px 35px;"><i class="fa fa-times" aria-hidden="true"></i></button>
+													<button class="stdBtn" type="button" ng-show="tournament.confirm.removeSch[$index]" ng-click="tournament.confirm.removeSch[$index] = false">No</button>
+													<button class="stdBtn" type="button" ng-show="tournament.confirm.removeSch[$index]" ng-click="tournament.removeSchedule(schedule)" style="margin:0 5px;">Yes</button>
+												</div>
+												<div class="schItem">
+													<div class="schDate">
+														<span class="schDateDate">{{schedule.evtDate| date:"dd"}}</span>
+														<span class="schDateMonth">{{schedule.evtDate| date:"MMM"}}</span>
+														<span class="schDateTime">{{schedule.evtDate| date:"h"}}{{(schedule.evtDate| date:"mm") == "00" ? " " : ":" + (schedule.evtDate | date:"mm")}} {{schedule.evtDate| date:"a"}}</span>
+													</div>													
+													<div class="schTeams">
+														<a class="cb-col cb-col-100" ng-href="/{{tournament.tournament.sport| lowercase}}/view.html?id={{schedule.eid}}&type=E">
+															<div class="schTeam team1color">
+																<span class="cb-col cb-col-65" ng-bind="schedule.participants[0].name"></span>
+																<span class="cb-col cb-col-35 text-right schScore" ng-repeat="sc in schedule.score">
+																	<span ng-if="sc.id == schedule.participants[0].pid && (sc.overs > 0 || sc.balls > 0)">
+																		{{sc.score +'/'+ sc.W}} ({{sc.overs +'.'+ sc.balls}})
+																	</span>
+																</span>
+															</div>
+															<div class="schTeamvs">vs</div>
+															<div class="schTeam team2color">
+																<span class="cb-col cb-col-65" ng-bind="schedule.participants[1].name"></span>
+																<span class="cb-col cb-col-35 text-right schScore" ng-repeat="sc in schedule.score">
+																	<span ng-if="sc.id == schedule.participants[1].pid && (sc.overs > 0 || sc.balls > 0)">
+																		{{sc.score +'/'+ sc.W}} ({{sc.overs +'.'+ sc.balls}})
+																	</span>
+																</span>
+															</div>
+														</a>	
+													</div>
+													<div class="schRes black" ng-class="{spaceRight: tournament.isAdmin}">
+														<span ng-if="!schedule.toss && !schedule.result">Yet to start</span>
+														<span ng-if="schedule.toss && !schedule.result"><a ng-href="/{{tournament.tournament.sport| lowercase}}/view.html?id={{schedule.eid}}&type=E" >Live</a></span>
+														<div ng-if="schedule.result">															
+															<span class="cb-col cb-col-100" ng-if="schedule.result.matchStatus === 'abandoned'">Match is cancelled.</span>
+															<span class="cb-col cb-col-100" ng-if="schedule.result.matchStatus === 'bye'" ng-style="tournament.selectTeam(schedule)">{{schedule.result.winner.name}} won by {{schedule.result.by}}</span>
+															<span class="cb-col cb-col-100" ng-if="schedule.result.matchStatus === 'concluded'" ng-style="tournament.selectTeam(schedule)">{{schedule.result.winner.name}} won by {{schedule.result.by}}</span>
+															<span class="cb-col cb-col-100" ng-if="schedule.result.matchStatus === 'draw'">{{schedule.result.by}}</span>
+															<!-- <span class="cb-col cb-col-100" ng-if="schedule.result.mom">Player of the Match: {{schedule.result.mom.name}}</span> -->
+														</div>
+														<div ng-if="tournament.isAdmin" style="float:right;position:absolute;right:0;top:0;">
+															<button class="stdBtn" type="button" ng-click="tournament.goToScorePage(schedule.eid)">Start Scoring</button>
+														</div>														
+													</div>
+												</div>
+											</div>
+                                        </div>
+                                        <div class="scheduleWrapper" ng-if="$index == 0 || $index % 4 == 0">
+                                            <div class="scheduleContainer" style="height:130px;float:left;">
+                                                <div google-adsense-tournament></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>															
+                                <div class="cb-col cb-col-100" data-ng-repeat="round in tournament.tournament.rounds | orderBy:reverse:true">
+                                    <div class="cb-col cb-col-100">
+                                        <h4 ng-if="!tournament.isAdmin" style="margin-bottom:10px;">{{round.name}}</h4>
+                                        <h4 class="editableField" ng-if="tournament.isAdmin" style="margin-bottom:10px;">
+                                            <span><a href="#" editable-textarea="round.name" e-rows="1" e-cols="70" onaftersave="tournament.updateRound(round)" ng-bind="round.name || 'empty'"></a></span>
+                                        </h4>
+                                        <!-- <button class="stdBtn" type="button" ng-click="tournament.publishRound(round, $index)" ng-if="tournament.isAdmin">Publish</button> -->
+                                        <span class="notification" ng-init="tournament.isFocus.showNoti[$index] = false;" ng-show="tournament.isFocus.showNoti[$index]">{{round.name}} published.!!</span>
+                                        <!-- <button class="addOrgBtn" type="button" ng-click="tournament.deleteRound(round._id)" ng-if="tournament.isAdmin">Remove</button> -->
+                                        <div id="schedule_{{$index}}" class="addItemBtn right10" data-toggle="collapse" data-target="#createSchedule_{{$index}}" ng-if="tournament.isAdmin">
+                                            <i class="fa fa-plus" aria-hidden="true"></i> Add Match
+                                        </div>
+                                    </div>	
+                                    <form id="createSchedule_{{$index}}" class="pageForm collapse" name="scheduleForm" role="form" novalidate ng-submit="scheduleForm.$valid && tournament.validDate() && tournament.createSchedule(round)" accept-charset="UTF-8">
+                                        <div class="pageFormCol col-md-4 col-xs-12 mobiledd">
+                                            <label class="pageFormLbl hideInMobile">Group</label>
+                                            <ui-select class="single" ng-class="{submitted:tournament.isSchedule.submitted}" ng-model="tournament.tournament.newschedule.selGroup">
+                                                <ui-select-match placeholder="Group">{{$select.selected.name}}</ui-select-match>
+                                                <ui-select-choices repeat="group in tournament.tournament.groups | filter: $select.search | orderBy:'name' track by group._id">
+                                                    {{::group.name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <div class="pageFormCol col-md-4 col-xs-6 mobiledd">
+                                            <label class="pageFormLbl hideInMobile">Team 1</label>
+                                            <ui-select class="single" ng-class="{submitted:tournament.isSchedule.submitted}" ng-model="tournament.tournament.newschedule.participants[0]" ng-required="true">
+                                                <ui-select-match placeholder="Add team 1">{{$select.selected.name}}</ui-select-match>
+                                                <ui-select-choices ui-disable-choice="tournament.tournament.newschedule.participants[1].pid == pt.pid" repeat="pt in tournament.getParticipants() | filter: $select.search | orderBy:'name' track by pt.pid">
+                                                    {{::pt.name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>	
+                                        <div class="pageFormCol col-md-4 col-xs-6 mobiledd">
+                                            <label class="pageFormLbl hideInMobile">Team 2</label>
+                                            <ui-select class="single" ng-class="{submitted:tournament.isSchedule.submitted}" ng-model="tournament.tournament.newschedule.participants[1]" ng-required="true">
+                                                <ui-select-match placeholder="Add team 2">{{$select.selected.name}}</ui-select-match>
+                                                <ui-select-choices ui-disable-choice="tournament.tournament.newschedule.participants[0].pid == pt.pid" repeat="pt in tournament.getParticipants() | filter: $select.search | orderBy:'name' track by pt.pid">
+                                                    {{::pt.name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <div class="pageFormCol col-md-4 col-xs-6">
+                                            <label class="pageFormLbl hideInMobile">Date</label>
+                                            <datepicker datepicker-mobile="true" date-format="dd MMM y" date-set="{{tournament.datetime.date.toString()}}">
+                                                <input class="col-sm-12 datetime" type="text" name="event_date" placeholder="dd-MMM-yyyy" data-ng-model="tournament.datetime.date" data-ng-readonly="true" required />
+                                            </datepicker>
+                                        </div>
+                                        <div class="pageFormCol col-sm-4 col-xs-6">
+                                            <label class="pageFormLbl hideInMobile">Time</label>
+                                            <select id="date_hour" class="col-sm-4 col-xs-4 datetime" name="hour" ng-class="{invdate:tournament.datetime.invalidDate}" data-ng-model="tournament.datetime.selHour" required>
+                                                <option data-ng-repeat="hour in tournament.datetime.hours" ng-selected="{{hour.value == tournament.datetime.selHour}}" value="{{hour.value}}">{{hour.text}}</option>
+                                            </select>
+                                            <select id="date_min" class="col-sm-4 col-xs-4 datetime" name="minute" ng-class="{invdate:tournament.datetime.invalidDate}" data-ng-model="tournament.datetime.selMinute" data-ng-options="min for min in tournament.datetime.minutes" required></select>
+                                            <select id="date_mer" class="col-sm-4 col-xs-4 datetime" name="meridian" ng-class="{invdate:tournament.datetime.invalidDate}" data-ng-model="tournament.datetime.selMer" required>
+                                                <option value="AM">AM</option>
+                                                <option value="PM">PM</option>
+                                            </select>
+                                        </div>
+                                        <div class="pageFormCol col-md-4 col-xs-12 mobiledd">
+                                            <label class="pageFormLbl hideInMobile">Venue</label>
+                                            <ui-select class="single" ng-class="{submitted:tournament.isSchedule.submitted}" ng-model="tournament.tournament.newschedule.facility">
+                                                <ui-select-match placeholder="Venue">{{$select.selected.facName}}</ui-select-match>
+                                                <ui-select-choices repeat="fac in tournament.tournament.selFac | filter: $select.search | orderBy:'facName' track by fac.facID">
+                                                    {{::fac.facName}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <div class="pageFormCol formTournamentBtn col-md-12 col-xs-12" style="padding-bottom:10px">
+                                            <button class="pageFormBtn" type="submit" name="submitSchedule" ng-disabled="tournament.confirm.btnDisable" ng-click="tournament.isSchedule.submitted = true;">Add Match</button>
+                                            <button class="pageFormBtn btnCancel" type="button" name="cancelSchedule" ng-click="tournament.cancelSchedule('schedule_' + $index)" style="margin-right:10px">Cancel</button>
+                                        </div>
+                                    </form>
+                                    <div class="cb-col cb-col-100 profListing" ng-if="!round.schedule.length">
+                                        No Schedules available here.
+                                    </div>
+                                    <div ng-repeat="schedule in round.schedule | orderBy:'evtDate'">	
+                                        <div class="scheduleWrapper">
+                                            <div class="schContainer">
+												<div class="schGroup">
+													<span ng-if="schedule.groupName">{{schedule.groupName}} match</span>
+													<span ng-if="schedule.facility"> <i class="fa fa-map-marker red-color" aria-hidden="true" style="font-size:13px;"></i> {{schedule.facility.facName}}</span>
+												</div>
+												<div class="schRemove" ng-if="!schedule.toss && !schedule.result && tournament.isAdmin">
+													<button class="stdBtn" type="button" ng-click="tournament.confirm.removeSch[$index] = true" style="padding:0 6px;margin:0 0 5px 35px;"><i class="fa fa-times" aria-hidden="true"></i></button>
+													<button class="stdBtn" type="button" ng-show="tournament.confirm.removeSch[$index]" ng-click="tournament.confirm.removeSch[$index] = false">No</button>
+													<button class="stdBtn" type="button" ng-show="tournament.confirm.removeSch[$index]" ng-click="tournament.removeSchedule(schedule)" style="margin:0 5px;">Yes</button>
+												</div>
+												<div class="schItem">
+													<div class="schDate">
+														<span class="schDateDate">{{schedule.evtDate| date:"dd"}}</span>
+														<span class="schDateMonth">{{schedule.evtDate| date:"MMM"}}</span>
+														<span class="schDateTime">{{schedule.evtDate| date:"h"}}{{(schedule.evtDate| date:"mm") == "00" ? " " : ":" + (schedule.evtDate | date:"mm")}} {{schedule.evtDate| date:"a"}}</span>
+													</div>
+													<div class="schTeams">
+														<a class="cb-col cb-col-100" ng-href="/{{tournament.tournament.sport| lowercase}}/view.html?id={{schedule.eid}}&type=E">
+															<div class="schTeam team1color">
+																<span class="cb-col cb-col-65" ng-bind="schedule.participants[0].name"></span>
+																<span class="cb-col cb-col-35 text-right schScore" ng-repeat="sc in schedule.score">
+																	<span ng-if="sc.id == schedule.participants[0].pid && (sc.overs > 0 || sc.balls > 0)">
+																		{{sc.score +'/'+ sc.W}} ({{sc.overs +'.'+ sc.balls}})
+																	</span>
+																</span>
+															</div>
+															<div class="schTeamvs">vs</div>
+															<div class="schTeam team2color">
+																<span class="cb-col cb-col-65" ng-bind="schedule.participants[1].name"></span>
+																<span class="cb-col cb-col-35 text-right schScore" ng-repeat="sc in schedule.score">
+																	<span ng-if="sc.id == schedule.participants[1].pid && (sc.overs > 0 || sc.balls > 0)">
+																		{{sc.score +'/'+ sc.W}} ({{sc.overs +'.'+ sc.balls}})
+																	</span>
+																</span>
+															</div>
+														</a>	
+													</div>
+													<div class="schRes black" ng-class="{spaceRight: tournament.isAdmin}">
+														<span ng-if="!schedule.toss && !schedule.result">Yet to start</span>
+														<span ng-if="schedule.toss && !schedule.result"><a ng-href="/{{tournament.tournament.sport| lowercase}}/view.html?id={{schedule.eid}}&type=E" >Live</a></span>
+														<div ng-if="schedule.result">															
+															<span class="cb-col cb-col-100" ng-if="schedule.result.matchStatus === 'abandoned'">Match is cancelled.</span>
+															<span class="cb-col cb-col-100" ng-if="schedule.result.matchStatus === 'bye'" ng-style="tournament.selectTeam(schedule)">{{schedule.result.winner.name}} won by {{schedule.result.by}}</span>
+															<span class="cb-col cb-col-100" ng-if="schedule.result.matchStatus === 'concluded'" ng-style="tournament.selectTeam(schedule)">{{schedule.result.winner.name}} won by {{schedule.result.by}}</span>
+															<span class="cb-col cb-col-100" ng-if="schedule.result.matchStatus === 'draw'">{{schedule.result.by}}</span>
+															<!-- <span class="cb-col cb-col-100" ng-if="schedule.result.mom">Player of the Match: {{schedule.result.mom.name}}</span> -->
+														</div>
+														<div ng-if="tournament.isAdmin" style="float:right;position:absolute;right:0;top:0;">
+															<button class="stdBtn" type="button" ng-click="tournament.goToScorePage(schedule.eid)">Start Scoring</button>
+														</div>														
+													</div>
+												</div>
+											</div>	
+                                        </div>
+                                        <div class="scheduleWrapper" ng-if="$index == 0 || $index % 4 == 0">
+                                            <div class="scheduleContainer" style="height:130px;float:left;">
+                                                <div google-adsense-tournament></div>
+                                            </div>
+                                        </div>
+                                    </div>	
+                                </div>
+                            </div>	
+                        </div>
+                        <div id="Tab_Pics" class="tabItem tabContent">
+                            <div class="card gallerySection section">
+                                <h4 style="background:#113145;">&nbsp;</h4>
+                                <div class="addItemBtn right10" data-toggle="collapse" data-target="#uploadImages" ng-if="tournament.isAdmin">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Upload Images
+                                    <input class="uploadImgBtn" type="file" multiple onchange="angular.element(this).scope().tournament.uploadImages(this.files)" />
+                                </div>
+								<div class="cb-col cb-col-100 profListing" ng-if="!tournament.tournament.gallery.length">
+									No images available here.
+								</div>
+                                <div class="cb-col cb-col-100 gallery" style="padding-top:10px">			
+                                    <div id="lightgallery" class="lightgallery">
+                                        <a class="galleryItem" lightgallery ng-repeat="gal in tournament.tournament.gallery | orderBy:reverse:true" ng-href="http://stage.sportsextramile.com/posts/{{gal.id | imgsize}}">
+                                            <i class="fa fa-times-circle closeBtn" ng-hide="tournament.confirm.removeImg[$index]" ng-click="$event.stopPropagation();$event.preventDefault();tournament.confirm.removeImg = null;tournament.confirm.removeImg[$index] = true;"></i>
+											<div class="cb-col cb-col-65 profListing closeBtnOptions" ng-show="tournament.confirm.removeImg[$index]">
+												<button class="stdBtn scoreBtn cb-col-100 confirmBtn" type="submit" ng-click="tournament.removeImage($event, gal.id);">Confirm</button>
+												<button class="stdBtn scoreBtn cb-col-100" type="button" ng-click="$event.stopPropagation();$event.preventDefault();tournament.confirm.removeImg = false;">Cancel</button>
+											</div>
+											<img class="img-responsive" ng-src="http://stage.sportsextramile.com/posts/{{gal.id | imgsize:206 }}" ng-class="{'removeImg':tournament.confirm.removeImg[$index]}" />
+                                        </a>				
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Panel -->
+                <div class="col-md-4 sponserSection">
+					<div class="adSection" ng-if="tournament.tournament.ads">
+                        <div class="adContainer" ng-class="{sliderContainer: tournament.isMobileDevice}">
+                            <div class="adItem" ng-repeat="ad in tournament.tournament.ads track by $index">
+								<img data-ng-src="http://stage.sportsextramile.com/images/ads/{{ad.id | adsimgsize}}" />
+							</div>
+                        </div>
+					</div>
+				
+					<!-- <div class="adSection" ng-if="tournament.tournament._id == '5a17c39ab73bc16f5ef137d1'">
+                        <div class="adContainer" ng-class="{sliderContainer: tournament.isMobileDevice}">
+                            <div class="adItem"><img src="/img/adv1.png" /></div>
+                        </div>
+					</div>
+					<div class="adSection" ng-if="tournament.tournament._id == '5a3bb3ca80419e44279f278a' || tournament.tournament._id == '5a50d9615923f405cc6567bf'" style="height:120px !important;">	
+						<div class="adContainer" ng-class="{sliderContainer: tournament.isMobileDevice}" style="height:120px !important;">
+                            <div class="adItem"><img src="/img/adv2.jpg" /></div>
+                        </div>
+                    </div> -->
+                    <div class="right-panel clearfix slidepanel" ng-controller="frndGrpCtrl as frndCtrl">
+    <div class="frd-groups">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#Friends">Friends (<span data-ng-bind="frndCtrl.myFriendsCount"></span>)</a></li>
+            <li><a data-toggle="tab" href="#Groups">Teams (<span data-ng-bind="frndCtrl.myGroupsCount"></span>)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="Friends" class="tab-pane fade in active">
+                <!-- <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" name="searchKeyword" class="search-query form-control" placeholder="Search friends" data-ng-model="search.name"/>
+                        <span class="input-group-btn">
+                            <button class="btn" type="button">
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div> -->
+                <div class="fri-container">
+                    <ul>
+                        <li class="fri-list" ng-repeat="friend in frndCtrl.myFriends| orderBy:'name' | filter:{name :search.name}:startsWith">
+                            <p class="popupPic"><img ng-src="http://stage.sportsextramile.com/uploads/{{::friend.uid| imgsize:40}}" alt="" /></p>
+                            <a class="popupName" data-ng-href="/profile/{{::friend.name | makeHyphen}}-{{::friend.uid}}" data-ng-bind="::friend.name"></a>
+                            <a class="q-match" href="#" data-ng-click="frndCtrl.quickMatch(friend.uid)"><div class="match"></div></a> 
+                        </li>
+                    </ul>
+                    <p class="cr-btn clear text-center">
+                        <a href="#" class="Create-group" style="margin-right:20px;" data-ng-click="frndCtrl.showPeople()">Players</a>
+                        <a href="#" class="Create-group" data-ng-click="frndCtrl.inviteFriend()">Invite</a>
+                    </p>
+                </div>
+            </div>
+            <div id="Groups" class="tab-pane fade">
+				<div id="custom-search-input" class="pSection" auto-hide-popup flag="frndCtrl.gsFlag">
+                    <div class="input-group col-md-12">
+                        <input class="search-query form-control" type="text" placeholder="Search Teams" data-ng-model="frndCtrl.gsearchquery" ng-model-options="{debounce: 500}" data-ng-change="frndCtrl.gsearchquery.length > 2 && frndCtrl.searchGroups()" data-ng-click="frndCtrl.gsearchquery.length > 2 && frndCtrl.togglePopup()" />
+                        <span class="input-group-btn">
+                            <button class="btn" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+					<div class="groupSearchCont" data-ng-show="frndCtrl.gsFlag">
+						<div class="groupSearchList">	
+							<div class="groupSearchItem" data-ng-repeat="grp in frndCtrl.allgroups | filter:frndCtrl.gsearchquery track by grp.pid">
+								<div class="searchName">{{::grp.name}} <span class="searchAdmin" data-ng-if="grp.admin"> - by {{::grp.admin}}</span></div>
+								<div class="searchCity">
+									<span data-ng-if="grp.sport">{{::grp.sport}},</span>
+									<span data-ng-if="grp.city"><i class="fa fa-map-marker" aria-hidden="true"></i> {{::grp.city}}</span>                                                    
+								</div>
+								<button class="addOrgBtn" type="button" ng-click="frndCtrl.subscribeGroup(grp)" data-ng-show="!grp.isSubscribed && !grp.reqSent">Subscribe</button>
+								<span class="addOrgBtn btnSent" data-ng-show="!grp.isSubscribed && grp.reqSent">Req Sent</span>
+							</div>	
+						</div>
+					</div>
+                </div>
+                <div class="fri-container">
+                    <ul>
+                        <li class="fri-list" ng-repeat="group in frndCtrl.myGroups| orderBy:'grpName'">
+                            <p class="popupPic"><img data-ng-src="http://stage.sportsextramile.com/glogo/{{group.gid | imagefilter:108}}" err-src="/img/users-group-icon.png" /></p>
+                            <a class="popupName" href="#" data-ng-click="frndCtrl.groupDetails(group.gid)" data-ng-bind="::group.grpName"></a>
+                        </li>
+                    </ul>
+                    <p class="cr-btn clear text-center">
+                        <a href="#" class="Create-group" data-ng-click="frndCtrl.createGroup()">Create Team</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <style type="text/css">
+            @media(max-width:767px) {
+                .tournamentpage{margin-left:-20px;margin-right:-20px;}
+                .tournamentpage .card{box-shadow:1px 1px 1px 0 #617d8c;margin-bottom:10px;}
+                .adsbygoogle img{height:110px;}
+            }
+        </style>
+        <script type="text/javascript" src="js/lib/lightgallery.min.js"></script>
+        <script type="text/javascript" src="js/lib/lg-thumbnail.min.js"></script>
+        <script type="text/javascript" src="js/lib/lg-fullscreen.min.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.bxslider.min.js"></script>
+        <script type="text/javascript" src="script/main.js"></script>
+		<script type="text/javascript">
+			$(window).bind("load", function(){
+				$('.sliderContainer').bxSlider({
+					auto: true,
+					touchEnabled: false,
+					pause: 10000
+				});
+			});
+        </script>
+    </body>
+</html>

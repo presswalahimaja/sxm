@@ -1,0 +1,165 @@
+<!-- Inning 2 -->
+<div class="card" style="margin-top:80px;">
+	<div class="inningcard" style="margin:0;">
+		<div class="cb-col cb-col-100 team">
+			<div class="teamname">{{::crick.scorecard.innings[1].name}}</div>
+		</div>
+		<div class="cb-col cb-col-100 cb-inning">
+			<!-- Batting -->
+			<div class="cb-col cb-col-100 teamplayer" ng-class="{onstrike: crick.currInning == 'Inning2' && crick.scorecard.SI == $index, selected:batsman.batting}" ng-repeat="batsman in crick.scorecard.innings[1].batting">
+				<div class="cb-col cb-col-30">
+					<div class="cb-col cb-col-80 teamplayername" ng-bind="batsman.name | playerFirstName"></div>
+				</div>
+				<div class="cb-col cb-col-60 playerstrike">	
+					<div class="cb-col cb-col-100">
+						<span class="text-gray teambowler" ng-if="batsman.batting">{{(crick.matchStarted && crick.currInning == 'Inning2') ? 'Batting' : 'Not out'}}</span>
+						<span class="text-gray teambowler" ng-if="batsman.outObj">
+							<span ng-if="batsman.outObj.type == 'B'">b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'RT'">Retired Hurt </span>
+							<span ng-if="batsman.outObj.type == 'RR'">Retired </span>
+							<span ng-if="batsman.outObj.type == 'HW'">Hit Wicket B {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'CB'">c&b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'CF' || batsman.outObj.type == 'CW'">c {{batsman.outObj.fielder.name}} b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'ST'">st {{batsman.outObj.fielder.name}} b {{batsman.outObj.bowler.name}}</span>
+							<span ng-if="batsman.outObj.type == 'RO'">run out {{batsman.outObj.fielder.name}}</span>
+							<span ng-if="batsman.outObj.type == 'LB'">lbw {{batsman.outObj.bowler.name}}</span>
+						</span>
+					</div>
+				</div>
+				<div class="cb-col cb-col-10 teamplayerscore">	
+					<div class="cb-col cb-col-70 teamplayerrun text-right">{{batsman.total}}</div> <!-- Runs -->
+					<div class="cb-col cb-col-30 teamplayerball text-right">({{batsman.balls}})</div> <!-- Ball -->
+				</div>
+			</div>
+			<!-- Extra Runs -->
+			<div class="cb-col cb-col-100 teamplayer finalscore" style="margin-top:20px;">	
+				<div class="cb-col cb-col-60 text-gray teamname">Extras {{crick.scorecard.innings[1].extras.runs}} (b {{crick.scorecard.innings[1].extras.b}}, lb {{crick.scorecard.innings[1].extras.lb}}, w {{crick.scorecard.innings[1].extras.wd}}, nb {{crick.scorecard.innings[1].extras.nb}}, p {{crick.scorecard.innings[1].extras.p}})</div>
+				<div class="cb-col cb-col-25 text-gray">Overs {{crick.scorecard.innings[1].overs}}.{{crick.scorecard.innings[1].balls}}</div>
+				<div class="cb-col cb-col-15 teamscore">
+					{{crick.scorecard.innings[1].score}}-{{crick.scorecard.innings[1].W}}
+				</div>
+			</div>										
+		</div>
+		<div class="inningcardbg"></div>	
+	</div>      
+</div>
+<style type="text/css">
+	.second_inning_2 .cb-inning{
+		min-height: 700px;
+		position: relative;
+		z-index: 1;
+	}
+	.second_inning_2 .team{
+		background: rgb(44,52,135); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(44,52,135,1) 1%, rgba(76,98,181,1) 50%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(44,52,135,1) 1%,rgba(76,98,181,1) 50%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(44,52,135,1) 1%,rgba(76,98,181,1) 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c3487', endColorstr='#4c62b5',GradientType=0 ); /* IE6-9 */
+		height: 60px;
+		line-height: 60px;
+		font-size: 32px;
+		font-weight: 600;
+		text-transform: uppercase;
+		color: #ffffff;
+		margin-bottom: 15px;
+		z-index: 1;
+	}
+	.second_inning_2 .teamname{
+		float: left;
+		padding: 0 10px;		
+	}
+	.second_inning_2 .teamplayer{
+		background: rgb(30,87,153); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(221,221,221,1) 0%, rgba(157,157,157,1) 0%, rgba(238,238,238,1) 81%, rgba(238,238,238,1) 100%, rgba(125,185,232,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(221,221,221,1) 0%,rgba(157,157,157,1) 0%,rgba(238,238,238,1) 81%,rgba(238,238,238,1) 100%,rgba(125,185,232,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		backgroud: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(221,221,221,1) 0%,rgba(157,157,157,1) 0%,rgba(238,238,238,1) 81%,rgba(238,238,238,1) 100%,rgba(125,185,232,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+		height: 50px;
+		line-height: 50px;
+		font-size: 30px;
+		font-weight: 600;	
+		margin: 0 0 5px 0;
+		min-height: 50px;	
+	}	
+	.second_inning_2 .teamplayername{
+		float: left;
+		padding: 0 10px;
+	}
+	.second_inning_2 .teamplayerscorebg{
+		width: 27px;
+		height: 27px;
+		float: left;
+	}
+	.second_inning_2 .playerstrike{
+		padding: 0 25px 0 0;
+		margin: 0 0 5px 0;
+	}
+	.second_inning_2 .teamplayer.selected{
+		background: rgb(30,87,153);
+		background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(29,131,214,1) 70%, rgba(41,137,216,1) 74%, rgba(125,185,232,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(29,131,214,1) 70%,rgba(41,137,216,1) 74%,rgba(125,185,232,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(29,131,214,1) 70%,rgba(41,137,216,1) 74%,rgba(125,185,232,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+	}
+	.second_inning_2 .selected .playerstrike{
+		background: none;
+	}
+	.second_inning_2 .teambowler{
+		padding: 0 0 0 25px;
+	}
+	.second_inning_2 .teamplayerscore{
+		background: rgb(30,87,153);
+		background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(29,131,214,1) 70%, rgba(41,137,216,1) 74%, rgba(125,185,232,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(29,131,214,1) 70%,rgba(41,137,216,1) 74%,rgba(125,185,232,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(29,131,214,1) 70%,rgba(41,137,216,1) 74%,rgba(125,185,232,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+		padding: 0 25px 0 0;
+		margin: 0 0 5px 0;
+		color: #ffffff;
+	}
+	.teamplayerball{
+		font-weight: normal !important;
+	}
+	.second_inning_2 .selected .teamplayerscore{
+		background: rgb(30,87,153); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(221,221,221,1) 0%, rgba(157,157,157,1) 0%, rgba(238,238,238,1) 81%, rgba(238,238,238,1) 100%, rgba(125,185,232,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(221,221,221,1) 0%,rgba(157,157,157,1) 0%,rgba(238,238,238,1) 81%,rgba(238,238,238,1) 100%,rgba(125,185,232,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		backgroud: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(221,221,221,1) 0%,rgba(157,157,157,1) 0%,rgba(238,238,238,1) 81%,rgba(238,238,238,1) 100%,rgba(125,185,232,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+		color: #333333;
+	}
+	.second_inning_2 .teamscore{
+		background: rgb(150,0,0); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(150,0,0,1) 18%, rgba(198,73,73,1) 85%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(150,0,0,1) 18%,rgba(198,73,73,1) 85%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(150,0,0,1) 18%,rgba(198,73,73,1) 85%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#960000', endColorstr='#c64949',GradientType=0 ); /* IE6-9 */
+		float: right;
+		padding: 0 25px 0 0;  
+		text-align: right;
+		color: #ffffff;	
+	}
+	.second_inning_2 .teamscorebg{
+		background: url(../img/strip10.jpg) repeat-x 0 0;
+		width: 17px;
+		height: 36px;
+		float: left;	
+	}
+	.second_inning_2 .finalscore{
+		position: absolute;
+		left:0;
+		bottom:0;
+	}
+	.inningcard{
+		position: relative;
+	}
+	.inningcardbg{
+		position: absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		background: #ffffff;
+		opacity: 0.3;
+	}
+</style>	

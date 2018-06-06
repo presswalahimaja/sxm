@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sem" prefix="og: http://ogp.me/ns#">
+
+    <head>
+        <title>Sport details - Sports Extra Mile</title>
+        <meta charset="utf-8" />
+        @@include('gtmhead.html')
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" />
+        <meta name="keywords" content="sports, social network, facility, event, discussions, players, coaches, Aerobics,Archery, Badminton, Basketball, Boxing, Chess, Cricket, Cycling, Fencing, Football, Golf, Gym, Gymnastics, Handball, Hiking, Hockey, Kabaddi, Khokho, Running, Shooting, Skating, Squash, Swimming, Table Tennis, Tennis, Volleyball, Water Sports, Wrestling, Yoga" />
+        <meta content="Sports social network to encourage people to be more active, healthier & connected by promoting activities, facilities & discussions" property="og:description">
+        <meta content="Sports Extra Mile" property="og:site_name">
+        <meta content="website" property="og:type">
+        <meta content="https://www.sportsextramile.com/" property="og:url">
+        <meta content="https://www.sportsextramile.com/img/og.png" property="og:image">
+        <link rel="icon" sizes="16x16" type="image/x-icon" href="//www.sportsextramile.com/favicon.ico" />
+        <script async defer src="//maps.googleapis.com/maps/api/js?key=@@gkey"></script>
+
+        @@if (doConcat === 1) {
+        @@loop('css.html', [ 
+        { "file": "common.css"}, 
+        { "file": "sxm-common.css"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('css.html', [ 
+        { "file": "bootstrap.min.css"}, 
+        { "file": "ngdialog.css"}, 
+        { "file": "ngDialog-theme-default.css"}, 
+        { "file": "login.css"}, 
+        { "file": "facilities.css"}, 
+        { "file": "profile.css"},
+        { "file": "detail.css"},
+        { "file": "style.css"}, 
+        { "file": "static.css"},
+        { "file": "select.css"}         
+        ])
+        }
+
+        @@if (doConcat === 1) {
+        @@loop('scripts.html', [ 
+        { "file": "angular.js"}, 
+        { "file": "sxm-common.js"}
+        ]) 
+        }
+        @@if (doConcat !== 1) {
+        @@loop('scripts.html', [
+        { "file": "lib/angular1.4.5.min.js"},
+        { "file": "lib/xeditable-0.2.0.js"},
+        { "file": "lib/angular-datepicker.js"},
+        { "file": "lib/textAngular-rangy.min.js"},
+        { "file": "lib/textAngular-sanitize.min.js"},
+        { "file": "lib/textAngular.min.js"},
+        { "file": "lib/select.min.js"},
+        { "file": "lib/ngdialog.js"},
+        { "file": "shared.js"},
+        { "file": "anghome.js"},
+        { "file": "user.js"},
+        { "file": "header.js"},
+        { "file": "details.js"}        
+        ])
+        }        
+    </head>
+
+    <body ng-controller="Details as details">
+        @@include('gtmbody.html')
+        @@include('header.html')
+        <div class="container">
+            <div class="row content clearfix sportPage">
+                <div  class="col-md-8 pageContainer">
+                    <div class="detail-page">
+                        <div class="banner">
+                            <img src="/img/size_1000_90.png" class="img-responsive" />
+                            <div class="d-block">
+                                <div class="d-ename">
+                                    <p class="d-etitle" data-ng-bind="::details.id"></p>
+                                </div>
+                            </div>
+                        </div>						
+                        <!-- Tabs -->
+                        <div class="tabs showInMobile">
+                            <ul>
+                                <li class="tab tab-1" data-tab="tab-1">Events</li>
+                                <li class="tab tab-2" data-tab="tab-2">Facilities</li>
+                            </ul>
+                        </div>
+                        <div id="tab-1" class="two-box none clearfix tabContent">
+                            <div class="box-full">
+                                <div class="full">
+                                    <ul class="nav nav-tabs d-tabs hideInMobile">
+                                        <li class="active">
+                                            <a href="#tab_default_31" data-toggle="tab">Events</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active event-listing" id="tab_default_31">
+                                            <ul class="col-md-12 event no">
+                                                <li ng-repeat="evt in details.details.evtllist| orderBy : '-evtDate'">
+                                                    <span class="thumb">
+                                                        <span ng-bind="evt.evtDate | date : 'd' : '+0530'"></span>
+                                                        <span><b ng-bind="evt.evtDate | date : 'MMM' : '+0530'"></b></span>
+                                                    </span>
+                                                    <span class="title">
+                                                        <a data-ng-href="/event/{{::evt.evtName| makeHyphen}}-{{::evt._id}}?type=E" data-ng-bind="::evt.evtName"></a>
+                                                    </span>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="two-box none clearfix tabContent">
+                            <div class="box-full">
+                                <div class="full">
+                                    <ul class="nav nav-tabs d-tabs hideInMobile">
+                                        <li class="active">
+                                            <a href="#tab_default_31" data-toggle="tab">Facilities</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab_default_31">
+                                            <ul class="event no">
+                                                <li ng-repeat="t in details.details.faclist">
+                                                    <span class="tmb">
+                                                        <img ng-src="@@host/facimg/{{::t.gimg|facimgpath}}" class="img-responsive">
+                                                    </span>
+                                                    <span class="title">
+                                                        <a class="sub-ttl" ng-href="/facility/{{::t.name| makeHyphen}}-{{::t._id}}?type=F" data-ng-bind="::t.name"></a>
+                                                    </span>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pull-right">
+                    <div class="box-full sports-users right-panel">
+                        <div class="">
+                            <ul class="nav nav-tabs d-tabs ">
+                                <li class="active">
+                                    <a href="#tab_default_11" data-toggle="tab" aria-expanded="true">Players</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_default_11">
+                                    <ul class="event no grp rh-pnl">
+                                        <li ng-repeat="t in details.details.people">
+                                            <img src="@@host/uploads/{{t._id| imgsize:40}}" class="img-responsive img-circle">
+                                            <span ng-if="details.user.id == t._id">
+                                                <a data-ng-href="/profile.html" data-ng-bind="::t.fName + ' ' + t.lName"></a>
+                                            </span>
+                                            <span ng-if="details.user.id !== t._id">
+                                                <a data-ng-href="/profile/{{::t.fName}}-{{::t.lName}}-{{::t._id}}" data-ng-bind="::t.fName + ' ' + t.lName"></a>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        @@include('footer.html')
+        @@include('footerscripts.html')
+        <script type="text/javascript" src="/script/main.js"></script>
+    </body>
+
+</html>

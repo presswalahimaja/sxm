@@ -1,0 +1,125 @@
+<div class="cb-col cb-col-100">
+	<!-- Team score -->
+	<div class="cb-col cb-col-100">
+		<div class="cb-col cb-col-100">
+			<div class="cb-col cb-col-30 text-center team">
+				<span ng-if="crick.scorecard.innings[0] != undefined && crick.scorecard.innings[0].batting.length > 0 && (crick.scorecard.innings[1] == undefined || crick.scorecard.innings[1].batting.length == 0)">{{::crick.scorecard.innings[0].name}}</span>
+				<span ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">{{::crick.scorecard.innings[1].name}}</span>
+				<span class="teambg"></span>
+			</div>
+			<div class="cb-col cb-col-15 text-center score">
+				<span ng-if="crick.scorecard.innings[0] != undefined && crick.scorecard.innings[0].batting.length > 0 && (crick.scorecard.innings[1] == undefined || crick.scorecard.innings[1].batting.length == 0)">{{crick.scorecard.innings[0].score}}-{{crick.scorecard.innings[0].W}}</span>
+				<span ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">{{crick.scorecard.innings[1].score}}-{{crick.scorecard.innings[1].W}}</span>
+				<span class="scorebg" ng-if="crick.scorecard.innings[0] != undefined && crick.scorecard.innings[0].batting.length > 0 && (crick.scorecard.innings[1] == undefined || crick.scorecard.innings[1].batting.length == 0)">{{crick.scorecard.innings[0].overs}}.{{crick.scorecard.innings[0].balls}}</span>
+				<span class="scorebg" ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">{{crick.scorecard.innings[1].overs}}.{{crick.scorecard.innings[1].balls}}</span>
+			</div>
+			<!-- Tournament name -->
+			<div class="cb-col cb-col-30 text-center score1">
+				<span ng-if="crick.event.tournament" ng-bind="crick.event.tournament.title"></span>
+			</div>
+			<!-- Target -->
+			<div class="cb-col cb-col-25 text-center score1">
+				<span ng-if="crick.scorecard.innings[0] != undefined && crick.scorecard.innings[0].batting.length > 0 && (crick.scorecard.innings[1] == undefined || crick.scorecard.innings[1].batting.length == 0)">
+					First Inning
+				</span>
+				<span ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">
+					Target - {{crick.scorecard.innings[0].score + 1}} 
+				</span>							
+			</div>				
+		</div>	
+	</div>
+	
+	<div class="cb-col cb-col-100">
+		<div class="cb-col cb-col-100 score2">
+			<span class="btmnleftbg"></span>
+			<!-- Batsmen -->
+			<div class="cb-col cb-col-22" ng-repeat="batsman in crick.currInningBatting" ng-if="batsman.batting">
+				<div class="cb-col cb-col-70 text-center"><span ng-bind="batsman.name | playerFirstName"></span><span ng-if="crick.currInning != '' && crick.scorecard.SI == $index">*</span></div>
+				<div class="cb-col cb-col-30 text-center">{{batsman.total}} ({{batsman.balls}})</div>
+			</div>
+			<!-- Bowler -->	
+			<div class="cb-col cb-col-21" ng-if="crick.scorecard.BSI != null">
+				<div class="cb-col cb-col-60 text-center"><span ng-bind="crick.currInningBowling[crick.scorecard.BSI].name | playerFirstName"></span></div>	
+				<div class="cb-col cb-col-40 text-center">{{crick.currInningBowling[crick.scorecard.BSI].runs}}-{{crick.currInningBowling[crick.scorecard.BSI].wicket}} ({{crick.currInningBowling[crick.scorecard.BSI].over_count}}.{{crick.currInningBowling[crick.scorecard.BSI].balls}})</div>
+			</div>
+			<div class="cb-col cb-col-21" ng-if="crick.scorecard.BSI == null && crick.scorecard.LBSI != null">
+				<div class="cb-col cb-col-60 text-center"><span ng-bind="crick.currInningBowling[crick.scorecard.LBSI].name | playerFirstName"></span></div>
+				<div class="cb-col cb-col-40 text-center">{{crick.currInningBowling[crick.scorecard.LBSI].runs}}-{{crick.currInningBowling[crick.scorecard.LBSI].wicket}} ({{crick.currInningBowling[crick.scorecard.LBSI].over_count}}.{{crick.currInningBowling[crick.scorecard.LBSI].balls}})</div>		
+			</div>
+			<!-- Overmap -->
+			<div class="cb-col cb-col-30 text-center">
+				<span>This over - </span>
+				<span>
+					<span ng-repeat="rn in crick.currInningCurrOver | filter: {a: '!true'} track by $index">
+						<span>{{rn.a | zerofilter | lowercase}}{{$last ? "" : ","}}</span>
+					</span>
+				</span>												
+				<span class="btmnrightbg"></span>
+			</div>			
+		</div>
+	</div>
+</div>
+<style type="text/css">
+.summary_2{
+	position: absolute;
+	bottom: 0;
+}
+.summary_2 .team{
+	background: url(../img/strip5.jpg) repeat-x 0 0;
+	line-height: 55px;
+	color: #fff;
+	font-size: 25px;
+	font-weight: 600;
+}
+.summary_2 .team .teambg{
+	background: url(../img/strip1.jpg) repeat-x 0 0;
+	width: 41px;
+	height: 55px;
+	float: right;
+}
+.summary_2 .score{
+	background: url(../img/strip2.jpg) repeat-x 0 0;
+	height: 55px;
+	line-height: 55px;
+	color: #033A7A;
+	font-size: 25px;
+	font-weight: 600;
+}
+.summary_2 .score .scorebg{
+	background: url(../img/strip3.jpg) repeat-x 0 0;
+	width: 117px;
+	height: 55px;
+	float: right;
+	font-size: 19px;
+	color: #fff;
+	font-weight: 600;
+}
+.summary_2 .score1{
+	background: url(../img/strip6.jpg) repeat-x 0 0;
+	height: 55px;
+	line-height: 55px;
+	color: #033A7A;
+	font-size: 25px;
+	font-weight: 600;
+}
+.summary_2 .score2{
+	background: url(../img/strip7.jpg) repeat-x 0 0;
+	height: 53px;
+	line-height: 53px;
+	color: #033A7A;
+	font-size: 25px;
+	font-weight: 600;
+}
+.summary_2 .score2 .btmnleftbg{
+	background: url(../img/strip9.jpg) repeat-x 0 0;
+	width: 78px;
+	height: 53px;
+	float: left;
+}
+.summary_2 .score2 .btmnrightbg{
+	background: url(../img/strip8.jpg) repeat-x 0 0;
+	width: 78px;
+	height: 53px;
+	float: right;
+}
+</style>

@@ -1,0 +1,45 @@
+<div class="modal-body clearfix formContainer" ng-controller="QuickMatch as quickMatch">
+    <h3>Activity between {{::quickMatch.firstName}} and {{::quickMatch.friendName}}</h3>
+
+    <form class="MatchForm form-horizontal col-sm-12 formValidations" name="quickMatchForm" role="form" novalidate ng-submit="quickMatchForm.$valid && quickMatch.createQuickMatchSubmit()">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="Sports" class="col-sm-12 control-label">Select Sports</label>
+                <select id="ddlSports" class="col-sm-12" name="ddlSports" ng-class="{submitted:quickMatch.isFocus.submitted}" auto-focus data-ng-model="quickMatch.selSport" required >
+                    <option ng-repeat="o in quickMatch.combinedSports" ng-selected="{{o == quickMatch.selSport}}" value="{{::o}}">{{::o}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="Facility" class="col-sm-12 control-label">Select Facility</label>
+                <select id="ddlFacilities" class="col-sm-12" name="ddlFacilities" ng-class="{submitted:quickMatch.isFocus.submitted}" data-ng-model="quickMatch.selFacility" required >
+                    <option ng-repeat="o in quickMatch.combinedFacility" ng-selected="{{o.id == quickMatch.selFacility}}" value="{{::o.id}}">{{::o.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="date" class="col-sm-12 control-label">Date</label>
+                <datepicker date-format="dd MMM y" date-min-limit="{{quickMatch.datetime.yesterday.toString()}}" datepicker-mobile="true" date-set="{{quickMatch.datetime.date}}">
+                    <input class="col-sm-12 datetime" type="text" name="event_date" placeholder="dd MMM, yyyy" data-ng-model="quickMatch.datetime.date" data-ng-readonly="true" required />
+                </datepicker>
+            </div>
+            <div class="col-sm-6">
+                <label for="Time" class="col-sm-12 control-label">Time</label>
+                <select id="date_hour" class="col-sm-4 datetime" name="hour" ng-class="{invdate:quickMatch.datetime.invalidDate}" data-ng-model="quickMatch.datetime.selHour" required>
+					<option data-ng-repeat="hour in quickMatch.datetime.hours" ng-selected="{{hour.value == quickMatch.datetime.selHour}}" value="{{hour.value}}">{{hour.text}}</option>
+				</select>
+                <select id="date_min"  class="col-sm-4 datetime" name="minute" ng-class="{invdate:quickMatch.datetime.invalidDate}" data-ng-model="quickMatch.datetime.selMinute" data-ng-options="min for min in quickMatch.datetime.minutes" required></select>
+                <select id="date_mer"  class="col-sm-4 datetime" name="meridian" ng-class="{invdate:quickMatch.datetime.invalidDate}" data-ng-model="quickMatch.datetime.selMer" required>
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <input  id="btnCreateEvent" class="btn btnSubmit" type="submit" value="Create" name="btnCreateEvent" data-ng-click="quickMatch.isFocus.submitted = true" />
+            <button id="btnCancelEvent" class="btn btnCancel" ng-click="quickMatch.cancel();quickMatchForm.$valid = false;">Cancel</button>
+        </div>
+    </form>
+</div>

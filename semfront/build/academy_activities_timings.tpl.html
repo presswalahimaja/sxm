@@ -1,0 +1,66 @@
+<h4>Batch Timings</h4>
+<div id="createBatchButton" class="addItemBtn right10" data-toggle="collapse" data-target="#createBatch" ng-if="ctrl.academy.isAdmin">
+	<i class="fa fa-plus" aria-hidden="true"></i> Add Batch
+</div>
+<form id="createBatch" class="pageForm collapse" name="createBatchForm" role="form" novalidate ng-submit="createBatchForm.$valid && ctrl.isDaysSelected() && ctrl.createAcademyBatch()" accept-charset="UTF-8">
+	<div class="col-md-6 col-xs-12">
+	  <div class="row">	
+		<div class="pageFormCol col-md-12 col-xs-12">
+			<label class="pageFormLbl">Days</label>
+			<ng-weekday-selector ng-model="ctrl.datetime.days"></ng-weekday-selector>	
+		</div>		
+		<div class="pageFormCol col-md-12 col-xs-12">
+			<div style="width:50%;float:left;">
+				<span class="pageFormLbl">From</span>
+				<select class="col-md-4 col-xs-4" name="hour" data-ng-model="ctrl.datetime.fromHH" required>
+					<option data-ng-repeat="hh in [] | range:0:12" ng-selected="{{hh.value == ctrl.datetime.fromHH}}" value="{{hh.value}}">{{hh.value}}</option>
+				</select>
+				<select class="col-md-4 col-xs-4" name="minute" data-ng-model="ctrl.datetime.fromMM" required>
+					<option data-ng-repeat="mm in [] | range:0:59" ng-selected="{{mm.value == ctrl.datetime.fromMM}}" value="{{mm.value}}">{{mm.value}}</option>
+				</select>
+				<select class="col-sm-4 col-xs-4" name="meridian" data-ng-model="ctrl.datetime.fromMer" required>
+					<option value="AM" selected>AM</option>
+					<option value="PM">PM</option>
+				</select>
+			</div>
+			<div style="width:50%;float:left;">
+				<span class="pageFormLbl">To</span>
+				<select class="col-md-4 col-xs-4" name="hour" data-ng-model="ctrl.datetime.toHH" required>
+					<option data-ng-repeat="hh in [] | range:0:12" ng-selected="{{hh.value == ctrl.datetime.toHH}}" value="{{hh.value}}">{{hh.value}}</option>
+				</select>
+				<select class="col-md-4 col-xs-4" name="minute" data-ng-model="ctrl.datetime.toMM" required>
+					<option data-ng-repeat="mm in [] | range:0:59" ng-selected="{{mm.value == ctrl.datetime.toMM}}" value="{{mm.value}}">{{mm.value}}</option>
+				</select>
+				<select class="col-sm-4 col-xs-4" name="meridian" data-ng-model="ctrl.datetime.toMer" required>
+					<option value="AM" selected>AM</option>
+					<option value="PM">PM</option>
+				</select>
+			</div>
+		</div>
+	  </div>	
+	</div>
+	<div class="col-md-6 col-xs-12">
+	  <div class="row">
+		<div class="pageFormCol col-md-12 col-xs-12">
+			<label class="pageFormLbl hideInMobile">Details</label>
+			<textarea class="col-sm-12" name="orgAbout" rows="2" ng-class="{submitted:ctrl.confirm.batchSubmit}" data-ng-model="ctrl.batch.summary" placeholder="Details" style="height:84px;"></textarea>
+		</div>
+	  </div>
+	</div>  
+	<div class="pageFormCol col-md-12 col-xs-12">	
+		<span ng-if="!ctrl.isDaysSelected() && ctrl.confirm.batchSubmit" style="color:red;">Please select days.</span>
+		<button class="pageFormBtn" type="submit" name="createBatchSubmit" ng-disabled="ctrl.confirm.btnDisable" ng-click="ctrl.confirm.batchSubmit = true;">Add Batch</button>
+		<button class="pageFormBtn btnCancel" type="button" name="createBatchCancel" ng-click="ctrl.confirm.batchSubmit = false;ctrl.batch = {};ctrl.clearDays();ctrl.cancelForm('createBatchButton')" style="margin-right:10px">Cancel</button>
+	</div>
+</form>
+<div class="cb-col cb-col-100">
+	<div class="cb-col cb-col-100 profListing" ng-if="!ctrl.academy.batchTimings.length">
+		No Batches available for this academy.
+	</div>
+	<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batch in ctrl.academy.batchTimings">
+		<div class="cb-col cb-col-100">Batch-{{$index+1}}</div>
+		<div class="cb-col cb-col-100">{{batch.days.join(",")}}</div>
+		<div class="cb-col cb-col-100">{{batch.timings}}</div>
+		<div class="cb-col cb-col-100" ng-if="batch.summary">{{batch.summary}}</div>
+	</div>
+</div>

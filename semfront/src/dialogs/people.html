@@ -1,0 +1,19 @@
+<div class="modal-body clearfix popupListContainer" ng-controller="peopleController as listPeople">
+    <h3>Players in <span data-ng-repeat="location in listPeople.location">{{::location}}{{$last ? '' : ', '}}</span></h3>
+    <div class="col-sm-12 popupList scrollContainer">	
+        <ul>
+            <li class="popupListItem" ng-repeat="people in listPeople.people | orderBy:['isFriend','reqSent']">
+                <p class="popupPic"><img data-ng-src="@@host/uploads/{{::people._id| imgsize:40}}" title="{{::people._id}}" alt="" /></p>
+                <a class="popupName" data-ng-href="/profile/{{::people.fName}}-{{::people.lName}}-{{::people._id}}">
+                    {{::people.fName}} {{::people.lName}}
+                </a>	
+                <p class="popupSports">
+                    <span data-ng-repeat="sport in people.sports">{{::sport}}{{$last ? '' : ', '}}</span>
+                </p>
+                <a id="add-{{people._id}}" class="add-as-friend popupBtn" href="#"
+                   data-ng-click="people.reqSent = 1;listPeople.addAsFriend(people._id)" data-ng-show="people.isFriend == 0 && people.reqSent == 0">Add friend</a> 
+                <span class="popupBtn sentBtn" data-ng-show="people.isFriend == 0 && people.reqSent == 1">Request pending</span>
+            </li>
+        </ul>
+    </div>	
+</div> 

@@ -1,0 +1,33 @@
+<div class="modal-body clearfix formContainer" ng-controller="CreateOrganizer as organizer">
+    <h3>Add an Organizer</h3>
+    <form class="form-horizontal col-md-12 formValidations" name="createOrganizerForm" role="form" novalidate ng-submit="createOrganizerForm.$valid && organizer.createOrganizer()">
+        <div class="form-group">
+            <div class="col-sm-12">
+				<label for="orgTitle" class="col-sm-12 control-label">Title</label>
+				<input id="orgTitle" class="col-sm-12" name="orgTitle" data-ng-model="organizer.organizer.title" />
+            </div>
+        </div>
+		<div class="form-group">
+            <div class="col-sm-12">
+                <label for="orgBanner" class="col-sm-12 control-label">Banner Image</label>
+                <input id="orgBanner" type="file" onchange="angular.element(this).scope().organizer.uploadFile(this.files, 'banner')" />
+            </div>
+        </div>
+		<div class="form-group">
+            <div class="col-sm-12">
+                <label for="orgLogo" class="col-sm-12 control-label">Logo Image</label>
+                <input id="orgLogo" type="file" onchange="angular.element(this).scope().organizer.uploadFile(this.files, 'logo')"/>
+            </div>
+        </div>	
+        <div class="form-group">
+            <div class="col-sm-12">
+				<label for="orgAbout" class="col-sm-12 control-label">About Organizer</label>
+				<textarea id="orgAbout" class="col-sm-12" name="orgAbout" rows="2" data-ng-model="organizer.organizer.about"></textarea>
+            </div>
+        </div>        
+        <div class="modal-footer">
+            <input  id="btnCreateEvent" class="btn btnSubmit" type="submit" value="Create" name="btnCreateEvent" ng-click="organizer.isFocus.submitted = true" />
+            <button id="btnCancelEvent" class="btn btnCancel" ng-click="organizer.cancel()">Cancel</button>
+        </div>	
+    </form>
+</div> 

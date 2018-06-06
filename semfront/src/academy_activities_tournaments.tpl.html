@@ -1,0 +1,66 @@
+<h4>Tournaments</h4>
+<div id="addItemBtn" class="addItemBtn right10" data-toggle="collapse" data-target="#tournamentFormCont" ng-if="ctrl.academy.isAdmin">
+	<i class="fa fa-plus" aria-hidden="true"></i> Create Tournament
+</div>																
+<form id="tournamentFormCont" class="pageForm collapse" name="tournamentForm" role="form" novalidate ng-submit="tournamentForm.$valid && ctrl.createTournament()" accept-charset="UTF-8" style="padding:5px 0;">
+	<div class="pageFormRow">
+		<div class="pageFormCol col-md-6 col-xs-12">
+			<label class="pageFormLbl hideInMobile">Title</label>
+			<input class="col-md-12" ng-class="{submitted:ctrl.confirm.submitted}" type="text" name="tournamentTitle" ng-model="ctrl.tournament.title" placeholder="Tournament name" required />
+		</div>
+		<div class="pageFormCol col-md-6 col-xs-12 mobiledd">
+			<label class="pageFormLbl hideInMobile">Select Sport</label>
+			<ui-select class="single" ng-class="{submitted:ctrl.confirm.submitted}" ng-model="ctrl.tournament.sport" ng-required="true">
+				<ui-select-match placeholder="Select sport">{{$select.selected}}</ui-select-match>
+				<ui-select-choices repeat="sport in ctrl.allsports | filter: $select.search track by $index">
+					{{sport}}
+				</ui-select-choices>
+			</ui-select>	
+		</div>
+	</div>
+	<div class="pageFormRow">
+		<div class="pageFormCol col-md-6 col-xs-12">
+			<label class="pageFormLbl hideInMobile">Start Date</label>
+			<datepicker datepicker-mobile="true" date-format="dd MMM y" date-set="{{ctrl.datetime.startdate.toString()}}">
+				<input class="col-sm-12" ng-class="{invDate:ctrl.datetime.invalidDate}" type="text" name="event_startdate" placeholder="Start date" data-ng-model="ctrl.datetime.startdate" data-ng-readonly="true" required />
+			</datepicker>
+		</div>
+		<div class="pageFormCol col-md-6 col-xs-12">
+			<label class="pageFormLbl hideInMobile">End Date</label>
+			<datepicker datepicker-mobile="true" date-format="dd MMM y" date-set="{{ctrl.datetime.startdate.toString()}}">
+				<input class="col-sm-12" ng-class="{invDate:ctrl.datetime.invalidDate}" type="text" name="event_enddate" placeholder="End date" data-ng-model="ctrl.datetime.enddate" data-ng-readonly="true" required />
+			</datepicker>
+		</div>
+	</div>
+	<div class="pageFormCol formTournamentBtn col-md-12 col-xs-12">											
+		<button class="pageFormBtn" type="submit" name="orgSubmit" ng-click="ctrl.confirm.submitted = true;">Create</button>
+		<button class="pageFormBtn btnCancel" type="button" name="orgCancel" ng-click="ctrl.cancel()" style="margin-right:10px">Cancel</button>
+	</div>
+</form>
+<div class="cb-col cb-col-100 profListing" ng-if="!ctrl.academy.tournaments.length">
+	No Tournaments available for this academy.
+</div>
+<div class="cb-col cb-col-100" style="padding-top:10px;">
+	<div class="col-md-6" ng-repeat="tournament in ctrl.academy.tournaments | orderBy:'-startdate'">
+		<div class="card">
+			<div class="dheader">
+				<p class="thmb"><img data-ng-src="@@host/images/acd/{{ctrl.academy._id | imagefilter:80 }}" title="{{::ctrl.academy.name}}" alt="" /></p>
+				<p class="ttitle">
+					<a data-ng-href="/academy.html?aid={{ctrl.academy._id}}">
+						<span class="ename">{{ctrl.academy.name}}</span>
+					</a> presents 
+					<a data-ng-href="/tournament.html?aid={{ctrl.academy._id}}&tid={{tournament.id}}">
+						<span>{{::tournament.title}}</span>
+					</a>
+				</p>
+				<span class="d-box-loc">{{tournament.startdate | date:"dd-MMM-yyyy"}} - {{tournament.enddate | date:"dd-MMM-yyyy"}}</span>
+				<span class="articleTag">Tournament</span>
+			</div>
+			<div class="homboxImg">
+				<a data-ng-href="/tournament.html?aid={{ctrl.academy._id}}&tid={{tournament.id}}">
+					<img data-ng-src="@@host/images/acd/{{tournament.id | imagefilter:404 }}" title="{{::tournament.title}}" alt="" />
+				</a>	
+			</div>
+		</div>	
+	</div>
+</div>

@@ -1,0 +1,57 @@
+<!-- Team names -->
+<div class="cb-col cb-col-100 summeryBox text-center" style="margin-bottom:5px;">
+	{{::crick.scorecard.innings[0].name}} VS {{::crick.scorecard.innings[1].name}}
+</div>
+<!-- Summary -->
+<div class="card">
+	<!-- Inning 1 -->    
+	<div class="inningcard" style="margin:0;">
+		<h4>{{::crick.scorecard.innings[0].name}} <div style="float:right;">{{crick.scorecard.innings[0].score}}-{{crick.scorecard.innings[0].W}} ({{crick.scorecard.innings[0].overs}}.{{crick.scorecard.innings[0].balls}})</div></h4>
+		<div class="tab-section">
+			<!-- Batting -->
+			<div class="cb-col cb-col-48">
+				<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batsman in crick.scorecard.innings[0].batting | orderBy:['-total','balls'] | limitTo:3">
+					<div class="cb-col cb-col-80">{{batsman.name}}</div>													
+					<div class="cb-col cb-col-20 text-right text-gray">{{batsman.total}} ({{batsman.balls}})</div>
+				</div>
+			</div>
+			<div class="cb-col cb-col-4"></div>
+			<!-- Bowlers -->
+			<div class="cb-col cb-col-48">
+				<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="bowlers in crick.scorecard.innings[1].bowling | orderBy:['-wicket','runs'] | limitTo:3">
+					<div class="cb-col cb-col-80">{{bowlers.name}}</div>	
+					<div class="cb-col cb-col-20 text-right text-gray">{{bowlers.wicket}}-{{bowlers.runs}}</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<!-- Inning 2 -->
+	<div class="inningcard" ng-if="crick.scorecard.innings[1] != undefined && crick.scorecard.innings[1].batting.length > 0">
+		<h4>{{::crick.scorecard.innings[1].name}} <div style="float:right;">{{crick.scorecard.innings[1].score}}-{{crick.scorecard.innings[1].W}} ({{crick.scorecard.innings[1].overs}}.{{crick.scorecard.innings[1].balls}})</div></h4>
+		<div class="tab-section">
+			<!-- Batting -->
+			<div class="cb-col cb-col-48">
+				<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="batsman in crick.scorecard.innings[1].batting | orderBy:['-total','balls'] | limitTo:3">
+					<div class="cb-col cb-col-80">{{batsman.name}}</div>													
+					<div class="cb-col cb-col-20 text-right text-gray">{{batsman.total}} ({{batsman.balls}})</div>
+				</div>
+			</div>
+			<div class="cb-col cb-col-4"></div>
+			<!-- Bowlers -->
+			<div class="cb-col cb-col-48">
+				<div class="cb-col cb-col-100 cb-scrd-itms" ng-repeat="bowlers in crick.scorecard.innings[0].bowling | orderBy:['-wicket','runs'] | limitTo:3">
+					<div class="cb-col cb-col-80">{{bowlers.name}}</div>	
+					<div class="cb-col cb-col-20 text-right text-gray">{{bowlers.wicket}}-{{bowlers.runs}}</div>
+				</div>
+			</div>
+		</div>		
+	</div>   
+</div>
+<!-- Require Runs -->
+<div class="cb-col cb-col-100 summeryBox text-center" ng-if="crick.event.result == undefined && crick.currInning == 'Inning2'">
+	{{crick.scorecard.innings[1].name}} needs {{crick.rruns}} runs in {{crick.pballs}} balls to win ({{crick.RRR}})
+</div>
+<!-- Result -->
+<div class="cb-col cb-col-100 summeryBox text-center" ng-if="crick.event.result != undefined">
+	{{crick.event.result.winner.name}} won by {{crick.event.result.by}}
+</div>

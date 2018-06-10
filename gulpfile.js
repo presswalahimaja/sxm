@@ -1,14 +1,26 @@
 var fileinclude = require('gulp-file-include');
 var gulp = require('gulp');
-var gutil = require('gulp-util');
+/* var gutil = require('gulp-util');
+var env = gutil.env.env || 'development'; */
 var insert = require('gulp-insert');
-var env = gutil.env.env || 'development';
+
+var connect = require('gulp-connect');
+var minimist = require('minimist');
+
+const args = minimist(process.argv.slice(2));
+const env = args.env;
+console.log(env)
 if (env == 'development') {
-    var base = './public_html/';
+    var base = './semfront/';
+    var host = 'http://localhost:8080';
+    var apiHost = '';
+    var gkey = "";
+	var doConcat = 0;
+    /* var base = './public_html/';
     var host = 'http://stage.sportsextramile.com';
     var apiHost = 'http://stage.sportsextramile.com/api';
     var gkey = "AIzaSyBMX_8Y8l89UDbLnbewhfXFcRhCs-uzoPQ";
-	var doConcat = 0;
+	var doConcat = 0; */
 } else if (env == 'c9') {
     var base = '/home/ubuntu/workspace/semfront/semfront/';   
     var host = 'http://stage.sportsextramile.com';
@@ -55,10 +67,6 @@ var path = {
 		}
 };
 
-gulp.task('default', function () {
-    console.log("default run");
-});
-
 gulp.task('copyStatic', function () {
     gulp.src(path.src.js + '*').pipe(gulp.dest(path.dest.js));
     gulp.src(path.src.jslib + '*').pipe(gulp.dest(path.dest.jslib));
@@ -90,3 +98,12 @@ gulp.task('build', ['copyStatic'], function () {
 gulp.task('watch', function () {
     gulp.watch(base + 'src/**/*', ['build']);
 });
+
+gulp.task('connect', function() {
+    connect.server({
+      root: './semfront/build/',
+      livereload: true
+    });
+  });
+
+gulp.task('default', ['connect', 'watch']);
